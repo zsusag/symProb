@@ -1,0 +1,321 @@
+use std::collections::HashMap;
+
+use num::rational::Ratio;
+use pest::iterators::{Pair, Pairs};
+use pest::pratt_parser::PrattParser;
+
+use crate::expr::{Expr, ExprNode};
+use crate::syntax::{ExprKind, Func, Statement, Type, Value};
+
+#[derive(pest_derive::Parser)]
+#[grammar = "grammar.pest"]
+pub struct ExprParser;
+
+lazy_static::lazy_static! {
+    static ref PRATT_PARSER: PrattParser<Rule> = {
+        use pest::pratt_parser::{Assoc::*, Op};
+        use Rule::*;
+
+        // Precedence is defined lowest to highest
+        PrattParser::new()
+        // Addition and subtract have equal precedence
+            .op(Op::infix(or, Left))
+            .op(Op::infix(and, Left))
+            .op(Op::infix(lt, Left) | Op::infix(le, Left) | Op::infix(gt, Left) | Op::infix(ge, Left) | Op::infix(eq, Left) | Op::infix(ne, Left))
+            .op(Op::infix(add, Left) | Op::infix(subtract, Left))
+            .op(Op::infix(multiply, Left) | Op::infix(divide, Left))
+            .op(Op::prefix(unary_minus) | Op::prefix(unary_not))
+    };
+}
+
+pub fn parse_expr(pairs: Pairs<Rule>) -> ExprNode {
+    PRATT_PARSER
+        .map_primary(|primary| match primary.as_rule() {
+            Rule::integer => ExprNode::new_leaf(ExprKind::Constant(Value::Num(Ratio::new(
+                primary.as_str().parse::<i32>().unwrap(),
+                1,
+            )))),
+            Rule::identifier => {
+                ExprNode::new_leaf(ExprKind::Constant(Value::Var(primary.as_str().to_string())))
+            }
+            Rule::boolean => ExprNode::new_leaf(ExprKind::Constant(Value::Boolean(
+                primary.as_str().parse().unwrap(),
+            ))),
+            Rule::expr => parse_expr(primary.into_inner()),
+            rule => unreachable!("Expr::parse expected atom, found {:?}", rule),
+        })
+        .map_infix(|lhs, op, rhs| {
+            let op = match op.as_rule() {
+                Rule::add => ExprKind::Add,
+                Rule::subtract => ExprKind::Sub,
+                Rule::multiply => ExprKind::Mul,
+                Rule::divide => ExprKind::Div,
+                Rule::and => ExprKind::And,
+                Rule::or => ExprKind::Or,
+                Rule::lt => ExprKind::Lt,
+                Rule::le => ExprKind::Le,
+                Rule::gt => ExprKind::Gt,
+                Rule::ge => ExprKind::Ge,
+                Rule::eq => ExprKind::Eq,
+                Rule::ne => ExprKind::Ne,
+                rule => unreachable!("Expr::parse expected infix operation, found {:?}", rule),
+            };
+            if let (ExprKind::Constant(Value::Num(n1)), ExprKind::Constant(Value::Num(n2))) =
+                (lhs.get_e(), rhs.get_e())
+            {
+                match op {
+                    ExprKind::Add => ExprNode::new_leaf(ExprKind::Constant(Value::Num(
+                        n1.to_owned() + n2.to_owned(),
+                    ))),
+                    ExprKind::Sub => ExprNode::new_leaf(ExprKind::Constant(Value::Num(
+                        n1.to_owned() - n2.to_owned(),
+                    ))),
+                    ExprKind::Mul => ExprNode::new_leaf(ExprKind::Constant(Value::Num(
+                        n1.to_owned() * n2.to_owned(),
+                    ))),
+                    ExprKind::Div => ExprNode::new_leaf(ExprKind::Constant(Value::Num(
+                        n1.to_owned() / n2.to_owned(),
+                    ))),
+                    _ => unreachable!(),
+                }
+            } else {
+                ExprNode::new(op, vec![lhs, rhs])
+            }
+        })
+        .map_prefix(|op, mut rhs| match op.as_rule() {
+            Rule::unary_minus => {
+                if let ExprKind::Constant(Value::Num(n)) = rhs.get_mut_e() {
+                    *n *= -1;
+                    rhs
+                } else {
+                    ExprNode::new(
+                        ExprKind::Mul,
+                        vec![
+                            ExprNode::new_leaf(ExprKind::Constant(Value::Num(Ratio::new(-1, 1)))),
+                            rhs,
+                        ],
+                    )
+                }
+            }
+            Rule::unary_not => ExprNode::new(ExprKind::Not, vec![rhs]),
+            _ => unreachable!(),
+        })
+        .parse(pairs)
+}
+
+// Each fn_def consists of the following:
+// 1) identifier (name of the function)
+// 2) A (possibly empty) parameter list, which are pairs of identifiers and types
+// 3) A statement list
+pub fn parse_func(mut pairs: Pairs<Rule>) -> Func {
+    // Get the name of the function
+    let name = pairs.next().unwrap().as_str().to_string();
+    let inputs: Vec<(String, Type)> = pairs
+        .next()
+        .unwrap()
+        .into_inner()
+        .map(|p| {
+            let mut inner_rules = p.into_inner();
+            let var_name = inner_rules.next().unwrap().as_str().to_string();
+            let t = match inner_rules.next().unwrap().as_str() {
+                "Real" => Type::Real,
+                "Boolean" => Type::Bool,
+                _ => unreachable!(),
+            };
+            (var_name, t)
+        })
+        .collect();
+    let body: Vec<Statement> = pairs
+        .next()
+        .unwrap()
+        .into_inner()
+        .map(parse_statement)
+        .collect();
+    Func::new(name, inputs, body)
+}
+
+pub fn parse_statement(pair: Pair<Rule>) -> Statement {
+    match pair.as_rule() {
+        Rule::assignment => {
+            let mut inner_rules = pair.into_inner();
+
+            let var = inner_rules.next().unwrap().as_str().to_string();
+            let e = parse_expr(inner_rules.next().unwrap().into_inner());
+
+            Statement::Assignment(var, Expr::new(e))
+        }
+        Rule::sample => {
+            let mut inner_rules = pair.into_inner();
+
+            let var = inner_rules.next().unwrap().as_str().to_string();
+            Statement::Sample(var)
+        }
+        Rule::branch => {
+            let mut inner_rules = pair.into_inner();
+
+            let cond = Expr::new(parse_expr(inner_rules.next().unwrap().into_inner()));
+            let true_branch: Vec<Statement> = inner_rules
+                .next()
+                .unwrap()
+                .into_inner()
+                .map(parse_statement)
+                .collect();
+            let false_branch: Vec<Statement> = inner_rules
+                .next()
+                .unwrap()
+                .into_inner()
+                .map(parse_statement)
+                .collect();
+
+            Statement::Branch(cond, true_branch, false_branch)
+        }
+        Rule::while_st => {
+            let mut inner_rules = pair.into_inner();
+
+            let cond = Expr::new(parse_expr(inner_rules.next().unwrap().into_inner()));
+            let body: Vec<Statement> = inner_rules
+                .next()
+                .unwrap()
+                .into_inner()
+                .map(parse_statement)
+                .collect();
+
+            Statement::While(cond, body)
+        }
+        _ => unreachable!(),
+    }
+}
+
+pub fn parse_file(pairs: Pairs<Rule>) -> HashMap<String, Func> {
+    pairs
+        .filter_map(|p| match p.as_rule() {
+            Rule::fn_def => {
+                let f = parse_func(p.into_inner());
+                Some((f.get_name().to_string(), f))
+            }
+            _ => None,
+        })
+        .collect()
+}
+// fn main() -> io::Result<()> {
+//     for line in io::stdin().lock().lines() {
+//         match CalculatorParser::parse(Rule::equation, &line?) {
+//             Ok(mut pairs) => {
+//                 println!(
+//                     "Parsed: {:#?}",
+//                     // inner of expr
+//                     parse_expr(pairs.next().unwrap().into_inner())
+//                 );
+//             }
+//             Err(e) => {
+//                 eprintln!("Parse failed: {:?}", e);
+//             }
+//         }
+//     }
+//     Ok(())
+// }
+#[cfg(test)]
+mod tests {
+    use pest::Parser;
+
+    use crate::expr::Expr;
+
+    use super::*;
+
+    #[test]
+    fn single_op_ints() {
+        let input = "5 + 2";
+        let actual = Expr::new(ExprNode::new_leaf(ExprKind::Constant(Value::Num(
+            Ratio::new(7, 1),
+        ))));
+        let res = match ExprParser::parse(Rule::equation, input) {
+            Ok(mut pairs) => Expr::new(parse_expr(pairs.next().unwrap().into_inner())),
+            Err(_) => unreachable!(),
+        };
+        assert_eq!(actual, res)
+    }
+
+    #[test]
+    fn compress_unary_minus() {
+        let input = "-3 + 2";
+        let actual = Expr::new(ExprNode::new_leaf(ExprKind::Constant(Value::Num(
+            Ratio::new(-1, 1),
+        ))));
+        let res = match ExprParser::parse(Rule::equation, input) {
+            Ok(mut pairs) => Expr::new(parse_expr(pairs.next().unwrap().into_inner())),
+            Err(_) => unreachable!(),
+        };
+        assert_eq!(actual, res)
+    }
+
+    #[test]
+    fn expr_with_vars() {
+        let input = "5 + x_0 * 2";
+        let actual = Expr::new(ExprNode::new(
+            ExprKind::Add,
+            vec![
+                ExprNode::new_leaf(ExprKind::Constant(Value::Num(Ratio::new(5, 1)))),
+                ExprNode::new(
+                    ExprKind::Mul,
+                    vec![
+                        ExprNode::new_leaf(ExprKind::Constant(Value::Var("x_0".to_string()))),
+                        ExprNode::new_leaf(ExprKind::Constant(Value::Num(Ratio::new(2, 1)))),
+                    ],
+                ),
+            ],
+        ));
+        let res = match ExprParser::parse(Rule::equation, input) {
+            Ok(mut pairs) => Expr::new(parse_expr(pairs.next().unwrap().into_inner())),
+            Err(_) => unreachable!(),
+        };
+        assert_eq!(actual, res)
+    }
+
+    #[test]
+    fn bool_ops() {
+        let input = "true || x && false";
+        let actual = Expr::new(ExprNode::new(
+            ExprKind::Or,
+            vec![
+                ExprNode::new_leaf(ExprKind::Constant(Value::Boolean(true))),
+                ExprNode::new(
+                    ExprKind::And,
+                    vec![
+                        ExprNode::new_leaf(ExprKind::Constant(Value::Var("x".to_string()))),
+                        ExprNode::new_leaf(ExprKind::Constant(Value::Boolean(false))),
+                    ],
+                ),
+            ],
+        ));
+        let res = match ExprParser::parse(Rule::equation, input) {
+            Ok(mut pairs) => Expr::new(parse_expr(pairs.next().unwrap().into_inner())),
+            Err(_) => unreachable!(),
+        };
+        assert_eq!(actual, res)
+    }
+
+    #[test]
+    fn unary_not() {
+        let input = "!(5 < !x)";
+        let actual = Expr::new(ExprNode::new(
+            ExprKind::Not,
+            vec![ExprNode::new(
+                ExprKind::Lt,
+                vec![
+                    ExprNode::new_leaf(ExprKind::Constant(Value::Num(Ratio::new(5, 1)))),
+                    ExprNode::new(
+                        ExprKind::Not,
+                        vec![ExprNode::new_leaf(ExprKind::Constant(Value::Var(
+                            "x".to_string(),
+                        )))],
+                    ),
+                ],
+            )],
+        ));
+        let res = match ExprParser::parse(Rule::equation, input) {
+            Ok(mut pairs) => Expr::new(parse_expr(pairs.next().unwrap().into_inner())),
+            Err(_) => unreachable!(),
+        };
+        assert_eq!(actual, res)
+    }
+}

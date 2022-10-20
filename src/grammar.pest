@@ -1,0 +1,54 @@
+// No whitespace allowed between digits
+integer = @{ ASCII_DIGIT+ }
+
+// Variables must begin with a letter and then may consist of any number of letters, numbers, or underscores.
+identifier = @{ ASCII_ALPHA ~ (ASCII_ALPHANUMERIC | "_")* }
+
+boolean = { "true" | "false" }
+
+unary_minus = { "-" }
+unary_not = { "!" }
+primary = _{ boolean | identifier | integer | "(" ~ expr ~ ")" }
+atom = _{ (unary_minus | unary_not)? ~ primary}
+
+bin_op = _{ add | subtract | multiply | divide | and | or | le | lt | ge | gt | eq | ne }
+	add = { "+" }
+	subtract = { "-" }
+	multiply = { "*" }
+	divide = { "/" }
+	and = { "&&" }
+	or = { "||" }
+	lt = { "<" }
+	le = { "<=" }
+	gt = { ">" }
+	ge = { ">=" }
+	eq = { "==" }
+	ne = { "!=" }
+
+expr = { atom ~ (bin_op ~ atom)* }
+
+// We can't have SOI and EOI on expr directly, because it is used recursively (e.g. with parentheses)
+equation = _{ SOI ~ expr ~ EOI }
+
+t = { "Real" | "Boolean" }
+parameter = { identifier ~ ":" ~ t }
+
+param_list = _{ parameter ~ ("," ~ parameter)* }
+
+type_sig = { "(" ~ param_list? ~ ")" }
+
+assignment = { identifier ~ ":=" ~ expr ~ ";" }
+sample = { identifier ~ "~" ~ "rnd()" ~ ";" }
+branch = { "if" ~ "(" ~ expr ~ ")" ~ statement_list ~ "else" ~ statement_list }
+while_st = { "while" ~ "(" ~ expr ~ ")" ~ statement_list }
+
+statement = _{ assignment | sample | branch | while_st }
+
+statement_list = { "{" ~ NEWLINE+ ~ (statement ~ NEWLINE+)+ ~ "}" }
+
+fn_def = { "fn " ~ identifier ~ type_sig ~ statement_list}
+
+file = _{ SOI ~ (fn_def ~ NEWLINE*)+ ~ EOI }
+
+
+WHITESPACE = _{ " " | "\t" }

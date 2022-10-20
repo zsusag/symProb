@@ -1,0 +1,12 @@
+fn main(x : Real) {
+  x := 5;
+	if ( y < 5 ) {
+	  x := 2;
+		y := 5;
+	} else {
+    x ~ rnd();
+	}
+	while(x < 3) {
+	  x := x - 1;
+	}
+}
