@@ -31,6 +31,13 @@ lazy_static::lazy_static! {
 pub fn parse_expr(pairs: Pairs<Rule>) -> ExprNode {
     PRATT_PARSER
         .map_primary(|primary| match primary.as_rule() {
+            Rule::fn_call => {
+                let mut inner = primary.into_inner();
+                // A fn_call has to have an identifer, and optionally a list of exprs.
+                let fn_name = inner.next().unwrap().as_str().to_string();
+                let arguments: Vec<ExprNode> = inner.map(|p| parse_expr(p.into_inner())).collect();
+                ExprNode::new(ExprKind::Func(fn_name), arguments)
+            }
             Rule::integer => ExprNode::new_leaf(ExprKind::Constant(Value::Num(Ratio::new(
                 primary.as_str().parse::<i32>().unwrap(),
                 1,
