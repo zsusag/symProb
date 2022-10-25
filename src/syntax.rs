@@ -41,6 +41,7 @@ pub enum Statement {
     Sample(String),
     Branch(Expr, Vec<Statement>, Vec<Statement>),
     While(Expr, Vec<Statement>),
+    Return(Expr),
 }
 
 #[derive(Debug, PartialEq, Clone, Eq)]

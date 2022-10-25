@@ -189,6 +189,10 @@ pub fn parse_statement(pair: Pair<Rule>) -> Statement {
 
             Statement::While(cond, body)
         }
+        Rule::return_st => {
+            let ret_expr = Expr::new(parse_expr(pair.into_inner().next().unwrap().into_inner()));
+            Statement::Return(ret_expr)
+        }
         _ => unreachable!(),
     }
 }
@@ -204,23 +208,7 @@ pub fn parse_file(pairs: Pairs<Rule>) -> HashMap<String, Func> {
         })
         .collect()
 }
-// fn main() -> io::Result<()> {
-//     for line in io::stdin().lock().lines() {
-//         match CalculatorParser::parse(Rule::equation, &line?) {
-//             Ok(mut pairs) => {
-//                 println!(
-//                     "Parsed: {:#?}",
-//                     // inner of expr
-//                     parse_expr(pairs.next().unwrap().into_inner())
-//                 );
-//             }
-//             Err(e) => {
-//                 eprintln!("Parse failed: {:?}", e);
-//             }
-//         }
-//     }
-//     Ok(())
-// }
+
 #[cfg(test)]
 mod tests {
     use pest::Parser;
