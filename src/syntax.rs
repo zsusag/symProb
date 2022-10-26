@@ -1,3 +1,4 @@
+use anyhow::Result;
 use num::Rational32;
 
 use crate::expr::Expr;
@@ -49,14 +50,36 @@ pub struct Func {
     name: String,
     inputs: Vec<(String, Type)>,
     body: Vec<Statement>,
+    ret_t: Option<Type>,
 }
 
 impl Func {
-    pub fn new(name: String, inputs: Vec<(String, Type)>, body: Vec<Statement>) -> Self {
-        Func { name, inputs, body }
+    pub fn new(
+        name: String,
+        inputs: Vec<(String, Type)>,
+        body: Vec<Statement>,
+        ret_t: Option<Type>,
+    ) -> Self {
+        Func {
+            name,
+            inputs,
+            body,
+            ret_t,
+        }
     }
 
     pub fn get_name(&self) -> &str {
         &self.name
+    }
+
+    // Return type is always the last type in the returned vector
+    pub fn get_type_sig(&self) -> Vec<&Type> {
+        let mut sig: Vec<&Type> = self.inputs.iter().map(|(_, t)| t).collect();
+        sig.push(self.ret_t.as_ref().unwrap());
+        sig
+    }
+
+    pub fn get_body(&self) -> &Vec<Statement> {
+        &self.body
     }
 }

@@ -51,7 +51,7 @@ statement = _{ assignment | sample | branch | while_st | return_st }
 
 statement_list = { "{" ~ NEWLINE+ ~ (statement ~ NEWLINE+)+ ~ "}" }
 
-fn_def = { "fn " ~ identifier ~ type_sig ~ statement_list}
+fn_def = { "fn " ~ identifier ~ type_sig ~ ("->" ~ t)? ~ statement_list}
 
 file = _{ SOI ~ (fn_def ~ NEWLINE*)+ ~ EOI }
 

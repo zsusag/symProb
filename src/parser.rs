@@ -28,6 +28,14 @@ lazy_static::lazy_static! {
     };
 }
 
+pub fn parse_type(pair: Pair<Rule>) -> Type {
+    match pair.as_str() {
+        "Real" => Type::Real,
+        "Boolean" => Type::Bool,
+        _ => unreachable!(),
+    }
+}
+
 pub fn parse_expr(pairs: Pairs<Rule>) -> ExprNode {
     PRATT_PARSER
         .map_primary(|primary| match primary.as_rule() {
@@ -124,21 +132,18 @@ pub fn parse_func(mut pairs: Pairs<Rule>) -> Func {
         .map(|p| {
             let mut inner_rules = p.into_inner();
             let var_name = inner_rules.next().unwrap().as_str().to_string();
-            let t = match inner_rules.next().unwrap().as_str() {
-                "Real" => Type::Real,
-                "Boolean" => Type::Bool,
-                _ => unreachable!(),
-            };
+            let t = parse_type(inner_rules.next().unwrap());
             (var_name, t)
         })
         .collect();
-    let body: Vec<Statement> = pairs
-        .next()
-        .unwrap()
-        .into_inner()
-        .map(parse_statement)
-        .collect();
-    Func::new(name, inputs, body)
+    let poss_t = pairs.next().unwrap();
+    let (ret_t, body) = match poss_t.as_rule() {
+        Rule::t => (Some(parse_type(poss_t)), pairs.next().unwrap()),
+        Rule::statement_list => (None, poss_t),
+        _ => unreachable!(),
+    };
+    let body: Vec<Statement> = body.into_inner().map(parse_statement).collect();
+    Func::new(name, inputs, body, ret_t)
 }
 
 pub fn parse_statement(pair: Pair<Rule>) -> Statement {

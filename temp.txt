@@ -1,4 +1,4 @@
-fn foo(x: Real) {
+fn foo(x: Real) -> Real {
   y := x + 2;
 	return y*2;
 }
