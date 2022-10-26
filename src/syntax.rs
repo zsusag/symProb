@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 use anyhow::Result;
 use num::Rational32;
 
@@ -68,8 +70,16 @@ impl Func {
         }
     }
 
+    pub fn construct_gamma(&self) -> HashMap<&String, Type> {
+        self.inputs.iter().map(|(x, t)| (x, t.clone())).collect()
+    }
+
     pub fn get_name(&self) -> &str {
         &self.name
+    }
+
+    pub fn get_ret_t(&self) -> &Option<Type> {
+        &self.ret_t
     }
 
     // Return type is always the last type in the returned vector

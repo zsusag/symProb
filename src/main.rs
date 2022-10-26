@@ -12,6 +12,7 @@ use crate::{
 
 mod expr;
 mod parser;
+mod semantics;
 mod syntax;
 
 #[derive(Parser, Debug)]

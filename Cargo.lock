@@ -350,6 +350,7 @@ dependencies = [
  "num",
  "pest",
  "pest_derive",
+ "thiserror",
 ]
 
 [[package]]
