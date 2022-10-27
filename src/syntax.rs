@@ -85,7 +85,9 @@ impl Func {
     // Return type is always the last type in the returned vector
     pub fn get_type_sig(&self) -> Vec<&Type> {
         let mut sig: Vec<&Type> = self.inputs.iter().map(|(_, t)| t).collect();
-        sig.push(self.ret_t.as_ref().unwrap());
+        if self.ret_t.is_some() {
+            sig.push(self.ret_t.as_ref().unwrap());
+        }
         sig
     }
 

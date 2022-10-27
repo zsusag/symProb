@@ -7,6 +7,7 @@ use std::fs;
 use crate::{
     expr::{Expr, ExprNode},
     parser::{parse_expr, parse_file, ExprParser},
+    semantics::check_valid_program,
     syntax::{ExprKind, Value},
 };
 
@@ -35,6 +36,8 @@ fn main() -> Result<(), anyhow::Error> {
     );
 
     println!("{:#?}", fn_defs);
+
+    check_valid_program(&fn_defs)?;
 
     Ok(())
 }

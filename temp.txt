@@ -5,9 +5,9 @@ fn foo(x: Real) -> Real {
 
 fn main(x : Real) {
   x := 5;
-	if ( y < 5 ) {
+	if ( x < 5 ) {
 	  x := 2;
-		y := foo(5, 3+2);
+		y := foo(5);
 	} else {
     x ~ rnd();
 	}

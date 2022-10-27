@@ -36,7 +36,7 @@ pub enum SemanticsError {
 
 pub fn check_valid_program(fns: &HashMap<String, Func>) -> Result<()> {
     // Check to see if there is a main function
-    ensure!(!fns.contains_key("main"), SemanticsError::MissingMain);
+    ensure!(fns.contains_key("main"), SemanticsError::MissingMain);
 
     // Check that all functions (aside from main) has a return type
     for f in fns.values() {
@@ -63,12 +63,14 @@ pub fn check_valid_program(fns: &HashMap<String, Func>) -> Result<()> {
         }
 
         // Ensure that there is a path to a return statement in each function (other than main)
-        ensure!(
-            check_path_to_return(f.get_body()),
-            SemanticsError::MissingRetPath {
-                fn_name: f.get_name().to_string(),
-            }
-        )
+        if f.get_name() != "main" {
+            ensure!(
+                check_path_to_return(f.get_body()),
+                SemanticsError::MissingRetPath {
+                    fn_name: f.get_name().to_string(),
+                }
+            )
+        }
     }
 
     Ok(())
@@ -111,8 +113,9 @@ impl Statement {
                         e: cond.to_owned(),
                     }
                 );
+                let mut inner_gamma = gamma.clone();
                 for s in true_branch.iter().chain(false_branch.iter()) {
-                    s.typecheck(fn_sigs, gamma, ret_t)?;
+                    s.typecheck(fn_sigs, &mut inner_gamma, ret_t)?;
                 }
             }
             Statement::While(cond, body) => {
@@ -125,8 +128,9 @@ impl Statement {
                         e: cond.to_owned(),
                     }
                 );
+                let mut inner_gamma = gamma.clone();
                 for s in body {
-                    s.typecheck(fn_sigs, gamma, ret_t)?;
+                    s.typecheck(fn_sigs, &mut inner_gamma, ret_t)?;
                 }
             }
             Statement::Return(e) => {
