@@ -38,7 +38,21 @@ pub enum ExprKind {
 }
 
 #[derive(Debug, PartialEq, Clone, Eq)]
-pub enum Statement {
+pub struct Statement {
+    id: u32,
+    pub kind: StatementKind,
+}
+
+impl Statement {
+    pub fn new(kind: StatementKind, mut counter: &mut u32) -> Self {
+        let ret = Statement { id: *counter, kind };
+        *counter = *counter + 1;
+        ret
+    }
+}
+
+#[derive(Debug, PartialEq, Clone, Eq)]
+pub enum StatementKind {
     Skip,
     Assignment(String, Expr),
     Sample(String),
@@ -50,8 +64,8 @@ pub enum Statement {
 #[derive(Debug, PartialEq, Clone, Eq)]
 pub struct Func {
     name: String,
-    inputs: Vec<(String, Type)>,
-    body: Vec<Statement>,
+    pub inputs: Vec<(String, Type)>,
+    pub body: Vec<Statement>,
     ret_t: Option<Type>,
 }
 

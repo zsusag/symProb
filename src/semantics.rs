@@ -5,7 +5,7 @@ use thiserror::Error;
 
 use crate::{
     expr::Expr,
-    syntax::{Func, Statement, Type},
+    syntax::{Func, Statement, StatementKind, Type},
 };
 
 #[derive(Error, Debug)]
@@ -77,13 +77,13 @@ pub fn check_valid_program(fns: &HashMap<String, Func>) -> Result<()> {
 }
 
 fn check_path_to_return(body: &[Statement]) -> bool {
-    match body.last().unwrap() {
-        Statement::Skip | Statement::Assignment(_, _) | Statement::Sample(_) => false,
-        Statement::Branch(_, true_branch, false_branch) => {
-            check_path_to_return(true_branch) && check_path_to_return(false_branch)
+    match &body.last().unwrap().kind {
+        StatementKind::Skip | StatementKind::Assignment(_, _) | StatementKind::Sample(_) => false,
+        StatementKind::Branch(_, true_branch, false_branch) => {
+            check_path_to_return(&true_branch) && check_path_to_return(&false_branch)
         }
-        Statement::While(_, while_body) => check_path_to_return(while_body),
-        Statement::Return(_) => true,
+        StatementKind::While(_, while_body) => check_path_to_return(&while_body),
+        StatementKind::Return(_) => true,
     }
 }
 
@@ -94,16 +94,16 @@ impl Statement {
         gamma: &mut HashMap<&'a String, Type>,
         ret_t: &Option<Type>,
     ) -> Result<()> {
-        match self {
-            Statement::Skip => (),
-            Statement::Assignment(name, e) => {
+        match &self.kind {
+            StatementKind::Skip => (),
+            StatementKind::Assignment(name, e) => {
                 let t = e.typecheck(fn_sigs, gamma)?;
-                gamma.insert(name, t);
+                gamma.insert(&name, t);
             }
-            Statement::Sample(name) => {
-                gamma.insert(name, Type::Real);
+            StatementKind::Sample(name) => {
+                gamma.insert(&name, Type::Real);
             }
-            Statement::Branch(cond, true_branch, false_branch) => {
+            StatementKind::Branch(cond, true_branch, false_branch) => {
                 let t = cond.typecheck(fn_sigs, gamma)?;
                 ensure!(
                     t == Type::Bool,
@@ -118,7 +118,7 @@ impl Statement {
                     s.typecheck(fn_sigs, &mut inner_gamma, ret_t)?;
                 }
             }
-            Statement::While(cond, body) => {
+            StatementKind::While(cond, body) => {
                 let t = cond.typecheck(fn_sigs, gamma)?;
                 ensure!(
                     t == Type::Bool,
@@ -133,7 +133,7 @@ impl Statement {
                     s.typecheck(fn_sigs, &mut inner_gamma, ret_t)?;
                 }
             }
-            Statement::Return(e) => {
+            StatementKind::Return(e) => {
                 let actual_ret_t = e.typecheck(fn_sigs, gamma)?;
                 let expected_ret_t = ret_t.as_ref().unwrap();
                 ensure!(

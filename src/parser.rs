@@ -5,7 +5,7 @@ use pest::iterators::{Pair, Pairs};
 use pest::pratt_parser::PrattParser;
 
 use crate::expr::{Expr, ExprNode};
-use crate::syntax::{ExprKind, Func, Statement, Type, Value};
+use crate::syntax::{ExprKind, Func, Statement, StatementKind, Type, Value};
 
 #[derive(pest_derive::Parser)]
 #[grammar = "grammar.pest"]
@@ -122,7 +122,7 @@ pub fn parse_expr(pairs: Pairs<Rule>) -> ExprNode {
 // 1) identifier (name of the function)
 // 2) A (possibly empty) parameter list, which are pairs of identifiers and types
 // 3) A statement list
-pub fn parse_func(mut pairs: Pairs<Rule>) -> Func {
+pub fn parse_func(mut pairs: Pairs<Rule>, mut statement_counter: &mut u32) -> Func {
     // Get the name of the function
     let name = pairs.next().unwrap().as_str().to_string();
     let inputs: Vec<(String, Type)> = pairs
@@ -142,11 +142,14 @@ pub fn parse_func(mut pairs: Pairs<Rule>) -> Func {
         Rule::statement_list => (None, poss_t),
         _ => unreachable!(),
     };
-    let body: Vec<Statement> = body.into_inner().map(parse_statement).collect();
+    let body: Vec<Statement> = body
+        .into_inner()
+        .map(|s| parse_statement(s, &mut statement_counter))
+        .collect();
     Func::new(name, inputs, body, ret_t)
 }
 
-pub fn parse_statement(pair: Pair<Rule>) -> Statement {
+pub fn parse_statement(pair: Pair<Rule>, mut statement_counter: &mut u32) -> Statement {
     match pair.as_rule() {
         Rule::assignment => {
             let mut inner_rules = pair.into_inner();
@@ -154,13 +157,16 @@ pub fn parse_statement(pair: Pair<Rule>) -> Statement {
             let var = inner_rules.next().unwrap().as_str().to_string();
             let e = parse_expr(inner_rules.next().unwrap().into_inner());
 
-            Statement::Assignment(var, Expr::new(e))
+            Statement::new(
+                StatementKind::Assignment(var, Expr::new(e)),
+                &mut statement_counter,
+            )
         }
         Rule::sample => {
             let mut inner_rules = pair.into_inner();
 
             let var = inner_rules.next().unwrap().as_str().to_string();
-            Statement::Sample(var)
+            Statement::new(StatementKind::Sample(var), &mut statement_counter)
         }
         Rule::branch => {
             let mut inner_rules = pair.into_inner();
@@ -170,16 +176,19 @@ pub fn parse_statement(pair: Pair<Rule>) -> Statement {
                 .next()
                 .unwrap()
                 .into_inner()
-                .map(parse_statement)
+                .map(|s| parse_statement(s, &mut statement_counter))
                 .collect();
             let false_branch: Vec<Statement> = inner_rules
                 .next()
                 .unwrap()
                 .into_inner()
-                .map(parse_statement)
+                .map(|s| parse_statement(s, &mut statement_counter))
                 .collect();
 
-            Statement::Branch(cond, true_branch, false_branch)
+            Statement::new(
+                StatementKind::Branch(cond, true_branch, false_branch),
+                &mut statement_counter,
+            )
         }
         Rule::while_st => {
             let mut inner_rules = pair.into_inner();
@@ -189,24 +198,25 @@ pub fn parse_statement(pair: Pair<Rule>) -> Statement {
                 .next()
                 .unwrap()
                 .into_inner()
-                .map(parse_statement)
+                .map(|s| parse_statement(s, &mut statement_counter))
                 .collect();
 
-            Statement::While(cond, body)
+            Statement::new(StatementKind::While(cond, body), &mut statement_counter)
         }
         Rule::return_st => {
             let ret_expr = Expr::new(parse_expr(pair.into_inner().next().unwrap().into_inner()));
-            Statement::Return(ret_expr)
+            Statement::new(StatementKind::Return(ret_expr), &mut statement_counter)
         }
         _ => unreachable!(),
     }
 }
 
 pub fn parse_file(pairs: Pairs<Rule>) -> HashMap<String, Func> {
+    let mut statement_counter: u32 = 0;
     pairs
         .filter_map(|p| match p.as_rule() {
             Rule::fn_def => {
-                let f = parse_func(p.into_inner());
+                let f = parse_func(p.into_inner(), &mut statement_counter);
                 Some((f.get_name().to_string(), f))
             }
             _ => None,
