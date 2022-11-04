@@ -129,7 +129,7 @@ impl ExecutorState {
         }
     }
 
-    pub fn fork(mut self, inner_body: Vec<Statement>, guard: Expr) -> Self {
+    pub fn fork(mut self, inner_body: Vec<Statement>, guard: Option<Expr>) -> Self {
         if !inner_body.is_empty() {
             // First save the current scope state, if there are statements to execute after the scope
             if let Some(next_st) = self.stack.last() {
@@ -140,8 +140,10 @@ impl ExecutorState {
             }
         }
 
-        // Now add the guard to the path
-        self.path.branch(guard);
+        // Add the new condition to the current path, if not trivial
+        if let Some(e) = guard {
+            self.path.branch(e);
+        }
 
         // Add the inner scope statements to the stack
         for s in inner_body {
@@ -184,11 +186,11 @@ impl ExecutorState {
 
                         let states = match (true_sat, false_sat) {
                             (true, true) => vec![
-                                self.clone().fork(tru_branch, guard.clone()),
-                                self.fork(fls_branch, guard.not()),
+                                self.clone().fork(tru_branch, Some(guard.clone())),
+                                self.fork(fls_branch, Some(guard.not())),
                             ],
-                            (true, false) => vec![self.fork(tru_branch, guard)],
-                            (false, true) => vec![self.fork(fls_branch, guard.not())],
+                            (true, false) => vec![self.fork(tru_branch, None)],
+                            (false, true) => vec![self.fork(fls_branch, None)],
                             (false, false) => Vec::new(),
                         };
                         Status::Fork(states)
@@ -206,11 +208,11 @@ impl ExecutorState {
 
                         let states = match (true_sat, false_sat) {
                             (true, true) => vec![
-                                self.clone().fork(body, guard.clone()),
-                                self.fork(Vec::new(), guard.not()),
+                                self.clone().fork(body, Some(guard.clone())),
+                                self.fork(Vec::new(), Some(guard.not())),
                             ],
-                            (true, false) => vec![self.fork(body, guard)],
-                            (false, true) => vec![self.fork(Vec::new(), guard.not())],
+                            (true, false) => vec![self.fork(body, None)],
+                            (false, true) => vec![self.fork(Vec::new(), None)],
                             (false, false) => Vec::new(),
                         };
                         Status::Fork(states)

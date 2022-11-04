@@ -1,17 +1,14 @@
-fn foo(x: Real) -> Real {
-  y := x + 2;
-	return y*2;
-}
-
 fn main(x : Real) {
-  x := 5;
+  y := 0;
 	if ( x < 5 ) {
-	  x := 2;
-		y := foo(5);
+	  y := 1;
 	} else {
-    x ~ rnd();
+	  y := 2;
 	}
-	while(x < 3) {
-	  x := x - 1;
+
+	if(y == 1) {
+	  x := 0;
+	} else {
+	  x := 1;
 	}
 }
