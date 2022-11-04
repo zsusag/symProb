@@ -5,15 +5,20 @@ use pest::Parser as EParser;
 use std::fs;
 
 use crate::{
+    executor::Executor,
     expr::{Expr, ExprNode},
     parser::{parse_expr, parse_file, ExprParser},
     semantics::check_valid_program,
     syntax::{ExprKind, Value},
 };
 
+mod executor;
+mod executor_state;
 mod expr;
 mod parser;
+mod path;
 mod semantics;
+mod smt;
 mod syntax;
 
 #[derive(Parser, Debug)]
@@ -39,5 +44,13 @@ fn main() -> Result<(), anyhow::Error> {
 
     check_valid_program(&fn_defs)?;
 
+    let executor = Executor::new(fn_defs);
+    let paths = executor.run();
+
+    println!("Number of Paths: {}", paths.len());
+
+    for p in paths {
+        println!("{}", p);
+    }
     Ok(())
 }

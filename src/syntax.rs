@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::{collections::HashMap, fmt::Display};
 
 use anyhow::Result;
 use num::Rational32;
@@ -11,14 +11,24 @@ pub enum Type {
     Bool,
 }
 
-#[derive(Debug, PartialEq, Clone, Eq)]
+#[derive(Debug, PartialEq, Clone, Eq, Hash)]
 pub enum Value {
     Num(Rational32),
     Boolean(bool),
     Var(String),
 }
 
-#[derive(Debug, PartialEq, Clone, Eq)]
+impl Display for Value {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Value::Num(n) => write!(f, "{}", *n),
+            Value::Boolean(b) => write!(f, "{}", *b),
+            Value::Var(x) => write!(f, "{}", *x),
+        }
+    }
+}
+
+#[derive(Debug, PartialEq, Clone, Eq, Hash)]
 pub enum ExprKind {
     Constant(Value),
     Add,
@@ -37,6 +47,28 @@ pub enum ExprKind {
     Func(String),
 }
 
+impl Display for ExprKind {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            ExprKind::Constant(v) => write!(f, "{}", *v),
+            ExprKind::Add => write!(f, "+"),
+            ExprKind::Sub => write!(f, "-"),
+            ExprKind::Mul => write!(f, "*"),
+            ExprKind::Div => write!(f, "/"),
+            ExprKind::And => write!(f, "∧"),
+            ExprKind::Or => write!(f, "∨"),
+            ExprKind::Not => write!(f, "¬"),
+            ExprKind::Lt => write!(f, "<"),
+            ExprKind::Le => write!(f, "≤"),
+            ExprKind::Gt => write!(f, ">"),
+            ExprKind::Ge => write!(f, "≥"),
+            ExprKind::Eq => write!(f, "="),
+            ExprKind::Ne => write!(f, "≠"),
+            ExprKind::Func(_) => todo!(),
+        }
+    }
+}
+
 #[derive(Debug, PartialEq, Clone, Eq)]
 pub struct Statement {
     id: u32,
@@ -44,10 +76,14 @@ pub struct Statement {
 }
 
 impl Statement {
-    pub fn new(kind: StatementKind, mut counter: &mut u32) -> Self {
+    pub fn new(kind: StatementKind, counter: &mut u32) -> Self {
         let ret = Statement { id: *counter, kind };
-        *counter = *counter + 1;
+        *counter += 1;
         ret
+    }
+
+    pub fn get_id(&self) -> u32 {
+        self.id
     }
 }
 
