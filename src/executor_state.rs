@@ -3,6 +3,7 @@ use std::collections::HashMap;
 use crate::{
     expr::{Expr, ExprNode},
     path::Path,
+    probability::Prob,
     smt::SMTMangager,
     syntax::{ExprKind, Func, Statement, StatementKind, Type, Value},
 };
@@ -104,7 +105,7 @@ impl ExecutorState {
 
     pub fn sample(&mut self) -> String {
         // Generate name for the probabilistic symbolic variable which is the result from sampling
-        let prob_sym_name = format!("!SAMPLE_{:}", self.num_samples);
+        let prob_sym_name = format!("SAMPLE_{:}", self.num_samples);
 
         // Update the symbolic variable type map
         self.sym_vars.insert(prob_sym_name.clone(), SymType::Prob);
@@ -143,6 +144,7 @@ impl ExecutorState {
         // Add the new condition to the current path, if not trivial
         if let Some(e) = guard {
             self.path.branch(e);
+            println!("{:?}", Prob::new(&self.path, &self.sym_vars));
         }
 
         // Add the inner scope statements to the stack

@@ -18,6 +18,7 @@ mod expr;
 mod parser;
 mod path;
 mod semantics;
+mod probability;
 mod smt;
 mod syntax;
 

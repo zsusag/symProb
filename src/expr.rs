@@ -52,6 +52,10 @@ impl<'ctx> Expr {
     pub fn not(mut self) -> Self {
         Expr::new(ExprNode::new(ExprKind::Not, vec![self.root]))
     }
+
+    pub fn to_psi_expr(&self) -> PsiExpr {
+        self.root.to_psi_expr()
+    }
 }
 
 impl<'ctx> ExprNode {
@@ -273,6 +277,104 @@ impl<'ctx> ExprNode {
                 e1 / e2
             }
             _ => unreachable!(),
+        }
+    }
+
+    pub fn to_psi_expr(&self) -> PsiExpr {
+        PsiExpr(self.clone())
+    }
+}
+
+pub struct PsiExpr(ExprNode);
+
+impl Display for PsiExpr {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match &self.0.e {
+            ExprKind::Constant(v) => match v {
+                Value::Num(n) => {
+                    if *n.denom() == 1 {
+                        write!(f, "{}", n.numer())
+                    } else {
+                        write!(f, "({}/{})", n.numer(), n.denom())
+                    }
+                }
+                Value::Boolean(b) => write!(f, "{}", b),
+                Value::Var(name) => write!(f, "{}", name),
+            },
+            ExprKind::Add => write!(
+                f,
+                "({}) + ({})",
+                self.0.children.get(0).unwrap().to_psi_expr(),
+                self.0.children.get(1).unwrap().to_psi_expr()
+            ),
+            ExprKind::Sub => write!(
+                f,
+                "({}) - ({})",
+                self.0.children.get(0).unwrap().to_psi_expr(),
+                self.0.children.get(1).unwrap().to_psi_expr()
+            ),
+            ExprKind::Mul => write!(
+                f,
+                "({}) * ({})",
+                self.0.children.get(0).unwrap().to_psi_expr(),
+                self.0.children.get(1).unwrap().to_psi_expr()
+            ),
+            ExprKind::Div => write!(
+                f,
+                "({}) / ({})",
+                self.0.children.get(0).unwrap().to_psi_expr(),
+                self.0.children.get(1).unwrap().to_psi_expr()
+            ),
+            ExprKind::And => write!(
+                f,
+                "({}) && ({})",
+                self.0.children.get(0).unwrap().to_psi_expr(),
+                self.0.children.get(1).unwrap().to_psi_expr()
+            ),
+            ExprKind::Or => write!(
+                f,
+                "({}) || ({})",
+                self.0.children.get(0).unwrap().to_psi_expr(),
+                self.0.children.get(1).unwrap().to_psi_expr()
+            ),
+            ExprKind::Not => write!(f, "!({})", self.0.children.get(0).unwrap().to_psi_expr()),
+            ExprKind::Lt => write!(
+                f,
+                "({}) < ({})",
+                self.0.children.get(0).unwrap().to_psi_expr(),
+                self.0.children.get(1).unwrap().to_psi_expr()
+            ),
+            ExprKind::Le => write!(
+                f,
+                "({}) <= ({})",
+                self.0.children.get(0).unwrap().to_psi_expr(),
+                self.0.children.get(1).unwrap().to_psi_expr()
+            ),
+            ExprKind::Gt => write!(
+                f,
+                "({}) > ({})",
+                self.0.children.get(0).unwrap().to_psi_expr(),
+                self.0.children.get(1).unwrap().to_psi_expr()
+            ),
+            ExprKind::Ge => write!(
+                f,
+                "({}) >= ({})",
+                self.0.children.get(0).unwrap().to_psi_expr(),
+                self.0.children.get(1).unwrap().to_psi_expr()
+            ),
+            ExprKind::Eq => write!(
+                f,
+                "({}) == ({})",
+                self.0.children.get(0).unwrap().to_psi_expr(),
+                self.0.children.get(1).unwrap().to_psi_expr()
+            ),
+            ExprKind::Ne => write!(
+                f,
+                "({}) != ({})",
+                self.0.children.get(0).unwrap().to_psi_expr(),
+                self.0.children.get(1).unwrap().to_psi_expr()
+            ),
+            ExprKind::Func(_) => todo!(),
         }
     }
 }

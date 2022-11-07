@@ -1,0 +1,6 @@
+def main() {
+		x := uniform(0,1);
+		if true {
+		assert(x >= (1/2));
+		}
+}
