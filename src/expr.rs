@@ -1,12 +1,11 @@
 use anyhow::{bail, ensure, Result};
-use std::{collections::HashMap, fmt::Display, ops::Add};
+use std::{collections::HashMap, fmt::Display};
 use z3::{
     ast::{Ast, Bool, Real},
     Context,
 };
 
 use crate::{
-    executor_state::SymType,
     semantics::SemanticsError,
     syntax::{ExprKind, Type, Value},
 };
@@ -55,7 +54,7 @@ impl<'ctx> Expr {
         self.root.convert_bool(ctx)
     }
 
-    pub fn not(mut self) -> Self {
+    pub fn not(self) -> Self {
         Expr::new(ExprNode::new(ExprKind::Not, vec![self.root]))
     }
 

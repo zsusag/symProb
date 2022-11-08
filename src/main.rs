@@ -1,15 +1,13 @@
 use anyhow::{Context, Result};
 use clap::Parser;
-use num::rational::Ratio;
+
 use pest::Parser as EParser;
 use std::fs;
 
 use crate::{
     executor::Executor,
-    expr::{Expr, ExprNode},
-    parser::{parse_expr, parse_file, ExprParser},
+    parser::{parse_file, ExprParser},
     semantics::check_valid_program,
-    syntax::{ExprKind, Value},
 };
 
 mod executor;

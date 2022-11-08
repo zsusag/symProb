@@ -4,9 +4,7 @@ use anyhow::Result;
 
 use crate::{
     executor_state::{ExecutorState, Status},
-    expr::Expr,
     path::Path,
-    probability::Prob,
     syntax::Func,
 };
 

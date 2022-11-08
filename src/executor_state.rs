@@ -169,7 +169,6 @@ impl ExecutorState {
                 self.check_scope(&s);
                 let s_id = s.get_id();
                 match s.kind {
-                    StatementKind::Skip => todo!(),
                     StatementKind::Assignment(var, e) => {
                         // Apply substitution map to expression to get new value for the variable...
                         let val = e.substitute_and_get_root(&self.sigma);

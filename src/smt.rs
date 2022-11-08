@@ -26,10 +26,6 @@ impl<'ctx> SMTMangager {
         SMTMangager { cfg, ctx }
     }
 
-    pub fn convert_expr(&'ctx self, e: &Expr) -> Bool<'ctx> {
-        e.convert(&self.ctx)
-    }
-
     // Returns (b_true, b_false) where b_true is true if the true branch is satisfiable, same for false branch
     pub fn check_fork_satisfiability(
         &'ctx self,

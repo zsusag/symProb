@@ -1,6 +1,5 @@
 use std::{collections::HashMap, fmt::Display};
 
-use anyhow::Result;
 use num::Rational32;
 
 use crate::expr::Expr;
@@ -98,7 +97,6 @@ impl Statement {
 
 #[derive(Debug, PartialEq, Clone, Eq)]
 pub enum StatementKind {
-    Skip,
     Assignment(String, Expr),
     Sample(String),
     Branch(Expr, Vec<Statement>, Vec<Statement>),
