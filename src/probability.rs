@@ -1,14 +1,16 @@
 use std::{collections::HashMap, fmt::Display, io::Write, process::Command};
 
 use anyhow::{bail, Context, Result};
+use num::Rational32;
 use pest::Parser as EParser;
 use tempfile::{Builder, NamedTempFile};
 
 use crate::{
     executor_state::SymType,
-    expr::Expr,
+    expr::{Expr, ExprNode},
     path::Path,
     psi_parser::{self, parse_psi_output, PsiParser},
+    syntax::{ExprKind, Value},
 };
 
 struct PsiProg(NamedTempFile);
@@ -89,7 +91,7 @@ impl PsiProg {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Prob(Expr);
 
 impl Prob {
@@ -102,6 +104,12 @@ impl Prob {
 
         // Run Psi to obtain `path`'s probability
         pp.run()
+    }
+
+    pub fn init_dist() -> Self {
+        Prob(Expr::new(ExprNode::new_leaf(ExprKind::Constant(
+            Value::Num(Rational32::new(1, 1)),
+        ))))
     }
 }
 

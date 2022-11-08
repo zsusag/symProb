@@ -64,6 +64,9 @@ pub struct ExecutorState {
 
     // The SMT manager which holds the Z3 context and configuration
     smt_manager: SMTMangager,
+
+    // Probability expression of the current path
+    prob: Prob,
 }
 
 impl ExecutorState {
@@ -100,6 +103,7 @@ impl ExecutorState {
             num_samples: 0,
             scope_manager: Vec::new(),
             smt_manager: SMTMangager::new(),
+            prob: Prob::init_dist(),
         }
     }
 
@@ -197,7 +201,6 @@ impl ExecutorState {
                         };
                         Status::Fork(states)
                     }
-                    // Currently nothing special about how this is done...
                     StatementKind::While(mut guard, body) => {
                         // Apply sigma on the branch guard
                         guard.substitute(&self.sigma);
