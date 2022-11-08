@@ -31,21 +31,16 @@ impl Executor {
         while !self.stack.is_empty() {
             let s = self.stack.pop().unwrap();
             match s.step() {
-                Status::Fork(new_states) => {
-                    if new_states.is_empty() {
-                        // We tried to fork states but unfortunately, both directions were unsatisfiable
-                        panic!()
-                    } else {
-                        for s in new_states {
-                            self.stack.push(s);
-                        }
-                    }
+                Status::Fork(true_state, false_state) => {
+                    self.stack.push(false_state);
+                    self.stack.push(true_state);
                 }
                 Status::Continue(s) => self.stack.push(s),
                 Status::Terminate(path) => {
                     self.paths.insert(path);
                 }
                 Status::Return(_) => todo!(),
+                Status::PrematureTerminate => panic!(),
             }
         }
         self.paths

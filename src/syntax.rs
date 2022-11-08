@@ -84,6 +84,13 @@ impl Statement {
         ret
     }
 
+    pub fn clone_while(guard: Expr, body: Vec<Statement>, id: u32) -> Self {
+        Statement {
+            id,
+            kind: StatementKind::While(guard, body),
+        }
+    }
+
     pub fn get_id(&self) -> u32 {
         self.id
     }

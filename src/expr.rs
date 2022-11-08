@@ -45,6 +45,12 @@ impl<'ctx> Expr {
         self.root.substitute(sigma);
     }
 
+    pub fn clone_and_substitute(&self, sigma: &HashMap<String, ExprNode>) -> Expr {
+        let mut copy = self.clone();
+        copy.root.substitute(sigma);
+        copy
+    }
+
     pub fn convert(&self, ctx: &'ctx Context) -> Bool<'ctx> {
         self.root.convert_bool(ctx)
     }

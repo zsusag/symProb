@@ -10,10 +10,11 @@ use crate::{
 
 #[derive(Debug)]
 pub enum Status {
-    Fork(Vec<ExecutorState>),
+    Fork(ExecutorState, ExecutorState),
     Continue(ExecutorState),
     Terminate(Path),
     Return(Expr),
+    PrematureTerminate,
 }
 
 #[derive(Debug, Clone)]
@@ -67,6 +68,9 @@ pub struct ExecutorState {
 
     // Probability expression of the current path
     prob: Prob,
+
+    // A mapping from while-loop identifiers to the previous path condition for almost-sure-termination
+    prev_iter_map: HashMap<u32, Path>,
 }
 
 impl ExecutorState {
@@ -104,6 +108,7 @@ impl ExecutorState {
             scope_manager: Vec::new(),
             smt_manager: SMTMangager::new(),
             prob: Prob::init_dist(),
+            prev_iter_map: HashMap::new(),
         }
     }
 
@@ -148,6 +153,8 @@ impl ExecutorState {
         // Add the new condition to the current path, if not trivial
         if let Some(e) = guard {
             self.path.branch(e);
+
+            // Update the probability here...
             println!("{}", Prob::new(&self.path, &self.sym_vars).unwrap());
         }
 
@@ -161,11 +168,11 @@ impl ExecutorState {
     // Going to ignore function/macro calls for now.
     pub fn step(mut self) -> Status {
         let s = self.stack.pop();
-        println!("Statement: {:?}", s);
         match s {
             Some(s) => {
                 // First need to check whether we need to restore the state
                 self.check_scope(&s);
+                let s_id = s.get_id();
                 match s.kind {
                     StatementKind::Skip => todo!(),
                     StatementKind::Assignment(var, e) => {
@@ -190,37 +197,46 @@ impl ExecutorState {
                             &self.sym_vars,
                         );
 
-                        let states = match (true_sat, false_sat) {
-                            (true, true) => vec![
+                        match (true_sat, false_sat) {
+                            (true, true) => Status::Fork(
                                 self.clone().fork(tru_branch, Some(guard.clone())),
                                 self.fork(fls_branch, Some(guard.not())),
-                            ],
-                            (true, false) => vec![self.fork(tru_branch, None)],
-                            (false, true) => vec![self.fork(fls_branch, None)],
-                            (false, false) => Vec::new(),
-                        };
-                        Status::Fork(states)
+                            ),
+                            (true, false) => Status::Continue(self.fork(tru_branch, None)),
+                            (false, true) => Status::Continue(self.fork(fls_branch, None)),
+                            (false, false) => Status::PrematureTerminate,
+                        }
                     }
-                    StatementKind::While(mut guard, body) => {
+                    StatementKind::While(guard, body) => {
                         // Apply sigma on the branch guard
-                        guard.substitute(&self.sigma);
-
                         let (true_sat, false_sat) = self.smt_manager.check_fork_satisfiability(
                             self.path.get_conds(),
-                            &guard,
+                            &guard.clone_and_substitute(&self.sigma),
                             &self.sym_vars,
                         );
 
-                        let states = match (true_sat, false_sat) {
-                            (true, true) => vec![
-                                self.clone().fork(body, Some(guard.clone())),
-                                self.fork(Vec::new(), Some(guard.not())),
-                            ],
-                            (true, false) => vec![self.fork(body, None)],
-                            (false, true) => vec![self.fork(Vec::new(), None)],
-                            (false, false) => Vec::new(),
-                        };
-                        Status::Fork(states)
+                        match (true_sat, false_sat) {
+                            (true, true) => {
+                                let mut into_loop_state = self.clone();
+                                // Push copy of while loop onto stack before forking
+                                into_loop_state.stack.push(Statement::clone_while(
+                                    guard.clone(),
+                                    body.clone(),
+                                    s_id,
+                                ));
+                                Status::Fork(
+                                    into_loop_state.fork(body, Some(guard.clone())),
+                                    self.fork(Vec::new(), Some(guard.not())),
+                                )
+                            }
+                            (true, false) => {
+                                self.stack
+                                    .push(Statement::clone_while(guard, body.clone(), s_id));
+                                Status::Continue(self.fork(body, None))
+                            }
+                            (false, true) => Status::Continue(self),
+                            (false, false) => Status::PrematureTerminate,
+                        }
                     }
                     StatementKind::Return(_) => todo!(),
                 }
