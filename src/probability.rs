@@ -1,6 +1,6 @@
 use std::{collections::HashMap, fmt::Display, io::Write, process::Command};
 
-use anyhow::{Context, Result};
+use anyhow::{bail, Context, Result};
 use pest::Parser as EParser;
 use tempfile::{Builder, NamedTempFile};
 
@@ -11,13 +11,10 @@ use crate::{
     psi_parser::{self, parse_psi_output, PsiParser},
 };
 
-#[derive(Debug)]
-pub struct Prob {
-    p: Expr,
-}
+struct PsiProg(NamedTempFile);
 
-impl Prob {
-    pub fn new(path: &Path, sym_vars: &HashMap<String, SymType>) -> Result<Self> {
+impl PsiProg {
+    fn new(sym_vars: &HashMap<String, SymType>) -> Result<Self> {
         // Make new tempfile to store intermediary PSI program in
         let mut f = Builder::new().suffix(".psi").rand_bytes(5).tempfile()?;
 
@@ -42,37 +39,74 @@ impl Prob {
         for (name, _) in prob_sym_vars {
             writeln!(f, "{name} := uniform(0,1);")?;
         }
+        Ok(PsiProg(f))
+    }
 
+    fn write_assertions(&mut self, path: &Path) -> Result<()> {
         for cond in path.get_conds() {
-            writeln!(f, "assert({});", cond.to_psi_expr())?;
+            writeln!(self.0, "assert({});", cond.to_psi_expr())
+                .context("Couldn't write assertion to Psi program tempfile")?;
         }
-        // Write closing curly brace to main function
-        writeln!(f, "}}")?;
+        Ok(())
+    }
+
+    fn write_observes(&mut self, path: &Path) -> Result<()> {
+        for cond in path.get_conds() {
+            writeln!(self.0, "observe({});", cond.to_psi_expr())
+                .context("Couldn't write assertion to Psi program tempfile")?;
+        }
+        Ok(())
+    }
+
+    fn run(mut self) -> Result<Prob> {
+        // Write the final closing curly bracket right before running
+        writeln!(self.0, "}}")?;
 
         let output = Command::new("psi")
-            .arg(f.path().as_os_str())
+            .arg(self.0.path().as_os_str())
             .output()
-            .context("unable to call psi")?;
+            .context("Unable to call Psi (is it on your path?)")?;
 
-        println!("stdout: {}", String::from_utf8(output.stdout.clone())?);
-        let prob = Prob {
-            p: parse_psi_output(
-                PsiParser::parse(
-                    psi_parser::Rule::psi_prob,
-                    &String::from_utf8(output.stdout)?,
-                )
-                .context("Failed to parse Psi distribution")?,
-            ),
-        };
+        // Close the file after running Psi.
+        self.0.close().context("Error closing Psi program file")?;
 
-        f.close()?;
-        // Run psi and get result back...
-        Ok(prob)
+        // Check to see if Psi encountered an error, and if so, return the contents of stderr
+        if !output.status.success() {
+            bail!(
+                "Psi encountered an error:\n{}",
+                String::from_utf8(output.stderr)
+                    .context("Unable to encode Psi output as a UTF-8 string.")?
+            )
+        }
+
+        Ok(Prob(parse_psi_output(
+            PsiParser::parse(
+                psi_parser::Rule::psi_prob,
+                &String::from_utf8(output.stdout)?,
+            )
+            .context("Failed to parse Psi distribution")?,
+        )))
+    }
+}
+
+#[derive(Debug)]
+pub struct Prob(Expr);
+
+impl Prob {
+    pub fn new(path: &Path, sym_vars: &HashMap<String, SymType>) -> Result<Self> {
+        // Make a new Psi program
+        let mut pp = PsiProg::new(sym_vars)?;
+
+        // Write the path condition as an assertion in the Psi program
+        pp.write_assertions(path)?;
+
+        // Run Psi to obtain `path`'s probability
+        pp.run()
     }
 }
 
 impl Display for Prob {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self.p)
+        write!(f, "{}", self.0)
     }
 }
