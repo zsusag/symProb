@@ -1,5 +1,7 @@
 use std::collections::HashMap;
 
+use anyhow::Result;
+
 use crate::{
     expr::{Expr, ExprNode},
     path::Path,
@@ -66,9 +68,6 @@ pub struct ExecutorState {
     // The SMT manager which holds the Z3 context and configuration
     smt_manager: SMTMangager,
 
-    // Probability expression of the current path
-    prob: Prob,
-
     // A mapping from while-loop identifiers to the previous path condition for almost-sure-termination
     prev_iter_map: HashMap<u32, Path>,
 }
@@ -107,7 +106,6 @@ impl ExecutorState {
             num_samples: 0,
             scope_manager: Vec::new(),
             smt_manager: SMTMangager::new(),
-            prob: Prob::init_dist(),
             prev_iter_map: HashMap::new(),
         }
     }
@@ -153,20 +151,17 @@ impl ExecutorState {
         // Add the new condition to the current path, if not trivial
         if let Some(e) = guard {
             self.path.branch(e);
-
-            // Update the probability here...
-            println!("{}", Prob::new(&self.path, &self.sym_vars).unwrap());
         }
 
         // Add the inner scope statements to the stack
-        for s in inner_body {
+        for s in inner_body.into_iter().rev() {
             self.stack.push(s);
         }
         self
     }
 
     // Going to ignore function/macro calls for now.
-    pub fn step(mut self) -> Status {
+    pub fn step(mut self) -> Result<Status> {
         let s = self.stack.pop();
         match s {
             Some(s) => {
@@ -179,12 +174,12 @@ impl ExecutorState {
                         // Apply substitution map to expression to get new value for the variable...
                         let val = e.substitute_and_get_root(&self.sigma);
                         self.sigma.insert(var, val);
-                        Status::Continue(self)
+                        Ok(Status::Continue(self))
                     }
                     StatementKind::Sample(var) => {
                         let sym_name = self.sample();
                         self.sigma.insert(var, ExprNode::new_sample_var(sym_name));
-                        Status::Continue(self)
+                        Ok(Status::Continue(self))
                     }
                     StatementKind::Branch(mut guard, tru_branch, fls_branch) => {
                         // Apply sigma on the branch guard
@@ -197,7 +192,7 @@ impl ExecutorState {
                             &self.sym_vars,
                         );
 
-                        match (true_sat, false_sat) {
+                        let status = match (true_sat, false_sat) {
                             (true, true) => Status::Fork(
                                 self.clone().fork(tru_branch, Some(guard.clone())),
                                 self.fork(fls_branch, Some(guard.not())),
@@ -205,7 +200,8 @@ impl ExecutorState {
                             (true, false) => Status::Continue(self.fork(tru_branch, None)),
                             (false, true) => Status::Continue(self.fork(fls_branch, None)),
                             (false, false) => Status::PrematureTerminate,
-                        }
+                        };
+                        Ok(status)
                     }
                     StatementKind::While(guard, body) => {
                         // Apply sigma on the branch guard
@@ -215,8 +211,29 @@ impl ExecutorState {
                             &self.sym_vars,
                         );
 
-                        match (true_sat, false_sat) {
-                            (true, true) => {
+                        if true_sat {
+                            if let Some(prev_iter_path) = self.prev_iter_map.get(&s_id) {
+                                // Visited this loop before; check for almost-surely-terminating loop...
+                                if Prob::is_almost_surely_terminating(
+                                    prev_iter_path,
+                                    &self.path,
+                                    &self.sym_vars,
+                                )? {
+                                    // Don't enter the loop!
+                                    self.path.mark_terminated();
+                                    if false_sat {
+                                        return Ok(Status::Continue(
+                                            self.fork(Vec::new(), Some(guard.not())),
+                                        ));
+                                    } else {
+                                        return Ok(Status::Continue(self));
+                                    }
+                                }
+                            }
+                            // Insert the while loop into the prev iteration, unless it is almost-surely-terminating.
+                            self.prev_iter_map.insert(s_id, self.path.clone());
+
+                            if false_sat {
                                 let mut into_loop_state = self.clone();
                                 // Push copy of while loop onto stack before forking
                                 into_loop_state.stack.push(Statement::clone_while(
@@ -224,24 +241,28 @@ impl ExecutorState {
                                     body.clone(),
                                     s_id,
                                 ));
-                                Status::Fork(
+                                Ok(Status::Fork(
                                     into_loop_state.fork(body, Some(guard.clone())),
                                     self.fork(Vec::new(), Some(guard.not())),
-                                )
-                            }
-                            (true, false) => {
+                                ))
+                            } else {
                                 self.stack
                                     .push(Statement::clone_while(guard, body.clone(), s_id));
-                                Status::Continue(self.fork(body, None))
+                                Ok(Status::Continue(self.fork(body, None)))
                             }
-                            (false, true) => Status::Continue(self),
-                            (false, false) => Status::PrematureTerminate,
+                        } else if false_sat {
+                            Ok(Status::Continue(self))
+                        } else {
+                            Ok(Status::PrematureTerminate)
                         }
                     }
                     StatementKind::Return(_) => todo!(),
                 }
             }
-            None => Status::Terminate(self.path),
+            None => {
+                self.path.calculate_prob(&self.sym_vars)?;
+                Ok(Status::Terminate(self.path))
+            }
         }
     }
 }

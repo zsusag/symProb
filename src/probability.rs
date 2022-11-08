@@ -91,7 +91,7 @@ impl PsiProg {
     }
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Prob(Expr);
 
 impl Prob {
@@ -104,6 +104,26 @@ impl Prob {
 
         // Run Psi to obtain `path`'s probability
         pp.run()
+    }
+
+    pub fn is_almost_surely_terminating(
+        old_path: &Path,
+        new_path: &Path,
+        sym_vars: &HashMap<String, SymType>,
+    ) -> Result<bool> {
+        // Make a new Psi program
+        let mut pp = PsiProg::new(sym_vars)?;
+
+        // Write the old path condition as *observe* statements
+        pp.write_observes(old_path)?;
+
+        // Write the new path condition as *assert* statements
+        pp.write_assertions(new_path)?;
+
+        // Run Psi to return the conditional probability of the new path
+        let cond_prob = pp.run()?;
+
+        Ok(cond_prob.0.is_constant())
     }
 
     pub fn init_dist() -> Self {

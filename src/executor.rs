@@ -1,9 +1,12 @@
 use std::collections::{HashMap, HashSet};
 
+use anyhow::Result;
+
 use crate::{
     executor_state::{ExecutorState, Status},
     expr::Expr,
     path::Path,
+    probability::Prob,
     syntax::Func,
 };
 
@@ -27,10 +30,10 @@ impl Executor {
         }
     }
 
-    pub fn run(mut self) -> HashSet<Path> {
+    pub fn run(mut self) -> Result<HashSet<Path>> {
         while !self.stack.is_empty() {
             let s = self.stack.pop().unwrap();
-            match s.step() {
+            match s.step()? {
                 Status::Fork(true_state, false_state) => {
                     self.stack.push(false_state);
                     self.stack.push(true_state);
@@ -43,6 +46,6 @@ impl Executor {
                 Status::PrematureTerminate => panic!(),
             }
         }
-        self.paths
+        Ok(self.paths)
     }
 }

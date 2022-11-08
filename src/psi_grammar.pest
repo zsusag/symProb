@@ -33,4 +33,4 @@ WHITESPACE = _{ " " | "\t" }
 
 ident_list = { identifier ~ ("," ~ identifier)* }
 
-psi_prob = _{ SOI ~ "p(|" ~ ident_list? ~ ") = " ~ expr ~ NEWLINE ~ ANY* ~ EOI }
+psi_prob = _{ SOI ~ "p(" ~ "|"? ~ ident_list? ~ ") = " ~ expr ~ NEWLINE ~ ANY* ~ EOI }

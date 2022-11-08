@@ -102,5 +102,10 @@ pub fn parse_expr(pairs: Pairs<Rule>) -> ExprNode {
 }
 
 pub fn parse_psi_output(mut pairs: Pairs<Rule>) -> Expr {
-    Expr::new(parse_expr(pairs.nth(1).unwrap().into_inner()))
+    Expr::new(parse_expr(
+        pairs
+            .find(|p| matches!(p.as_rule(), Rule::expr))
+            .unwrap()
+            .into_inner(),
+    ))
 }

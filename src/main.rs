@@ -42,17 +42,15 @@ fn main() -> Result<(), anyhow::Error> {
             .context("Failed to parse function definitions")?,
     );
 
-    println!("{:#?}", fn_defs);
-
     check_valid_program(&fn_defs)?;
 
     let executor = Executor::new(fn_defs);
-    let paths = executor.run();
+    let paths = executor.run()?;
 
     println!("Number of Paths: {}", paths.len());
 
-    for p in paths {
-        println!("{}", p);
+    for (i, path) in paths.iter().enumerate() {
+        println!("Path {}:\n\t{}", i + 1, path);
     }
     Ok(())
 }

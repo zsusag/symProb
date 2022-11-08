@@ -1,0 +1,11 @@
+fn main() {
+  x := 0;
+	while(x != 1) {
+	  tmp ~ rnd();
+		if (tmp < (1/2)) {
+		  x := 1;
+		} else {
+		  x := 0;
+		}
+	}
+}

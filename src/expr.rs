@@ -62,6 +62,10 @@ impl<'ctx> Expr {
     pub fn to_psi_expr(&self) -> PsiExpr {
         self.root.to_psi_expr()
     }
+
+    pub fn is_constant(&self) -> bool {
+        self.root.is_constant()
+    }
 }
 
 impl<'ctx> ExprNode {
@@ -289,6 +293,30 @@ impl<'ctx> ExprNode {
 
     pub fn to_psi_expr(&self) -> PsiExpr {
         PsiExpr(self.clone())
+    }
+
+    pub fn is_constant(&self) -> bool {
+        match &self.e {
+            ExprKind::Constant(v) => match v {
+                Value::Num(_) | Value::Boolean(_) => true,
+                Value::Var(_) => false,
+            },
+            ExprKind::Add
+            | ExprKind::Sub
+            | ExprKind::Mul
+            | ExprKind::Div
+            | ExprKind::And
+            | ExprKind::Or
+            | ExprKind::Lt
+            | ExprKind::Le
+            | ExprKind::Gt
+            | ExprKind::Ge
+            | ExprKind::Eq
+            | ExprKind::Not
+            | ExprKind::Ne
+            | ExprKind::Iverson => self.children.iter().all(|e| e.is_constant()),
+            ExprKind::Func(_) => todo!(),
+        }
     }
 }
 
