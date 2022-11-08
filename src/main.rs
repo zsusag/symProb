@@ -17,8 +17,9 @@ mod executor_state;
 mod expr;
 mod parser;
 mod path;
-mod semantics;
 mod probability;
+mod psi_parser;
+mod semantics;
 mod smt;
 mod syntax;
 

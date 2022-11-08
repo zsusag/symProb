@@ -1,0 +1,36 @@
+// No whitespace allowed between digits
+integer = @{ ASCII_DIGIT+ }
+
+// Variables must begin with a letter and then may consist of any number of letters, numbers, or underscores.
+identifier = @{ ASCII_ALPHA ~ (ASCII_ALPHANUMERIC | "_")* }
+
+boolean = { "true" | "false" }
+
+unary_minus = { "-" }
+unary_not = { "!" }
+iverson = { "[" ~ expr ~ "]" }
+primary = _{ boolean | identifier | integer | "(" ~ expr ~ ")" | iverson }
+atom = _{ (unary_minus | unary_not)? ~ primary}
+
+bin_op = _{ add | subtract | multiply | divide | le | lt | ge | gt | eq | ne }
+	add = { "+" }
+	subtract = { "-" }
+	multiply = { "·" }
+	divide = { "/" }
+	lt = { "<" }
+	le = { "≤" }
+	gt = { ">" }
+	ge = { "≥" }
+	eq = { "=" }
+	ne = { "≠" }
+
+expr = { atom ~ (bin_op ~ atom)* }
+
+expr_list = _{ expr ~ ("," ~ expr)* }
+
+
+WHITESPACE = _{ " " | "\t" }
+
+ident_list = { identifier ~ ("," ~ identifier)* }
+
+psi_prob = _{ SOI ~ "p(|" ~ ident_list? ~ ") = " ~ expr ~ NEWLINE ~ ANY* ~ EOI }

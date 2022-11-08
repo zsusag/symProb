@@ -44,6 +44,7 @@ pub enum ExprKind {
     Ge,
     Eq,
     Ne,
+    Iverson,
     Func(String),
 }
 
@@ -64,6 +65,7 @@ impl Display for ExprKind {
             ExprKind::Ge => write!(f, "≥"),
             ExprKind::Eq => write!(f, "="),
             ExprKind::Ne => write!(f, "≠"),
+            ExprKind::Iverson => todo!(),
             ExprKind::Func(_) => todo!(),
         }
     }

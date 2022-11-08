@@ -129,7 +129,7 @@ impl ExecutorState {
             }
         }
     }
-
+    // Need to add back the while statement on true branch side
     pub fn fork(mut self, inner_body: Vec<Statement>, guard: Option<Expr>) -> Self {
         if !inner_body.is_empty() {
             // First save the current scope state, if there are statements to execute after the scope
@@ -144,7 +144,7 @@ impl ExecutorState {
         // Add the new condition to the current path, if not trivial
         if let Some(e) = guard {
             self.path.branch(e);
-            println!("{:?}", Prob::new(&self.path, &self.sym_vars));
+            println!("{}", Prob::new(&self.path, &self.sym_vars).unwrap());
         }
 
         // Add the inner scope statements to the stack

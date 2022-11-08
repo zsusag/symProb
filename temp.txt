@@ -1,4 +1,4 @@
-fn main(y: Real) {
+fn main(y: Real, z: Real) {
   x ~ rnd();
 	if (x >= y) {
 	  y := 0;

@@ -180,6 +180,7 @@ impl<'ctx> ExprNode {
                     }),
                 }
             }
+            ExprKind::Iverson => unreachable!(),
         }
     }
 
@@ -375,6 +376,7 @@ impl Display for PsiExpr {
                 self.0.children.get(1).unwrap().to_psi_expr()
             ),
             ExprKind::Func(_) => todo!(),
+            ExprKind::Iverson => unreachable!(),
         }
     }
 }
@@ -426,6 +428,10 @@ impl Display for ExprNode {
                 }
             }
             ExprKind::Func(_) => todo!(),
+            ExprKind::Iverson => {
+                let e = self.children.get(0).unwrap();
+                write!(f, "[{}]", e)
+            }
         }
     }
 }
