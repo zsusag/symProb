@@ -54,6 +54,7 @@ pub struct ExecutorState {
     sigma: HashMap<String, ExprNode>,
 
     // List of path constraints
+    // TODO: Add sigma for each path constraint
     path: Path,
 
     // Mapping of symbolic variables
@@ -150,7 +151,7 @@ impl ExecutorState {
 
         // Add the new condition to the current path, if not trivial
         if let Some(e) = guard {
-            self.path.branch(e);
+            self.path.branch(e, &self.sigma);
         }
 
         // Add the inner scope statements to the stack
@@ -259,6 +260,7 @@ impl ExecutorState {
                 }
             }
             None => {
+                self.path.merge_sigma(&self.sigma);
                 self.path.calculate_prob(&self.sym_vars)?;
                 Ok(Status::Terminate(self.path))
             }

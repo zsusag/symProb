@@ -123,6 +123,8 @@ impl Prob {
         // Run Psi to return the conditional probability of the new path
         let cond_prob = pp.run()?;
 
+        // Pr[ new_path | old_path ] = cond_prob
+
         Ok(cond_prob.0.is_constant())
     }
 
