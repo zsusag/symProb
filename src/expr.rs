@@ -26,6 +26,10 @@ impl<'ctx> Expr {
     pub fn new(root: ExprNode) -> Self {
         Expr { root }
     }
+
+    pub fn get_root(self) -> ExprNode {
+        self.root
+    }
     // Returns the type of the expression
     pub fn typecheck(
         &self,
@@ -190,6 +194,7 @@ impl<'ctx> ExprNode {
                 }
             }
             ExprKind::Iverson => unreachable!(),
+            ExprKind::Sqrt => unreachable!(),
         }
     }
 
@@ -286,6 +291,11 @@ impl<'ctx> ExprNode {
                 let e2 = self.children.get(1).unwrap().convert_real(ctx);
                 e1 / e2
             }
+            ExprKind::Sqrt => {
+                let e = self.children.get(0).unwrap().convert_real(ctx);
+                let exponent = Real::from_real(ctx, 1, 2);
+                e.power(&exponent)
+            }
             _ => unreachable!(),
         }
     }
@@ -304,6 +314,7 @@ impl<'ctx> ExprNode {
             | ExprKind::Sub
             | ExprKind::Mul
             | ExprKind::Div
+            | ExprKind::Sqrt
             | ExprKind::And
             | ExprKind::Or
             | ExprKind::Lt
@@ -358,6 +369,11 @@ impl Display for PsiExpr {
                 "({}) / ({})",
                 self.0.children.get(0).unwrap().to_psi_expr(),
                 self.0.children.get(1).unwrap().to_psi_expr()
+            ),
+            ExprKind::Sqrt => write!(
+                f,
+                "({}) ^ (1/2)",
+                self.0.children.get(0).unwrap().to_psi_expr()
             ),
             ExprKind::And => write!(
                 f,
@@ -437,6 +453,7 @@ impl Display for ExprNode {
                 self.e,
                 self.children.get(1).unwrap()
             ),
+            ExprKind::Sqrt => write!(f, "{}{}", self.e, self.children.get(0).unwrap()),
             ExprKind::Lt
             | ExprKind::Le
             | ExprKind::Gt

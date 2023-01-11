@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 
 use anyhow::Result;
+use num::Rational32;
 
 use crate::{
     expr::{Expr, ExprNode},
@@ -23,7 +24,17 @@ pub enum Status {
 #[derive(Debug, Clone)]
 pub enum SymType {
     Normal(Type),
-    Prob,
+    UniformProb,
+    NormalProb,
+}
+
+impl SymType {
+    pub fn is_prob(&self) -> bool {
+        match self {
+            SymType::Normal(_) => false,
+            _ => true,
+        }
+    }
 }
 
 #[derive(Debug, Clone)]
@@ -111,12 +122,26 @@ impl ExecutorState {
         }
     }
 
-    pub fn sample(&mut self) -> String {
+    pub fn uniform_sample(&mut self) -> String {
         // Generate name for the probabilistic symbolic variable which is the result from sampling
-        let prob_sym_name = format!("SAMPLE_{:}", self.num_samples);
+        let prob_sym_name = format!("UNIFORM_{:}", self.num_samples);
 
         // Update the symbolic variable type map
-        self.sym_vars.insert(prob_sym_name.clone(), SymType::Prob);
+        self.sym_vars
+            .insert(prob_sym_name.clone(), SymType::UniformProb);
+
+        // Increment the number of samples
+        self.num_samples += 1;
+        prob_sym_name
+    }
+
+    pub fn normal_sample(&mut self) -> String {
+        // Generate name for the probabilistic symbolic variable which is the result from sampling
+        let prob_sym_name = format!("NORMAL_{:}", self.num_samples);
+
+        // Update the symbolic variable type map
+        self.sym_vars
+            .insert(prob_sym_name.clone(), SymType::NormalProb);
 
         // Increment the number of samples
         self.num_samples += 1;
@@ -177,8 +202,73 @@ impl ExecutorState {
                         Ok(Status::Continue(self))
                     }
                     StatementKind::Sample(var) => {
-                        let sym_name = self.sample();
+                        let sym_name = self.uniform_sample();
                         self.sigma.insert(var, ExprNode::new_sample_var(sym_name));
+                        Ok(Status::Continue(self))
+                    }
+                    StatementKind::Bernoulli(var, e) => {
+                        // We implement Bernoulli sampling by pushing a series of statements to the stack.
+                        let var_set_zero = Statement::new_with_id(
+                            StatementKind::Assignment(
+                                var.clone(),
+                                Expr::new(ExprNode::new_leaf(ExprKind::Constant(Value::Num(
+                                    Rational32::new(0, 1),
+                                )))),
+                            ),
+                            s_id + 3,
+                        );
+                        let var_set_one = Statement::new_with_id(
+                            StatementKind::Assignment(
+                                var.clone(),
+                                Expr::new(ExprNode::new_leaf(ExprKind::Constant(Value::Num(
+                                    Rational32::new(1, 1),
+                                )))),
+                            ),
+                            s_id + 2,
+                        );
+                        let cond = Expr::new(ExprNode::new(
+                            ExprKind::Lt,
+                            vec![
+                                ExprNode::new_leaf(ExprKind::Constant(Value::Var(var.clone()))),
+                                e.get_root(),
+                            ],
+                        ));
+                        let branch = Statement::new_with_id(
+                            StatementKind::Branch(cond, vec![var_set_one], vec![var_set_zero]),
+                            s_id + 1,
+                        );
+                        self.stack.push(branch);
+                        let sample = Statement::new_with_id(StatementKind::Sample(var), s_id);
+                        self.stack.push(sample);
+                        Ok(Status::Continue(self))
+                    }
+                    StatementKind::Normal(var, mean, variance) => {
+                        let mean = mean.get_root();
+                        let variance = variance.get_root();
+                        let sym_name = self.normal_sample();
+                        if mean
+                            == ExprNode::new_leaf(ExprKind::Constant(Value::Num(Rational32::new(
+                                0, 1,
+                            ))))
+                            && variance
+                                == ExprNode::new_leaf(ExprKind::Constant(Value::Num(
+                                    Rational32::new(1, 1),
+                                )))
+                        {
+                            // Standard normal distribution
+                            self.sigma.insert(var, ExprNode::new_sample_var(sym_name));
+                        } else {
+                            // Need to transform
+                            let sqrt_variance = ExprNode::new(ExprKind::Sqrt, vec![variance]);
+                            let mult_by_variance = ExprNode::new(
+                                ExprKind::Mul,
+                                vec![ExprNode::new_sample_var(sym_name), sqrt_variance],
+                            );
+                            let shift_by_mean =
+                                ExprNode::new(ExprKind::Add, vec![mean, mult_by_variance]);
+
+                            self.sigma.insert(var, shift_by_mean);
+                        }
                         Ok(Status::Continue(self))
                     }
                     StatementKind::Branch(mut guard, tru_branch, fls_branch) => {

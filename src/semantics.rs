@@ -78,9 +78,11 @@ pub fn check_valid_program(fns: &HashMap<String, Func>) -> Result<()> {
 
 fn check_path_to_return(body: &[Statement]) -> bool {
     match &body.last().unwrap().kind {
-        StatementKind::Assignment(_, _) | StatementKind::Sample(_) | StatementKind::Observe(_) => {
-            false
-        }
+        StatementKind::Assignment(_, _)
+        | StatementKind::Sample(_)
+        | StatementKind::Bernoulli(_, _)
+        | StatementKind::Normal(_, _, _)
+        | StatementKind::Observe(_) => false,
         StatementKind::Branch(_, true_branch, false_branch) => {
             check_path_to_return(&true_branch) && check_path_to_return(&false_branch)
         }
@@ -102,6 +104,41 @@ impl Statement {
                 gamma.insert(&name, t);
             }
             StatementKind::Sample(name) => {
+                gamma.insert(&name, Type::Real);
+            }
+            StatementKind::Bernoulli(name, e) => {
+                let t = e.typecheck(fn_sigs, gamma)?;
+                ensure!(
+                    t == Type::Real,
+                    SemanticsError::TypeError {
+                        expected: Type::Real,
+                        found: Type::Bool,
+                        e: e.to_owned(),
+                    }
+                );
+                gamma.insert(&name, Type::Real);
+            }
+            StatementKind::Normal(name, mean, variance) => {
+                let mean_t = mean.typecheck(fn_sigs, gamma)?;
+                let variance_t = variance.typecheck(fn_sigs, gamma)?;
+
+                ensure!(
+                    mean_t == Type::Real,
+                    SemanticsError::TypeError {
+                        expected: Type::Real,
+                        found: Type::Bool,
+                        e: mean.to_owned(),
+                    }
+                );
+                ensure!(
+                    variance_t == Type::Real,
+                    SemanticsError::TypeError {
+                        expected: Type::Real,
+                        found: Type::Bool,
+                        e: variance.to_owned(),
+                    }
+                );
+
                 gamma.insert(&name, Type::Real);
             }
             StatementKind::Branch(cond, true_branch, false_branch) => {

@@ -46,11 +46,19 @@ impl<'ctx> SMTMangager {
             .iter()
             .filter_map(|(name, st)| match st {
                 SymType::Normal(_) => None,
-                SymType::Prob => {
+                SymType::UniformProb => {
                     let var = Real::new_const(&self.ctx, name.as_str());
                     let zero = Real::from_real(&self.ctx, 0, 1);
                     let one = Real::from_real(&self.ctx, 1, 1);
                     let lower = var.ge(&zero);
+                    let upper = var.le(&one);
+                    Some(Bool::and(&self.ctx, &[&lower, &upper]))
+                }
+                SymType::NormalProb => {
+                    let var = Real::new_const(&self.ctx, name.as_str());
+                    let neg_one = Real::from_real(&self.ctx, -1, 1);
+                    let one = Real::from_real(&self.ctx, 1, 1);
+                    let lower = var.ge(&neg_one);
                     let upper = var.le(&one);
                     Some(Bool::and(&self.ctx, &[&lower, &upper]))
                 }

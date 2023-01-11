@@ -48,7 +48,12 @@ while_st = { "while" ~ "(" ~ expr ~ ")" ~ statement_list }
 return_st = { "return" ~ expr ~ ";" }
 observe = { "observe" ~ "(" ~ expr ~ ")" ~ ";" }
 
-statement = _{ assignment | sample | branch | while_st | return_st | observe }
+// Extra sampling statements
+bern = { identifier ~ "~" ~ "bern(" ~ expr ~ ")" ~ ";" }
+normal = { identifier ~ "~" ~ "normal(" ~ expr ~ "," ~ expr ~ ")" ~ ";" }
+
+
+statement = _{ assignment | sample | branch | while_st | return_st | observe | bern | normal }
 
 statement_list = { "{" ~ NEWLINE+ ~ (statement ~ NEWLINE+)+ ~ "}" }
 

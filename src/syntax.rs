@@ -34,6 +34,7 @@ pub enum ExprKind {
     Sub,
     Mul,
     Div,
+    Sqrt,
     And,
     Or,
     Not,
@@ -55,6 +56,7 @@ impl Display for ExprKind {
             ExprKind::Sub => write!(f, "-"),
             ExprKind::Mul => write!(f, "*"),
             ExprKind::Div => write!(f, "/"),
+            ExprKind::Sqrt => write!(f, "√"),
             ExprKind::And => write!(f, "∧"),
             ExprKind::Or => write!(f, "∨"),
             ExprKind::Not => write!(f, "¬"),
@@ -83,6 +85,10 @@ impl Statement {
         ret
     }
 
+    pub fn new_with_id(kind: StatementKind, id: u32) -> Self {
+        Statement { id, kind }
+    }
+
     pub fn clone_while(guard: Expr, body: Vec<Statement>, id: u32) -> Self {
         Statement {
             id,
@@ -99,6 +105,8 @@ impl Statement {
 pub enum StatementKind {
     Assignment(String, Expr),
     Sample(String),
+    Bernoulli(String, Expr),
+    Normal(String, Expr, Expr),
     Branch(Expr, Vec<Statement>, Vec<Statement>),
     While(Expr, Vec<Statement>),
     Return(Expr),

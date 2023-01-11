@@ -168,6 +168,29 @@ pub fn parse_statement(pair: Pair<Rule>, mut statement_counter: &mut u32) -> Sta
             let var = inner_rules.next().unwrap().as_str().to_string();
             Statement::new(StatementKind::Sample(var), &mut statement_counter)
         }
+        Rule::bern => {
+            let mut inner_rules = pair.into_inner();
+
+            let var = inner_rules.next().unwrap().as_str().to_string();
+            let e = parse_expr(inner_rules.next().unwrap().into_inner());
+            let ret = Statement::new(
+                StatementKind::Bernoulli(var, Expr::new(e)),
+                &mut statement_counter,
+            );
+            *statement_counter += 3; // We expand the bern statment later into 4 statements
+            ret
+        }
+        Rule::normal => {
+            let mut inner_rules = pair.into_inner();
+
+            let var = inner_rules.next().unwrap().as_str().to_string();
+            let mean = parse_expr(inner_rules.next().unwrap().into_inner());
+            let variance = parse_expr(inner_rules.next().unwrap().into_inner());
+            Statement::new(
+                StatementKind::Normal(var, Expr::new(mean), Expr::new(variance)),
+                &mut statement_counter,
+            )
+        }
         Rule::branch => {
             let mut inner_rules = pair.into_inner();
 

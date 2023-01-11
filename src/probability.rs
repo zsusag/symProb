@@ -22,10 +22,7 @@ impl PsiProg {
 
         // Write the `main` function header
         let (normal_sym_vars, prob_sym_vars): (Vec<_>, Vec<_>) =
-            sym_vars.iter().partition(|(_, t)| match t {
-                SymType::Normal(_) => true,
-                SymType::Prob => false,
-            });
+            sym_vars.iter().partition(|(_, t)| t.is_prob());
 
         writeln!(
             f,
