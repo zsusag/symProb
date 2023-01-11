@@ -43,7 +43,7 @@ type_sig = { "(" ~ param_list? ~ ")" }
 
 assignment = { identifier ~ ":=" ~ expr ~ ";" }
 sample = { identifier ~ "~" ~ "rnd()" ~ ";" }
-branch = { "if" ~ "(" ~ expr ~ ")" ~ statement_list ~ "else" ~ statement_list }
+branch = { "if" ~ "(" ~ expr ~ ")" ~ statement_list ~ NEWLINE* ~ "else" ~ statement_list }
 while_st = { "while" ~ "(" ~ expr ~ ")" ~ statement_list }
 return_st = { "return" ~ expr ~ ";" }
 
