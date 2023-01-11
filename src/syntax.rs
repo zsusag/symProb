@@ -102,6 +102,7 @@ pub enum StatementKind {
     Branch(Expr, Vec<Statement>, Vec<Statement>),
     While(Expr, Vec<Statement>),
     Return(Expr),
+    Observe(Expr),
 }
 
 #[derive(Debug, PartialEq, Clone, Eq)]

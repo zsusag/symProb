@@ -10,6 +10,7 @@ use crate::{
     syntax::{ExprKind, Func, Statement, StatementKind, Type, Value},
 };
 
+// Add bernoulli sampling. normal, etc.
 #[derive(Debug)]
 pub enum Status {
     Fork(ExecutorState, ExecutorState),
@@ -54,7 +55,6 @@ pub struct ExecutorState {
     sigma: HashMap<String, ExprNode>,
 
     // List of path constraints
-    // TODO: Add sigma for each path constraint
     path: Path,
 
     // Mapping of symbolic variables
@@ -257,6 +257,11 @@ impl ExecutorState {
                         }
                     }
                     StatementKind::Return(_) => todo!(),
+                    StatementKind::Observe(mut cond) => {
+                        cond.substitute(&self.sigma);
+                        self.path.observe(cond);
+                        Ok(Status::Continue(self))
+                    }
                 }
             }
             None => {

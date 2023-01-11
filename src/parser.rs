@@ -207,6 +207,11 @@ pub fn parse_statement(pair: Pair<Rule>, mut statement_counter: &mut u32) -> Sta
             let ret_expr = Expr::new(parse_expr(pair.into_inner().next().unwrap().into_inner()));
             Statement::new(StatementKind::Return(ret_expr), &mut statement_counter)
         }
+        Rule::observe => {
+            let mut inner_rules = pair.into_inner();
+            let cond = Expr::new(parse_expr(inner_rules.next().unwrap().into_inner()));
+            Statement::new(StatementKind::Observe(cond), &mut statement_counter)
+        }
         _ => unreachable!(),
     }
 }

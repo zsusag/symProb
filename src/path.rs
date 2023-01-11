@@ -17,6 +17,7 @@ pub struct Path {
     prob: Prob,
     terminated: bool,
     sigma: BTreeMap<String, ExprNode>,
+    observations: Vec<Expr>,
 }
 
 impl Path {
@@ -26,12 +27,17 @@ impl Path {
             prob: Prob::init_dist(),
             terminated: false,
             sigma: BTreeMap::new(),
+            observations: Vec::new(),
         }
     }
 
     pub fn branch(&mut self, cond: Expr, sigma: &HashMap<String, ExprNode>) {
         self.conds.push(cond);
         self.merge_sigma(sigma);
+    }
+
+    pub fn observe(&mut self, observation: Expr) {
+        self.observations.push(observation);
     }
 
     pub fn merge_sigma(&mut self, sigma: &HashMap<String, ExprNode>) {
@@ -64,8 +70,13 @@ impl Display for Path {
         if self.terminated {
             write!(
                 f,
-                "Path Condition: {}, Probability: {}, {}, Terminated",
+                "Path Condition: {}\n\tObservations: {}\n\tProbability: {}\n\tSigma: {}\n\tTerminated: Yes",
                 self.conds
+                    .iter()
+                    .map(|e| e.to_string())
+                    .collect::<Vec<String>>()
+                    .join(" ∧ "),
+                self.observations
                     .iter()
                     .map(|e| e.to_string())
                     .collect::<Vec<String>>()
@@ -76,8 +87,13 @@ impl Display for Path {
         } else {
             write!(
                 f,
-                "Path Condition: {}, Probability: {}, {}",
+                "Path Condition: {}\n\tObservations: {}\n\tProbability: {}\n\tSigma: {}\n\tTerminated: No",
                 self.conds
+                    .iter()
+                    .map(|e| e.to_string())
+                    .collect::<Vec<String>>()
+                    .join(" ∧ "),
+                self.observations
                     .iter()
                     .map(|e| e.to_string())
                     .collect::<Vec<String>>()

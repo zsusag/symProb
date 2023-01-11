@@ -46,8 +46,9 @@ sample = { identifier ~ "~" ~ "rnd()" ~ ";" }
 branch = { "if" ~ "(" ~ expr ~ ")" ~ statement_list ~ NEWLINE* ~ "else" ~ statement_list }
 while_st = { "while" ~ "(" ~ expr ~ ")" ~ statement_list }
 return_st = { "return" ~ expr ~ ";" }
+observe = { "observe" ~ "(" ~ expr ~ ")" ~ ";" }
 
-statement = _{ assignment | sample | branch | while_st | return_st }
+statement = _{ assignment | sample | branch | while_st | return_st | observe }
 
 statement_list = { "{" ~ NEWLINE+ ~ (statement ~ NEWLINE+)+ ~ "}" }
 

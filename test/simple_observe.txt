@@ -1,0 +1,10 @@
+fn main() {
+  x ~ rnd();
+	observe(x >= (1/2));
+	success := 0;
+	if (x >= (3/4)) {
+	  success := 1;
+	} else {
+	  success := -1;
+	}
+}

@@ -78,7 +78,9 @@ pub fn check_valid_program(fns: &HashMap<String, Func>) -> Result<()> {
 
 fn check_path_to_return(body: &[Statement]) -> bool {
     match &body.last().unwrap().kind {
-        StatementKind::Assignment(_, _) | StatementKind::Sample(_) => false,
+        StatementKind::Assignment(_, _) | StatementKind::Sample(_) | StatementKind::Observe(_) => {
+            false
+        }
         StatementKind::Branch(_, true_branch, false_branch) => {
             check_path_to_return(&true_branch) && check_path_to_return(&false_branch)
         }
@@ -143,6 +145,17 @@ impl Statement {
                         e: e.to_owned()
                     }
                 );
+            }
+            StatementKind::Observe(cond) => {
+                let t = cond.typecheck(fn_sigs, gamma)?;
+                ensure!(
+                    t == Type::Bool,
+                    SemanticsError::TypeError {
+                        expected: Type::Bool,
+                        found: Type::Real,
+                        e: cond.to_owned(),
+                    }
+                )
             }
         };
         Ok(())
