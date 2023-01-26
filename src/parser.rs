@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 
 use num::rational::Ratio;
+use num::{FromPrimitive, Rational32};
 use pest::iterators::{Pair, Pairs};
 use pest::pratt_parser::PrattParser;
 
@@ -50,6 +51,13 @@ pub fn parse_expr(pairs: Pairs<Rule>) -> ExprNode {
                 primary.as_str().parse::<i32>().unwrap(),
                 1,
             )))),
+            Rule::decimal => {
+                let poss_rat_val = Rational32::from_f64(primary.as_str().parse::<f64>().unwrap());
+                match poss_rat_val {
+                    Some(rat_val) => ExprNode::new_leaf(ExprKind::Constant(Value::Num(rat_val))),
+                    None => panic!("Unable to convert floaing point number into a Rational32"),
+                }
+            }
             Rule::identifier => {
                 ExprNode::new_leaf(ExprKind::Constant(Value::Var(primary.as_str().to_string())))
             }

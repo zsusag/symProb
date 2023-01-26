@@ -1,6 +1,9 @@
 // No whitespace allowed between digits
 integer = @{ ASCII_DIGIT+ }
 
+// Decimal numbers (still handled as a float)
+decimal = @{ integer ~ "." ~ integer }
+
 // Variables must begin with a letter and then may consist of any number of letters, numbers, or underscores.
 identifier = @{ ASCII_ALPHA ~ (ASCII_ALPHANUMERIC | "_")* }
 
@@ -8,7 +11,7 @@ boolean = { "true" | "false" }
 
 unary_minus = { "-" }
 unary_not = { "!" }
-primary = _{ boolean | fn_call | identifier | integer | "(" ~ expr ~ ")" }
+primary = _{ boolean | fn_call | identifier | decimal | integer | "(" ~ expr ~ ")" }
 atom = _{ (unary_minus | unary_not)? ~ primary}
 
 bin_op = _{ add | subtract | multiply | divide | and | or | le | lt | ge | gt | eq | ne }
