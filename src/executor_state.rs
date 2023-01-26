@@ -30,10 +30,7 @@ pub enum SymType {
 
 impl SymType {
     pub fn is_prob(&self) -> bool {
-        match self {
-            SymType::Normal(_) => false,
-            _ => true,
-        }
+        !matches!(self, SymType::Normal(_))
     }
 }
 
@@ -71,8 +68,11 @@ pub struct ExecutorState {
     // Mapping of symbolic variables
     sym_vars: HashMap<String, SymType>,
 
-    // Counter for number of probabilistic samples
-    num_samples: u32,
+    // Counter for number of uniform probabilistic samples
+    num_uniform_samples: u32,
+
+    // Counter for number of normal probabilistic samples
+    num_normal_samples: u32,
 
     // A stack representing the scopes present
     scope_manager: Vec<ScopeState>,
@@ -115,7 +115,8 @@ impl ExecutorState {
             sigma,
             path: Path::new(),
             sym_vars,
-            num_samples: 0,
+            num_uniform_samples: 0,
+            num_normal_samples: 0,
             scope_manager: Vec::new(),
             smt_manager: SMTMangager::new(),
             prev_iter_map: HashMap::new(),
@@ -124,27 +125,27 @@ impl ExecutorState {
 
     pub fn uniform_sample(&mut self) -> String {
         // Generate name for the probabilistic symbolic variable which is the result from sampling
-        let prob_sym_name = format!("UNIFORM_{:}", self.num_samples);
+        let prob_sym_name = format!("UNIFORM_{:}", self.num_uniform_samples);
 
         // Update the symbolic variable type map
         self.sym_vars
             .insert(prob_sym_name.clone(), SymType::UniformProb);
 
         // Increment the number of samples
-        self.num_samples += 1;
+        self.num_uniform_samples += 1;
         prob_sym_name
     }
 
     pub fn normal_sample(&mut self) -> String {
         // Generate name for the probabilistic symbolic variable which is the result from sampling
-        let prob_sym_name = format!("NORMAL_{:}", self.num_samples);
+        let prob_sym_name = format!("NORMAL_{:}", self.num_normal_samples);
 
         // Update the symbolic variable type map
         self.sym_vars
             .insert(prob_sym_name.clone(), SymType::NormalProb);
 
         // Increment the number of samples
-        self.num_samples += 1;
+        self.num_normal_samples += 1;
         prob_sym_name
     }
 
