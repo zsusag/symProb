@@ -14,7 +14,8 @@ use crate::{
 #[derive(Debug, PartialEq, Eq, Clone, Hash)]
 pub struct Path {
     conds: Vec<Expr>,
-    prob: Prob,
+    path_prob: Prob,
+    observes_prob: Prob,
     terminated: bool,
     sigma: BTreeMap<String, ExprNode>,
     observations: Vec<Expr>,
@@ -24,7 +25,8 @@ impl Path {
     pub fn new() -> Self {
         Path {
             conds: Vec::new(),
-            prob: Prob::init_dist(),
+            path_prob: Prob::init_dist(),
+            observes_prob: Prob::init_dist(),
             terminated: false,
             sigma: BTreeMap::new(),
             observations: Vec::new(),
@@ -50,7 +52,8 @@ impl Path {
     }
 
     pub fn calculate_prob(&mut self, sym_vars: &HashMap<String, SymType>) -> Result<()> {
-        self.prob = Prob::new(self, sym_vars)?;
+        self.path_prob = Prob::new(&self.conds, sym_vars)?;
+        self.observes_prob = Prob::new(&self.observations, sym_vars)?;
         Ok(())
     }
 
@@ -70,35 +73,37 @@ impl Display for Path {
         if self.terminated {
             write!(
                 f,
-                "Path Condition: {}\n\tObservations: {}\n\tProbability: {}\n\tSigma: {}\n\tTerminated: Yes",
+                "Path Condition: {}\n\tProbability: {}\n\tObservations: {}\n\tObservations Probability: {}\n\tSigma: {}\n\tTerminated: Yes",
                 self.conds
                     .iter()
                     .map(|e| e.to_string())
                     .collect::<Vec<String>>()
                     .join(" ∧ "),
+                self.path_prob,
                 self.observations
                     .iter()
                     .map(|e| e.to_string())
                     .collect::<Vec<String>>()
                     .join(" ∧ "),
-                self.prob,
+								self.observes_prob,
                 sigma_str
             )
         } else {
             write!(
                 f,
-                "Path Condition: {}\n\tObservations: {}\n\tProbability: {}\n\tSigma: {}\n\tTerminated: No",
+                "Path Condition: {}\n\tProbability: {}\n\tObservations: {}\n\tObservations Probability: {}\n\tSigma: {}\n\tTerminated: No",
                 self.conds
                     .iter()
                     .map(|e| e.to_string())
                     .collect::<Vec<String>>()
                     .join(" ∧ "),
+                self.path_prob,
                 self.observations
                     .iter()
                     .map(|e| e.to_string())
                     .collect::<Vec<String>>()
                     .join(" ∧ "),
-                self.prob,
+								self.observes_prob,
                 sigma_str
             )
         }

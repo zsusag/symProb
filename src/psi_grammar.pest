@@ -8,9 +8,10 @@ boolean = { "true" | "false" }
 
 unary_minus = { "-" }
 unary_not = { "!" }
+sqrt = { "√" }
 iverson = { "[" ~ expr ~ "]" }
-primary = _{ boolean | identifier | integer | "(" ~ expr ~ ")" | iverson }
-atom = _{ (unary_minus | unary_not)? ~ primary}
+primary = _{ boolean | identifier | sqrt | integer | "(" ~ expr ~ ")" | iverson }
+atom = _{ (unary_minus | unary_not | sqrt)? ~ primary}
 
 bin_op = _{ add | subtract | multiply | divide | le | lt | ge | gt | eq | ne }
 	add = { "+" }
@@ -23,6 +24,7 @@ bin_op = _{ add | subtract | multiply | divide | le | lt | ge | gt | eq | ne }
 	ge = { "≥" }
 	eq = { "=" }
 	ne = { "≠" }
+
 
 expr = { atom ~ (bin_op ~ atom)* }
 

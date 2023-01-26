@@ -22,6 +22,7 @@ lazy_static::lazy_static! {
             .op(Op::infix(add, Left) | Op::infix(subtract, Left))
             .op(Op::infix(multiply, Left) | Op::infix(divide, Left))
             .op(Op::prefix(unary_minus) | Op::prefix(unary_not))
+            .op(Op::prefix(sqrt))
     };
 }
 
@@ -96,6 +97,7 @@ pub fn parse_expr(pairs: Pairs<Rule>) -> ExprNode {
                 }
             }
             Rule::unary_not => ExprNode::new(ExprKind::Not, vec![rhs]),
+            Rule::sqrt => ExprNode::new(ExprKind::Sqrt, vec![rhs]),
             _ => unreachable!(),
         })
         .parse(pairs)
