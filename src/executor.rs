@@ -18,8 +18,8 @@ pub struct Executor {
 
 impl Executor {
     // Create an initial state consisting of the statements from the main function
-    pub fn new(mut fn_defs: HashMap<String, Func>) -> Self {
-        let init_state = ExecutorState::new(fn_defs.remove("main").unwrap());
+    pub fn new(mut fn_defs: HashMap<String, Func>, max_iterations: &Option<u32>) -> Self {
+        let init_state = ExecutorState::new(fn_defs.remove("main").unwrap(), max_iterations);
         let paths = HashSet::new();
         Executor {
             stack: vec![init_state],

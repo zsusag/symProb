@@ -82,10 +82,13 @@ pub struct ExecutorState {
 
     // A mapping from while-loop identifiers to the previous path condition for almost-sure-termination
     prev_iter_map: HashMap<u32, Path>,
+
+    max_iterations: Option<u32>,
+    iter_map: HashMap<u32, u32>,
 }
 
 impl ExecutorState {
-    pub fn new(main_fn: Func) -> Self {
+    pub fn new(main_fn: Func, max_iterations: &Option<u32>) -> Self {
         let Func {
             inputs, mut body, ..
         } = main_fn;
@@ -120,6 +123,8 @@ impl ExecutorState {
             scope_manager: Vec::new(),
             smt_manager: SMTMangager::new(),
             prev_iter_map: HashMap::new(),
+            max_iterations: max_iterations.clone(),
+            iter_map: HashMap::new(),
         }
     }
 
@@ -302,7 +307,25 @@ impl ExecutorState {
                             &self.sym_vars,
                         );
 
+                        let iters_so_far = self.iter_map.get_mut(&s_id);
+
                         if true_sat {
+                            if let Some(max_iters) = self.max_iterations {
+                                if let Some(num_iters_so_far) = &iters_so_far {
+                                    if **num_iters_so_far >= max_iters {
+                                        // We have reached the maximum number of iterations allowed
+                                        self.path.mark_terminated();
+                                        if false_sat {
+                                            return Ok(Status::Continue(
+                                                self.fork(Vec::new(), Some(guard.not())),
+                                            ));
+                                        } else {
+                                            return Ok(Status::Continue(self));
+                                        }
+                                    }
+                                }
+                            }
+
                             // if let Some(prev_iter_path) = self.prev_iter_map.get(&s_id) {
                             //     // Visited this loop before; check for almost-surely-terminating loop...
                             //     if Prob::is_almost_surely_terminating(
@@ -323,6 +346,14 @@ impl ExecutorState {
                             // }
                             // Insert the while loop into the prev iteration, unless it is almost-surely-terminating.
                             //                            self.prev_iter_map.insert(s_id, self.path.clone());
+
+                            // Increment the number of iterations
+                            match iters_so_far {
+                                Some(iters_so_far) => *iters_so_far += 1,
+                                None => {
+                                    self.iter_map.insert(s_id, 1);
+                                }
+                            };
 
                             if false_sat {
                                 let mut into_loop_state = self.clone();

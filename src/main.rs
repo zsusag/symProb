@@ -26,6 +26,10 @@ mod syntax;
 struct Args {
     /// path to probabilistic programs
     p: std::path::PathBuf,
+
+    #[arg(short, long)]
+    /// maximum number of times to unroll all the while loops
+    max_iterations: Option<u32>,
 }
 
 fn main() -> Result<(), anyhow::Error> {
@@ -42,7 +46,7 @@ fn main() -> Result<(), anyhow::Error> {
 
     check_valid_program(&fn_defs)?;
 
-    let executor = Executor::new(fn_defs);
+    let executor = Executor::new(fn_defs, &args.max_iterations);
     let paths = executor.run()?;
 
     println!("Number of Paths: {}", paths.len());
