@@ -9,7 +9,7 @@ use crate::{
     executor_state::SymType,
     expr::{Expr, ExprNode},
     path::Path,
-    psi_parser::{self, parse_psi_output, PsiParser},
+    //    psi_parser::{self, parse_psi_output, PsiParser},
     syntax::{ExprKind, Value},
 };
 
@@ -22,7 +22,7 @@ impl PsiProg {
 
         // Write the `main` function header
         let (normal_sym_vars, prob_sym_vars): (Vec<_>, Vec<_>) =
-            sym_vars.iter().partition(|(_, t)| t.is_prob());
+            sym_vars.iter().partition(|(_, t)| !t.is_prob());
 
         writeln!(
             f,
@@ -70,6 +70,7 @@ impl PsiProg {
         writeln!(self.0, "}}")?;
 
         let output = Command::new("psi")
+            .arg("--mathematica")
             .arg(self.0.path().as_os_str())
             .output()
             .context("Unable to call Psi (is it on your path?)")?;
@@ -86,16 +87,25 @@ impl PsiProg {
             )
         }
 
-        let output = &String::from_utf8(output.stdout)?.replace('̅', "");
-        Ok(Prob(parse_psi_output(
-            PsiParser::parse(psi_parser::Rule::psi_prob, output)
-                .context("Failed to parse Psi distribution")?,
-        )))
+        let output: String = String::from_utf8(output.stdout)?
+            .lines()
+            .next()
+            .unwrap()
+            .split(":=")
+            .nth(1)
+            .unwrap()
+            .to_string();
+
+        Ok(Prob(output))
+        // Ok(Prob(parse_psi_output(
+        //     PsiParser::parse(psi_parser::Rule::psi_prob, output)
+        //         .context("Failed to parse Psi distribution")?,
+        // )))
     }
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct Prob(Expr);
+pub struct Prob(String);
 
 impl Prob {
     pub fn new(to_calculate: &Vec<Expr>, sym_vars: &HashMap<String, SymType>) -> Result<Self> {
@@ -109,32 +119,30 @@ impl Prob {
         pp.run()
     }
 
-    pub fn is_almost_surely_terminating(
-        old_path: &Path,
-        new_path: &Path,
-        sym_vars: &HashMap<String, SymType>,
-    ) -> Result<bool> {
-        // Make a new Psi program
-        let mut pp = PsiProg::new(sym_vars)?;
+    // pub fn is_almost_surely_terminating(
+    //     old_path: &Path,
+    //     new_path: &Path,
+    //     sym_vars: &HashMap<String, SymType>,
+    // ) -> Result<bool> {
+    //     // Make a new Psi program
+    //     let mut pp = PsiProg::new(sym_vars)?;
 
-        // Write the old path condition as *observe* statements
-        pp.write_observes(old_path)?;
+    //     // Write the old path condition as *observe* statements
+    //     pp.write_observes(old_path)?;
 
-        // Write the new path condition as *assert* statements
-        pp.write_assertions(new_path.get_conds())?;
+    //     // Write the new path condition as *assert* statements
+    //     pp.write_assertions(new_path.get_conds())?;
 
-        // Run Psi to return the conditional probability of the new path
-        let cond_prob = pp.run()?;
+    //     // Run Psi to return the conditional probability of the new path
+    //     let cond_prob = pp.run()?;
 
-        // Pr[ new_path | old_path ] = cond_prob
+    //     // Pr[ new_path | old_path ] = cond_prob
 
-        Ok(cond_prob.0.is_constant())
-    }
+    //     Ok(cond_prob.0.is_constant())
+    // }
 
     pub fn init_dist() -> Self {
-        Prob(Expr::new(ExprNode::new_leaf(ExprKind::Constant(
-            Value::Num(Rational32::new(1, 1)),
-        ))))
+        Prob("1".to_string())
     }
 }
 

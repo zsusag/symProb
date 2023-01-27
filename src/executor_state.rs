@@ -303,26 +303,26 @@ impl ExecutorState {
                         );
 
                         if true_sat {
-                            if let Some(prev_iter_path) = self.prev_iter_map.get(&s_id) {
-                                // Visited this loop before; check for almost-surely-terminating loop...
-                                if Prob::is_almost_surely_terminating(
-                                    prev_iter_path,
-                                    &self.path,
-                                    &self.sym_vars,
-                                )? {
-                                    // Don't enter the loop!
-                                    self.path.mark_terminated();
-                                    if false_sat {
-                                        return Ok(Status::Continue(
-                                            self.fork(Vec::new(), Some(guard.not())),
-                                        ));
-                                    } else {
-                                        return Ok(Status::Continue(self));
-                                    }
-                                }
-                            }
+                            // if let Some(prev_iter_path) = self.prev_iter_map.get(&s_id) {
+                            //     // Visited this loop before; check for almost-surely-terminating loop...
+                            //     if Prob::is_almost_surely_terminating(
+                            //         prev_iter_path,
+                            //         &self.path,
+                            //         &self.sym_vars,
+                            //     )? {
+                            //         // Don't enter the loop!
+                            //         self.path.mark_terminated();
+                            //         if false_sat {
+                            //             return Ok(Status::Continue(
+                            //                 self.fork(Vec::new(), Some(guard.not())),
+                            //             ));
+                            //         } else {
+                            //             return Ok(Status::Continue(self));
+                            //         }
+                            //     }
+                            // }
                             // Insert the while loop into the prev iteration, unless it is almost-surely-terminating.
-                            self.prev_iter_map.insert(s_id, self.path.clone());
+                            //                            self.prev_iter_map.insert(s_id, self.path.clone());
 
                             if false_sat {
                                 let mut into_loop_state = self.clone();

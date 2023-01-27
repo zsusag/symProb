@@ -8,15 +8,15 @@ boolean = { "true" | "false" }
 
 unary_minus = { "-" }
 unary_not = { "!" }
-sqrt = { "√" }
-iverson = { "[" ~ expr ~ "]" }
-primary = _{ boolean | identifier | sqrt | integer | "(" ~ expr ~ ")" | iverson }
+pi = { "Pi" }
+fn_call = { identifier ~ "[" ~ expr ~ "]" }
+primary = _{ boolean | pi | fn_call | identifier | integer | "(" ~ expr ~ ")" }
 atom = _{ (unary_minus | unary_not | sqrt)? ~ primary}
 
 bin_op = _{ add | subtract | multiply | divide | le | lt | ge | gt | eq | ne }
 	add = { "+" }
 	subtract = { "-" }
-	multiply = { "·" }
+	multiply = { "*" }
 	divide = { "/" }
 	lt = { "<" }
 	le = { "≤" }
@@ -35,4 +35,4 @@ WHITESPACE = _{ " " | "\t" }
 
 ident_list = { identifier ~ ("," ~ identifier)* }
 
-psi_prob = _{ SOI ~ "p(" ~ "|"? ~ ident_list? ~ ") = " ~ expr ~ NEWLINE ~ ANY* ~ EOI }
+psi_prob = _{ SOI ~ "p[" ~ "|"? ~ ident_list? ~ "] := " ~ expr ~ NEWLINE ~ ANY* ~ EOI }
