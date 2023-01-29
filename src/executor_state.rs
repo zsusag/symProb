@@ -249,8 +249,13 @@ impl ExecutorState {
                         Ok(Status::Continue(self))
                     }
                     StatementKind::Normal(var, mean, variance) => {
-                        let mean = mean.get_root();
-                        let variance = variance.get_root();
+                        let mut mean = mean.get_root();
+                        let mut variance = variance.get_root();
+
+                        // Apply sigma to both mean and variance
+                        mean.substitute(&self.sigma);
+                        variance.substitute(&self.sigma);
+
                         let sym_name = self.normal_sample();
                         if mean
                             == ExprNode::new_leaf(ExprKind::Constant(Value::Num(Rational32::new(
@@ -272,7 +277,8 @@ impl ExecutorState {
                             );
                             let shift_by_mean =
                                 ExprNode::new(ExprKind::Add, vec![mean, mult_by_variance]);
-
+                            println!("var: {}", var);
+                            println!("shift_by_mean: {}", shift_by_mean);
                             self.sigma.insert(var, shift_by_mean);
                         }
                         Ok(Status::Continue(self))

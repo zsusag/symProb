@@ -34,14 +34,25 @@ impl PsiProg {
                 .join(", ")
         )?;
 
+        println!(
+            "def main({}) {{",
+            normal_sym_vars
+                .iter()
+                .map(|(name, _)| name.to_string())
+                .collect::<Vec<String>>()
+                .join(", ")
+        );
+
         // Declare all of the probabilistic symbolic variables as samples from [0,1]
         for (name, name_t) in prob_sym_vars {
             match name_t {
                 SymType::UniformProb => {
                     writeln!(f, "{name} := uniform(0,1);")?;
+                    println!("{name} := uniform(0,1);");
                 }
                 SymType::NormalProb => {
                     writeln!(f, "{name} := gauss(0,1);")?;
+                    println!("{name} := gauss(0,1);");
                 }
                 _ => unreachable!(),
             }
@@ -51,6 +62,7 @@ impl PsiProg {
 
     fn write_assertions(&mut self, assertions: &Vec<Expr>) -> Result<()> {
         for cond in assertions {
+            println!("assert({});", cond.to_psi_expr());
             writeln!(self.0, "assert({});", cond.to_psi_expr())
                 .context("Couldn't write assertion to Psi program tempfile")?;
         }
