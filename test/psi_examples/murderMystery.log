@@ -1,0 +1,32 @@
+Number of Paths: 4
+Path 1:
+	Path Condition: UNIFORM_0 < 3/10 ∧ ¬(UNIFORM_1 < 3/100)
+	Probability:  291/1000
+	Observations: 0 = 1 ∧ true
+	Observations Probability:  0
+	Sigma: σ(aliceDunnit) = 1, σ(gunFound) = true, σ(posterior) = 1, σ(withGun) = 0
+	Terminated: No
+Path 2:
+	Path Condition: UNIFORM_0 < 3/10 ∧ UNIFORM_1 < 3/100
+	Probability:  9/1000
+	Observations: 1 = 1 ∧ true
+	Observations Probability:  1
+	Sigma: σ(aliceDunnit) = 1, σ(gunFound) = true, σ(posterior) = 1, σ(withGun) = 1
+	Terminated: No
+Path 3:
+	Path Condition: ¬(UNIFORM_0 < 3/10) ∧ UNIFORM_1 < 4/5
+	Probability:  14/25
+	Observations: 1 = 1 ∧ true
+	Observations Probability:  1
+	Sigma: σ(aliceDunnit) = 0, σ(gunFound) = true, σ(posterior) = 0, σ(withGun) = 1
+	Terminated: No
+Path 4:
+	Path Condition: ¬(UNIFORM_0 < 3/10) ∧ ¬(UNIFORM_1 < 4/5)
+	Probability:  7/50
+	Observations: 0 = 1 ∧ true
+	Observations Probability:  0
+	Sigma: σ(aliceDunnit) = 0, σ(gunFound) = true, σ(posterior) = 0, σ(withGun) = 0
+	Terminated: No
+real 0.29
+user 0.24
+sys 0.05

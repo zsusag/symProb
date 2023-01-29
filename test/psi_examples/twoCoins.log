@@ -1,39 +1,3 @@
-def main() {
-UNIFORM_1 := uniform(0,1);
-UNIFORM_0 := uniform(0,1);
-assert((UNIFORM_0) < ((1/2)));
-assert((UNIFORM_1) < ((1/2)));
-def main() {
-UNIFORM_1 := uniform(0,1);
-UNIFORM_0 := uniform(0,1);
-assert(!(((1) != (0)) && ((1) != (0))));
-def main() {
-UNIFORM_1 := uniform(0,1);
-UNIFORM_0 := uniform(0,1);
-assert((UNIFORM_0) < ((1/2)));
-assert(!((UNIFORM_1) < ((1/2))));
-def main() {
-UNIFORM_1 := uniform(0,1);
-UNIFORM_0 := uniform(0,1);
-assert(!(((1) != (0)) && ((0) != (0))));
-def main() {
-UNIFORM_1 := uniform(0,1);
-UNIFORM_0 := uniform(0,1);
-assert(!((UNIFORM_0) < ((1/2))));
-assert((UNIFORM_1) < ((1/2)));
-def main() {
-UNIFORM_1 := uniform(0,1);
-UNIFORM_0 := uniform(0,1);
-assert(!(((0) != (0)) && ((1) != (0))));
-def main() {
-UNIFORM_1 := uniform(0,1);
-UNIFORM_0 := uniform(0,1);
-assert(!((UNIFORM_0) < ((1/2))));
-assert(!((UNIFORM_1) < ((1/2))));
-def main() {
-UNIFORM_1 := uniform(0,1);
-UNIFORM_0 := uniform(0,1);
-assert(!(((0) != (0)) && ((0) != (0))));
 Number of Paths: 4
 Path 1:
 	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2)
