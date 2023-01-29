@@ -54,9 +54,9 @@ observe = { "observe" ~ "(" ~ expr ~ ")" ~ ";" }
 // Extra sampling statements
 bern = { identifier ~ "~" ~ "bern(" ~ expr ~ ")" ~ ";" }
 normal = { identifier ~ "~" ~ "normal(" ~ expr ~ "," ~ expr ~ ")" ~ ";" }
+uniform = { identifier ~ "~" ~ "uniform(" ~ expr ~ "," ~ expr ~ ")" ~ ";" }
 
-
-statement = _{ assignment | sample | branch | while_st | return_st | observe | bern | normal }
+statement = _{ assignment | sample | branch | while_st | return_st | observe | bern | normal | uniform }
 
 statement_list = { "{" ~ NEWLINE+ ~ (statement ~ NEWLINE+)+ ~ "}" }
 
