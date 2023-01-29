@@ -12,5 +12,6 @@ fn main(){
 		} else {
 		  x := x;
     }
+		i := i + 1;
 	}
 }

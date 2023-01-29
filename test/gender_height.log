@@ -1,0 +1,18 @@
+Number of Paths: 2
+Path 1:
+	Path Condition: UNIFORM_0 < 51/100
+	Probability:  51/100
+	Observations: (175 + NORMAL_0 * √72) ≥ 200
+	Observations Probability:  -1/Pi^(1/2)*Sqrt[Pi]*(Erf[25/12]+1)/2+1
+	Sigma: σ(gender) = 1, σ(height) = 175 + NORMAL_0 * √72
+	Terminated: No
+Path 2:
+	Path Condition: ¬(UNIFORM_0 < 51/100)
+	Probability:  49/100
+	Observations: (161 + NORMAL_0 * √50) ≥ 200
+	Observations Probability:  -1/Pi^(1/2)*Sqrt[Pi]*(Erf[39/10]+1)/2+1
+	Sigma: σ(gender) = 0, σ(height) = 161 + NORMAL_0 * √50
+	Terminated: No
+real 0.16
+user 0.12
+sys 0.03
