@@ -107,6 +107,7 @@ pub enum StatementKind {
     Sample(String),
     Bernoulli(String, Expr),
     Normal(String, Expr, Expr),
+    Uniform(String, Expr, Expr),
     Branch(Expr, Vec<Statement>, Vec<Statement>),
     While(Expr, Vec<Statement>),
     Return(Expr),
