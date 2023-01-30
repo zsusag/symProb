@@ -30,6 +30,10 @@ struct Args {
     #[arg(short, long)]
     /// maximum number of times to unroll all the while loops
     max_iterations: Option<u32>,
+
+    #[arg(short, long)]
+    /// turn off probability expression calculation with Psi
+    no_prob: bool,
 }
 
 fn main() -> Result<(), anyhow::Error> {
@@ -47,7 +51,7 @@ fn main() -> Result<(), anyhow::Error> {
     check_valid_program(&fn_defs)?;
 
     let executor = Executor::new(fn_defs, &args.max_iterations);
-    let paths = executor.run()?;
+    let paths = executor.run(args.no_prob)?;
 
     println!("Number of Paths: {}", paths.len());
 

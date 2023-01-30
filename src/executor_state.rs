@@ -194,7 +194,7 @@ impl ExecutorState {
     }
 
     // Going to ignore function/macro calls for now.
-    pub fn step(mut self) -> Result<Status> {
+    pub fn step(mut self, no_prob: bool) -> Result<Status> {
         let s = self.stack.pop();
         match s {
             Some(s) => {
@@ -419,7 +419,6 @@ impl ExecutorState {
                     StatementKind::Observe(mut cond) => {
                         cond.substitute(&self.sigma);
                         self.path.observe(cond);
-
                         // Check whether observe statement has 0 probability (i.e., unsatisfiable)
                         if self
                             .smt_manager
@@ -436,7 +435,9 @@ impl ExecutorState {
             }
             None => {
                 self.path.merge_sigma(&self.sigma);
-                self.path.calculate_prob(&self.sym_vars)?;
+                if !no_prob {
+                    self.path.calculate_prob(&self.sym_vars)?;
+                }
                 Ok(Status::Terminate(self.path))
             }
         }

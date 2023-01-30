@@ -1,6 +1,4 @@
 def main() {
-		x := uniform(0,1);
-		if true {
-		assert(x >= (1/2));
-		}
+		height := gauss(0,1);
+		assert(height * (72)^(0.5) + 175 >= 200);
 }

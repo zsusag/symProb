@@ -78,14 +78,14 @@ impl<'ctx> SMTMangager {
                     let upper = var.le(&one);
                     Some(Bool::and(&self.ctx, &[&lower, &upper]))
                 }
-                SymType::NormalProb => {
-                    let var = Real::new_const(&self.ctx, name.as_str());
-                    let neg_one = Real::from_real(&self.ctx, -1, 1);
-                    let one = Real::from_real(&self.ctx, 1, 1);
-                    let lower = var.ge(&neg_one);
-                    let upper = var.le(&one);
-                    Some(Bool::and(&self.ctx, &[&lower, &upper]))
-                }
+                SymType::NormalProb => None, // {
+                                             //     let var = Real::new_const(&self.ctx, name.as_str());
+                                             //     let neg_one = Real::from_real(&self.ctx, -1, 1);
+                                             //     let one = Real::from_real(&self.ctx, 1, 1);
+                                             //     let lower = var.ge(&neg_one);
+                                             //     let upper = var.le(&one);
+                                             //     Some(Bool::and(&self.ctx, &[&lower, &upper]))
+                                             // }
             })
             .for_each(|bound| s.assert(&bound));
 

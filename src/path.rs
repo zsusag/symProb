@@ -14,8 +14,8 @@ use crate::{
 #[derive(Debug, PartialEq, Eq, Clone, Hash)]
 pub struct Path {
     conds: Vec<Expr>,
-    path_prob: Prob,
-    observes_prob: Prob,
+    path_prob: Option<Prob>,
+    observes_prob: Option<Prob>,
     terminated: bool,
     sigma: BTreeMap<String, ExprNode>,
     observations: Vec<Expr>,
@@ -25,8 +25,8 @@ impl Path {
     pub fn new() -> Self {
         Path {
             conds: Vec::new(),
-            path_prob: Prob::init_dist(),
-            observes_prob: Prob::init_dist(),
+            path_prob: None,
+            observes_prob: None,
             terminated: false,
             sigma: BTreeMap::new(),
             observations: Vec::new(),
@@ -56,8 +56,8 @@ impl Path {
     }
 
     pub fn calculate_prob(&mut self, sym_vars: &HashMap<String, SymType>) -> Result<()> {
-        self.path_prob = Prob::new(&self.conds, sym_vars)?;
-        self.observes_prob = Prob::new(&self.observations, sym_vars)?;
+        self.path_prob = Some(Prob::new(&self.conds, sym_vars)?);
+        self.observes_prob = Some(Prob::new(&self.observations, sym_vars)?);
         Ok(())
     }
 
@@ -74,8 +74,45 @@ impl Display for Path {
             .map(|(k, v)| format!("σ({k}) = {v}"))
             .collect::<Vec<String>>()
             .join(", ");
-        if self.terminated {
-            write!(
+        match (&self.path_prob, &self.observes_prob) {
+            (None, None) => {
+                if self.terminated {
+                    write!(
+                        f,
+                        "Path Condition: {}\n\tObservations: {}\n\tSigma: {}\n\tTerminated: Yes",
+                        self.conds
+                            .iter()
+                            .map(|e| e.to_string())
+                            .collect::<Vec<String>>()
+                            .join(" ∧ "),
+                        self.observations
+                            .iter()
+                            .map(|e| e.to_string())
+                            .collect::<Vec<String>>()
+                            .join(" ∧ "),
+                        sigma_str
+                    )
+                } else {
+                    write!(
+                        f,
+                        "Path Condition: {}\n\tObservations: {}\n\tSigma: {}\n\tTerminated: No",
+                        self.conds
+                            .iter()
+                            .map(|e| e.to_string())
+                            .collect::<Vec<String>>()
+                            .join(" ∧ "),
+                        self.observations
+                            .iter()
+                            .map(|e| e.to_string())
+                            .collect::<Vec<String>>()
+                            .join(" ∧ "),
+                        sigma_str
+                    )
+                }
+            }
+            (Some(path_prob), Some(observe_prob)) => {
+                if self.terminated {
+                    write!(
                 f,
                 "Path Condition: {}\n\tProbability: {}\n\tObservations: {}\n\tObservations Probability: {}\n\tSigma: {}\n\tTerminated: Yes",
                 self.conds
@@ -83,17 +120,17 @@ impl Display for Path {
                     .map(|e| e.to_string())
                     .collect::<Vec<String>>()
                     .join(" ∧ "),
-                self.path_prob,
+                path_prob,
                 self.observations
                     .iter()
                     .map(|e| e.to_string())
                     .collect::<Vec<String>>()
                     .join(" ∧ "),
-								self.observes_prob,
+								observe_prob,
                 sigma_str
             )
-        } else {
-            write!(
+                } else {
+                    write!(
                 f,
                 "Path Condition: {}\n\tProbability: {}\n\tObservations: {}\n\tObservations Probability: {}\n\tSigma: {}\n\tTerminated: No",
                 self.conds
@@ -101,15 +138,18 @@ impl Display for Path {
                     .map(|e| e.to_string())
                     .collect::<Vec<String>>()
                     .join(" ∧ "),
-                self.path_prob,
+                path_prob,
                 self.observations
                     .iter()
                     .map(|e| e.to_string())
                     .collect::<Vec<String>>()
                     .join(" ∧ "),
-								self.observes_prob,
+								observe_prob,
                 sigma_str
             )
+                }
+            }
+            _ => unreachable!(),
         }
     }
 }
