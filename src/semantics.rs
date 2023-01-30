@@ -82,6 +82,7 @@ fn check_path_to_return(body: &[Statement]) -> bool {
         | StatementKind::Sample(_)
         | StatementKind::Bernoulli(_, _)
         | StatementKind::Normal(_, _, _)
+        | StatementKind::Uniform(_, _, _)
         | StatementKind::Observe(_) => false,
         StatementKind::Branch(_, true_branch, false_branch) => {
             check_path_to_return(&true_branch) && check_path_to_return(&false_branch)
@@ -136,6 +137,29 @@ impl Statement {
                         expected: Type::Real,
                         found: Type::Bool,
                         e: variance.to_owned(),
+                    }
+                );
+
+                gamma.insert(&name, Type::Real);
+            }
+            StatementKind::Uniform(name, a, b) => {
+                let a_t = a.typecheck(fn_sigs, gamma)?;
+                let b_t = b.typecheck(fn_sigs, gamma)?;
+
+                ensure!(
+                    a_t == Type::Real,
+                    SemanticsError::TypeError {
+                        expected: Type::Real,
+                        found: Type::Bool,
+                        e: a.to_owned(),
+                    }
+                );
+                ensure!(
+                    b_t == Type::Real,
+                    SemanticsError::TypeError {
+                        expected: Type::Real,
+                        found: Type::Bool,
+                        e: b.to_owned(),
                     }
                 );
 

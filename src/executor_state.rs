@@ -278,9 +278,39 @@ impl ExecutorState {
                             );
                             let shift_by_mean =
                                 ExprNode::new(ExprKind::Add, vec![mean, mult_by_variance]);
-                            println!("var: {}", var);
-                            println!("shift_by_mean: {}", shift_by_mean);
                             self.sigma.insert(var, shift_by_mean);
+                        }
+                        Ok(Status::Continue(self))
+                    }
+                    StatementKind::Uniform(var, lower, upper) => {
+                        let mut lower = lower.get_root();
+                        let mut upper = upper.get_root();
+
+                        // Apply sigma to both lower and upper expressions
+                        lower.substitute(&self.sigma);
+                        upper.substitute(&self.sigma);
+
+                        let sym_name = self.uniform_sample();
+                        if lower
+                            == ExprNode::new_leaf(ExprKind::Constant(Value::Num(Rational32::new(
+                                0, 1,
+                            ))))
+                            && upper
+                                == ExprNode::new_leaf(ExprKind::Constant(Value::Num(
+                                    Rational32::new(1, 1),
+                                )))
+                        {
+                            self.sigma.insert(var, ExprNode::new_sample_var(sym_name));
+                        } else {
+                            let scale_factor =
+                                ExprNode::new(ExprKind::Sub, vec![upper, lower.clone()]);
+                            let mult_sample_by_scale = ExprNode::new(
+                                ExprKind::Mul,
+                                vec![ExprNode::new_sample_var(sym_name), scale_factor],
+                            );
+                            let final_shift =
+                                ExprNode::new(ExprKind::Add, vec![mult_sample_by_scale, lower]);
+                            self.sigma.insert(var, final_shift);
                         }
                         Ok(Status::Continue(self))
                     }

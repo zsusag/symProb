@@ -199,6 +199,17 @@ pub fn parse_statement(pair: Pair<Rule>, mut statement_counter: &mut u32) -> Sta
                 &mut statement_counter,
             )
         }
+        Rule::uniform => {
+            let mut inner_rules = pair.into_inner();
+
+            let var = inner_rules.next().unwrap().as_str().to_string();
+            let a = parse_expr(inner_rules.next().unwrap().into_inner());
+            let b = parse_expr(inner_rules.next().unwrap().into_inner());
+            Statement::new(
+                StatementKind::Uniform(var, Expr::new(a), Expr::new(b)),
+                &mut statement_counter,
+            )
+        }
         Rule::branch => {
             let mut inner_rules = pair.into_inner();
 
