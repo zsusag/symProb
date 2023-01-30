@@ -143,15 +143,15 @@ impl Statement {
                 gamma.insert(&name, Type::Real);
             }
             StatementKind::Uniform(name, a, b) => {
-                let a_t = mean.typecheck(fn_sigs, gamma)?;
-                let b_t = variance.typecheck(fn_sigs, gamma)?;
+                let a_t = a.typecheck(fn_sigs, gamma)?;
+                let b_t = b.typecheck(fn_sigs, gamma)?;
 
                 ensure!(
                     a_t == Type::Real,
                     SemanticsError::TypeError {
                         expected: Type::Real,
                         found: Type::Bool,
-                        e: mean.to_owned(),
+                        e: a.to_owned(),
                     }
                 );
                 ensure!(
@@ -159,7 +159,7 @@ impl Statement {
                     SemanticsError::TypeError {
                         expected: Type::Real,
                         found: Type::Bool,
-                        e: variance.to_owned(),
+                        e: b.to_owned(),
                     }
                 );
 
