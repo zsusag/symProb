@@ -42,6 +42,10 @@ impl Path {
         self.observations.push(observation);
     }
 
+    pub fn get_path_observation(&self) -> &[Expr] {
+        &self.observations
+    }
+
     pub fn merge_sigma(&mut self, sigma: &HashMap<String, ExprNode>) {
         self.sigma
             .extend(sigma.into_iter().map(|(k, v)| (k.clone(), v.clone())));

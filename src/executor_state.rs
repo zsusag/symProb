@@ -18,6 +18,7 @@ pub enum Status {
     Continue(ExecutorState),
     Terminate(Path),
     Return(Expr),
+    FailedObserve,
     PrematureTerminate,
 }
 
@@ -388,7 +389,18 @@ impl ExecutorState {
                     StatementKind::Observe(mut cond) => {
                         cond.substitute(&self.sigma);
                         self.path.observe(cond);
-                        Ok(Status::Continue(self))
+
+                        // Check whether observe statement has 0 probability (i.e., unsatisfiable)
+                        if self
+                            .smt_manager
+                            .is_sat(self.path.get_path_observation(), &self.sym_vars)
+                        {
+                            // Non-zero probability
+                            Ok(Status::Continue(self))
+                        } else {
+                            // Zero probability
+                            Ok(Status::FailedObserve)
+                        }
                     }
                 }
             }

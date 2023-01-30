@@ -10,12 +10,20 @@ use crate::{executor_state::SymType, expr::Expr};
 #[derive(Debug)]
 pub struct SMTMangager {
     cfg: Config,
-    ctx: Context,
+    pub ctx: Context,
 }
 
 impl Clone for SMTMangager {
     fn clone(&self) -> Self {
         SMTMangager::new()
+    }
+}
+
+fn sat_to_bool(res: &SatResult) -> bool {
+    match res {
+        SatResult::Unsat => false,
+        SatResult::Unknown => panic!("Z3 returned unknown"),
+        SatResult::Sat => true,
     }
 }
 
@@ -33,12 +41,28 @@ impl<'ctx> SMTMangager {
         guard: &Expr,
         sym_vars: &HashMap<String, SymType>,
     ) -> (bool, bool) {
+        let s = self.init(cur_path, sym_vars);
+
+        let true_guard = guard.convert(&self.ctx);
+        let false_guard = true_guard.not();
+
+        let true_res = s.check_assumptions(&[true_guard]);
+        let false_res = s.check_assumptions(&[false_guard]);
+
+        (sat_to_bool(&true_res), sat_to_bool(&false_res))
+    }
+
+    pub fn is_sat(&'ctx self, formula: &[Expr], sym_vars: &HashMap<String, SymType>) -> bool {
+        let s = self.init(formula, sym_vars);
+        sat_to_bool(&s.check())
+    }
+
+    fn init(&'ctx self, formula: &[Expr], sym_vars: &HashMap<String, SymType>) -> Solver {
         // Make new solver
         let s = Solver::new(&self.ctx);
 
-        // Add current path to solver assertions
-        for p_cond in cur_path.iter() {
-            s.assert(&p_cond.convert(&self.ctx))
+        for cond in formula.iter() {
+            s.assert(&cond.convert(&self.ctx));
         }
 
         // Add assertions for the bounds of all probabilistic symbolic variables
@@ -65,18 +89,6 @@ impl<'ctx> SMTMangager {
             })
             .for_each(|bound| s.assert(&bound));
 
-        let true_guard = guard.convert(&self.ctx);
-        let false_guard = true_guard.not();
-
-        let true_res = s.check_assumptions(&[true_guard]);
-        let false_res = s.check_assumptions(&[false_guard]);
-
-        match (true_res, false_res) {
-            (SatResult::Unknown, _) | (_, SatResult::Unknown) => panic!("Z3 returned unknown"),
-            (SatResult::Unsat, SatResult::Unsat) => (false, false),
-            (SatResult::Unsat, SatResult::Sat) => (false, true),
-            (SatResult::Sat, SatResult::Unsat) => (true, false),
-            (SatResult::Sat, SatResult::Sat) => (true, true),
-        }
+        s
     }
 }

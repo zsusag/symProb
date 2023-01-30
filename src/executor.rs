@@ -42,6 +42,7 @@ impl Executor {
                 }
                 Status::Return(_) => todo!(),
                 Status::PrematureTerminate => panic!(),
+                Status::FailedObserve => (),
             }
         }
         Ok(self.paths)
