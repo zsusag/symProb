@@ -1,0 +1,5 @@
+PASS
+p(posterior) = 560/569·δ(0)[posterior]+9/569·δ(1)[posterior]
+real 0.03
+user 0.03
+sys 0.00

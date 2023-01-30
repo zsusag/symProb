@@ -1,0 +1,5 @@
+PASS
+p(burglary) = 2969983/992160802·δ(1)[burglary]+989190819/992160802·δ(0)[burglary]
+real 0.07
+user 0.08
+sys 0.00

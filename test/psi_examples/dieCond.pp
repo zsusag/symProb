@@ -4,8 +4,7 @@ fn main(){
 	i := 0;
 	while (i < 20) {
 		if (x != 6) {
-			x ~ rnd();
-      x := x * 6;
+			x ~ uniform(0,6);
 
 			observe(( x > 1 && x <= 2) || (x > 3 && x <= 4) && (x > 5) );
 			throws := throws + 1;

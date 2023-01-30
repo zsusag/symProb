@@ -12,7 +12,11 @@ fn main(){
           isGirlAnnounce := isGirl2;
 			 }
     } else {
-        isGirlAnnounce := (isGirl1 == 1) || (isGirl2 == 1);
+			if ((isGirl1 == 1) || (isGirl2 == 1)) {
+			  isGirlAnnounce := 1;
+			} else {
+			  isGirlAnnounce := 0;
+			}
     }
     observe(isGirlAnnounce == 1);
     bothAreGirls := (isGirl1 == 1) && (isGirl2 == 1);

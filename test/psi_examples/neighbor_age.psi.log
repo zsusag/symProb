@@ -1,0 +1,5 @@
+PASS
+p(bothAreGirls) = 1/2·δ(0)[bothAreGirls]+1/2·δ(1)[bothAreGirls]
+real 0.09
+user 0.09
+sys 0.01
