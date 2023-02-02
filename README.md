@@ -9,7 +9,7 @@ docker pull zsusag/symprob:latest
 2) Run it! The `-ti` option will place you in an interactive session. If you'd like to mount a directory on your local machine in the Docker container, you can add the `-v path/to-local/directory:/home/erik/mounted`
 
 ```
-docker run -ti --name=symprob zsusag/symProb:latest
+docker run -ti --name=symprob zsusag/symprob:latest
 ```
 
 ## Usage
