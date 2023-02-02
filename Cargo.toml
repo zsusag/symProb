@@ -1,5 +1,5 @@
 [package]
-name = "symbolic_execution_of_probabilistic_programs"
+name = "symProb"
 version = "0.1.0"
 edition = "2021"
 
