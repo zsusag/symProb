@@ -6,6 +6,6 @@ Path 1:
 	Observations Probability:  1/16
 	Sigma: σ(a) = UNIFORM_0, σ(b) = UNIFORM_1, σ(c) = UNIFORM_2, σ(d) = UNIFORM_3, σ(e) = UNIFORM_4, σ(f) = UNIFORM_5, σ(g) = UNIFORM_6, σ(h) = UNIFORM_7
 	Terminated: No
-real 0.38
-user 0.37
+real 0.37
+user 0.36
 sys 0.04

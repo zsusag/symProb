@@ -1,25 +1,25 @@
 Number of Paths: 3
 Path 1:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2
+	Probability:  1/4
+	Observations: true
+	Observations Probability:  1
+	Sigma: σ(a) = 1, σ(b) = true, σ(cond) = 1, σ(r) = true
+	Terminated: No
+Path 2:
 	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2)
 	Probability:  1/4
 	Observations: true
 	Observations Probability:  1
 	Sigma: σ(a) = 1, σ(b) = true, σ(cond) = 0, σ(r) = true
 	Terminated: No
-Path 2:
+Path 3:
 	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2)
 	Probability:  1/4
 	Observations: true
 	Observations Probability:  1
 	Sigma: σ(a) = 0, σ(b) = true, σ(cond) = 0, σ(r) = true
 	Terminated: No
-Path 3:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2
-	Probability:  1/4
-	Observations: 1 = 1
-	Observations Probability:  1
-	Sigma: σ(a) = 1, σ(b) = true, σ(cond) = 1, σ(r) = 1 = 1
-	Terminated: No
 real 0.24
-user 0.23
-sys 0.02
+user 0.21
+sys 0.04

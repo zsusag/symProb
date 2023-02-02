@@ -1,19 +1,19 @@
 Number of Paths: 3
 Path 1:
 	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2)
-	Observations: ¬(1 ≠ 0 ∧ 0 ≠ 0)
-	Sigma: σ(bothHeads) = 1 ≠ 0 ∧ 0 ≠ 0, σ(firstCoin) = 1, σ(secondCoin) = 0
+	Observations: true
+	Sigma: σ(bothHeads) = false, σ(firstCoin) = 1, σ(secondCoin) = 0
 	Terminated: No
 Path 2:
 	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2
-	Observations: ¬(0 ≠ 0 ∧ 1 ≠ 0)
-	Sigma: σ(bothHeads) = 0 ≠ 0 ∧ 1 ≠ 0, σ(firstCoin) = 0, σ(secondCoin) = 1
+	Observations: true
+	Sigma: σ(bothHeads) = false, σ(firstCoin) = 0, σ(secondCoin) = 1
 	Terminated: No
 Path 3:
 	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2)
-	Observations: ¬(0 ≠ 0 ∧ 0 ≠ 0)
-	Sigma: σ(bothHeads) = 0 ≠ 0 ∧ 0 ≠ 0, σ(firstCoin) = 0, σ(secondCoin) = 0
+	Observations: true
+	Sigma: σ(bothHeads) = false, σ(firstCoin) = 0, σ(secondCoin) = 0
 	Terminated: No
 real 0.07
-user 0.05
+user 0.06
 sys 0.01
