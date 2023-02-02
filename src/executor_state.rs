@@ -440,6 +440,8 @@ impl ExecutorState {
             None => {
                 self.path.merge_sigma(&self.sigma);
                 self.path.simplify_sigma();
+                self.path
+                    .set_num_samples(self.num_uniform_samples, self.num_normal_samples);
                 if !no_prob {
                     self.path.calculate_prob(&self.sym_vars)?;
                 }

@@ -1,8 +1,13 @@
 use anyhow::{Context, Result};
 use clap::Parser;
 
+use csv::WriterBuilder;
+use path::gen_csv_header;
 use pest::Parser as EParser;
-use std::fs;
+use std::{
+    fs::{self, File},
+    io::{self, Write},
+};
 
 use crate::{
     executor::Executor,
@@ -34,6 +39,14 @@ struct Args {
     #[arg(short, long)]
     /// turn off probability expression calculation with Psi
     no_prob: bool,
+
+    #[arg(long)]
+    /// output in CSV format
+    csv: bool,
+
+    #[arg(short, long)]
+    /// output to file
+    output: Option<std::path::PathBuf>,
 }
 
 fn main() -> Result<(), anyhow::Error> {
@@ -53,10 +66,45 @@ fn main() -> Result<(), anyhow::Error> {
     let executor = Executor::new(fn_defs, &args.max_iterations);
     let paths = executor.run(args.no_prob)?;
 
-    println!("Number of Paths: {}", paths.len());
-
-    for (i, path) in paths.iter().enumerate() {
-        println!("Path {}:\n\t{}", i + 1, path);
+    if args.csv {
+        let (header, all_var_names) = gen_csv_header(&paths);
+        let rows = paths
+            .iter()
+            .enumerate()
+            .map(|(i, p)| p.to_csv_row(i, &all_var_names));
+        match args.output {
+            Some(path) => {
+                let mut wtr = WriterBuilder::new().has_headers(false).from_path(path)?;
+                wtr.write_record(header)?;
+                for row in rows {
+                    wtr.serialize(row)?;
+                }
+                wtr.flush()?;
+            }
+            None => {
+                let mut wtr = WriterBuilder::new()
+                    .has_headers(false)
+                    .from_writer(io::stdout());
+                wtr.write_record(header)?;
+                for row in rows {
+                    wtr.serialize(row)?;
+                }
+                wtr.flush()?;
+            }
+        }
+    } else {
+        if let Some(output_path) = args.output {
+            let mut f = File::create(output_path)?;
+            writeln!(f, "Number of Paths: {}", paths.len())?;
+            for (i, path) in paths.iter().enumerate() {
+                writeln!(f, "Path {}:\n\t{}", i + 1, path)?;
+            }
+            f.flush()?;
+        }
+        println!("Number of Paths: {}", paths.len());
+        for (i, path) in paths.iter().enumerate() {
+            println!("Path {}:\n\t{}", i + 1, path);
+        }
     }
     Ok(())
 }
