@@ -204,7 +204,11 @@ impl ExecutorState {
                 match s.kind {
                     StatementKind::Assignment(var, e) => {
                         // Apply substitution map to expression to get new value for the variable...
-                        let val = e.substitute_and_get_root(&self.sigma);
+                        let mut val = e.substitute_and_get_root(&self.sigma);
+
+                        // Simplify
+                        val.simplify();
+
                         self.sigma.insert(var, val);
                         Ok(Status::Continue(self))
                     }
@@ -435,6 +439,7 @@ impl ExecutorState {
             }
             None => {
                 self.path.merge_sigma(&self.sigma);
+                self.path.simplify_sigma();
                 if !no_prob {
                     self.path.calculate_prob(&self.sym_vars)?;
                 }

@@ -1,4 +1,5 @@
 use anyhow::{bail, ensure, Result};
+use num::Rational32;
 use std::{collections::HashMap, fmt::Display};
 use z3::{
     ast::{Ast, Bool, Real},
@@ -69,6 +70,10 @@ impl<'ctx> Expr {
     pub fn is_constant(&self) -> bool {
         self.root.is_constant()
     }
+
+    pub fn simplify(&mut self) {
+        self.root.simplify()
+    }
 }
 
 impl<'ctx> ExprNode {
@@ -100,6 +105,206 @@ impl<'ctx> ExprNode {
 
     pub fn needs_parens(&self) -> bool {
         self.children.len() > 1
+    }
+
+    fn is_constant(&self) -> bool {
+        match &self.e {
+            ExprKind::Constant(val) => match val {
+                Value::Num(_) | Value::Boolean(_) => true,
+                Value::Var(_) => false,
+            },
+            _ => false,
+        }
+    }
+
+    pub fn simplify(&mut self) {
+        let mut can_reduce = !self.children.is_empty();
+
+        for child in self.children.iter_mut() {
+            child.simplify();
+            can_reduce &= child.is_constant();
+        }
+        if can_reduce {
+            match &self.e {
+                ExprKind::Constant(_) | ExprKind::Sqrt => (),
+                ExprKind::Add => {
+                    let c2 = self.children.pop().unwrap();
+                    let c1 = self.children.pop().unwrap();
+                    if let (
+                        ExprKind::Constant(Value::Num(x1)),
+                        ExprKind::Constant(Value::Num(x2)),
+                    ) = (c1.e, c2.e)
+                    {
+                        self.e = ExprKind::Constant(Value::Num(x1 + x2));
+                    } else {
+                        unreachable!()
+                    }
+                }
+                ExprKind::Sub => {
+                    let c2 = self.children.pop().unwrap();
+                    let c1 = self.children.pop().unwrap();
+                    if let (
+                        ExprKind::Constant(Value::Num(x1)),
+                        ExprKind::Constant(Value::Num(x2)),
+                    ) = (c1.e, c2.e)
+                    {
+                        self.e = ExprKind::Constant(Value::Num(x1 - x2));
+                    } else {
+                        unreachable!()
+                    }
+                }
+                ExprKind::Mul => {
+                    let c2 = self.children.pop().unwrap();
+                    let c1 = self.children.pop().unwrap();
+                    if let (
+                        ExprKind::Constant(Value::Num(x1)),
+                        ExprKind::Constant(Value::Num(x2)),
+                    ) = (c1.e, c2.e)
+                    {
+                        self.e = ExprKind::Constant(Value::Num(x1 * x2));
+                    } else {
+                        unreachable!()
+                    }
+                }
+                ExprKind::Div => {
+                    let c2 = self.children.pop().unwrap();
+                    let c1 = self.children.pop().unwrap();
+                    if let (
+                        ExprKind::Constant(Value::Num(x1)),
+                        ExprKind::Constant(Value::Num(x2)),
+                    ) = (c1.e, c2.e)
+                    {
+                        self.e = ExprKind::Constant(Value::Num(x1 / x2));
+                    } else {
+                        unreachable!()
+                    }
+                }
+                ExprKind::And => {
+                    let c2 = self.children.pop().unwrap();
+                    let c1 = self.children.pop().unwrap();
+                    if let (
+                        ExprKind::Constant(Value::Boolean(b1)),
+                        ExprKind::Constant(Value::Boolean(b2)),
+                    ) = (c1.e, c2.e)
+                    {
+                        self.e = ExprKind::Constant(Value::Boolean(b1 && b2));
+                    } else {
+                        unreachable!()
+                    }
+                }
+                ExprKind::Or => {
+                    let c2 = self.children.pop().unwrap();
+                    let c1 = self.children.pop().unwrap();
+                    if let (
+                        ExprKind::Constant(Value::Boolean(b1)),
+                        ExprKind::Constant(Value::Boolean(b2)),
+                    ) = (c1.e, c2.e)
+                    {
+                        self.e = ExprKind::Constant(Value::Boolean(b1 || b2));
+                    } else {
+                        unreachable!()
+                    }
+                }
+                ExprKind::Not => {
+                    if let ExprKind::Constant(Value::Boolean(b)) = self.children.pop().unwrap().e {
+                        self.e = ExprKind::Constant(Value::Boolean(!b));
+                    } else {
+                        unreachable!()
+                    }
+                }
+                ExprKind::Lt => {
+                    let c2 = self.children.pop().unwrap();
+                    let c1 = self.children.pop().unwrap();
+                    if let (
+                        ExprKind::Constant(Value::Num(x1)),
+                        ExprKind::Constant(Value::Num(x2)),
+                    ) = (c1.e, c2.e)
+                    {
+                        self.e = ExprKind::Constant(Value::Boolean(x1 < x2));
+                    } else {
+                        unreachable!()
+                    }
+                }
+                ExprKind::Le => {
+                    let c2 = self.children.pop().unwrap();
+                    let c1 = self.children.pop().unwrap();
+                    if let (
+                        ExprKind::Constant(Value::Num(x1)),
+                        ExprKind::Constant(Value::Num(x2)),
+                    ) = (c1.e, c2.e)
+                    {
+                        self.e = ExprKind::Constant(Value::Boolean(x1 <= x2));
+                    } else {
+                        unreachable!()
+                    }
+                }
+                ExprKind::Gt => {
+                    let c2 = self.children.pop().unwrap();
+                    let c1 = self.children.pop().unwrap();
+                    if let (
+                        ExprKind::Constant(Value::Num(x1)),
+                        ExprKind::Constant(Value::Num(x2)),
+                    ) = (c1.e, c2.e)
+                    {
+                        self.e = ExprKind::Constant(Value::Boolean(x1 > x2));
+                    } else {
+                        unreachable!()
+                    }
+                }
+                ExprKind::Ge => {
+                    let c2 = self.children.pop().unwrap();
+                    let c1 = self.children.pop().unwrap();
+                    if let (
+                        ExprKind::Constant(Value::Num(x1)),
+                        ExprKind::Constant(Value::Num(x2)),
+                    ) = (c1.e, c2.e)
+                    {
+                        self.e = ExprKind::Constant(Value::Boolean(x1 >= x2));
+                    } else {
+                        unreachable!()
+                    }
+                }
+                ExprKind::Eq => {
+                    let c2 = self.children.pop().unwrap();
+                    let c1 = self.children.pop().unwrap();
+                    if let (
+                        ExprKind::Constant(Value::Num(x1)),
+                        ExprKind::Constant(Value::Num(x2)),
+                    ) = (c1.e, c2.e)
+                    {
+                        self.e = ExprKind::Constant(Value::Boolean(x1 == x2));
+                    } else {
+                        unreachable!()
+                    }
+                }
+                ExprKind::Ne => {
+                    let c2 = self.children.pop().unwrap();
+                    let c1 = self.children.pop().unwrap();
+                    if let (
+                        ExprKind::Constant(Value::Num(x1)),
+                        ExprKind::Constant(Value::Num(x2)),
+                    ) = (c1.e, c2.e)
+                    {
+                        self.e = ExprKind::Constant(Value::Boolean(x1 != x2));
+                    } else {
+                        unreachable!()
+                    }
+                }
+                ExprKind::Iverson => {
+                    let c = self.children.pop().unwrap();
+                    if let ExprKind::Constant(Value::Boolean(b)) = c.e {
+                        self.e = if b {
+                            ExprKind::Constant(Value::Num(Rational32::new(1, 1)))
+                        } else {
+                            ExprKind::Constant(Value::Num(Rational32::new(0, 1)))
+                        }
+                    } else {
+                        unreachable!()
+                    }
+                }
+                ExprKind::Func(_) => unreachable!(),
+            };
+        }
     }
 
     fn typecheck(
@@ -302,31 +507,6 @@ impl<'ctx> ExprNode {
 
     pub fn to_psi_expr(&self) -> PsiExpr {
         PsiExpr(self.clone())
-    }
-
-    pub fn is_constant(&self) -> bool {
-        match &self.e {
-            ExprKind::Constant(v) => match v {
-                Value::Num(_) | Value::Boolean(_) => true,
-                Value::Var(_) => false,
-            },
-            ExprKind::Add
-            | ExprKind::Sub
-            | ExprKind::Mul
-            | ExprKind::Div
-            | ExprKind::Sqrt
-            | ExprKind::And
-            | ExprKind::Or
-            | ExprKind::Lt
-            | ExprKind::Le
-            | ExprKind::Gt
-            | ExprKind::Ge
-            | ExprKind::Eq
-            | ExprKind::Not
-            | ExprKind::Ne
-            | ExprKind::Iverson => self.children.iter().all(|e| e.is_constant()),
-            ExprKind::Func(_) => todo!(),
-        }
     }
 }
 

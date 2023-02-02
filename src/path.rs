@@ -33,12 +33,14 @@ impl Path {
         }
     }
 
-    pub fn branch(&mut self, cond: Expr, sigma: &HashMap<String, ExprNode>) {
+    pub fn branch(&mut self, mut cond: Expr, sigma: &HashMap<String, ExprNode>) {
+        cond.simplify();
         self.conds.push(cond);
         self.merge_sigma(sigma);
     }
 
-    pub fn observe(&mut self, observation: Expr) {
+    pub fn observe(&mut self, mut observation: Expr) {
+        observation.simplify();
         self.observations.push(observation);
     }
 
@@ -49,6 +51,10 @@ impl Path {
     pub fn merge_sigma(&mut self, sigma: &HashMap<String, ExprNode>) {
         self.sigma
             .extend(sigma.into_iter().map(|(k, v)| (k.clone(), v.clone())));
+    }
+
+    pub fn simplify_sigma(&mut self) {
+        self.sigma.values_mut().for_each(|val| val.simplify())
     }
 
     pub fn get_conds(&self) -> &Vec<Expr> {
