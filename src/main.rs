@@ -64,7 +64,7 @@ fn main() -> Result<(), anyhow::Error> {
     check_valid_program(&fn_defs)?;
 
     let executor = Executor::new(fn_defs, &args.max_iterations);
-    let paths = executor.run(args.prob)?;
+    let (paths, num_failed_observe_paths) = executor.run(args.prob)?;
 
     if args.csv {
         let (header, all_var_names) = gen_csv_header(&paths);
@@ -96,12 +96,14 @@ fn main() -> Result<(), anyhow::Error> {
         if let Some(output_path) = args.output {
             let mut f = File::create(output_path)?;
             writeln!(f, "Number of Paths: {}", paths.len())?;
+            writeln!(f, "Number of Removed Paths: {num_failed_observe_paths}")?;
             for (i, path) in paths.iter().enumerate() {
                 writeln!(f, "Path {}:\n\t{}", i + 1, path)?;
             }
             f.flush()?;
         }
         println!("Number of Paths: {}", paths.len());
+        println!("Number of Removed Paths: {num_failed_observe_paths}");
         for (i, path) in paths.iter().enumerate() {
             println!("Path {}:\n\t{}", i + 1, path);
         }

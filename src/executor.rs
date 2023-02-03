@@ -28,7 +28,8 @@ impl Executor {
         }
     }
 
-    pub fn run(mut self, prob: bool) -> Result<HashSet<Path>> {
+    pub fn run(mut self, prob: bool) -> Result<(HashSet<Path>, usize)> {
+        let mut num_failed_observe_paths: usize = 0;
         while !self.stack.is_empty() {
             let s = self.stack.pop().unwrap();
             match s.step(prob)? {
@@ -42,9 +43,11 @@ impl Executor {
                 }
                 Status::Return(_) => todo!(),
                 Status::PrematureTerminate => panic!(),
-                Status::FailedObserve => (),
+                Status::FailedObserve => {
+                    num_failed_observe_paths += 1;
+                }
             }
         }
-        Ok(self.paths)
+        Ok((self.paths, num_failed_observe_paths))
     }
 }
