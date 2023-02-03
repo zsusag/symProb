@@ -2,14 +2,18 @@ Number of Paths: 2
 Number of Removed Paths: 2
 Path 1:
 	Path Condition: UNIFORM_0 < 3/10 ∧ UNIFORM_1 < 3/100
+	Probability:  9/1000
 	Observations: true
+	Observations Probability:  1
 	Sigma: σ(aliceDunnit) = 1, σ(gunFound) = true, σ(posterior) = 1, σ(withGun) = 1
 	Terminated: No
 Path 2:
 	Path Condition: ¬(UNIFORM_0 < 3/10) ∧ UNIFORM_1 < 4/5
+	Probability:  14/25
 	Observations: true
+	Observations Probability:  1
 	Sigma: σ(aliceDunnit) = 0, σ(gunFound) = true, σ(posterior) = 0, σ(withGun) = 1
 	Terminated: No
-real 0.09
-user 0.05
+real 0.20
+user 0.19
 sys 0.02

@@ -1,0 +1,33 @@
+Number of Paths: 4
+Number of Removed Paths: 4
+Path 1:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_2 < 1/2 ∧ ¬((UNIFORM_1 * 29 + 1) > (UNIFORM_3 * 29 + 1))
+	Probability:  1/8
+	Observations: true
+	Observations Probability:  1
+	Sigma: σ(age1) = UNIFORM_1 * 29 + 1, σ(age2) = UNIFORM_3 * 29 + 1, σ(bothAreGirls) = false, σ(isGirl1) = 0, σ(isGirl2) = 1
+	Terminated: No
+Path 2:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_2 < 1/2 ∧ (UNIFORM_1 * 29 + 1) > (UNIFORM_3 * 29 + 1)
+	Probability:  1/8
+	Observations: true
+	Observations Probability:  1
+	Sigma: σ(age1) = UNIFORM_1 * 29 + 1, σ(age2) = UNIFORM_3 * 29 + 1, σ(bothAreGirls) = true, σ(isGirl1) = 1, σ(isGirl2) = 1
+	Terminated: No
+Path 3:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_2 < 1/2 ∧ ¬((UNIFORM_1 * 29 + 1) > (UNIFORM_3 * 29 + 1))
+	Probability:  1/8
+	Observations: true
+	Observations Probability:  1
+	Sigma: σ(age1) = UNIFORM_1 * 29 + 1, σ(age2) = UNIFORM_3 * 29 + 1, σ(bothAreGirls) = true, σ(isGirl1) = 1, σ(isGirl2) = 1
+	Terminated: No
+Path 4:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_2 < 1/2) ∧ (UNIFORM_1 * 29 + 1) > (UNIFORM_3 * 29 + 1)
+	Probability:  1/8
+	Observations: true
+	Observations Probability:  1
+	Sigma: σ(age1) = UNIFORM_1 * 29 + 1, σ(age2) = UNIFORM_3 * 29 + 1, σ(bothAreGirls) = false, σ(isGirl1) = 1, σ(isGirl2) = 0
+	Terminated: No
+real 0.55
+user 0.47
+sys 0.09

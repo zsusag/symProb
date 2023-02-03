@@ -1,11 +1,10 @@
 Number of Paths: 1
+Number of Removed Paths: 0
 Path 1:
 	Path Condition: 
-	Probability:  1
 	Observations: UNIFORM_0 ≤ UNIFORM_1 ∧ UNIFORM_2 ≤ UNIFORM_3 ∧ UNIFORM_4 ≤ UNIFORM_5 ∧ UNIFORM_6 ≤ UNIFORM_7
-	Observations Probability:  1/16
 	Sigma: σ(a) = UNIFORM_0, σ(b) = UNIFORM_1, σ(c) = UNIFORM_2, σ(d) = UNIFORM_3, σ(e) = UNIFORM_4, σ(f) = UNIFORM_5, σ(g) = UNIFORM_6, σ(h) = UNIFORM_7
 	Terminated: No
-real 0.37
-user 0.36
-sys 0.04
+real 0.06
+user 0.04
+sys 0.01
