@@ -37,8 +37,8 @@ struct Args {
     max_iterations: Option<u32>,
 
     #[arg(short, long)]
-    /// turn off probability expression calculation with Psi
-    no_prob: bool,
+    /// calculate the probability of the path condition and path observation via PSI
+    prob: bool,
 
     #[arg(long)]
     /// output in CSV format
@@ -64,7 +64,7 @@ fn main() -> Result<(), anyhow::Error> {
     check_valid_program(&fn_defs)?;
 
     let executor = Executor::new(fn_defs, &args.max_iterations);
-    let paths = executor.run(args.no_prob)?;
+    let paths = executor.run(args.prob)?;
 
     if args.csv {
         let (header, all_var_names) = gen_csv_header(&paths);

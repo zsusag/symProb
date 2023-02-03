@@ -28,10 +28,10 @@ impl Executor {
         }
     }
 
-    pub fn run(mut self, no_prob: bool) -> Result<HashSet<Path>> {
+    pub fn run(mut self, prob: bool) -> Result<HashSet<Path>> {
         while !self.stack.is_empty() {
             let s = self.stack.pop().unwrap();
-            match s.step(no_prob)? {
+            match s.step(prob)? {
                 Status::Fork(true_state, false_state) => {
                     self.stack.push(false_state);
                     self.stack.push(true_state);

@@ -194,7 +194,7 @@ impl ExecutorState {
     }
 
     // Going to ignore function/macro calls for now.
-    pub fn step(mut self, no_prob: bool) -> Result<Status> {
+    pub fn step(mut self, prob: bool) -> Result<Status> {
         let s = self.stack.pop();
         match s {
             Some(s) => {
@@ -442,7 +442,7 @@ impl ExecutorState {
                 self.path.simplify_sigma();
                 self.path
                     .set_num_samples(self.num_uniform_samples, self.num_normal_samples);
-                if !no_prob {
+                if prob {
                     self.path.calculate_prob(&self.sym_vars)?;
                 }
                 Ok(Status::Terminate(self.path))
