@@ -1,7 +1,6 @@
 use std::{
     collections::{BTreeMap, BTreeSet, HashMap, HashSet},
-    fmt::{format, Display},
-    io::Write,
+    fmt::Display,
 };
 
 use anyhow::Result;
@@ -21,8 +20,8 @@ pub struct Path {
     terminated: bool,
     sigma: BTreeMap<String, ExprNode>,
     observations: Vec<Expr>,
-    num_uniform_samples: u32,
-    num_normal_samples: u32,
+    pub num_uniform_samples: u32,
+    pub num_normal_samples: u32,
 }
 
 #[derive(Serialize)]
@@ -96,7 +95,7 @@ impl Path {
 
     pub fn merge_sigma(&mut self, sigma: &HashMap<String, ExprNode>) {
         self.sigma
-            .extend(sigma.into_iter().map(|(k, v)| (k.clone(), v.clone())));
+            .extend(sigma.iter().map(|(k, v)| (k.clone(), v.clone())));
     }
 
     pub fn simplify_sigma(&mut self) {

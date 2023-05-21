@@ -1,4 +1,0 @@
-def main() {
-		height := gauss(0,1);
-		assert(height * (72)^(0.5) + 175 >= 200);
-}

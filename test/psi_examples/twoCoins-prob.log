@@ -21,6 +21,6 @@ Path 3:
 	Observations Probability:  1
 	Sigma: σ(bothHeads) = false, σ(firstCoin) = 0, σ(secondCoin) = 0
 	Terminated: No
-real 0.23
-user 0.20
-sys 0.05
+real 0.24
+user 0.23
+sys 0.02

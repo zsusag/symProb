@@ -85,9 +85,9 @@ fn check_path_to_return(body: &[Statement]) -> bool {
         | StatementKind::Uniform(_, _, _)
         | StatementKind::Observe(_) => false,
         StatementKind::Branch(_, true_branch, false_branch) => {
-            check_path_to_return(&true_branch) && check_path_to_return(&false_branch)
+            check_path_to_return(true_branch) && check_path_to_return(false_branch)
         }
-        StatementKind::While(_, while_body) => check_path_to_return(&while_body),
+        StatementKind::While(_, while_body) => check_path_to_return(while_body),
         StatementKind::Return(_) => true,
     }
 }
@@ -102,10 +102,10 @@ impl Statement {
         match &self.kind {
             StatementKind::Assignment(name, e) => {
                 let t = e.typecheck(fn_sigs, gamma)?;
-                gamma.insert(&name, t);
+                gamma.insert(name, t);
             }
             StatementKind::Sample(name) => {
-                gamma.insert(&name, Type::Real);
+                gamma.insert(name, Type::Real);
             }
             StatementKind::Bernoulli(name, e) => {
                 let t = e.typecheck(fn_sigs, gamma)?;
@@ -117,7 +117,7 @@ impl Statement {
                         e: e.to_owned(),
                     }
                 );
-                gamma.insert(&name, Type::Real);
+                gamma.insert(name, Type::Real);
             }
             StatementKind::Normal(name, mean, variance) => {
                 let mean_t = mean.typecheck(fn_sigs, gamma)?;
@@ -140,7 +140,7 @@ impl Statement {
                     }
                 );
 
-                gamma.insert(&name, Type::Real);
+                gamma.insert(name, Type::Real);
             }
             StatementKind::Uniform(name, a, b) => {
                 let a_t = a.typecheck(fn_sigs, gamma)?;
@@ -163,7 +163,7 @@ impl Statement {
                     }
                 );
 
-                gamma.insert(&name, Type::Real);
+                gamma.insert(name, Type::Real);
             }
             StatementKind::Branch(cond, true_branch, false_branch) => {
                 let t = cond.typecheck(fn_sigs, gamma)?;

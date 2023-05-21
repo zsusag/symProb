@@ -6,8 +6,7 @@ use num::Rational32;
 use crate::{
     expr::{Expr, ExprNode},
     path::Path,
-    probability::Prob,
-    smt::SMTMangager,
+    smt::SMTManager,
     syntax::{ExprKind, Func, Statement, StatementKind, Type, Value},
 };
 
@@ -17,7 +16,6 @@ pub enum Status {
     Fork(ExecutorState, ExecutorState),
     Continue(ExecutorState),
     Terminate(Path),
-    Return(Expr),
     FailedObserve,
     PrematureTerminate,
 }
@@ -79,10 +77,10 @@ pub struct ExecutorState {
     scope_manager: Vec<ScopeState>,
 
     // The SMT manager which holds the Z3 context and configuration
-    smt_manager: SMTMangager,
+    smt_manager: SMTManager,
 
     // A mapping from while-loop identifiers to the previous path condition for almost-sure-termination
-    prev_iter_map: HashMap<u32, Path>,
+    // prev_iter_map: HashMap<u32, Path>,
 
     max_iterations: Option<u32>,
     iter_map: HashMap<u32, u32>,
@@ -122,9 +120,8 @@ impl ExecutorState {
             num_uniform_samples: 0,
             num_normal_samples: 0,
             scope_manager: Vec::new(),
-            smt_manager: SMTMangager::new(),
-            prev_iter_map: HashMap::new(),
-            max_iterations: max_iterations.clone(),
+            smt_manager: SMTManager::new(),
+            max_iterations: *max_iterations,
             iter_map: HashMap::new(),
         }
     }

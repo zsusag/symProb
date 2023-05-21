@@ -1,4 +1,5 @@
 [package]
+#[allow(non_snake_case)]
 name = "symProb"
 version = "0.1.0"
 edition = "2021"

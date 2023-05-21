@@ -12,8 +12,6 @@ pub struct Executor {
     stack: Vec<ExecutorState>,
 
     paths: HashSet<Path>,
-
-    fn_defs: HashMap<String, Func>,
 }
 
 impl Executor {
@@ -24,7 +22,6 @@ impl Executor {
         Executor {
             stack: vec![init_state],
             paths,
-            fn_defs,
         }
     }
 
@@ -41,7 +38,6 @@ impl Executor {
                 Status::Terminate(path) => {
                     self.paths.insert(path);
                 }
-                Status::Return(_) => todo!(),
                 Status::PrematureTerminate => panic!(),
                 Status::FailedObserve => {
                     num_failed_observe_paths += 1;

@@ -8,14 +8,18 @@ use z3::{
 use crate::{executor_state::SymType, expr::Expr};
 
 #[derive(Debug)]
-pub struct SMTMangager {
+pub struct SMTManager {
+		#[allow(dead_code)]
     cfg: Config,
+		
     pub ctx: Context,
 }
 
-impl Clone for SMTMangager {
+unsafe impl Send for SMTManager {}
+
+impl Clone for SMTManager {
     fn clone(&self) -> Self {
-        SMTMangager::new()
+        SMTManager::new()
     }
 }
 
@@ -27,11 +31,11 @@ fn sat_to_bool(res: &SatResult) -> bool {
     }
 }
 
-impl<'ctx> SMTMangager {
+impl<'ctx> SMTManager {
     pub fn new() -> Self {
         let cfg = Config::new();
         let ctx = Context::new(&cfg);
-        SMTMangager { cfg, ctx }
+        SMTManager { cfg, ctx }
     }
 
     // Returns (b_true, b_false) where b_true is true if the true branch is satisfiable, same for false branch

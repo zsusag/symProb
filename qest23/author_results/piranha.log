@@ -1,0 +1,21 @@
+num_samples: 2
+Number of Paths: 3
+Number of Removed Paths: 1
+Number of Samples: 2
+Path 1:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2
+	Observations: true
+	Sigma: σ(a) = 1, σ(b) = true, σ(cond) = 1, σ(r) = true
+	Terminated: No
+Path 2:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2)
+	Observations: true
+	Sigma: σ(a) = 1, σ(b) = true, σ(cond) = 0, σ(r) = true
+	Terminated: No
+Path 3:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2)
+	Observations: true
+	Sigma: σ(a) = 0, σ(b) = true, σ(cond) = 0, σ(r) = true
+	Terminated: No
+Time: 0.07
+

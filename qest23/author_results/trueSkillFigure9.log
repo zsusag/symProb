@@ -1,0 +1,11 @@
+num_samples: 9
+Number of Paths: 1
+Number of Removed Paths: 0
+Number of Samples: 9
+Path 1:
+	Path Condition: 
+	Observations: (100 + NORMAL_0 * √10 + NORMAL_3 * √15) > (100 + NORMAL_1 * √10 + NORMAL_4 * √15) ∧ (100 + NORMAL_1 * √10 + NORMAL_5 * √15) > (100 + NORMAL_2 * √10 + NORMAL_6 * √15) ∧ (100 + NORMAL_0 * √10 + NORMAL_7 * √15) > (100 + NORMAL_2 * √10 + NORMAL_8 * √15)
+	Sigma: σ(perfA1) = 100 + NORMAL_0 * √10 + NORMAL_3 * √15, σ(perfA3) = 100 + NORMAL_0 * √10 + NORMAL_7 * √15, σ(perfB1) = 100 + NORMAL_1 * √10 + NORMAL_4 * √15, σ(perfB2) = 100 + NORMAL_1 * √10 + NORMAL_5 * √15, σ(perfC2) = 100 + NORMAL_2 * √10 + NORMAL_6 * √15, σ(perfC3) = 100 + NORMAL_2 * √10 + NORMAL_8 * √15, σ(skillA) = 100 + NORMAL_0 * √10, σ(skillB) = 100 + NORMAL_1 * √10, σ(skillC) = 100 + NORMAL_2 * √10
+	Terminated: No
+Time: 0.03
+

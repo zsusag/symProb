@@ -1,0 +1,145 @@
+Number of Paths: 28
+Number of Removed Paths: 0
+Path 1:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/2 ∧ ¬(UNIFORM_3 < 1/2) ∧ ¬(UNIFORM_4 < 1/2) ∧ ¬(UNIFORM_5 < 1/2)
+	Observations: 
+	Sigma: σ(u) = 2, σ(v) = 0, σ(x) = 0, σ(y) = -1
+	Terminated: Yes
+Path 2:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/2 ∧ ¬(UNIFORM_3 < 1/2) ∧ ¬(UNIFORM_4 < 1/2) ∧ UNIFORM_5 < 1/2
+	Observations: 
+	Sigma: σ(u) = 1, σ(v) = 0, σ(x) = 0, σ(y) = 0
+	Terminated: Yes
+Path 3:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/2 ∧ UNIFORM_3 < 1/2 ∧ ¬(UNIFORM_4 < 1/2) ∧ UNIFORM_5 < 1/2
+	Observations: 
+	Sigma: σ(u) = 0, σ(v) = 0, σ(x) = 0, σ(y) = 0
+	Terminated: No
+Path 4:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/2 ∧ UNIFORM_3 < 1/2 ∧ UNIFORM_4 < 1/2 ∧ ¬(UNIFORM_5 < 1/2)
+	Observations: 
+	Sigma: σ(u) = 2, σ(v) = 0, σ(x) = 1, σ(y) = 0
+	Terminated: Yes
+Path 5:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/2 ∧ UNIFORM_3 < 1/2 ∧ UNIFORM_4 < 1/2 ∧ ¬(UNIFORM_5 < 1/2)
+	Observations: 
+	Sigma: σ(u) = 0, σ(v) = 0, σ(x) = 1, σ(y) = 0
+	Terminated: No
+Path 6:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/2) ∧ UNIFORM_3 < 1/2 ∧ UNIFORM_4 < 1/2 ∧ UNIFORM_5 < 1/2
+	Observations: 
+	Sigma: σ(u) = -2, σ(v) = 0, σ(x) = 1, σ(y) = 1
+	Terminated: Yes
+Path 7:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/2) ∧ UNIFORM_3 < 1/2 ∧ ¬(UNIFORM_4 < 1/2) ∧ UNIFORM_5 < 1/2
+	Observations: 
+	Sigma: σ(u) = -3, σ(v) = 0, σ(x) = 0, σ(y) = 0
+	Terminated: Yes
+Path 8:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/2) ∧ UNIFORM_3 < 1/2 ∧ ¬(UNIFORM_4 < 1/2) ∧ ¬(UNIFORM_5 < 1/2)
+	Observations: 
+	Sigma: σ(u) = -2, σ(v) = 0, σ(x) = 0, σ(y) = -1
+	Terminated: Yes
+Path 9:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/2) ∧ ¬(UNIFORM_3 < 1/2) ∧ ¬(UNIFORM_4 < 1/2) ∧ ¬(UNIFORM_5 < 1/2)
+	Observations: 
+	Sigma: σ(u) = 1, σ(v) = 0, σ(x) = 0, σ(y) = -1
+	Terminated: Yes
+Path 10:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/2) ∧ ¬(UNIFORM_3 < 1/2) ∧ UNIFORM_4 < 1/2 ∧ ¬(UNIFORM_5 < 1/2)
+	Observations: 
+	Sigma: σ(u) = 0, σ(v) = 0, σ(x) = 1, σ(y) = 0
+	Terminated: No
+Path 11:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/2) ∧ ¬(UNIFORM_3 < 1/2) ∧ ¬(UNIFORM_4 < 1/2) ∧ UNIFORM_5 < 1/2
+	Observations: 
+	Sigma: σ(u) = -2, σ(v) = 0, σ(x) = 0, σ(y) = 0
+	Terminated: Yes
+Path 12:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2)
+	Observations: 
+	Sigma: σ(u) = 0, σ(v) = 0, σ(x) = 0, σ(y) = -1
+	Terminated: No
+Path 13:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/2 ∧ ¬(UNIFORM_3 < 1/2) ∧ UNIFORM_4 < 1/2 ∧ ¬(UNIFORM_5 < 1/2)
+	Observations: 
+	Sigma: σ(u) = 3, σ(v) = 0, σ(x) = 1, σ(y) = 0
+	Terminated: Yes
+Path 14:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/2 ∧ ¬(UNIFORM_3 < 1/2) ∧ UNIFORM_4 < 1/2 ∧ UNIFORM_5 < 1/2
+	Observations: 
+	Sigma: σ(u) = 2, σ(v) = 0, σ(x) = 1, σ(y) = 1
+	Terminated: Yes
+Path 15:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/2) ∧ ¬(UNIFORM_3 < 1/2) ∧ UNIFORM_4 < 1/2 ∧ ¬(UNIFORM_5 < 1/2)
+	Observations: 
+	Sigma: σ(u) = 2, σ(v) = 0, σ(x) = 1, σ(y) = 0
+	Terminated: Yes
+Path 16:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/2 ∧ UNIFORM_3 < 1/2 ∧ UNIFORM_4 < 1/2 ∧ UNIFORM_5 < 1/2
+	Observations: 
+	Sigma: σ(u) = -1, σ(v) = 0, σ(x) = 1, σ(y) = 1
+	Terminated: Yes
+Path 17:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/2 ∧ ¬(UNIFORM_3 < 1/2)
+	Observations: 
+	Sigma: σ(u) = 0, σ(v) = 0, σ(x) = 1, σ(y) = 0
+	Terminated: No
+Path 18:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/2) ∧ ¬(UNIFORM_3 < 1/2) ∧ UNIFORM_4 < 1/2 ∧ UNIFORM_5 < 1/2
+	Observations: 
+	Sigma: σ(u) = 1, σ(v) = 0, σ(x) = 1, σ(y) = 1
+	Terminated: Yes
+Path 19:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/2 ∧ UNIFORM_3 < 1/2 ∧ ¬(UNIFORM_4 < 1/2) ∧ ¬(UNIFORM_5 < 1/2)
+	Observations: 
+	Sigma: σ(u) = -1, σ(v) = 0, σ(x) = 0, σ(y) = -1
+	Terminated: Yes
+Path 20:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/2) ∧ UNIFORM_3 < 1/2
+	Observations: 
+	Sigma: σ(u) = 0, σ(v) = 0, σ(x) = 0, σ(y) = 0
+	Terminated: No
+Path 21:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/2) ∧ ¬(UNIFORM_3 < 1/2) ∧ ¬(UNIFORM_4 < 1/2) ∧ UNIFORM_5 < 1/2
+	Observations: 
+	Sigma: σ(u) = 0, σ(v) = 0, σ(x) = 0, σ(y) = 0
+	Terminated: No
+Path 22:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/2 ∧ UNIFORM_3 < 1/2 ∧ ¬(UNIFORM_4 < 1/2) ∧ UNIFORM_5 < 1/2
+	Observations: 
+	Sigma: σ(u) = -2, σ(v) = 0, σ(x) = 0, σ(y) = 0
+	Terminated: Yes
+Path 23:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/2 ∧ UNIFORM_3 < 1/2 ∧ ¬(UNIFORM_4 < 1/2) ∧ ¬(UNIFORM_5 < 1/2)
+	Observations: 
+	Sigma: σ(u) = 1, σ(v) = 0, σ(x) = 0, σ(y) = -1
+	Terminated: Yes
+Path 24:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/2) ∧ UNIFORM_3 < 1/2 ∧ UNIFORM_4 < 1/2 ∧ ¬(UNIFORM_5 < 1/2)
+	Observations: 
+	Sigma: σ(u) = -1, σ(v) = 0, σ(x) = 1, σ(y) = 0
+	Terminated: Yes
+Path 25:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/2) ∧ ¬(UNIFORM_3 < 1/2) ∧ UNIFORM_4 < 1/2 ∧ UNIFORM_5 < 1/2
+	Observations: 
+	Sigma: σ(u) = -1, σ(v) = 0, σ(x) = 1, σ(y) = 1
+	Terminated: Yes
+Path 26:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/2) ∧ ¬(UNIFORM_3 < 1/2) ∧ ¬(UNIFORM_4 < 1/2) ∧ ¬(UNIFORM_5 < 1/2)
+	Observations: 
+	Sigma: σ(u) = -1, σ(v) = 0, σ(x) = 0, σ(y) = -1
+	Terminated: Yes
+Path 27:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2
+	Observations: 
+	Sigma: σ(u) = 0, σ(v) = 0, σ(x) = 1, σ(y) = 1
+	Terminated: No
+Path 28:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/2 ∧ UNIFORM_3 < 1/2 ∧ UNIFORM_4 < 1/2 ∧ UNIFORM_5 < 1/2
+	Observations: 
+	Sigma: σ(u) = 1, σ(v) = 0, σ(x) = 1, σ(y) = 1
+	Terminated: Yes
+real 0.42
+user 0.38
+sys 0.04

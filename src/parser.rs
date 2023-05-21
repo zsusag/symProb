@@ -130,7 +130,7 @@ pub fn parse_expr(pairs: Pairs<Rule>) -> ExprNode {
 // 1) identifier (name of the function)
 // 2) A (possibly empty) parameter list, which are pairs of identifiers and types
 // 3) A statement list
-pub fn parse_func(mut pairs: Pairs<Rule>, mut statement_counter: &mut u32) -> Func {
+pub fn parse_func(mut pairs: Pairs<Rule>, statement_counter: &mut u32) -> Func {
     // Get the name of the function
     let name = pairs.next().unwrap().as_str().to_string();
     let inputs: Vec<(String, Type)> = pairs
@@ -152,12 +152,12 @@ pub fn parse_func(mut pairs: Pairs<Rule>, mut statement_counter: &mut u32) -> Fu
     };
     let body: Vec<Statement> = body
         .into_inner()
-        .map(|s| parse_statement(s, &mut statement_counter))
+        .map(|s| parse_statement(s, statement_counter))
         .collect();
     Func::new(name, inputs, body, ret_t)
 }
 
-pub fn parse_statement(pair: Pair<Rule>, mut statement_counter: &mut u32) -> Statement {
+pub fn parse_statement(pair: Pair<Rule>, statement_counter: &mut u32) -> Statement {
     match pair.as_rule() {
         Rule::assignment => {
             let mut inner_rules = pair.into_inner();
@@ -167,14 +167,14 @@ pub fn parse_statement(pair: Pair<Rule>, mut statement_counter: &mut u32) -> Sta
 
             Statement::new(
                 StatementKind::Assignment(var, Expr::new(e)),
-                &mut statement_counter,
+                statement_counter,
             )
         }
         Rule::sample => {
             let mut inner_rules = pair.into_inner();
 
             let var = inner_rules.next().unwrap().as_str().to_string();
-            Statement::new(StatementKind::Sample(var), &mut statement_counter)
+            Statement::new(StatementKind::Sample(var), statement_counter)
         }
         Rule::bern => {
             let mut inner_rules = pair.into_inner();
@@ -183,7 +183,7 @@ pub fn parse_statement(pair: Pair<Rule>, mut statement_counter: &mut u32) -> Sta
             let e = parse_expr(inner_rules.next().unwrap().into_inner());
             let ret = Statement::new(
                 StatementKind::Bernoulli(var, Expr::new(e)),
-                &mut statement_counter,
+                statement_counter,
             );
             *statement_counter += 3; // We expand the bern statment later into 4 statements
             ret
@@ -196,7 +196,7 @@ pub fn parse_statement(pair: Pair<Rule>, mut statement_counter: &mut u32) -> Sta
             let variance = parse_expr(inner_rules.next().unwrap().into_inner());
             Statement::new(
                 StatementKind::Normal(var, Expr::new(mean), Expr::new(variance)),
-                &mut statement_counter,
+                statement_counter,
             )
         }
         Rule::uniform => {
@@ -207,7 +207,7 @@ pub fn parse_statement(pair: Pair<Rule>, mut statement_counter: &mut u32) -> Sta
             let b = parse_expr(inner_rules.next().unwrap().into_inner());
             Statement::new(
                 StatementKind::Uniform(var, Expr::new(a), Expr::new(b)),
-                &mut statement_counter,
+                statement_counter,
             )
         }
         Rule::branch => {
@@ -218,18 +218,18 @@ pub fn parse_statement(pair: Pair<Rule>, mut statement_counter: &mut u32) -> Sta
                 .next()
                 .unwrap()
                 .into_inner()
-                .map(|s| parse_statement(s, &mut statement_counter))
+                .map(|s| parse_statement(s, statement_counter))
                 .collect();
             let false_branch: Vec<Statement> = inner_rules
                 .next()
                 .unwrap()
                 .into_inner()
-                .map(|s| parse_statement(s, &mut statement_counter))
+                .map(|s| parse_statement(s, statement_counter))
                 .collect();
 
             Statement::new(
                 StatementKind::Branch(cond, true_branch, false_branch),
-                &mut statement_counter,
+                statement_counter,
             )
         }
         Rule::while_st => {
@@ -240,19 +240,19 @@ pub fn parse_statement(pair: Pair<Rule>, mut statement_counter: &mut u32) -> Sta
                 .next()
                 .unwrap()
                 .into_inner()
-                .map(|s| parse_statement(s, &mut statement_counter))
+                .map(|s| parse_statement(s, statement_counter))
                 .collect();
 
-            Statement::new(StatementKind::While(cond, body), &mut statement_counter)
+            Statement::new(StatementKind::While(cond, body), statement_counter)
         }
         Rule::return_st => {
             let ret_expr = Expr::new(parse_expr(pair.into_inner().next().unwrap().into_inner()));
-            Statement::new(StatementKind::Return(ret_expr), &mut statement_counter)
+            Statement::new(StatementKind::Return(ret_expr), statement_counter)
         }
         Rule::observe => {
             let mut inner_rules = pair.into_inner();
             let cond = Expr::new(parse_expr(inner_rules.next().unwrap().into_inner()));
-            Statement::new(StatementKind::Observe(cond), &mut statement_counter)
+            Statement::new(StatementKind::Observe(cond), statement_counter)
         }
         _ => unreachable!(),
     }

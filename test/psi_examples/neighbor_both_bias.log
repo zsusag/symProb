@@ -1,40 +1,40 @@
 Number of Paths: 7
 Number of Removed Paths: 5
 Path 1:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5)
-	Observations: true
-	Sigma: σ(bias) = 4/5, σ(bothAreGirls) = true, σ(cond) = 0, σ(isGirl1) = 1, σ(isGirl2) = 1, σ(isGirlAnnounce) = 1
-	Terminated: No
-Path 2:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 1/2)
-	Observations: true
-	Sigma: σ(bias) = 4/5, σ(bothAreGirls) = false, σ(cond) = 1, σ(isGirl1) = 0, σ(isGirl2) = 1, σ(isGirlAnnounce) = 1, σ(tmp) = 0
-	Terminated: No
-Path 3:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 1/2)
-	Observations: true
-	Sigma: σ(bias) = 4/5, σ(bothAreGirls) = true, σ(cond) = 1, σ(isGirl1) = 1, σ(isGirl2) = 1, σ(isGirlAnnounce) = 1, σ(tmp) = 0
-	Terminated: No
-Path 4:
 	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 1/2
 	Observations: true
 	Sigma: σ(bias) = 4/5, σ(bothAreGirls) = true, σ(cond) = 1, σ(isGirl1) = 1, σ(isGirl2) = 1, σ(isGirlAnnounce) = 1, σ(tmp) = 1
 	Terminated: No
-Path 5:
+Path 2:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5)
+	Observations: true
+	Sigma: σ(bias) = 4/5, σ(bothAreGirls) = true, σ(cond) = 0, σ(isGirl1) = 1, σ(isGirl2) = 1, σ(isGirlAnnounce) = 1
+	Terminated: No
+Path 3:
 	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5)
 	Observations: true
 	Sigma: σ(bias) = 4/5, σ(bothAreGirls) = false, σ(cond) = 0, σ(isGirl1) = 1, σ(isGirl2) = 0, σ(isGirlAnnounce) = 1
 	Terminated: No
-Path 6:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5)
-	Observations: true
-	Sigma: σ(bias) = 4/5, σ(bothAreGirls) = false, σ(cond) = 0, σ(isGirl1) = 0, σ(isGirl2) = 1, σ(isGirlAnnounce) = 1
-	Terminated: No
-Path 7:
+Path 4:
 	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 1/2
 	Observations: true
 	Sigma: σ(bias) = 4/5, σ(bothAreGirls) = false, σ(cond) = 1, σ(isGirl1) = 1, σ(isGirl2) = 0, σ(isGirlAnnounce) = 1, σ(tmp) = 1
 	Terminated: No
+Path 5:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 1/2)
+	Observations: true
+	Sigma: σ(bias) = 4/5, σ(bothAreGirls) = false, σ(cond) = 1, σ(isGirl1) = 0, σ(isGirl2) = 1, σ(isGirlAnnounce) = 1, σ(tmp) = 0
+	Terminated: No
+Path 6:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 1/2)
+	Observations: true
+	Sigma: σ(bias) = 4/5, σ(bothAreGirls) = true, σ(cond) = 1, σ(isGirl1) = 1, σ(isGirl2) = 1, σ(isGirlAnnounce) = 1, σ(tmp) = 0
+	Terminated: No
+Path 7:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5)
+	Observations: true
+	Sigma: σ(bias) = 4/5, σ(bothAreGirls) = false, σ(cond) = 0, σ(isGirl1) = 0, σ(isGirl2) = 1, σ(isGirlAnnounce) = 1
+	Terminated: No
 real 0.32
-user 0.26
+user 0.27
 sys 0.04

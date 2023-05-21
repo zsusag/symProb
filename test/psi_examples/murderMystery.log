@@ -11,5 +11,5 @@ Path 2:
 	Sigma: σ(aliceDunnit) = 0, σ(gunFound) = true, σ(posterior) = 0, σ(withGun) = 1
 	Terminated: No
 real 0.09
-user 0.05
-sys 0.02
+user 0.07
+sys 0.01

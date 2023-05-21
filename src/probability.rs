@@ -1,16 +1,13 @@
 use std::{collections::HashMap, fmt::Display, io::Write, process::Command};
 
 use anyhow::{bail, Context, Result};
-use num::Rational32;
-use pest::Parser as EParser;
+
+
 use tempfile::{Builder, NamedTempFile};
 
 use crate::{
     executor_state::SymType,
-    expr::{Expr, ExprNode},
-    path::Path,
-    //    psi_parser::{self, parse_psi_output, PsiParser},
-    syntax::{ExprKind, Value},
+    expr::Expr,
 };
 
 struct PsiProg(NamedTempFile);
@@ -57,13 +54,13 @@ impl PsiProg {
         Ok(())
     }
 
-    fn write_observes(&mut self, path: &Path) -> Result<()> {
-        for cond in path.get_conds() {
-            writeln!(self.0, "observe({});", cond.to_psi_expr())
-                .context("Couldn't write assertion to Psi program tempfile")?;
-        }
-        Ok(())
-    }
+    // fn write_observes(&mut self, path: &Path) -> Result<()> {
+    //     for cond in path.get_conds() {
+    //         writeln!(self.0, "observe({});", cond.to_psi_expr())
+    //             .context("Couldn't write assertion to Psi program tempfile")?;
+    //     }
+    //     Ok(())
+    // }
 
     fn run(mut self) -> Result<Prob> {
         // Write the final closing curly bracket right before running
@@ -141,9 +138,9 @@ impl Prob {
     //     Ok(cond_prob.0.is_constant())
     // }
 
-    pub fn init_dist() -> Self {
-        Prob("1".to_string())
-    }
+    // pub fn init_dist() -> Self {
+    //     Prob("1".to_string())
+    // }
 }
 
 impl Display for Prob {

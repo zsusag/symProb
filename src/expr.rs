@@ -1,5 +1,4 @@
 use anyhow::{bail, ensure, Result};
-use num::Rational32;
 use std::{collections::HashMap, fmt::Display};
 use z3::{
     ast::{Ast, Bool, Real},
@@ -65,10 +64,6 @@ impl<'ctx> Expr {
 
     pub fn to_psi_expr(&self) -> PsiExpr {
         self.root.to_psi_expr()
-    }
-
-    pub fn is_constant(&self) -> bool {
-        self.root.is_constant()
     }
 
     pub fn simplify(&mut self) {
@@ -290,18 +285,6 @@ impl<'ctx> ExprNode {
                         unreachable!()
                     }
                 }
-                ExprKind::Iverson => {
-                    let c = self.children.pop().unwrap();
-                    if let ExprKind::Constant(Value::Boolean(b)) = c.e {
-                        self.e = if b {
-                            ExprKind::Constant(Value::Num(Rational32::new(1, 1)))
-                        } else {
-                            ExprKind::Constant(Value::Num(Rational32::new(0, 1)))
-                        }
-                    } else {
-                        unreachable!()
-                    }
-                }
                 ExprKind::Func(_) => unreachable!(),
             };
         }
@@ -398,7 +381,6 @@ impl<'ctx> ExprNode {
                     }),
                 }
             }
-            ExprKind::Iverson => unreachable!(),
             ExprKind::Sqrt => unreachable!(),
         }
     }
@@ -605,7 +587,6 @@ impl Display for PsiExpr {
                 self.0.children.get(1).unwrap().to_psi_expr()
             ),
             ExprKind::Func(_) => todo!(),
-            ExprKind::Iverson => unreachable!(),
         }
     }
 }
@@ -658,10 +639,6 @@ impl Display for ExprNode {
                 }
             }
             ExprKind::Func(_) => todo!(),
-            ExprKind::Iverson => {
-                let e = self.children.get(0).unwrap();
-                write!(f, "[{}]", e)
-            }
         }
     }
 }

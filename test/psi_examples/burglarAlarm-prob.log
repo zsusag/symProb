@@ -28,6 +28,6 @@ Path 4:
 	Observations Probability:  1
 	Sigma: σ(alarm) = false, σ(burglary) = 0, σ(called) = true, σ(earthquake) = 0, σ(maryWakes) = 1, σ(phoneWorking) = 1
 	Terminated: No
-real 0.82
-user 0.73
-sys 0.10
+real 0.81
+user 0.75
+sys 0.09
