@@ -38,7 +38,7 @@ from the root directory of the Docker container (i.e., `/home/symProb`). This sc
 The results found in `/home/symProb/qest23/author_results/` were created on one of the author's personal machines:
 - **OS**: Arch Linux, kernel `6.3.2-arch1-1`
 - **CPU**: Intel(R) Core(TM) i7-5820K CPU @ 3.30GHz
-  - # of Cores: 6 Cores/12 Threads
+  - \# of Cores: 6 Cores/12 Threads
 - **RAM**: 32GB
 
 RAM usage should be minimal; 4 GB should be sufficient to reproduce the experiments. `symProb` is not currently parallelized so any number of CPU cores should also be sufficient.
