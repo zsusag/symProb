@@ -337,11 +337,15 @@ impl ExecutorState {
                         };
                         Ok(status)
                     }
-                    StatementKind::While(guard, body) => {
+                    StatementKind::While(mut guard, body) => {
+												// Apply sigma on the branch guard
+												self.path.simplify_sigma();
+												guard.substitute(&self.sigma);
+												
                         // Apply sigma on the branch guard
                         let (true_sat, false_sat) = self.smt_manager.check_fork_satisfiability(
                             self.path.get_conds(),
-                            &guard.clone_and_substitute(&self.sigma),
+                            &guard,
                             &self.sym_vars,
                         );
 
@@ -358,7 +362,9 @@ impl ExecutorState {
                                                 self.fork(Vec::new(), Some(guard.not())),
                                             ));
                                         } else {
-                                            return Ok(Status::Continue(self));
+                                            return Ok(Status::Continue(
+																								self.fork(Vec::new(), Some(guard))
+																						));
                                         }
                                     }
                                 }

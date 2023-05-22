@@ -67,7 +67,7 @@ impl<'ctx> Expr {
     }
 
     pub fn simplify(&mut self) {
-        self.root.simplify()
+        self.root.simplify();
     }
 }
 
