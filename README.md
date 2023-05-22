@@ -4,11 +4,12 @@ A symbolic executor for probabilistic programs.
 
 ## Build Instructions (Docker)
 
-1) Pull the prebuilt Docker image from Dockerhub
+1) Load the prebuilt Docker image.
 ```
-docker pull zsusag/symprob:latest
+docker load -i symprob.tar
 ```
-2) Run it! The `-ti` option will place you in an interactive session. If you'd like to mount a directory on your local machine in the Docker container, you can add the `-v path/to-local/directory:/home/symProb/mounted`
+
+2) Create and run a Docker container using the `symprob` image. The `-ti` option will place you in an interactive session. If you'd like to mount a directory on your local machine in the Docker container, you can add the `-v path/to-local/directory:/home/symProb/mounted`
 
 ```
 docker run -ti --name=symprob zsusag/symprob:latest
@@ -23,7 +24,7 @@ symProb example.pp
 
 To specify a maximum number of while-loop unrollings, use the `-m <num_unrollings>`.
 
-## Experiment Replication Instructions
+## QEST'23 Experiment Replication Instructions
 
 The experimental results for *Symbolic Semantics for Probabilistic Programs* are summarized in Table 1 in the associated paper. Source code for each experiment can be found in `/home/symProb/qest23` as `.pp` programs.
 
@@ -41,4 +42,5 @@ The results found in `/home/symProb/qest23/author_results/` were created on one 
   - \# of Cores: 6 Cores/12 Threads
 - **RAM**: 32GB
 
-RAM usage should be minimal; 4 GB should be sufficient to reproduce the experiments. `symProb` is not currently parallelized so any number of CPU cores should also be sufficient.
+RAM usage should be minimal; 4 GB should be sufficient to reproduce the experiments. `symProb` is not currently parallelized so any number of CPU cores should also be sufficient. All of the experiments should complete within approximately 40 minutes.
+qqq

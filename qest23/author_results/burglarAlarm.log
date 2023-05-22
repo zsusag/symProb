@@ -1,26 +1,25 @@
-num_samples: 4
 Number of Paths: 4
 Number of Removed Paths: 12
 Number of Samples: 4
 Path 1:
-	Path Condition: UNIFORM_0 < 1/10000 ∧ ¬(UNIFORM_1 < 1/1000) ∧ UNIFORM_2 < 7/10 ∧ UNIFORM_3 < 4/5
+	Path Condition: ¬(UNIFORM_0 < 1/10000) ∧ ¬(UNIFORM_1 < 1/1000) ∧ UNIFORM_2 < 99/100 ∧ UNIFORM_3 < 1/5
 	Observations: true
-	Sigma: σ(alarm) = true, σ(burglary) = 0, σ(called) = true, σ(earthquake) = 1, σ(maryWakes) = 1, σ(phoneWorking) = 1
-	Terminated: No
+	Sigma: σ(alarm) = false, σ(burglary) = 0, σ(called) = true, σ(earthquake) = 0, σ(maryWakes) = 1, σ(phoneWorking) = 1
+	Forced termination: No
 Path 2:
 	Path Condition: UNIFORM_0 < 1/10000 ∧ UNIFORM_1 < 1/1000 ∧ UNIFORM_2 < 7/10 ∧ UNIFORM_3 < 4/5
 	Observations: true
 	Sigma: σ(alarm) = true, σ(burglary) = 1, σ(called) = true, σ(earthquake) = 1, σ(maryWakes) = 1, σ(phoneWorking) = 1
-	Terminated: No
+	Forced termination: No
 Path 3:
 	Path Condition: ¬(UNIFORM_0 < 1/10000) ∧ UNIFORM_1 < 1/1000 ∧ UNIFORM_2 < 99/100 ∧ UNIFORM_3 < 3/5
 	Observations: true
 	Sigma: σ(alarm) = true, σ(burglary) = 1, σ(called) = true, σ(earthquake) = 0, σ(maryWakes) = 1, σ(phoneWorking) = 1
-	Terminated: No
+	Forced termination: No
 Path 4:
-	Path Condition: ¬(UNIFORM_0 < 1/10000) ∧ ¬(UNIFORM_1 < 1/1000) ∧ UNIFORM_2 < 99/100 ∧ UNIFORM_3 < 1/5
+	Path Condition: UNIFORM_0 < 1/10000 ∧ ¬(UNIFORM_1 < 1/1000) ∧ UNIFORM_2 < 7/10 ∧ UNIFORM_3 < 4/5
 	Observations: true
-	Sigma: σ(alarm) = false, σ(burglary) = 0, σ(called) = true, σ(earthquake) = 0, σ(maryWakes) = 1, σ(phoneWorking) = 1
-	Terminated: No
+	Sigma: σ(alarm) = true, σ(burglary) = 0, σ(called) = true, σ(earthquake) = 1, σ(maryWakes) = 1, σ(phoneWorking) = 1
+	Forced termination: No
 Time: 0.31
 

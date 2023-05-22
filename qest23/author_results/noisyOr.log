@@ -1,1286 +1,1285 @@
-num_samples: 8
 Number of Paths: 256
 Number of Removed Paths: 0
 Number of Samples: 8
 Path 1:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 1/10)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 2:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 3:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 4:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 5:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 6:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 7:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 8:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 1/10)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 9:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 10:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 11:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 12:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 1/10)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 13:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 14:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 15:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 16:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 17:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 18:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 19:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 20:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 21:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 1/10)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 22:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 23:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 24:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 25:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 26:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 27:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 28:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 1/10)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 29:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 30:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 31:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 32:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 33:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 1/10)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 34:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 35:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 36:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 37:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 38:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 39:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 40:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 41:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 42:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 43:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 44:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 45:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 1/10)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 46:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 47:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 48:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 49:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 50:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 1/10)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 51:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 52:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 53:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 1/10)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 54:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 55:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 56:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 57:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 58:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 59:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 60:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 61:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 1/10)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 62:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 63:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 1/10)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 64:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 65:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 66:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 67:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 68:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 1/10)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 69:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 70:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 71:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 72:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 73:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 74:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 75:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 76:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 77:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 78:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 79:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 80:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 81:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 82:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 83:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 1/10)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 84:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 85:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 86:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 87:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 88:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 89:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 90:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 91:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 92:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 93:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 94:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 95:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 1/10)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 96:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 97:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 98:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 99:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 100:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 101:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 102:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 103:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 104:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 105:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 106:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 107:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 108:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 109:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 110:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 111:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 112:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 113:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 114:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 115:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 116:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 117:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 118:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 119:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 1/10)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 120:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 1/10)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 121:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 122:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 1/10)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 123:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
 	Observations: 
 	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 124:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 125:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 126:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 127:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 128:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 1/10)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 129:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 130:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 1/10)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 131:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 132:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 133:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 134:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 135:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 136:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 137:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 138:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 139:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 140:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 141:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 142:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 143:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 144:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 145:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 146:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 147:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 148:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 149:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 150:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 151:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 152:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 153:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 154:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 1/10)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 155:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 1/10)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 156:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 157:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 158:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 159:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 160:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 161:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 1/10)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 162:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 163:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 164:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 165:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 166:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 167:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 168:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 169:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 170:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 171:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 172:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 173:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 1/10)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 174:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 175:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 176:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 177:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 178:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 179:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 180:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 181:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 182:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 183:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 184:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 185:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 186:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 187:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 188:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 189:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 190:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 191:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 192:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 193:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 194:
+	Forced termination: No
+Path 2:
 	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
 	Observations: 
 	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 195:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 1/10)
+	Forced termination: No
+Path 3:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
 	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 196:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 4:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
 	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 197:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 5:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
 	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 198:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 1/10)
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 6:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 1/10
 	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 199:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 7:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
 	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 200:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 8:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
 	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 201:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 1/10
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 9:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
 	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 202:
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 10:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 11:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 12:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 13:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 14:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 15:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 16:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 17:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 18:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 19:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 20:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 21:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 1/10)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 22:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 23:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 24:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 25:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 26:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 27:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 28:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 29:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 30:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 31:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 32:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 33:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 34:
 	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
 	Observations: 
 	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 203:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
+	Forced termination: No
+Path 35:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
 	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 204:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 36:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
 	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 205:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 206:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 207:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 208:
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 37:
 	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
 	Observations: 
 	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 209:
+	Forced termination: No
+Path 38:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 39:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 40:
 	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
 	Observations: 
 	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
+	Forced termination: No
+Path 41:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 42:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 43:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 44:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 1/10)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 45:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 46:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 47:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 48:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 49:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 50:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 51:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 52:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 1/10)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 53:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 54:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 55:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 1/10)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 56:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 57:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 58:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 59:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 60:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 61:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 62:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 63:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 64:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 65:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 66:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 67:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 68:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 69:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 70:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 71:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 72:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 1/10)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 73:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 74:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 75:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 76:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 77:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 78:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 79:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 80:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 1/10)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 81:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 82:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 83:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 84:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 85:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 86:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 87:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 88:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 89:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 90:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 91:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 92:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 93:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 1/10)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 94:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 95:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 96:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 97:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 98:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 1/10)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 99:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 100:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 101:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 102:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 1/10)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 103:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 104:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 105:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 1/10)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 106:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 107:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 108:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 109:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 110:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 111:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 1/10)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 112:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 113:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 1/10)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 114:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 115:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 116:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 117:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 118:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 119:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 120:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 121:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 122:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 123:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 124:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 125:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 126:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 127:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 128:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 129:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 130:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 131:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 1/10)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 132:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 133:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 134:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 135:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 136:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 137:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 138:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 139:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 140:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 141:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 142:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 143:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 144:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 1/10)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 145:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 146:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 147:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 148:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 149:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 150:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 151:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 152:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 153:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 154:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 155:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 156:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 157:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 158:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 159:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 1/10)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 160:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 161:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 1/10)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 162:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 163:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 164:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 165:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 166:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 167:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 168:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 169:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 170:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 171:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 172:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 173:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 174:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 175:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 176:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 177:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 178:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 179:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 180:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 181:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 182:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 183:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 184:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 185:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 186:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 187:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 1/10)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 188:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 1/10)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 189:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 190:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 191:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 192:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 193:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 194:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 1/10)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 195:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 1/10)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 196:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 197:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 198:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 199:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 200:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 201:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 1/10)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 202:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 203:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 204:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 205:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 1/10)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 206:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 207:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 208:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 209:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
 Path 210:
 	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 1/10)
 	Observations: 
 	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
+	Forced termination: No
 Path 211:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 212:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 213:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 1/10)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 214:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 215:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 216:
 	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
 	Observations: 
 	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 212:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 213:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 214:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 215:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 216:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 1/10)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
+	Forced termination: No
 Path 217:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
 	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
 Path 218:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
 	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
 Path 219:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 1/10)
 	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
 Path 220:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 221:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 1/10)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 222:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 223:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 224:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 1/10)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 225:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 1/10)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 226:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 227:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 228:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 1/10)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 229:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 230:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 231:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 232:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 233:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 234:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 235:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 236:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 237:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 238:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 239:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 240:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 241:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 242:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 243:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 244:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 245:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 246:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 1/10
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 247:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 1/10)
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 248:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 249:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
-	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 250:
-	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
 	Observations: 
 	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 251:
+	Forced termination: No
+Path 221:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 222:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 223:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 1/10)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 224:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 225:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 226:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 227:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 228:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 229:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 230:
 	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
 	Observations: 
 	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 252:
-	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
+	Forced termination: No
+Path 231:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
 	Observations: 
-	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 253:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 232:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 1/10)
 	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 254:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 1/10
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 233:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 1/10
 	Observations: 
-	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
-	Terminated: No
-Path 255:
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 234:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 235:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 236:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 237:
 	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
 	Observations: 
 	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Path 256:
-	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
+	Forced termination: No
+Path 238:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 239:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 4/5 ∧ UNIFORM_7 < 4/5
 	Observations: 
 	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
-	Terminated: No
-Time: 2.29
+	Forced termination: No
+Path 240:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 241:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 242:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 243:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 244:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 1/10)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 245:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 1/10)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 246:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 1/10) ∧ UNIFORM_3 < 1/10 ∧ UNIFORM_4 < 1/10 ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 247:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ UNIFORM_3 < 1/10 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 248:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 4/5 ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 249:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 1/10
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 250:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ UNIFORM_3 < 4/5 ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 4/5)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = true, σ(n21) = 1, σ(n22) = 1, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 251:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 1/10) ∧ ¬(UNIFORM_7 < 1/10)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 252:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ UNIFORM_3 < 4/5 ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 1, σ(n22) = 0, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 253:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 1/10 ∧ ¬(UNIFORM_3 < 1/10) ∧ ¬(UNIFORM_4 < 1/10) ∧ ¬(UNIFORM_5 < 1/10) ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 1/10)
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = false, σ(n31) = 0, σ(n32) = 0, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 254:
+	Path Condition: UNIFORM_0 < 1/2 ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 4/5) ∧ ¬(UNIFORM_3 < 4/5) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Path 255:
+	Path Condition: UNIFORM_0 < 1/2 ∧ UNIFORM_1 < 1/2 ∧ UNIFORM_2 < 4/5 ∧ ¬(UNIFORM_3 < 4/5) ∧ ¬(UNIFORM_4 < 1/10) ∧ UNIFORM_5 < 1/10 ∧ ¬(UNIFORM_6 < 4/5) ∧ ¬(UNIFORM_7 < 1/10)
+	Observations: 
+	Sigma: σ(n0) = 1, σ(n1) = 1, σ(n2) = false, σ(n21) = 0, σ(n22) = 0, σ(n3) = true, σ(n31) = 0, σ(n32) = 0, σ(n33) = 1, σ(n4) = 0
+	Forced termination: No
+Path 256:
+	Path Condition: ¬(UNIFORM_0 < 1/2) ∧ ¬(UNIFORM_1 < 1/2) ∧ ¬(UNIFORM_2 < 1/10) ∧ ¬(UNIFORM_3 < 1/10) ∧ UNIFORM_4 < 1/10 ∧ ¬(UNIFORM_5 < 1/10) ∧ UNIFORM_6 < 1/10 ∧ UNIFORM_7 < 4/5
+	Observations: 
+	Sigma: σ(n0) = 0, σ(n1) = 0, σ(n2) = true, σ(n21) = 0, σ(n22) = 1, σ(n3) = true, σ(n31) = 1, σ(n32) = 1, σ(n33) = 0, σ(n4) = 0
+	Forced termination: No
+Time: 2.33
 
