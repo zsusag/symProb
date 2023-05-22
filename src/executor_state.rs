@@ -337,15 +337,13 @@ impl ExecutorState {
                         };
                         Ok(status)
                     }
-                    StatementKind::While(mut guard, body) => {
-												// Apply sigma on the branch guard
-												self.path.simplify_sigma();
-												guard.substitute(&self.sigma);
-												
+                    StatementKind::While(guard, body) => {
+												let sub_guard = guard.clone_and_substitute(&self.sigma);
+
                         // Apply sigma on the branch guard
                         let (true_sat, false_sat) = self.smt_manager.check_fork_satisfiability(
                             self.path.get_conds(),
-                            &guard,
+														&sub_guard,
                             &self.sym_vars,
                         );
 
@@ -359,12 +357,11 @@ impl ExecutorState {
                                         self.path.mark_terminated();
                                         if false_sat {
                                             return Ok(Status::Continue(
-                                                self.fork(Vec::new(), Some(guard.not())),
+                                                self.fork(Vec::new(), Some(sub_guard.not())),
                                             ));
                                         } else {
-                                            return Ok(Status::Continue(
-																								self.fork(Vec::new(), Some(guard))
-																						));
+																						self.path.branch(sub_guard.not(), &self.sigma);
+                                            return Ok(Status::Continue(self));
                                         }
                                     }
                                 }
@@ -403,13 +400,13 @@ impl ExecutorState {
                                 let mut into_loop_state = self.clone();
                                 // Push copy of while loop onto stack before forking
                                 into_loop_state.stack.push(Statement::clone_while(
-                                    guard.clone(),
+                                    guard,
                                     body.clone(),
                                     s_id,
                                 ));
                                 Ok(Status::Fork(
-                                    into_loop_state.fork(body, Some(guard.clone())),
-                                    self.fork(Vec::new(), Some(guard.not())),
+                                    into_loop_state.fork(body, Some(sub_guard.clone())),
+                                    self.fork(Vec::new(), Some(sub_guard.not())),
                                 ))
                             } else {
                                 self.stack

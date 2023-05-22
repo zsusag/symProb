@@ -67,7 +67,6 @@ fn main() -> Result<(), anyhow::Error> {
     let (paths, num_failed_observe_paths) = executor.run(args.prob)?;
 
 		let num_samples = paths.iter().map(|p| p.num_uniform_samples + p.num_normal_samples).max().unwrap();
-		println!("num_samples: {num_samples}");
     if args.csv {
         let (header, all_var_names) = gen_csv_header(&paths);
         let rows = paths

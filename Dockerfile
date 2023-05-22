@@ -15,6 +15,6 @@ RUN cargo install --path .
 
 WORKDIR /home/symProb
 COPY README.md .
-COPY LICENSE.txt .
+COPY LICENSE .
 COPY qest23/* ./qest23/
 COPY run_experiments.py .
