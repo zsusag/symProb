@@ -27,6 +27,7 @@ pub struct Path {
 #[derive(Serialize)]
 pub struct Row {
     path_num: usize,
+    terminated: bool,
     num_uniform_samples: u32,
     num_normal_samples: u32,
     pc: String,
@@ -41,6 +42,7 @@ pub fn gen_csv_header(paths: &HashSet<Path>) -> (Vec<String>, BTreeSet<&String>)
 
     let mut csv_header = vec![
         "Path".to_string(),
+        "Forced termination".to_string(),
         "# Uniform Samples".to_string(),
         "# Normal Samples".to_string(),
         "PC".to_string(),
@@ -119,6 +121,7 @@ impl Path {
     pub fn to_csv_row(&self, i: usize, all_var_names: &BTreeSet<&String>) -> Row {
         Row {
             path_num: i,
+            terminated: self.terminated,
             num_uniform_samples: self.num_uniform_samples,
             num_normal_samples: self.num_normal_samples,
             pc: self
@@ -156,7 +159,7 @@ impl Display for Path {
                 if self.terminated {
                     write!(
                         f,
-                        "Path Condition: {}\n\tObservations: {}\n\tSigma: {}\n\tTerminated: Yes",
+                        "Path Condition: {}\n\tObservations: {}\n\tSigma: {}\n\tForced termination: Yes",
                         self.conds
                             .iter()
                             .map(|e| e.to_string())
@@ -172,7 +175,7 @@ impl Display for Path {
                 } else {
                     write!(
                         f,
-                        "Path Condition: {}\n\tObservations: {}\n\tSigma: {}\n\tTerminated: No",
+                        "Path Condition: {}\n\tObservations: {}\n\tSigma: {}\n\tForced termination: No",
                         self.conds
                             .iter()
                             .map(|e| e.to_string())
@@ -191,7 +194,7 @@ impl Display for Path {
                 if self.terminated {
                     write!(
                 f,
-                "Path Condition: {}\n\tProbability: {}\n\tObservations: {}\n\tObservations Probability: {}\n\tSigma: {}\n\tTerminated: Yes",
+                "Path Condition: {}\n\tProbability: {}\n\tObservations: {}\n\tObservations Probability: {}\n\tSigma: {}\n\tForced termination: Yes",
                 self.conds
                     .iter()
                     .map(|e| e.to_string())
@@ -209,7 +212,7 @@ impl Display for Path {
                 } else {
                     write!(
                 f,
-                "Path Condition: {}\n\tProbability: {}\n\tObservations: {}\n\tObservations Probability: {}\n\tSigma: {}\n\tTerminated: No",
+                "Path Condition: {}\n\tProbability: {}\n\tObservations: {}\n\tObservations Probability: {}\n\tSigma: {}\n\tForced termination: No",
                 self.conds
                     .iter()
                     .map(|e| e.to_string())
