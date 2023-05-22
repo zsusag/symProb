@@ -1,8 +1,8 @@
 FROM rust:latest
 
 WORKDIR /home/symProb/
-RUN git clone https://github.com/eth-sri/psi.git
-WORKDIR /home/symProb/psi
+RUN git clone https://github.com/eth-sri/psi.git .psi
+WORKDIR /home/symProb/.psi
 RUN ./dependencies-release.sh && ./build-release.sh && mv ./psi /usr/local/bin/
 
 RUN apt update && DEBIAN_FRONTEND=noninteractive apt -y --no-install-recommends install clang z3 libz3-dev time
