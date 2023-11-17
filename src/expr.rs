@@ -113,39 +113,164 @@ impl<'ctx> ExprNode {
     }
 
     pub fn simplify(&mut self) {
-        let mut can_reduce = !self.children.is_empty();
+        let mut can_reduce = false;
 
         for child in self.children.iter_mut() {
             child.simplify();
-            can_reduce &= child.is_constant();
+            can_reduce |= child.is_constant();
         }
-        if can_reduce {
+        if can_reduce & !self.children.is_empty() {
             match &self.e {
                 ExprKind::Constant(_) | ExprKind::Sqrt => (),
                 ExprKind::Add => {
                     let c2 = self.children.pop().unwrap();
                     let c1 = self.children.pop().unwrap();
-                    if let (
-                        ExprKind::Constant(Value::Num(x1)),
-                        ExprKind::Constant(Value::Num(x2)),
-                    ) = (c1.e, c2.e)
-                    {
-                        self.e = ExprKind::Constant(Value::Num(x1 + x2));
-                    } else {
-                        unreachable!()
+                    match (&c1.e, &c2.e) {
+                        (ExprKind::Constant(Value::Num(x1)),ExprKind::Constant(Value::Num(x2)))
+                            => { self.e = ExprKind::Constant(Value::Num(x1 + x2)); }
+                        (ExprKind::Add,ExprKind::Constant(Value::Num(x2)))
+                            => {
+                                let c1a = c1.children.get(0).unwrap();
+                                let c1b = c1.children.get(1).unwrap();
+                                if let ExprKind::Constant(Value::Num(x1)) = c1b.e {
+                                    self.children.push(c1a.clone());
+                                    self.children.push(ExprNode::new_leaf(ExprKind::Constant(Value::Num(x1+x2))));
+                                } else if let ExprKind::Constant(Value::Num(x1)) = c1a.e {
+                                    self.children.push(c1b.clone());
+                                    self.children.push(ExprNode::new_leaf(ExprKind::Constant(Value::Num(x1+x2))));
+                                }
+                            }
+                        (ExprKind::Constant(Value::Num(x1)),ExprKind::Add)
+                            => {
+                                let c2a = c2.children.get(0).unwrap();
+                                let c2b = c2.children.get(1).unwrap();
+                                if let ExprKind::Constant(Value::Num(x2)) = c2b.e {
+                                    self.children.push(ExprNode::new_leaf(ExprKind::Constant(Value::Num(x1+x2))));
+                                    self.children.push(c2a.clone());
+                                } else if let ExprKind::Constant(Value::Num(x2)) = c2a.e {
+                                    self.children.push(ExprNode::new_leaf(ExprKind::Constant(Value::Num(x1+x2))));
+                                    self.children.push(c2b.clone());
+                                } 
+                            }
+                        (ExprKind::Sub,ExprKind::Constant(Value::Num(x2)))
+                            => {
+                                let c1a = c1.children.get(0).unwrap();
+                                let c1b = c1.children.get(1).unwrap();
+                                if let ExprKind::Constant(Value::Num(x1)) = c1b.e {
+                                    self.children.push(c1a.clone());
+                                    if x1-x2 > 0.into() {
+                                        self.e = ExprKind::Sub;
+                                        self.children.push(ExprNode::new_leaf(ExprKind::Constant(Value::Num(x1-x2))));
+                                    } else {
+                                        self.children.push(ExprNode::new_leaf(ExprKind::Constant(Value::Num(x2-x1))));
+                                    }
+                                } else if let ExprKind::Constant(Value::Num(x1)) = c1a.e {
+                                    self.e = ExprKind::Sub;
+                                    self.children.push(ExprNode::new_leaf(ExprKind::Constant(Value::Num(x1+x2))));
+                                    self.children.push(c1b.clone());
+                                }
+                            }
+                        (ExprKind::Constant(Value::Num(x1)),ExprKind::Sub)
+                            => {
+                                let c2a = c2.children.get(0).unwrap();
+                                let c2b = c2.children.get(1).unwrap();
+                                if let ExprKind::Constant(Value::Num(x2)) = c2b.e {
+                                    self.children.push(ExprNode::new_leaf(ExprKind::Constant(Value::Num(x1-x2))));
+                                    self.children.push(c2a.clone());
+                                } else if let ExprKind::Constant(Value::Num(x2)) = c2a.e {
+                                    self.e = ExprKind::Sub;
+                                    self.children.push(ExprNode::new_leaf(ExprKind::Constant(Value::Num(x1+x2))));
+                                    self.children.push(c2b.clone());
+                                } 
+                            }
+ 
+                        _ => {
+                            self.children.push(c1);
+                            self.children.push(c2);
+                        }
                     }
                 }
                 ExprKind::Sub => {
                     let c2 = self.children.pop().unwrap();
                     let c1 = self.children.pop().unwrap();
-                    if let (
-                        ExprKind::Constant(Value::Num(x1)),
-                        ExprKind::Constant(Value::Num(x2)),
-                    ) = (c1.e, c2.e)
-                    {
-                        self.e = ExprKind::Constant(Value::Num(x1 - x2));
-                    } else {
-                        unreachable!()
+                    match (&c1.e, &c2.e) {
+                        (ExprKind::Constant(Value::Num(x1)),ExprKind::Constant(Value::Num(x2)))
+                            => { self.e = ExprKind::Constant(Value::Num(x1 - x2)); }
+                        (ExprKind::Add,ExprKind::Constant(Value::Num(x2)))
+                            => {
+                                let c1a = c1.children.get(0).unwrap();
+                                let c1b = c1.children.get(1).unwrap();
+                                if let ExprKind::Constant(Value::Num(x1)) = c1b.e {
+                                    self.children.push(c1a.clone());
+                                    if x1-x2 >= 0.into() {
+                                        self.e = ExprKind::Add;
+                                        self.children.push(ExprNode::new_leaf(ExprKind::Constant(Value::Num(x1-x2))));
+                                    } else {
+                                        self.children.push(ExprNode::new_leaf(ExprKind::Constant(Value::Num(x2-x1))));
+                                    }
+                                } else if let ExprKind::Constant(Value::Num(x1)) = c1a.e {
+                                    self.children.push(c1b.clone());
+                                    if x1-x2 >= 0.into() {
+                                        self.e = ExprKind::Add;
+                                        self.children.push(ExprNode::new_leaf(ExprKind::Constant(Value::Num(x1-x2))));
+                                    } else {
+                                        self.children.push(ExprNode::new_leaf(ExprKind::Constant(Value::Num(x2-x1))));
+                                    }
+                                }
+                            }
+                        (ExprKind::Constant(Value::Num(x1)),ExprKind::Add)
+                            => {
+                                let c2a = c2.children.get(0).unwrap();
+                                let c2b = c2.children.get(1).unwrap();
+                                if let ExprKind::Constant(Value::Num(x2)) = c2b.e {
+                                    self.children.push(ExprNode::new_leaf(ExprKind::Constant(Value::Num(x1-x2))));
+                                    self.children.push(c2a.clone());
+                                } else if let ExprKind::Constant(Value::Num(x2)) = c2a.e {
+                                    self.children.push(ExprNode::new_leaf(ExprKind::Constant(Value::Num(x1-x2))));
+                                    self.children.push(c2b.clone());
+                                } 
+                            }
+                        (ExprKind::Sub,ExprKind::Constant(Value::Num(x2)))
+                            => {
+                                let c1a = c1.children.get(0).unwrap();
+                                let c1b = c1.children.get(1).unwrap();
+                                if let ExprKind::Constant(Value::Num(x1)) = c1b.e {
+                                    self.children.push(c1a.clone());
+                                    self.children.push(ExprNode::new_leaf(ExprKind::Constant(Value::Num(x1+x2))));
+                                } else if let ExprKind::Constant(Value::Num(x1)) = c1a.e {
+                                    self.children.push(ExprNode::new(ExprKind::Mul,[ExprNode::new_leaf(ExprKind::Constant(Value::Num(num::rational::Ratio::<i32>::from(-1)))),c1b.clone()].to_vec()));
+                                    if x1-x2 >= 0.into() {
+                                        self.e = ExprKind::Add;
+                                        self.children.push(ExprNode::new_leaf(ExprKind::Constant(Value::Num(x1-x2))));
+                                    } else {
+                                        self.children.push(ExprNode::new_leaf(ExprKind::Constant(Value::Num(x2-x1))));
+                                    }
+                                    self.simplify();
+                                }
+                            }
+                        (ExprKind::Constant(Value::Num(x1)),ExprKind::Sub)
+                            => {
+                                let c2a = c2.children.get(0).unwrap();
+                                let c2b = c2.children.get(1).unwrap();
+                                if let ExprKind::Constant(Value::Num(x2)) = c2b.e {
+                                    self.children.push(ExprNode::new(ExprKind::Mul,[ExprNode::new_leaf(ExprKind::Constant(Value::Num(num::rational::Ratio::<i32>::from(-1)))),c2a.clone()].to_vec()));
+                                    self.e=ExprKind::Add;
+                                    self.children.push(ExprNode::new_leaf(ExprKind::Constant(Value::Num(x1+x2))));
+                                    self.simplify();
+                                } else if let ExprKind::Constant(Value::Num(x2)) = c2a.e {
+                                    self.children.push(c2b.clone());
+                                    if x1-x2 >= 0.into() {
+                                        self.e = ExprKind::Add;
+                                        self.children.push(ExprNode::new_leaf(ExprKind::Constant(Value::Num(x1-x2))));
+                                    } else {
+                                        self.children.push(ExprNode::new_leaf(ExprKind::Constant(Value::Num(x2-x1))));
+                                    }
+                                } 
+                            }
+                        _ => {
+                            self.children.push(c1);
+                            self.children.push(c2);
+                        }
                     }
                 }
                 ExprKind::Mul => {
@@ -154,11 +279,12 @@ impl<'ctx> ExprNode {
                     if let (
                         ExprKind::Constant(Value::Num(x1)),
                         ExprKind::Constant(Value::Num(x2)),
-                    ) = (c1.e, c2.e)
+                    ) = (&c1.e, &c2.e)
                     {
                         self.e = ExprKind::Constant(Value::Num(x1 * x2));
                     } else {
-                        unreachable!()
+                        self.children.push(c1);
+                        self.children.push(c2);
                     }
                 }
                 ExprKind::Div => {
@@ -167,11 +293,12 @@ impl<'ctx> ExprNode {
                     if let (
                         ExprKind::Constant(Value::Num(x1)),
                         ExprKind::Constant(Value::Num(x2)),
-                    ) = (c1.e, c2.e)
+                    ) = (&c1.e, &c2.e)
                     {
                         self.e = ExprKind::Constant(Value::Num(x1 / x2));
                     } else {
-                        unreachable!()
+                        self.children.push(c1);
+                        self.children.push(c2);
                     }
                 }
                 ExprKind::And => {
@@ -180,11 +307,12 @@ impl<'ctx> ExprNode {
                     if let (
                         ExprKind::Constant(Value::Boolean(b1)),
                         ExprKind::Constant(Value::Boolean(b2)),
-                    ) = (c1.e, c2.e)
+                    ) = (&c1.e, &c2.e)
                     {
-                        self.e = ExprKind::Constant(Value::Boolean(b1 && b2));
+                        self.e = ExprKind::Constant(Value::Boolean(*b1 && *b2));
                     } else {
-                        unreachable!()
+                        self.children.push(c1);
+                        self.children.push(c2);
                     }
                 }
                 ExprKind::Or => {
@@ -193,18 +321,18 @@ impl<'ctx> ExprNode {
                     if let (
                         ExprKind::Constant(Value::Boolean(b1)),
                         ExprKind::Constant(Value::Boolean(b2)),
-                    ) = (c1.e, c2.e)
+                    ) = (&c1.e, &c2.e)
                     {
-                        self.e = ExprKind::Constant(Value::Boolean(b1 || b2));
+                        self.e = ExprKind::Constant(Value::Boolean(*b1 || *b2));
                     } else {
-                        unreachable!()
+                        self.children.push(c1);
+                        self.children.push(c2);
                     }
                 }
                 ExprKind::Not => {
                     if let ExprKind::Constant(Value::Boolean(b)) = self.children.pop().unwrap().e {
                         self.e = ExprKind::Constant(Value::Boolean(!b));
                     } else {
-                        unreachable!()
                     }
                 }
                 ExprKind::Lt => {
@@ -213,11 +341,12 @@ impl<'ctx> ExprNode {
                     if let (
                         ExprKind::Constant(Value::Num(x1)),
                         ExprKind::Constant(Value::Num(x2)),
-                    ) = (c1.e, c2.e)
+                    ) = (&c1.e, &c2.e)
                     {
                         self.e = ExprKind::Constant(Value::Boolean(x1 < x2));
                     } else {
-                        unreachable!()
+                        self.children.push(c1);
+                        self.children.push(c2);
                     }
                 }
                 ExprKind::Le => {
@@ -226,11 +355,12 @@ impl<'ctx> ExprNode {
                     if let (
                         ExprKind::Constant(Value::Num(x1)),
                         ExprKind::Constant(Value::Num(x2)),
-                    ) = (c1.e, c2.e)
+                    ) = (&c1.e, &c2.e)
                     {
                         self.e = ExprKind::Constant(Value::Boolean(x1 <= x2));
                     } else {
-                        unreachable!()
+                        self.children.push(c1);
+                        self.children.push(c2);
                     }
                 }
                 ExprKind::Gt => {
@@ -239,11 +369,12 @@ impl<'ctx> ExprNode {
                     if let (
                         ExprKind::Constant(Value::Num(x1)),
                         ExprKind::Constant(Value::Num(x2)),
-                    ) = (c1.e, c2.e)
+                    ) = (&c1.e, &c2.e)
                     {
                         self.e = ExprKind::Constant(Value::Boolean(x1 > x2));
                     } else {
-                        unreachable!()
+                        self.children.push(c1);
+                        self.children.push(c2);
                     }
                 }
                 ExprKind::Ge => {
@@ -252,11 +383,12 @@ impl<'ctx> ExprNode {
                     if let (
                         ExprKind::Constant(Value::Num(x1)),
                         ExprKind::Constant(Value::Num(x2)),
-                    ) = (c1.e, c2.e)
+                    ) = (&c1.e, &c2.e)
                     {
                         self.e = ExprKind::Constant(Value::Boolean(x1 >= x2));
                     } else {
-                        unreachable!()
+                        self.children.push(c1);
+                        self.children.push(c2);
                     }
                 }
                 ExprKind::Eq => {
@@ -265,11 +397,12 @@ impl<'ctx> ExprNode {
                     if let (
                         ExprKind::Constant(Value::Num(x1)),
                         ExprKind::Constant(Value::Num(x2)),
-                    ) = (c1.e, c2.e)
+                    ) = (&c1.e, &c2.e)
                     {
                         self.e = ExprKind::Constant(Value::Boolean(x1 == x2));
                     } else {
-                        unreachable!()
+                        self.children.push(c1);
+                        self.children.push(c2);
                     }
                 }
                 ExprKind::Ne => {
@@ -278,11 +411,12 @@ impl<'ctx> ExprNode {
                     if let (
                         ExprKind::Constant(Value::Num(x1)),
                         ExprKind::Constant(Value::Num(x2)),
-                    ) = (c1.e, c2.e)
+                    ) = (&c1.e, &c2.e)
                     {
                         self.e = ExprKind::Constant(Value::Boolean(x1 != x2));
                     } else {
-                        unreachable!()
+                        self.children.push(c1);
+                        self.children.push(c2);
                     }
                 }
                 ExprKind::Func(_) => unreachable!(),

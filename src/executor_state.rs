@@ -128,7 +128,7 @@ impl ExecutorState {
 
     pub fn uniform_sample(&mut self) -> String {
         // Generate name for the probabilistic symbolic variable which is the result from sampling
-        let prob_sym_name = format!("UNIFORM_{:}", self.num_uniform_samples);
+        let prob_sym_name = format!("y_{:}", self.num_uniform_samples);
 
         // Update the symbolic variable type map
         self.sym_vars
@@ -141,7 +141,7 @@ impl ExecutorState {
 
     pub fn normal_sample(&mut self) -> String {
         // Generate name for the probabilistic symbolic variable which is the result from sampling
-        let prob_sym_name = format!("NORMAL_{:}", self.num_normal_samples);
+        let prob_sym_name = format!("z_{:}", self.num_normal_samples);
 
         // Update the symbolic variable type map
         self.sym_vars
