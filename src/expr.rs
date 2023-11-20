@@ -276,15 +276,53 @@ impl<'ctx> ExprNode {
                 ExprKind::Mul => {
                     let c2 = self.children.pop().unwrap();
                     let c1 = self.children.pop().unwrap();
-                    if let (
-                        ExprKind::Constant(Value::Num(x1)),
-                        ExprKind::Constant(Value::Num(x2)),
-                    ) = (&c1.e, &c2.e)
-                    {
-                        self.e = ExprKind::Constant(Value::Num(x1 * x2));
-                    } else {
-                        self.children.push(c1);
-                        self.children.push(c2);
+                    match (&c1.e, &c2.e) {
+                        (ExprKind::Constant(Value::Num(x1)),ExprKind::Constant(Value::Num(x2)))
+                            => { self.e = ExprKind::Constant(Value::Num(x1 * x2)); }
+                        (ExprKind::Add,ExprKind::Constant(Value::Num(x2)))
+                            => {
+                                let mut a = ExprNode::new(ExprKind::Mul,[c1.children.get(0).unwrap().clone(),ExprNode::new_leaf(ExprKind::Constant(Value::Num(*x2)))].to_vec());
+                                a.simplify();
+                                self.children.push(a);
+                                self.e = ExprKind::Add;
+                                let mut b = ExprNode::new(ExprKind::Mul,[c1.children.get(1).unwrap().clone(),ExprNode::new_leaf(ExprKind::Constant(Value::Num(*x2)))].to_vec());
+                                b.simplify();
+                                self.children.push(b);
+                            }
+                        (ExprKind::Constant(Value::Num(x1)),ExprKind::Add)
+                            => {
+                                let mut a = ExprNode::new(ExprKind::Mul,[c2.children.get(0).unwrap().clone(),ExprNode::new_leaf(ExprKind::Constant(Value::Num(*x1)))].to_vec());
+                                a.simplify();
+                                self.children.push(a);
+                                self.e = ExprKind::Add;
+                                let mut b = ExprNode::new(ExprKind::Mul,[c2.children.get(1).unwrap().clone(),ExprNode::new_leaf(ExprKind::Constant(Value::Num(*x1)))].to_vec());
+                                b.simplify();
+                                self.children.push(b);
+                            }
+                        (ExprKind::Sub,ExprKind::Constant(Value::Num(x2)))
+                            => {
+                                let mut a = ExprNode::new(ExprKind::Mul,[c1.children.get(0).unwrap().clone(),ExprNode::new_leaf(ExprKind::Constant(Value::Num(*x2)))].to_vec());
+                                a.simplify();
+                                self.children.push(a);
+                                self.e = ExprKind::Sub;
+                                let mut b = ExprNode::new(ExprKind::Mul,[c1.children.get(1).unwrap().clone(),ExprNode::new_leaf(ExprKind::Constant(Value::Num(*x2)))].to_vec());
+                                b.simplify();
+                                self.children.push(b);
+                            }
+                        (ExprKind::Constant(Value::Num(x1)),ExprKind::Sub)
+                            => {
+                                let mut a = ExprNode::new(ExprKind::Mul,[c2.children.get(0).unwrap().clone(),ExprNode::new_leaf(ExprKind::Constant(Value::Num(*x1)))].to_vec());
+                                a.simplify();
+                                self.children.push(a);
+                                self.e = ExprKind::Sub;
+                                let mut b = ExprNode::new(ExprKind::Mul,[c2.children.get(1).unwrap().clone(),ExprNode::new_leaf(ExprKind::Constant(Value::Num(*x1)))].to_vec());
+                                b.simplify();
+                                self.children.push(b);
+                            }
+                        _ => {
+                            self.children.push(c1);
+                            self.children.push(c2);
+                        }
                     }
                 }
                 ExprKind::Div => {
