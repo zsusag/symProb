@@ -4,6 +4,7 @@ use std::{
 };
 
 use anyhow::Result;
+use itertools::Itertools;
 use serde::Serialize;
 
 use crate::{
@@ -36,6 +37,21 @@ impl Sigma {
     /// program variables with the new expressions from `other`.
     pub fn merge(&mut self, other: Sigma) {
         self.0.extend(other.0)
+    }
+}
+
+/// A substitution is printed in alphabetic order by program variable.
+impl Display for Sigma {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(
+            f,
+            "{}",
+            self.0
+                .iter()
+                // Sort the substitution by program variable.
+                .sorted_by_key(|mapping| mapping.0)
+                .format_with("; ", |(var, expr), g| g(&format_args!("σ({var}) = {expr}")))
+        )
     }
 }
 
