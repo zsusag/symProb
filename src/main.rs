@@ -8,12 +8,9 @@ use std::{
     fs::{self, File},
     io::{self, Write},
 };
+use syntax::FnMap;
 
-use crate::{
-    executor::Executor,
-    parser::{parse_file, ExprParser},
-    semantics::check_valid_program,
-};
+use crate::{executor::Executor, parser::parse_file, semantics::check_valid_program};
 
 mod executor;
 mod executor_state;
@@ -52,14 +49,7 @@ struct Args {
 fn main() -> Result<(), anyhow::Error> {
     let args = Args::parse();
 
-    // Need to check whether file exists
-    let f = fs::read_to_string(args.p.as_path())
-        .with_context(|| format!("Failed to read program from {}", args.p.as_path().display()))?;
-
-    let fn_defs = parse_file(
-        ExprParser::parse(parser::Rule::file, &f)
-            .context("Failed to parse function definitions")?,
-    );
+    let fn_defs: FnMap = parse_file(&args.p)?;
 
     check_valid_program(&fn_defs)?;
 
