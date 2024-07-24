@@ -1,11 +1,10 @@
-use anyhow::{Context, Result};
+use anyhow::Result;
 use clap::Parser;
 
 use csv::WriterBuilder;
 use path::gen_csv_header;
-use pest::Parser as EParser;
 use std::{
-    fs::{self, File},
+    fs::File,
     io::{self, Write},
 };
 use syntax::FnMap;
