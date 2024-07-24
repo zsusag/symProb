@@ -59,7 +59,7 @@ pub struct ExecutorState {
     stack: Vec<Statement>,
 
     // Substitution map from program variables to symbolic expressions
-    sigma: HashMap<String, ExprNode>,
+    sigma: Sigma,
 
     // List of path constraints
     path: Path,
@@ -104,7 +104,7 @@ impl ExecutorState {
             .map(|x| {
                 (
                     x.clone(),
-                    ExprNode::new_leaf(ExprKind::Constant(Value::Var(x))),
+                    Expr::new(ExprNode::new_leaf(ExprKind::Constant(Value::Var(x)))),
                 )
             })
             .collect();
