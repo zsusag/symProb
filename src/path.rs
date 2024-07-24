@@ -17,6 +17,7 @@ use crate::{
 ///
 /// \sigma captures the state of a symbolic trace. Each in-scope program variable `x` should map to
 /// a symbolic expression representing `x`'s value at that moment in time.
+#[derive(Debug, PartialEq, Eq, Clone)]
 pub struct Sigma(HashMap<String, Expr>);
 
 impl Sigma {
@@ -61,13 +62,13 @@ impl Display for Sigma {
     }
 }
 
-#[derive(Debug, PartialEq, Eq, Clone, Hash)]
+#[derive(Debug, PartialEq, Eq, Clone)]
 pub struct Path {
     conds: Vec<Expr>,
     path_prob: Option<Prob>,
     observes_prob: Option<Prob>,
     terminated: bool,
-    sigma: BTreeMap<String, ExprNode>,
+    sigma: Sigma,
     observations: Vec<Expr>,
     pub num_uniform_samples: u32,
     pub num_normal_samples: u32,
@@ -117,7 +118,7 @@ impl Path {
             path_prob: None,
             observes_prob: None,
             terminated: false,
-            sigma: BTreeMap::new(),
+            sigma: Sigma::new(),
             observations: Vec::new(),
             num_uniform_samples: 0,
             num_normal_samples: 0,
