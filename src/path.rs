@@ -40,6 +40,12 @@ impl Sigma {
     }
 }
 
+impl FromIterator<(String, Expr)> for Sigma {
+    fn from_iter<T: IntoIterator<Item = (String, Expr)>>(iter: T) -> Self {
+        Sigma(HashMap::from_iter(iter))
+    }
+}
+
 /// A substitution is printed in alphabetic order by program variable.
 impl Display for Sigma {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
@@ -274,5 +280,33 @@ impl Display for Path {
             }
             _ => unreachable!(),
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::syntax::{ExprKind, Value};
+
+    use super::*;
+
+    #[test]
+    fn sigma_display() {
+        let sigma = Sigma::from_iter([
+            (
+                "y".to_string(),
+                Expr::new(ExprNode::new_leaf(ExprKind::Constant(Value::Boolean(true)))),
+            ),
+            (
+                "x".to_string(),
+                Expr::new(ExprNode::new_leaf(ExprKind::Constant(Value::Boolean(true)))),
+            ),
+            (
+                "z".to_string(),
+                Expr::new(ExprNode::new_leaf(ExprKind::Constant(Value::Boolean(true)))),
+            ),
+        ]);
+
+        let expected = "σ(x) = true; σ(y) = true; σ(z) = true";
+        assert_eq!(format!("{sigma}"), expected);
     }
 }
