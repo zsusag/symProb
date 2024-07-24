@@ -39,6 +39,11 @@ impl Sigma {
     pub fn merge(&mut self, other: Sigma) {
         self.0.extend(other.0)
     }
+    /// Simplifies all of the expressions within the substitution.
+    pub fn simplify(&mut self) {
+        self.0.values_mut().for_each(|expr| expr.simplify())
+    }
+
 }
 
 impl FromIterator<(String, Expr)> for Sigma {
@@ -145,13 +150,12 @@ impl Path {
         &self.observations
     }
 
-    pub fn merge_sigma(&mut self, sigma: &HashMap<String, ExprNode>) {
-        self.sigma
-            .extend(sigma.iter().map(|(k, v)| (k.clone(), v.clone())));
+    pub fn merge_sigma(&mut self, sigma: Sigma) {
+        self.sigma.merge(sigma)
     }
 
     pub fn simplify_sigma(&mut self) {
-        self.sigma.values_mut().for_each(|val| val.simplify())
+        self.sigma.simplify()
     }
 
     pub fn get_conds(&self) -> &Vec<Expr> {
