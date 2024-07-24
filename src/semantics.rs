@@ -5,7 +5,7 @@ use thiserror::Error;
 
 use crate::{
     expr::Expr,
-    syntax::{Func, Statement, StatementKind, Type},
+    syntax::{FnMap, Func, Statement, StatementKind, Type},
 };
 
 #[derive(Error, Debug)]
@@ -34,7 +34,7 @@ pub enum SemanticsError {
     MissingRetPath { fn_name: String },
 }
 
-pub fn check_valid_program(fns: &HashMap<String, Func>) -> Result<()> {
+pub fn check_valid_program(fns: &FnMap) -> Result<()> {
     // Check to see if there is a main function
     ensure!(fns.contains_key("main"), SemanticsError::MissingMain);
 

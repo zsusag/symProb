@@ -5,7 +5,7 @@ use anyhow::Result;
 use crate::{
     executor_state::{ExecutorState, Status},
     path::Path,
-    syntax::Func,
+    syntax::{FnMap, Func},
 };
 
 pub struct Executor {
@@ -16,7 +16,7 @@ pub struct Executor {
 
 impl Executor {
     // Create an initial state consisting of the statements from the main function
-    pub fn new(mut fn_defs: HashMap<String, Func>, max_iterations: &Option<u32>) -> Self {
+    pub fn new(mut fn_defs: FnMap, max_iterations: &Option<u32>) -> Self {
         let init_state = ExecutorState::new(fn_defs.remove("main").unwrap(), max_iterations);
         let paths = HashSet::new();
         Executor {

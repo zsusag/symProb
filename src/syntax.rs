@@ -160,3 +160,5 @@ impl Func {
         &self.body
     }
 }
+
+pub type FnMap = HashMap<String, Func>;
