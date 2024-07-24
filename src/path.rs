@@ -39,6 +39,26 @@ impl Sigma {
     pub fn merge(&mut self, other: Sigma) {
         self.0.extend(other.0)
     }
+
+    /// Updates the substitution by inserting all the entries in `other` into the
+    /// substitution. Existing entries are overwritten with those in `other`.
+    ///
+    /// This method only clones when an entry in `other` either does not exist in `self` or does not
+    /// equal the expression stored in `self`. In other words, [`update`] only clones when it must
+    /// update the substitution.
+    pub fn update(&mut self, other: &Sigma) {
+        let updates: Vec<_> = other
+            .0
+            .iter()
+            .filter(|(var, expr)| match self.get(var) {
+                Some(cur_expr) => cur_expr != *expr,
+                None => true,
+            })
+            .map(|(var, expr)| (var.clone(), expr.clone()))
+            .collect();
+        self.0.extend(updates)
+    }
+
     /// Simplifies all of the expressions within the substitution.
     pub fn simplify(&mut self) {
         self.0.values_mut().for_each(|expr| expr.simplify())
@@ -139,10 +159,10 @@ impl Path {
         self.num_normal_samples = num_normal_samples;
     }
 
-    pub fn branch(&mut self, mut cond: Expr, sigma: &HashMap<String, ExprNode>) {
+    pub fn branch(&mut self, mut cond: Expr, sigma: &Sigma) {
         cond.simplify();
         self.conds.push(cond);
-        self.merge_sigma(sigma);
+        self.sigma.update(sigma);
     }
 
     pub fn observe(&mut self, mut observation: Expr) {
