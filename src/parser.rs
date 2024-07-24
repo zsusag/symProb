@@ -1,12 +1,13 @@
-use std::collections::HashMap;
+use anyhow::{Context, Result};
 
 use num::rational::Ratio;
 use num::{FromPrimitive, Rational32};
 use pest::iterators::{Pair, Pairs};
 use pest::pratt_parser::PrattParser;
+use pest::Parser;
 
 use crate::expr::{Expr, ExprNode};
-use crate::syntax::{ExprKind, Func, Statement, StatementKind, Type, Value};
+use crate::syntax::{ExprKind, FnMap, Func, Statement, StatementKind, Type, Value};
 
 #[derive(pest_derive::Parser)]
 #[grammar = "grammar.pest"]
@@ -258,17 +259,32 @@ pub fn parse_statement(pair: Pair<Rule>, statement_counter: &mut u32) -> Stateme
     }
 }
 
-pub fn parse_file(pairs: Pairs<Rule>) -> HashMap<String, Func> {
+fn parse_program(prog: Pairs<Rule>) -> FnMap {
     let mut statement_counter: u32 = 0;
-    pairs
-        .filter_map(|p| match p.as_rule() {
-            Rule::fn_def => {
-                let f = parse_func(p.into_inner(), &mut statement_counter);
-                Some((f.get_name().to_string(), f))
-            }
-            _ => None,
+    prog.filter_map(|p| match p.as_rule() {
+        Rule::fn_def => {
+            let f = parse_func(p.into_inner(), &mut statement_counter);
+            Some((f.get_name().to_string(), f))
+        }
+        _ => None,
+    })
+    .collect()
+}
+
+pub fn parse_file<P>(file: P) -> Result<FnMap>
+where
+    P: AsRef<std::path::Path>,
+{
+    let data = std::fs::read_to_string(file.as_ref())
+        .with_context(|| format!("Failed to read program from {}", file.as_ref().display()))?;
+    ExprParser::parse(Rule::file, &data)
+        .with_context(|| {
+            format!(
+                "failed to parse function definitions in {}",
+                file.as_ref().display()
+            )
         })
-        .collect()
+        .map(|token_pairs| parse_program(token_pairs))
 }
 
 #[cfg(test)]
