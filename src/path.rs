@@ -226,12 +226,6 @@ impl Path {
 
 impl Display for Path {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let sigma_str = self
-            .sigma
-            .iter()
-            .map(|(k, v)| format!("σ({k}) = {v}"))
-            .collect::<Vec<String>>()
-            .join(", ");
         match (&self.path_prob, &self.observes_prob) {
             (None, None) => {
                 if self.terminated {
@@ -248,7 +242,7 @@ impl Display for Path {
                             .map(|e| e.to_string())
                             .collect::<Vec<String>>()
                             .join(" ∧ "),
-                        sigma_str
+                        self.sigma
                     )
                 } else {
                     write!(
@@ -264,7 +258,7 @@ impl Display for Path {
                             .map(|e| e.to_string())
                             .collect::<Vec<String>>()
                             .join(" ∧ "),
-                        sigma_str
+                        self.sigma
                     )
                 }
             }
@@ -285,7 +279,7 @@ impl Display for Path {
                     .collect::<Vec<String>>()
                     .join(" ∧ "),
 								observe_prob,
-                sigma_str
+                self.sigma
             )
                 } else {
                     write!(
@@ -303,7 +297,7 @@ impl Display for Path {
                     .collect::<Vec<String>>()
                     .join(" ∧ "),
 								observe_prob,
-                sigma_str
+                self.sigma
             )
                 }
             }
