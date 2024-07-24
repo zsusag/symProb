@@ -29,6 +29,14 @@ impl Sigma {
     pub fn get(&self, var: &str) -> Option<&Expr> {
         self.0.get(var)
     }
+
+    /// Merge another substitution into this one.
+    ///
+    /// Inserts all of the entries in `other` into `self` and replaces expressions with existing
+    /// program variables with the new expressions from `other`.
+    pub fn merge(&mut self, other: Sigma) {
+        self.0.extend(other.0)
+    }
 }
 
 #[derive(Debug, PartialEq, Eq, Clone, Hash)]
