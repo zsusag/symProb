@@ -1,5 +1,5 @@
 use std::{
-    collections::{BTreeMap, BTreeSet, HashMap, HashSet},
+    collections::{BTreeSet, HashMap, HashSet},
     fmt::Display,
 };
 
@@ -7,11 +7,7 @@ use anyhow::Result;
 use itertools::Itertools;
 use serde::Serialize;
 
-use crate::{
-    executor_state::SymType,
-    expr::{Expr, ExprNode},
-    probability::Prob,
-};
+use crate::{executor_state::SymType, expr::Expr, probability::Prob};
 
 /// A substitution \sigma, or a mapping from program variables to symbolic expressions.
 ///
@@ -308,7 +304,10 @@ impl Display for Path {
 
 #[cfg(test)]
 mod tests {
-    use crate::syntax::{ExprKind, Value};
+    use crate::{
+        expr::ExprNode,
+        syntax::{ExprKind, Value},
+    };
 
     use super::*;
 
