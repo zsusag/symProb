@@ -10,22 +10,20 @@ use crate::{
 
 pub struct Executor {
     stack: Vec<ExecutorState>,
-
-    paths: HashSet<Path>,
+    paths: Vec<Path>,
 }
 
 impl Executor {
     // Create an initial state consisting of the statements from the main function
     pub fn new(mut fn_defs: FnMap, max_iterations: &Option<u32>) -> Self {
         let init_state = ExecutorState::new(fn_defs.remove("main").unwrap(), max_iterations);
-        let paths = HashSet::new();
         Executor {
             stack: vec![init_state],
-            paths,
+            paths: Vec::new(),
         }
     }
 
-    pub fn run(mut self, prob: bool) -> Result<(HashSet<Path>, usize)> {
+    pub fn run(mut self, prob: bool) -> Result<(Vec<Path>, usize)> {
         let mut num_failed_observe_paths: usize = 0;
         while !self.stack.is_empty() {
             let s = self.stack.pop().unwrap();
@@ -36,7 +34,7 @@ impl Executor {
                 }
                 Status::Continue(s) => self.stack.push(s),
                 Status::Terminate(path) => {
-                    self.paths.insert(path);
+                    self.paths.push(path);
                 }
                 Status::PrematureTerminate => panic!(),
                 Status::FailedObserve => {
