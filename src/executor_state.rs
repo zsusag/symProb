@@ -81,7 +81,6 @@ pub struct ExecutorState {
 
     // A mapping from while-loop identifiers to the previous path condition for almost-sure-termination
     // prev_iter_map: HashMap<u32, Path>,
-
     max_iterations: Option<u32>,
     iter_map: HashMap<u32, u32>,
 }
@@ -338,12 +337,12 @@ impl ExecutorState {
                         Ok(status)
                     }
                     StatementKind::While(guard, body) => {
-												let sub_guard = guard.clone_and_substitute(&self.sigma);
+                        let sub_guard = guard.clone_and_substitute(&self.sigma);
 
                         // Apply sigma on the branch guard
                         let (true_sat, false_sat) = self.smt_manager.check_fork_satisfiability(
                             self.path.get_conds(),
-														&sub_guard,
+                            &sub_guard,
                             &self.sym_vars,
                         );
 
@@ -360,7 +359,7 @@ impl ExecutorState {
                                                 self.fork(Vec::new(), Some(sub_guard.not())),
                                             ));
                                         } else {
-																						self.path.branch(sub_guard.not(), &self.sigma);
+                                            self.path.branch(sub_guard.not(), &self.sigma);
                                             return Ok(Status::Continue(self));
                                         }
                                     }
