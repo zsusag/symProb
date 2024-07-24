@@ -12,6 +12,25 @@ use crate::{
     probability::Prob,
 };
 
+/// A substitution \sigma, or a mapping from program variables to symbolic expressions.
+///
+/// \sigma captures the state of a symbolic trace. Each in-scope program variable `x` should map to
+/// a symbolic expression representing `x`'s value at that moment in time.
+pub struct Sigma(HashMap<String, Expr>);
+
+impl Sigma {
+    /// Creates a new, empty substitution.
+    pub fn new() -> Self {
+        Sigma(HashMap::new())
+    }
+
+    /// Returns a reference to `var`'s symbolic expression within the substitution, if
+    /// found. Otherwise, returns `None`.
+    pub fn get(&self, var: &str) -> Option<&Expr> {
+        self.0.get(var)
+    }
+}
+
 #[derive(Debug, PartialEq, Eq, Clone, Hash)]
 pub struct Path {
     conds: Vec<Expr>,
