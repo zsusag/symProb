@@ -5,7 +5,7 @@ use num::Rational32;
 
 use crate::{
     expr::{Expr, ExprNode},
-    path::Path,
+    path::{Path, Sigma},
     smt::SMTManager,
     syntax::{ExprKind, Func, Statement, StatementKind, Type, Value},
 };
@@ -36,11 +36,11 @@ impl SymType {
 #[derive(Debug, Clone)]
 pub struct ScopeState {
     id: u32,
-    sigma: HashMap<String, ExprNode>,
+    sigma: Sigma,
 }
 
 impl ScopeState {
-    pub fn new(id: u32, sigma: HashMap<String, ExprNode>) -> Self {
+    pub fn new(id: u32, sigma: Sigma) -> Self {
         ScopeState { id, sigma }
     }
 
@@ -48,7 +48,7 @@ impl ScopeState {
         self.id == id
     }
 
-    pub fn restore(self) -> HashMap<String, ExprNode> {
+    pub fn restore(self) -> Sigma {
         self.sigma
     }
 }
