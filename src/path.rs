@@ -22,6 +22,11 @@ impl Sigma {
         Sigma(HashMap::new())
     }
 
+    /// Returns `true` if and only if `var` is in the substitution.
+    pub fn contains_var(&self, var: &str) -> bool {
+        self.0.contains_key(var)
+    }
+
     /// Returns a reference to `var`'s symbolic expression within the substitution, if
     /// found. Otherwise, returns `None`.
     pub fn get(&self, var: &str) -> Option<&Expr> {
@@ -63,6 +68,15 @@ impl Sigma {
     /// Returns an iterator over borrowed references to the program variables in the substitution.
     pub fn variables(&self) -> impl Iterator<Item = &String> {
         self.0.keys()
+    }
+
+    /// Removes out-of-scope variables from the substitution.
+    ///
+    /// Only the variables in `scope` will remain in the substitution after this method has
+    /// terminated. In other words, all variables not in `scope` will be removed from the
+    /// substitution.
+    pub fn remove_out_of_scope_vars(&mut self, scope: &Sigma) {
+        self.0.retain(|var, _| scope.contains_var(var))
     }
 }
 

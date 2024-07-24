@@ -159,7 +159,7 @@ impl ExecutorState {
                 let old_sigma = ss.restore();
 
                 // Remove all entries in sigma that didn't exist before the inner scope was introduced
-                self.sigma.retain(|k, _| old_sigma.contains_key(k));
+                self.sigma.remove_out_of_scope_vars(&old_sigma);
             } else {
                 // Else, push the scope state back on the stack
                 self.scope_manager.push(ss);
