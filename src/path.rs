@@ -44,6 +44,10 @@ impl Sigma {
         self.0.values_mut().for_each(|expr| expr.simplify())
     }
 
+    /// Returns an iterator over borrowed references to the program variables in the substitution.
+    pub fn variables(&self) -> impl Iterator<Item = &String> {
+        self.0.keys()
+    }
 }
 
 impl FromIterator<(String, Expr)> for Sigma {
@@ -93,7 +97,7 @@ pub struct Row {
 }
 
 pub fn gen_csv_header(paths: &HashSet<Path>) -> (Vec<String>, BTreeSet<&String>) {
-    let all_var_names: BTreeSet<&String> = paths.iter().flat_map(|p| p.sigma.keys()).collect();
+    let all_var_names: BTreeSet<&String> = paths.iter().flat_map(|p| p.sigma.variables()).collect();
 
     let mut csv_header = vec![
         "Path".to_string(),
