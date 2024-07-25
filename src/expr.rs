@@ -957,3 +957,15 @@ impl Display for ExprNode {
         }
     }
 }
+
+#[derive(Debug, Clone)]
+pub struct PostExpectation(Expr);
+
+impl PostExpectation {
+    /// Parse a postexpectation from a string as an expression.
+    ///
+    /// The `PostExpectation` returned (if parsing was successful) is untyped.
+    pub fn parse(data: &str) -> Result<Self> {
+        Expr::parse(data).map(PostExpectation)
+    }
+}
