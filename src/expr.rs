@@ -968,4 +968,14 @@ impl PostExpectation {
     pub fn parse(data: &str) -> Result<Self> {
         Expr::parse(data).map(PostExpectation)
     }
+
+    /// Checks whether the postexpectation is real-valued given a substitution [`Sigma`]. If the
+    /// postexpectation is boolean-valued then the postexpectation is wrapped in Iverson brackets
+    /// thereby converting it into a real-valued expression.
+    ///
+    /// This method returns an `Err` if the postexpectation is ill-typed or if there are variables
+    /// in the postexpectation which are not in `sigma`.
+    pub fn typecheck(&mut self, sigma: &Sigma) -> Result<()> {
+        todo!()
+    }
 }
