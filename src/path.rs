@@ -130,7 +130,7 @@ impl Display for Sigma {
     }
 }
 
-#[derive(Debug, PartialEq, Eq, Clone)]
+#[derive(Debug, Clone)]
 pub struct Path {
     conds: Vec<Expr>,
     path_prob: Option<Prob>,
