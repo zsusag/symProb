@@ -93,7 +93,8 @@ impl Sigma {
 
     /// Applies the substitution on `expr`.
     pub fn apply(&self, expr: &mut Expr) {
-        expr.substitute(self)
+        expr.substitute(self);
+        expr.simplify();
     }
 }
 
