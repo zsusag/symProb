@@ -43,4 +43,3 @@ The results found in `/home/symProb/qest23/author_results/` were created on one 
 - **RAM**: 32GB
 
 RAM usage should be minimal; 4 GB should be sufficient to reproduce the experiments. `symProb` is not currently parallelized so any number of CPU cores should also be sufficient. All of the experiments should complete within approximately 40 minutes.
-qqq
