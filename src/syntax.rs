@@ -19,7 +19,7 @@ pub enum Value {
 
 impl From<Rational32> for Value {
     fn from(value: Rational32) -> Self {
-        Value::Num(value.into())
+        Value::Num(value)
     }
 }
 
@@ -31,7 +31,7 @@ impl From<bool> for Value {
 
 impl From<String> for Value {
     fn from(value: String) -> Self {
-        Value::Var(value.into())
+        Value::Var(value)
     }
 }
 
