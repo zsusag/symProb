@@ -1016,6 +1016,15 @@ impl PostExpectation {
     /// This method returns an `Err` if the postexpectation is ill-typed or if there are variables
     /// in the postexpectation which are not in `sigma`.
     pub fn typecheck(&mut self, sigma: &Sigma) -> Result<()> {
-        todo!()
+        // Function calls within postexpectations are not supported (yet).
+        let fn_sigs = HashMap::new();
+        let gamma = Gamma::from_sigma(sigma)?;
+        let post_type = self.0.typecheck(&fn_sigs, &gamma)?;
+
+        // Wrap the postexpectation in Iverson brackets, if necessary.
+        if let Type::Bool = post_type {
+            self.0.iverson();
+        }
+        Ok(())
     }
 }
