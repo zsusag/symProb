@@ -4,7 +4,7 @@ use num::Rational32;
 
 use crate::expr::Expr;
 
-#[derive(Debug, PartialEq, Clone, Eq)]
+#[derive(Debug, PartialEq, Copy, Clone, Eq)]
 pub enum Type {
     Real,
     Bool,
