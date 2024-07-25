@@ -20,3 +20,5 @@ csv = "1.1.6"
 serde = { version = "1.0.152", features = ["derive"] }
 remove_dir_all = "0.8.0"
 itertools = "0.13.0"
+once_cell = "1.19.0"
+regex = "1.10.5"

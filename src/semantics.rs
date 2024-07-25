@@ -1,6 +1,8 @@
 use std::collections::HashMap;
 
 use anyhow::{bail, ensure, Result};
+use once_cell::sync::Lazy;
+use regex::Regex;
 use thiserror::Error;
 
 use crate::{
@@ -243,5 +245,23 @@ impl<'a> Gamma<'a> {
     /// previously recorded type for `var` is returned, if it exists.
     pub fn insert(&mut self, var: &'a str, t: Type) -> Option<Type> {
         self.0.insert(var, t)
+    }
+
+    /// Returns the type of `var` if `var` is in the typing context or if `var` is a probabilistic
+    /// symbolic variable. Otherwise, returns `None` if the type of `var` is unknown.
+    pub fn get(&self, var: &'a str) -> Option<Type> {
+        // Create a regex to match whether a variable is a generated probabilistic symbolic
+        // variable. Wrapping the regex within a `once_cell::sync::Lazy` struct allows `IS_PROB_VAR`
+        // to be compiled once per **program** execution rather than each time [`Gamma::get`] is called.
+        static IS_PROB_VAR: Lazy<Regex> = Lazy::new(|| Regex::new(r"^[yz]_[[:digit:]]+$").unwrap());
+
+        // If `var` is a probabilistic symbolic variable, then it has type `Real`.
+        //
+        // Otherwise, look up `var` in the typing context.
+        if IS_PROB_VAR.is_match(var) {
+            Some(Type::Real)
+        } else {
+            self.0.get(var).copied()
+        }
     }
 }
