@@ -45,11 +45,11 @@ impl<'ctx> Expr {
         self.root
     }
 
-    pub fn substitute(&mut self, sigma: &HashMap<String, ExprNode>) {
+    pub fn substitute(&mut self, sigma: &Sigma) {
         self.root.substitute(sigma);
     }
 
-    pub fn clone_and_substitute(&self, sigma: &HashMap<String, ExprNode>) -> Expr {
+    pub fn clone_and_substitute(&self, sigma: &Sigma) -> Expr {
         let mut copy = self.clone();
         copy.root.substitute(sigma);
         copy
