@@ -14,13 +14,6 @@ use crate::{
 #[derive(Debug, PartialEq, Clone, Eq, Hash)]
 pub struct Expr {
     root: ExprNode,
-    //vars: BTreeSet<String>, // Unsure if I need...
-}
-
-#[derive(Debug, PartialEq, Clone, Eq, Hash)]
-pub struct ExprNode {
-    e: ExprKind,
-    children: Vec<ExprNode>,
 }
 
 impl<'ctx> Expr {
@@ -70,6 +63,12 @@ impl<'ctx> Expr {
     pub fn simplify(&mut self) {
         self.root.simplify();
     }
+}
+
+#[derive(Debug, PartialEq, Clone, Eq, Hash)]
+pub struct ExprNode {
+    e: ExprKind,
+    children: Vec<ExprNode>,
 }
 
 impl<'ctx> ExprNode {
