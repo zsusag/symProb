@@ -437,7 +437,7 @@ impl ExecutorState {
                 }
             }
             None => {
-                self.path.merge_sigma(&self.sigma);
+                self.path.update_sigma(&self.sigma);
                 self.path.simplify_sigma();
                 self.path
                     .set_num_samples(self.num_uniform_samples, self.num_normal_samples);

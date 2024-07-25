@@ -196,8 +196,8 @@ impl Path {
         &self.observations
     }
 
-    pub fn merge_sigma(&mut self, sigma: Sigma) {
-        self.sigma.merge(sigma)
+    pub fn update_sigma(&mut self, sigma: &Sigma) {
+        self.sigma.update(sigma)
     }
 
     pub fn simplify_sigma(&mut self) {
