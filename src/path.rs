@@ -273,6 +273,13 @@ impl Path {
     pub fn get_sigma(&self) -> &Sigma {
         &self.sigma
     }
+
+    /// Adds a postexpectation to the path and applies the path's substitution map to the
+    /// postexpectation.
+    pub fn add_postexpectation(&mut self, mut post: PostExpectation) {
+        post.apply_sigma(&self.sigma);
+        self.postexpectation = Some(post);
+    }
 }
 
 impl Display for Path {
