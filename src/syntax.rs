@@ -63,6 +63,7 @@ pub enum ExprKind {
     Eq,
     Ne,
     Func(String),
+    Iverson,
 }
 
 impl<T> From<T> for ExprKind
@@ -93,6 +94,7 @@ impl Display for ExprKind {
             ExprKind::Eq => write!(f, "="),
             ExprKind::Ne => write!(f, "≠"),
             ExprKind::Func(_) => todo!(),
+            ExprKind::Iverson => todo!(),
         }
     }
 }

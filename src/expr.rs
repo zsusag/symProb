@@ -134,7 +134,7 @@ impl<'ctx> ExprNode {
         }
         if can_reduce & !self.children.is_empty() {
             match &self.e {
-                ExprKind::Constant(_) | ExprKind::Sqrt => (),
+                ExprKind::Constant(_) | ExprKind::Sqrt | ExprKind::Iverson => (),
                 ExprKind::Add => {
                     let c2 = self.children.pop().unwrap();
                     let c1 = self.children.pop().unwrap();
@@ -697,6 +697,26 @@ impl<'ctx> ExprNode {
                 );
                 Ok(Type::Real)
             }
+            ExprKind::Iverson => {
+                let c = self
+                    .children
+                    .first()
+                    .ok_or_else(|| SemanticsError::PartialFn {
+                        fn_name: "Iverson".to_string(),
+                        num_args_expected: 1,
+                        num_args_given: 0,
+                    })?;
+                let c_t = c.typecheck(fn_sigs, gamma)?;
+                ensure!(
+                    c_t == Type::Bool,
+                    SemanticsError::TypeError {
+                        expected: Type::Bool,
+                        found: c_t,
+                        e: Expr::new(self.to_owned())
+                    }
+                );
+                Ok(Type::Real)
+            }
         }
     }
 
@@ -913,6 +933,7 @@ impl Display for PsiExpr {
                 self.0.children.get(1).unwrap().to_psi_expr()
             ),
             ExprKind::Func(_) => todo!(),
+            ExprKind::Iverson => write!(f, "[{}]", self.0.children.get(0).unwrap().to_psi_expr()),
         }
     }
 }
@@ -965,6 +986,7 @@ impl Display for ExprNode {
                 }
             }
             ExprKind::Func(_) => todo!(),
+            ExprKind::Iverson => write!(f, "[{}]", self.children.get(0).unwrap()),
         }
     }
 }
