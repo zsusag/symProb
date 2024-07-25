@@ -6,6 +6,7 @@ use z3::{
 };
 
 use crate::{
+    path::Sigma,
     semantics::SemanticsError,
     syntax::{ExprKind, Type, Value},
 };
@@ -39,7 +40,7 @@ impl<'ctx> Expr {
         self.root.typecheck(fn_sigs, gamma)
     }
 
-    pub fn substitute_and_get_root(mut self, sigma: &HashMap<String, ExprNode>) -> ExprNode {
+    pub fn substitute_and_get_root(mut self, sigma: &Sigma) -> ExprNode {
         self.root.substitute(sigma);
         self.root
     }
@@ -558,9 +559,11 @@ impl<'ctx> ExprNode {
     }
 
     // WARNING: Assumes there are no function calls
-    pub fn substitute(&mut self, sigma: &HashMap<String, ExprNode>) {
+    pub fn substitute(&mut self, sigma: &Sigma) {
         if let ExprKind::Constant(Value::Var(name)) = &self.e {
-            *self = sigma.get(name).unwrap().clone();
+            if let Some(expr) = sigma.get(name) {
+                *self = expr.root.clone();
+            }
         } else {
             for child in self.children.iter_mut() {
                 child.substitute(sigma);
