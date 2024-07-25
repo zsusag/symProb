@@ -37,8 +37,12 @@ impl Sigma {
     ///
     /// The old expression which `var` mapped to, if it exists, is returned. Otherwise, `None` is
     /// returned.
-    pub fn insert(&mut self, var: String, expr: Expr) -> Option<Expr> {
-        self.0.insert(var, expr)
+    pub fn insert<S, E>(&mut self, var: S, expr: E) -> Option<Expr>
+    where
+        S: ToString,
+        E: Into<Expr>,
+    {
+        self.0.insert(var.to_string(), expr.into())
     }
 
     /// Merge another substitution into this one.
