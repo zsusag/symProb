@@ -7,7 +7,11 @@ use anyhow::Result;
 use itertools::Itertools;
 use serde::Serialize;
 
-use crate::{executor_state::SymType, expr::Expr, probability::Prob};
+use crate::{
+    executor_state::SymType,
+    expr::{Expr, PostExpectation},
+    probability::Prob,
+};
 
 /// A substitution \sigma, or a mapping from program variables to symbolic expressions.
 ///
@@ -134,6 +138,7 @@ pub struct Path {
     terminated: bool,
     sigma: Sigma,
     observations: Vec<Expr>,
+    postexpectation: Option<PostExpectation>,
     pub num_uniform_samples: u32,
     pub num_normal_samples: u32,
 }
@@ -190,6 +195,7 @@ impl Path {
             terminated: false,
             sigma: Sigma::new(),
             observations: Vec::new(),
+            postexpectation: None,
             num_uniform_samples: 0,
             num_normal_samples: 0,
         }
