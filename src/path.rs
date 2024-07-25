@@ -90,6 +90,11 @@ impl Sigma {
     pub fn remove_out_of_scope_vars(&mut self, scope: &Sigma) {
         self.0.retain(|var, _| scope.contains_var(var))
     }
+
+    /// Applies the substitution on `expr`.
+    pub fn apply(&self, expr: &mut Expr) {
+        expr.substitute(self)
+    }
 }
 
 impl FromIterator<(String, Expr)> for Sigma {
