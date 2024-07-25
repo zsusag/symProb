@@ -1027,4 +1027,9 @@ impl PostExpectation {
         }
         Ok(())
     }
+
+    /// Applies the substitution to the postexpectation.
+    pub fn apply_sigma(&mut self, sigma: &Sigma) {
+        sigma.apply(&mut self.0)
+    }
 }
