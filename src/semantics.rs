@@ -60,7 +60,7 @@ pub fn check_valid_program(fns: &FnMap) -> Result<()> {
     // Check for various things in the statements and containing expressions.
     for f in fns.values() {
         // Initially populate gamma with the function parameters
-        let mut gamma = f.construct_gamma();
+        let mut gamma = Gamma::from_func(f);
         for s in f.get_body() {
             s.typecheck(&fn_sigs, &mut gamma, f.get_ret_t())?;
         }
@@ -99,7 +99,7 @@ impl Statement {
     fn typecheck<'a>(
         &'a self,
         fn_sigs: &HashMap<&String, Vec<&Type>>,
-        gamma: &mut HashMap<&'a String, Type>,
+        gamma: &mut Gamma<'a>,
         ret_t: &Option<Type>,
     ) -> Result<()> {
         match &self.kind {
@@ -233,6 +233,7 @@ impl Statement {
 /// distribution and have type `Real`.
 /// 2. Variables named `z_[0-9]+` are probabilistic symbolic variables sampled from a normal
 /// distribution and have type `Real`.
+#[derive(Debug, Clone)]
 pub struct Gamma<'a>(HashMap<&'a str, Type>);
 
 impl<'a> Gamma<'a> {
