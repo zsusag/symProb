@@ -114,7 +114,7 @@ fn main() -> Result<(), anyhow::Error> {
             writeln!(f, "Number of Samples: {num_samples}")?;
             if let Some(postexps) = postexpectations {
                 for (i, (path, pe)) in paths.iter().zip(postexps).enumerate() {
-                    writeln!(f, "Path {}:\n\t{}\n\tPostexpectation: {pe}", i + 1, path)?;
+                    writeln!(f, "Path {}:\n\t{}\n\tPre-expectation: {pe}", i + 1, path)?;
                 }
             } else {
                 for (i, path) in paths.iter().enumerate() {
@@ -129,7 +129,7 @@ fn main() -> Result<(), anyhow::Error> {
             println!("Number of Samples: {num_samples}");
             if let Some(postexps) = postexpectations {
                 for (i, (path, pe)) in paths.iter().zip(postexps).enumerate() {
-                    println!("Path {}:\n\t{}\n\tPostexpectation: {pe}", i + 1, path);
+                    println!("Path {}:\n\t{}\n\tPre-expectation: {pe}", i + 1, path);
                 }
             } else {
                 for (i, path) in paths.iter().enumerate() {
