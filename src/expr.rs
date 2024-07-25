@@ -1,11 +1,13 @@
-use anyhow::{bail, ensure, Result};
+use anyhow::{bail, ensure, Context, Result};
+use pest::Parser;
 use std::{collections::HashMap, fmt::Display};
 use z3::{
     ast::{Ast, Bool, Real},
-    Context,
+    Context as Ctx,
 };
 
 use crate::{
+    parser::{parse_expr, ExprParser, Rule},
     path::Sigma,
     semantics::SemanticsError,
     syntax::{ExprKind, Type, Value},
@@ -19,6 +21,12 @@ pub struct Expr {
 impl<'ctx> Expr {
     pub fn new(root: ExprNode) -> Self {
         Expr { root }
+    }
+
+    pub fn parse(data: &str) -> Result<Self> {
+        ExprParser::parse(Rule::equation, data)
+            .context("failed to parse expression")
+            .map(|token_pairs| Expr::new(parse_expr(token_pairs)))
     }
 
     pub fn root(self) -> ExprNode {
@@ -48,7 +56,7 @@ impl<'ctx> Expr {
         copy
     }
 
-    pub fn convert(&self, ctx: &'ctx Context) -> Bool<'ctx> {
+    pub fn convert(&self, ctx: &'ctx Ctx) -> Bool<'ctx> {
         self.root.convert_bool(ctx)
     }
 
@@ -694,7 +702,7 @@ impl<'ctx> ExprNode {
         }
     }
 
-    pub fn convert_bool(&self, ctx: &'ctx Context) -> Bool<'ctx> {
+    pub fn convert_bool(&self, ctx: &'ctx Ctx) -> Bool<'ctx> {
         match &self.e {
             ExprKind::Constant(v) => match v {
                 Value::Num(_) => unreachable!(),
@@ -749,7 +757,7 @@ impl<'ctx> ExprNode {
         }
     }
 
-    pub fn convert_real(&self, ctx: &'ctx Context) -> Real<'ctx> {
+    pub fn convert_real(&self, ctx: &'ctx Ctx) -> Real<'ctx> {
         match &self.e {
             ExprKind::Constant(v) => match v {
                 Value::Num(n) => Real::from_real(ctx, *n.numer(), *n.denom()),
