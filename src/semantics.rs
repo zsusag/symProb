@@ -7,7 +7,7 @@ use thiserror::Error;
 
 use crate::{
     expr::Expr,
-    syntax::{FnMap, Statement, StatementKind, Type},
+    syntax::{FnMap, Func, Statement, StatementKind, Type},
 };
 
 #[derive(Error, Debug)]
@@ -263,5 +263,17 @@ impl<'a> Gamma<'a> {
         } else {
             self.0.get(var).copied()
         }
+    }
+
+    /// Constructs a new typing context from a function definition.
+    ///
+    /// The returned typing context contains of the parameters to the function.
+    pub fn from_func(func: &'a Func) -> Self {
+        let map = func
+            .inputs
+            .iter()
+            .map(|(param, t)| (param.as_str(), *t))
+            .collect();
+        Gamma(map)
     }
 }
