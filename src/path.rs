@@ -1,5 +1,5 @@
 use std::{
-    collections::{BTreeSet, HashMap, HashSet},
+    collections::{BTreeSet, HashMap},
     fmt::Display,
 };
 
@@ -49,6 +49,7 @@ impl Sigma {
     ///
     /// Inserts all of the entries in `other` into `self` and replaces expressions with existing
     /// program variables with the new expressions from `other`.
+    #[allow(dead_code)]
     pub fn merge(&mut self, other: Sigma) {
         self.0.extend(other.0)
     }

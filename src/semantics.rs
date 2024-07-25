@@ -5,7 +5,7 @@ use thiserror::Error;
 
 use crate::{
     expr::Expr,
-    syntax::{FnMap, Func, Statement, StatementKind, Type},
+    syntax::{FnMap, Statement, StatementKind, Type},
 };
 
 #[derive(Error, Debug)]

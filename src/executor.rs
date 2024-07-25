@@ -1,11 +1,9 @@
-use std::collections::{HashMap, HashSet};
-
 use anyhow::Result;
 
 use crate::{
     executor_state::{ExecutorState, Status},
     path::Path,
-    syntax::{FnMap, Func},
+    syntax::FnMap,
 };
 
 pub struct Executor {
