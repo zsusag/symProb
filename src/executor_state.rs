@@ -237,7 +237,7 @@ impl ExecutorState {
                             ExprKind::Lt,
                             vec![
                                 ExprNode::new_leaf(ExprKind::Constant(Value::Var(var.clone()))),
-                                e.get_root(),
+                                e.root(),
                             ],
                         ));
                         let branch = Statement::new_with_id(
@@ -250,8 +250,8 @@ impl ExecutorState {
                         Ok(Status::Continue(self))
                     }
                     StatementKind::Normal(var, mean, variance) => {
-                        let mut mean = mean.get_root();
-                        let mut variance = variance.get_root();
+                        let mut mean = mean.root();
+                        let mut variance = variance.root();
 
                         // Apply sigma to both mean and variance
                         mean.substitute(&self.sigma);
@@ -283,8 +283,8 @@ impl ExecutorState {
                         Ok(Status::Continue(self))
                     }
                     StatementKind::Uniform(var, lower, upper) => {
-                        let mut lower = lower.get_root();
-                        let mut upper = upper.get_root();
+                        let mut lower = lower.root();
+                        let mut upper = upper.root();
 
                         // Apply sigma to both lower and upper expressions
                         lower.substitute(&self.sigma);

@@ -27,7 +27,7 @@ impl<'ctx> Expr {
         Expr { root }
     }
 
-    pub fn get_root(self) -> ExprNode {
+    pub fn root(self) -> ExprNode {
         self.root
     }
     // Returns the type of the expression
