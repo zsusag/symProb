@@ -222,3 +222,19 @@ impl Statement {
         Ok(())
     }
 }
+
+/// A typing context mapping variables to types.
+///
+/// This typing construct is also aware of the following conventions:
+/// 1. Variables named `y_[0-9]+` are probabilistic symbolic variables sampled from a uniform
+/// distribution and have type `Real`.
+/// 2. Variables named `z_[0-9]+` are probabilistic symbolic variables sampled from a normal
+/// distribution and have type `Real`.
+pub struct Gamma<'a>(HashMap<&'a str, Type>);
+
+impl<'a> Gamma<'a> {
+    /// Creates a new, empty typing context.
+    pub fn new() -> Self {
+        Gamma(HashMap::new())
+    }
+}
