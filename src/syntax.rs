@@ -162,10 +162,6 @@ impl Func {
         }
     }
 
-    pub fn construct_gamma(&self) -> HashMap<&String, Type> {
-        self.inputs.iter().map(|(x, t)| (x, t.clone())).collect()
-    }
-
     pub fn get_name(&self) -> &str {
         &self.name
     }
