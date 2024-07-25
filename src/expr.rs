@@ -24,7 +24,7 @@ impl<'ctx> Expr {
     }
 
     pub fn parse(data: &str) -> Result<Self> {
-        ExprParser::parse(Rule::equation, data)
+        ExprParser::parse(Rule::expr, data)
             .context("failed to parse expression")
             .map(|token_pairs| Expr::new(parse_expr(token_pairs)))
     }
