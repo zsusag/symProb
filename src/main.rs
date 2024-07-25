@@ -46,8 +46,8 @@ struct Args {
     output: Option<std::path::PathBuf>,
 
     #[arg(long)]
-    /// postexpectation expression
-    postexpectation: Option<String>,
+    /// A post-expectation expression parameterized by program variables.
+    post_expectation: Option<String>,
 }
 
 fn main() -> Result<(), anyhow::Error> {
@@ -58,7 +58,7 @@ fn main() -> Result<(), anyhow::Error> {
     check_valid_program(&fn_defs)?;
 
     let postexpectation = args
-        .postexpectation
+        .post_expectation
         .map(|data| Expr::parse(&data))
         .transpose()?;
 
