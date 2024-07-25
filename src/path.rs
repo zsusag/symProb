@@ -138,8 +138,14 @@ pub struct Row {
     sigma: Vec<Option<String>>,
 }
 
-pub fn gen_csv_header(paths: &HashSet<Path>) -> (Vec<String>, BTreeSet<&String>) {
-    let all_var_names: BTreeSet<&String> = paths.iter().flat_map(|p| p.sigma.variables()).collect();
+pub fn gen_csv_header<'a, I>(paths: I) -> (Vec<String>, BTreeSet<&'a String>)
+where
+    I: IntoIterator<Item = &'a Path>,
+{
+    let all_var_names: BTreeSet<_> = paths
+        .into_iter()
+        .flat_map(|p| p.sigma.variables())
+        .collect();
 
     let mut csv_header = vec![
         "Path".to_string(),
