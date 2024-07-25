@@ -48,6 +48,11 @@ struct Args {
     #[arg(long)]
     /// A post-expectation expression parameterized by program variables.
     post_expectation: Option<String>,
+
+    #[arg(long)]
+    /// Path to a post-expectation expression parameterized by program variables stored within a
+    /// file.
+    post_expectation_path: Option<std::path::PathBuf>,
 }
 
 fn main() -> Result<(), anyhow::Error> {
