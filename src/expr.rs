@@ -65,6 +65,15 @@ impl<'ctx> Expr {
     }
 }
 
+impl<T> From<T> for Expr
+where
+    T: Into<ExprNode>,
+{
+    fn from(value: T) -> Self {
+        Expr::new(value.into())
+    }
+}
+
 #[derive(Debug, PartialEq, Clone, Eq, Hash)]
 pub struct ExprNode {
     e: ExprKind,
@@ -778,6 +787,15 @@ impl<'ctx> ExprNode {
 
     pub fn to_psi_expr(&self) -> PsiExpr {
         PsiExpr(self.clone())
+    }
+}
+
+impl<T> From<T> for ExprNode
+where
+    T: Into<ExprKind>,
+{
+    fn from(value: T) -> Self {
+        ExprNode::new_leaf(value.into())
     }
 }
 

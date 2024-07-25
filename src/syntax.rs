@@ -17,6 +17,24 @@ pub enum Value {
     Var(String),
 }
 
+impl From<Rational32> for Value {
+    fn from(value: Rational32) -> Self {
+        Value::Num(value.into())
+    }
+}
+
+impl From<bool> for Value {
+    fn from(value: bool) -> Self {
+        Value::Boolean(value)
+    }
+}
+
+impl From<String> for Value {
+    fn from(value: String) -> Self {
+        Value::Var(value.into())
+    }
+}
+
 impl Display for Value {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
@@ -45,6 +63,15 @@ pub enum ExprKind {
     Eq,
     Ne,
     Func(String),
+}
+
+impl<T> From<T> for ExprKind
+where
+    T: Into<Value>,
+{
+    fn from(value: T) -> Self {
+        ExprKind::Constant(value.into())
+    }
 }
 
 impl Display for ExprKind {
