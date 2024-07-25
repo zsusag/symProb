@@ -677,7 +677,26 @@ impl<'ctx> ExprNode {
                     }),
                 }
             }
-            ExprKind::Sqrt => unreachable!(),
+            ExprKind::Sqrt => {
+                let c = self
+                    .children
+                    .first()
+                    .ok_or_else(|| SemanticsError::PartialFn {
+                        fn_name: "sqrt".to_string(),
+                        num_args_expected: 1,
+                        num_args_given: 0,
+                    })?;
+                let c_t = c.typecheck(fn_sigs, gamma)?;
+                ensure!(
+                    c_t == Type::Real,
+                    SemanticsError::TypeError {
+                        expected: Type::Real,
+                        found: c_t,
+                        e: Expr::new(self.to_owned())
+                    }
+                );
+                Ok(Type::Real)
+            }
         }
     }
 
