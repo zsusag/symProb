@@ -9,7 +9,7 @@ use z3::{
 use crate::{
     parser::{parse_expr, ExprParser, Rule},
     path::Sigma,
-    semantics::SemanticsError,
+    semantics::{Gamma, SemanticsError},
     syntax::{ExprKind, Type, Value},
 };
 
@@ -33,11 +33,7 @@ impl<'ctx> Expr {
         self.root
     }
     // Returns the type of the expression
-    pub fn typecheck(
-        &self,
-        fn_sigs: &HashMap<&String, Vec<&Type>>,
-        gamma: &HashMap<&String, Type>,
-    ) -> Result<Type> {
+    pub fn typecheck(&self, fn_sigs: &HashMap<&String, Vec<&Type>>, gamma: &Gamma) -> Result<Type> {
         self.root.typecheck(fn_sigs, gamma)
     }
 
@@ -594,11 +590,7 @@ impl<'ctx> ExprNode {
         }
     }
 
-    fn typecheck(
-        &self,
-        fn_sigs: &HashMap<&String, Vec<&Type>>,
-        gamma: &HashMap<&String, Type>,
-    ) -> Result<Type> {
+    fn typecheck(&self, fn_sigs: &HashMap<&String, Vec<&Type>>, gamma: &Gamma) -> Result<Type> {
         match &self.e {
             ExprKind::Constant(v) => match v {
                 Value::Num(_) => Ok(Type::Real),

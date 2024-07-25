@@ -7,6 +7,7 @@ use thiserror::Error;
 
 use crate::{
     expr::Expr,
+    path::Sigma,
     syntax::{FnMap, Func, Statement, StatementKind, Type},
 };
 
@@ -275,5 +276,21 @@ impl<'a> Gamma<'a> {
             .map(|(param, t)| (param.as_str(), *t))
             .collect();
         Gamma(map)
+    }
+
+    /// Constructs a new typing context from a substitution.
+    ///
+    /// The returned typing context consists of all the variables in the substitution along with the
+    /// type of the associated symbolic expression.
+    pub fn from_sigma(sigma: &'a Sigma) -> Result<Self> {
+        // Create a new empty typing context to typecheck the expressions in `sigma`.
+        let gamma = Gamma::new();
+        let fn_sigs = HashMap::new();
+        sigma
+            .iter()
+            .map(|(var, expr)| expr.typecheck(&fn_sigs, &gamma).map(|t| (var.as_str(), t)))
+            // Collect will only return `Ok(_)` if typechecking succeeded for all expressions in `sigma`.
+            .collect::<Result<Vec<_>>>()
+            .map(|iter| Gamma(HashMap::from_iter(iter)))
     }
 }
