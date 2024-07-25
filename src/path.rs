@@ -255,6 +255,10 @@ impl Path {
                 .collect(),
         }
     }
+
+    pub fn get_sigma(&self) -> &Sigma {
+        &self.sigma
+    }
 }
 
 impl Display for Path {
