@@ -33,6 +33,14 @@ impl Sigma {
         self.0.get(var)
     }
 
+    /// Updates the substitution to map `var` to `expr`.
+    ///
+    /// The old expression which `var` mapped to, if it exists, is returned. Otherwise, `None` is
+    /// returned.
+    pub fn insert(&mut self, var: String, expr: Expr) -> Option<Expr> {
+        self.0.insert(var, expr)
+    }
+
     /// Merge another substitution into this one.
     ///
     /// Inserts all of the entries in `other` into `self` and replaces expressions with existing
