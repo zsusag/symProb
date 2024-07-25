@@ -487,7 +487,6 @@ impl<'ctx> ExprNode {
                 ExprKind::Not => {
                     if let ExprKind::Constant(Value::Boolean(b)) = self.children.pop().unwrap().e {
                         self.e = ExprKind::Constant(Value::Boolean(!b));
-                    } else {
                     }
                 }
                 ExprKind::Lt => {
