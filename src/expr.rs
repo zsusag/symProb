@@ -67,6 +67,13 @@ impl<'ctx> Expr {
     pub fn simplify(&mut self) {
         self.root.simplify();
     }
+
+    /// Wraps the expression in Iverson brackets.
+    pub fn iverson(&mut self) {
+        let new_root = ExprNode::new(ExprKind::Iverson, Vec::with_capacity(1));
+        let old_root = std::mem::replace(&mut self.root, new_root);
+        self.root.children.push(old_root);
+    }
 }
 
 impl<T> From<T> for Expr
