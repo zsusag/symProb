@@ -45,7 +45,7 @@ struct Args {
     /// output to file
     output: Option<std::path::PathBuf>,
 
-    #[arg(short, long)]
+    #[arg(long)]
     /// postexpectation expression
     postexpectation: Option<String>,
 }
