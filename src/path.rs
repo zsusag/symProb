@@ -97,6 +97,12 @@ impl Sigma {
         expr.substitute(self);
         expr.simplify();
     }
+
+    /// An iterator visiting all substitution pairs in an arbitrary order. The iterator element type
+    /// is `(&'a String, &'a Expr)`.
+    pub fn iter<'a>(&'a self) -> impl Iterator<Item = (&'a String, &'a Expr)> {
+        self.0.iter()
+    }
 }
 
 impl FromIterator<(String, Expr)> for Sigma {
