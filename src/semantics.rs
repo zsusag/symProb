@@ -237,4 +237,11 @@ impl<'a> Gamma<'a> {
     pub fn new() -> Self {
         Gamma(HashMap::new())
     }
+
+    /// Inserts the pair `(var, t)` into the typing context, asserting that `var` has type `t`. If
+    /// `var` is already in the typing context, then `var`'s type will be set to be `t`. The
+    /// previously recorded type for `var` is returned, if it exists.
+    pub fn insert(&mut self, var: &'a str, t: Type) -> Option<Type> {
+        self.0.insert(var, t)
+    }
 }
