@@ -89,7 +89,13 @@ impl<'ctx> Expr {
         Expr::new(ExprNode::new(ExprKind::And, vec![self.root, expr.root]))
     }
 
+    /// Returns the expresion `self * expr`.
     ///
+    /// **Warning**: This method assumes that both `self` and `expr` have type `Type::Real`. If
+    /// either `self` or `expr` have type `Type::Bool`, then the two expressions will still be
+    /// multiplied together but the expression will be ill-typed.
+    fn mul(self, expr: Expr) -> Expr {
+        Expr::new(ExprNode::new(ExprKind::Mul, vec![self.root, expr.root]))
     }
 }
 
