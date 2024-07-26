@@ -1072,3 +1072,25 @@ impl IntoIterator for PostExpectation {
         std::iter::once(self.0)
     }
 }
+
+/// Returns the conjunction of the set of expressions. If `exprs` is empty, then this function
+/// returns `None`.
+///
+/// If `e_1`, ..., `e_n` are the `n` expressions in `exprs` then this function returns the
+/// expression `e_1 ∧ ... ∧ e_n`.
+fn conjunction<I>(exprs: I) -> Option<Expr>
+where
+    I: IntoIterator<Item = Expr>,
+{
+    exprs.into_iter().reduce(|e1, e2| e1.and(e2))
+}
+
+/// Returns the product of the set of expressions. If `exprs` is empty, then this function returns
+/// `None`.
+fn product<I>(exprs: I) -> Option<Expr>
+where
+    I: IntoIterator<Item = Expr>,
+{
+    exprs.into_iter().reduce(|e1, e2| e1.mul(e2))
+}
+
