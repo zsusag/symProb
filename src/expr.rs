@@ -69,7 +69,12 @@ impl<'ctx> Expr {
     }
 
     /// Wraps the expression in Iverson brackets.
-    pub fn iverson(&mut self) {
+    pub fn iverson(self) -> Expr {
+        Expr::new(ExprNode::new(ExprKind::Iverson, vec![self.root]))
+    }
+
+    /// Wraps the expression in Iverson brackets by mutating `self`.
+    pub fn iverson_mut(&mut self) {
         let new_root = ExprNode::new(ExprKind::Iverson, Vec::with_capacity(1));
         let old_root = std::mem::replace(&mut self.root, new_root);
         self.root.children.push(old_root);
@@ -1044,7 +1049,7 @@ impl PostExpectation {
 
         // Wrap the postexpectation in Iverson brackets, if necessary.
         if let Type::Bool = post_type {
-            self.0.iverson();
+            self.0.iverson_mut();
         }
         Ok(())
     }
