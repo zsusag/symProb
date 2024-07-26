@@ -984,15 +984,8 @@ impl Display for ExprNode {
             | ExprKind::Mul
             | ExprKind::And
             | ExprKind::Or
-            | ExprKind::Div => write!(
-                f,
-                "{} {} {}",
-                self.children.get(0).unwrap(),
-                self.e,
-                self.children.get(1).unwrap()
-            ),
-            ExprKind::Sqrt => write!(f, "{}{}", self.e, self.children.get(0).unwrap()),
-            ExprKind::Lt
+            | ExprKind::Div
+            | ExprKind::Lt
             | ExprKind::Le
             | ExprKind::Gt
             | ExprKind::Ge
@@ -1007,6 +1000,7 @@ impl Display for ExprNode {
                     (false, false) => write!(f, "{} {} {}", e1, self.e, e2),
                 }
             }
+            ExprKind::Sqrt => write!(f, "{}{}", self.e, self.children.get(0).unwrap()),
             ExprKind::Not => {
                 let e = self.children.get(0).unwrap();
                 if e.needs_parens() {
