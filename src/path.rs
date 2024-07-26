@@ -310,85 +310,43 @@ impl Path {
     }
 }
 
+/// Paths are displayed in a block indented by a single TAB character (i.e., `'\t'`).
 impl Display for Path {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        match (&self.path_prob, &self.observes_prob) {
-            (None, None) => {
-                if self.terminated {
-                    write!(
-                        f,
-                        "Path Condition: {}\n\tObservations: {}\n\tSigma: {}\n\tForced termination: Yes",
-                        self.conds
-                            .iter()
-                            .map(|e| e.to_string())
-                            .collect::<Vec<String>>()
-                            .join(" ∧ "),
-                        self.observations
-                            .iter()
-                            .map(|e| e.to_string())
-                            .collect::<Vec<String>>()
-                            .join(" ∧ "),
-                        self.sigma
-                    )
-                } else {
-                    write!(
-                        f,
-                        "Path Condition: {}\n\tObservations: {}\n\tSigma: {}\n\tForced termination: No",
-                        self.conds
-                            .iter()
-                            .map(|e| e.to_string())
-                            .collect::<Vec<String>>()
-                            .join(" ∧ "),
-                        self.observations
-                            .iter()
-                            .map(|e| e.to_string())
-                            .collect::<Vec<String>>()
-                            .join(" ∧ "),
-                        self.sigma
-                    )
-                }
-            }
-            (Some(path_prob), Some(observe_prob)) => {
-                if self.terminated {
-                    write!(
-                f,
-                "Path Condition: {}\n\tProbability: {}\n\tObservations: {}\n\tObservations Probability: {}\n\tSigma: {}\n\tForced termination: Yes",
-                self.conds
-                    .iter()
-                    .map(|e| e.to_string())
-                    .collect::<Vec<String>>()
-                    .join(" ∧ "),
-                path_prob,
-                self.observations
-                    .iter()
-                    .map(|e| e.to_string())
-                    .collect::<Vec<String>>()
-                    .join(" ∧ "),
-								observe_prob,
-                self.sigma
-            )
-                } else {
-                    write!(
-                f,
-                "Path Condition: {}\n\tProbability: {}\n\tObservations: {}\n\tObservations Probability: {}\n\tSigma: {}\n\tForced termination: No",
-                self.conds
-                    .iter()
-                    .map(|e| e.to_string())
-                    .collect::<Vec<String>>()
-                    .join(" ∧ "),
-                path_prob,
-                self.observations
-                    .iter()
-                    .map(|e| e.to_string())
-                    .collect::<Vec<String>>()
-                    .join(" ∧ "),
-								observe_prob,
-                self.sigma
-            )
-                }
-            }
-            _ => unreachable!(),
+        // Print the path condition as the conjunction of the individual path conjuncts.
+        writeln!(f, "\tPath Condition: {}", self.conds.iter().format(" ∧ "))?;
+
+        // If a path probability has been computed, print it.
+        if let Some(path_prob) = &self.path_prob {
+            writeln!(f, "\tProbability: {path_prob}")?;
         }
+
+        // Print the path observations as the conjunction of the individual observations.
+        writeln!(
+            f,
+            "\tObservations: {}",
+            self.observations.iter().format(" ∧ ")
+        )?;
+
+        // If the probability of observing the path observations have bene computed, print it.
+        if let Some(observes_prob) = &self.observes_prob {
+            writeln!(f, "\tObservations Probability: {observes_prob}")?;
+        }
+
+        // Print the substitution map [`Sigma`].
+        writeln!(f, "\tSubstitution (σ): {}", self.sigma)?;
+
+        // Print the pre-expectation for the path if a postcondition has been provided.
+        if let Some(preexp) = self.preexpectation() {
+            writeln!(f, "\tPre-expectation: {preexp}")?;
+        }
+
+        // Print whether the path was forced to terminate.
+        writeln!(
+            f,
+            "\tForcibly terminated: {}",
+            if self.terminated { "Yes" } else { "No" }
+        )
     }
 }
 
