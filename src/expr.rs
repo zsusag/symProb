@@ -1094,3 +1094,21 @@ where
     exprs.into_iter().reduce(|e1, e2| e1.mul(e2))
 }
 
+#[derive(Debug, Clone)]
+pub struct PreExpectation(Expr);
+
+impl PreExpectation {
+    pub fn new<IC, IO>(path_cond: IC, path_obvs: IO, postexp: PostExpectation) -> Self
+    where
+        IC: IntoIterator<Item = Expr>,
+        IO: IntoIterator<Item = Expr>,
+    {
+        let path_cond_conj = conjunction(path_cond).map(|pc| pc.iverson());
+        let path_obvs_conj = conjunction(path_obvs).map(|po| po.iverson());
+
+        let preexp = product(itertools::chain!(path_cond_conj, path_obvs_conj, postexp))
+            .expect("product should be non-empty");
+
+        PreExpectation(preexp)
+    }
+}
