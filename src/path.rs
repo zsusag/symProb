@@ -9,7 +9,7 @@ use serde::Serialize;
 
 use crate::{
     executor_state::SymType,
-    expr::{Expr, PostExpectation},
+    expr::{Expr, PostExpectation, PreExpectation},
     probability::Prob,
 };
 
@@ -279,6 +279,34 @@ impl Path {
     pub fn add_postexpectation(&mut self, mut post: PostExpectation) {
         post.apply_sigma(&self.sigma);
         self.postexpectation = Some(post);
+    }
+
+    /// Returns the pre-expectation for the path. If the path does not have a postexpectation (i.e.,
+    /// `self.postexpectation` is `None`), this method returns `None`.
+    ///
+    /// **Warning**: This method clones the path condition, path observation, and postexpectation
+    /// thereby triggering memory allocations. If the path will no longer be needed, consider
+    /// using [`Path::into_preexpectation`] instead.
+    pub fn preexpectation(&self) -> Option<PreExpectation> {
+        self.postexpectation
+            .clone()
+            .map(|post| PreExpectation::new(self.conds.clone(), self.observations.clone(), post))
+    }
+
+    /// Returns the pre-expectation for the path by consuming the path. If the path does not have a postexpectation (i.e.,
+    /// `self.postexpectation` is `None`), this method returns `None`.
+    ///
+    /// **Warning**: This method clones the path condition, path observation, and postexpectation
+    /// thereby triggering memory allocations. If the path will no longer be needed, consider
+    /// using [`Path::into_preexpectation`] instead.
+    pub fn into_preexpectation(self) -> Option<PreExpectation> {
+        let Path {
+            conds,
+            observations,
+            postexpectation,
+            ..
+        } = self;
+        postexpectation.map(|post| PreExpectation::new(conds, observations, post))
     }
 }
 
