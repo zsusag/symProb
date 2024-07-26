@@ -275,10 +275,15 @@ impl Path {
     }
 
     /// Adds a postexpectation to the path and applies the path's substitution map to the
-    /// postexpectation.
-    pub fn add_postexpectation(&mut self, mut post: PostExpectation) {
+    /// postexpectation. If the postexpectation is ill-typed, then `Err(_)` is returned. Otherwise,
+    /// `Ok(())` is returned.
+    pub fn add_postexpectation(&mut self, mut post: PostExpectation) -> Result<()> {
+        // Typecheck the postexpectation using the path's substitution, forwarding on any errors
+        // that were encountered to the caller.
+        post.typecheck(&self.sigma)?;
         post.apply_sigma(&self.sigma);
         self.postexpectation = Some(post);
+        Ok(())
     }
 
     /// Returns the pre-expectation for the path. If the path does not have a postexpectation (i.e.,
