@@ -80,25 +80,16 @@ impl<'ctx> Expr {
         self.root.children.push(old_root);
     }
 
-    /// Applies the boolean AND operation between `self` and `expr` by mutating `self`.
-    ///
-    /// **Warning**: This method assumes that both `self` and `expr` have type `Type::Bool`. If
-    /// either `self` or `expr` have type `Type::Real`, then the two expressions will still be
-    /// logically AND'd together but the expression will be unsound.
-    fn and(&mut self, expr: Expr) {
-        let and_node = ExprNode::new(ExprKind::And, Vec::with_capacity(2));
-        let c1 = std::mem::replace(&mut self.root, and_node);
-        self.root.children.push(c1);
-        self.root.children.push(expr.root);
-    }
-
     /// Returns the expression `self ∧ expr`.
     ///
     /// **Warning**: This method assumes that both `self` and `expr` have type `Type::Bool`. If
     /// either `self` or `expr` have type `Type::Real`, then the two expressions will still be
-    /// logically AND'd together but the expression will be unsound.
-    fn into_and(self, expr: Expr) -> Expr {
+    /// logically AND'd together but the expression will be ill-typed.
+    fn and(self, expr: Expr) -> Expr {
         Expr::new(ExprNode::new(ExprKind::And, vec![self.root, expr.root]))
+    }
+
+    ///
     }
 }
 
