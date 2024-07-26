@@ -1056,3 +1056,19 @@ impl PostExpectation {
         sigma.apply(&mut self.0)
     }
 }
+
+impl From<PostExpectation> for Expr {
+    fn from(value: PostExpectation) -> Self {
+        value.0
+    }
+}
+
+impl IntoIterator for PostExpectation {
+    type Item = Expr;
+
+    type IntoIter = std::iter::Once<Expr>;
+
+    fn into_iter(self) -> Self::IntoIter {
+        std::iter::once(self.0)
+    }
+}
