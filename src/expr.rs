@@ -1112,3 +1112,10 @@ impl PreExpectation {
         PreExpectation(preexp)
     }
 }
+
+/// Printing a `PreExpectation` can be done by simply printing the encapsulated expression.
+impl Display for PreExpectation {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}", self.0)
+    }
+}
