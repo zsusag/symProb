@@ -2,7 +2,7 @@ use anyhow::Result;
 use clap::Parser;
 
 use csv::WriterBuilder;
-use expr::Expr;
+use expr::{Expr, PostExpectation};
 use path::gen_csv_header;
 use std::{
     fs::File,
@@ -56,25 +56,47 @@ struct Args {
 }
 
 fn main() -> Result<(), anyhow::Error> {
+    // Parse the command line arguments.
     let args = Args::parse();
 
+    // Parse the provided program.
     let fn_defs: FnMap = parse_file(&args.p)?;
 
+    // Check whether the provided program is semantically valid.
     check_valid_program(&fn_defs)?;
 
+    // Parse the postexpectation expression, if provided.
     let postexpectation = args
         .post_expectation
-        .map(|data| Expr::parse(&data))
+        .map(|data| PostExpectation::parse(&data))
         .transpose()?;
 
+    // Create a new symbolic executor for the provided program.
     let executor = Executor::new(fn_defs, &args.max_iterations);
-    let (paths, num_failed_observe_paths) = executor.run(args.prob)?;
 
+    // Find all the paths (within a finite number of iterations) and optionally compute their
+    // probabilities.
+    let (mut paths, num_failed_observe_paths) = executor.run(args.prob)?;
+
+    // If a postcondition was provided, add it to all the paths.
+    //
+    // If an error is encountered while typechecking the postcondition against each path's
+    // substitution, return that error immediately.
+    if let Some(post) = postexpectation {
+        paths
+            .iter_mut()
+            .zip(std::iter::repeat(post))
+            .try_for_each(|(path, post)| path.add_postexpectation(post))?;
+    }
+
+    // Compute the maximum number of random samples across all the paths. That is, find the path
+    // which had the most random samples and return the number of samples that path made.
     let num_samples = paths
         .iter()
         .map(|p| p.num_uniform_samples + p.num_normal_samples)
         .max()
         .unwrap();
+
     if args.csv {
         let (header, all_var_names) = gen_csv_header(&paths);
         let rows = paths
@@ -101,46 +123,22 @@ fn main() -> Result<(), anyhow::Error> {
                 wtr.flush()?;
             }
         }
-    } else {
-        let postexpectations = postexpectation.map(|pe| {
-            paths
-                .iter()
-                .map(|p| p.get_sigma())
-                .zip(std::iter::repeat(pe))
-                .map(|(sigma, mut pe)| {
-                    sigma.apply(&mut pe);
-                    pe
-                })
-        });
-        if let Some(output_path) = args.output {
-            let mut f = File::create(output_path)?;
-            writeln!(f, "Number of Paths: {}", paths.len())?;
-            writeln!(f, "Number of Removed Paths: {num_failed_observe_paths}")?;
-            writeln!(f, "Number of Samples: {num_samples}")?;
-            if let Some(postexps) = postexpectations {
-                for (i, (path, pe)) in paths.iter().zip(postexps).enumerate() {
-                    writeln!(f, "Path {}:\n\t{}\n\tPre-expectation: {pe}", i + 1, path)?;
-                }
-            } else {
-                for (i, path) in paths.iter().enumerate() {
-                    writeln!(f, "Path {}:\n\t{}", i + 1, path)?;
-                }
-            }
+    } else if let Some(output_path) = args.output {
+        let mut f = File::create(output_path)?;
+        writeln!(f, "Number of Paths: {}", paths.len())?;
+        writeln!(f, "Number of Removed Paths: {num_failed_observe_paths}")?;
+        writeln!(f, "Number of Samples: {num_samples}")?;
+        for (i, path) in paths.iter().enumerate() {
+            writeln!(f, "Path {}:\n{}", i + 1, path)?;
+        }
 
-            f.flush()?;
-        } else {
-            println!("Number of Paths: {}", paths.len());
-            println!("Number of Removed Paths: {num_failed_observe_paths}");
-            println!("Number of Samples: {num_samples}");
-            if let Some(postexps) = postexpectations {
-                for (i, (path, pe)) in paths.iter().zip(postexps).enumerate() {
-                    println!("Path {}:\n\t{}\n\tPre-expectation: {pe}", i + 1, path);
-                }
-            } else {
-                for (i, path) in paths.iter().enumerate() {
-                    println!("Path {}:\n\t{}", i + 1, path);
-                }
-            }
+        f.flush()?;
+    } else {
+        println!("Number of Paths: {}", paths.len());
+        println!("Number of Removed Paths: {num_failed_observe_paths}");
+        println!("Number of Samples: {num_samples}");
+        for (i, path) in paths.iter().enumerate() {
+            println!("Path {}:\n{}", i + 1, path);
         }
     }
     Ok(())
