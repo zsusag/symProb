@@ -202,33 +202,6 @@ impl Path {
         self.terminated = true;
     }
 
-    pub fn to_csv_row(&self, i: usize, all_var_names: &BTreeSet<&String>) -> Row {
-        Row {
-            path_num: i,
-            terminated: self.terminated,
-            num_uniform_samples: self.num_uniform_samples,
-            num_normal_samples: self.num_normal_samples,
-            pc: self
-                .conds
-                .iter()
-                .map(|e| e.to_string())
-                .collect::<Vec<String>>()
-                .join(" ∧ "),
-            po: self
-                .observations
-                .iter()
-                .map(|e| e.to_string())
-                .collect::<Vec<String>>()
-                .join(" ∧ "),
-            pr_pc: self.path_prob.as_ref().map(|p| p.to_string()),
-            pr_po: self.observes_prob.as_ref().map(|p| p.to_string()),
-            sigma: all_var_names
-                .iter()
-                .map(|var| self.sigma.get(*var).map(|val| val.to_string()))
-                .collect(),
-        }
-    }
-
     pub fn get_sigma(&self) -> &Sigma {
         &self.sigma
     }
