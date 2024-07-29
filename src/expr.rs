@@ -144,7 +144,10 @@ impl<'ctx> ExprNode {
     }
 
     pub fn needs_parens(&self) -> bool {
-        self.children.len() > 1
+        match self.e {
+            ExprKind::Mul | ExprKind::Div => false,
+            _ => self.children.len() > 1,
+        }
     }
 
     fn is_constant(&self) -> bool {
@@ -981,12 +984,11 @@ impl Display for ExprNode {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self.e {
             ExprKind::Constant(_) => write!(f, "{}", self.e),
-            ExprKind::Add
-            | ExprKind::Sub
+            ExprKind::Sub
             | ExprKind::Mul
+            | ExprKind::Div
             | ExprKind::And
             | ExprKind::Or
-            | ExprKind::Div
             | ExprKind::Lt
             | ExprKind::Le
             | ExprKind::Gt
@@ -995,12 +997,22 @@ impl Display for ExprNode {
             | ExprKind::Ne => {
                 let e1 = self.children.get(0).unwrap();
                 let e2 = self.children.get(1).unwrap();
-                match (e1.needs_parens(), e2.needs_parens()) {
-                    (true, true) => write!(f, "({}) {} ({})", e1, self.e, e2),
-                    (true, false) => write!(f, "({}) {} {}", e1, self.e, e2),
-                    (false, true) => write!(f, "{} {} ({})", e1, self.e, e2),
-                    (false, false) => write!(f, "{} {} {}", e1, self.e, e2),
+                if e1.needs_parens() {
+                    write!(f, "({})", e1)?;
+                } else {
+                    write!(f, "{}", e1)?;
                 }
+                write!(f, " {} ", self.e)?;
+                if e2.needs_parens() {
+                    write!(f, "({})", e2)
+                } else {
+                    write!(f, "{}", e2)
+                }
+            }
+            ExprKind::Add => {
+                let e1 = self.children.get(0).unwrap();
+                let e2 = self.children.get(1).unwrap();
+                write!(f, "{} {} {}", e1, self.e, e2)
             }
             ExprKind::Sqrt => write!(f, "{}{}", self.e, self.children.get(0).unwrap()),
             ExprKind::Not => {
