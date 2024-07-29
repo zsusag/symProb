@@ -109,7 +109,11 @@ fn main() -> Result<(), anyhow::Error> {
             // Create a new JSON file for output, erroring if the file already exists.
             {
                 let f = if args.force {
-                    OpenOptions::new().write(true).open(&output)
+                    OpenOptions::new()
+                        .create(true)
+                        .truncate(false)
+                        .write(true)
+                        .open(&output)
                 } else {
                     File::create_new(&output)
                 }
@@ -132,7 +136,11 @@ fn main() -> Result<(), anyhow::Error> {
         // Create a new output file, erroring if the file already exists.
         let output = output_path.with_extension("txt");
         let mut f = if args.force {
-            OpenOptions::new().write(true).open(&output)
+            OpenOptions::new()
+                .create(true)
+                .truncate(false)
+                .write(true)
+                .open(&output)
         } else {
             File::create_new(&output)
         }
