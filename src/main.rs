@@ -1,4 +1,4 @@
-use anyhow::Result;
+use anyhow::{Context, Result};
 use clap::Parser;
 
 use csv::WriterBuilder;
@@ -6,7 +6,8 @@ use expr::PostExpectation;
 use path::Path;
 use serde::Serialize;
 use std::{
-    fs::File,
+    collections::BTreeSet,
+    fs::{File, OpenOptions},
     io::{self, Write},
 };
 use syntax::FnMap;
@@ -39,8 +40,12 @@ struct Args {
     prob: bool,
 
     #[arg(long)]
-    /// output in CSV format
-    csv: bool,
+    /// output in JSON format
+    json: bool,
+
+    #[arg(short, long)]
+    /// overwrite output file if it already exists
+    force: bool,
 
     #[arg(short, long)]
     /// output to file
@@ -98,42 +103,48 @@ fn main() -> Result<(), anyhow::Error> {
         .max()
         .unwrap();
 
-    if args.csv {
-        let (header, all_var_names) = gen_csv_header(&paths);
-        let rows = paths
-            .iter()
-            .enumerate()
-            .map(|(i, p)| p.to_csv_row(i, &all_var_names));
-        match args.output {
-            Some(path) => {
-                let mut wtr = WriterBuilder::new().has_headers(false).from_path(path)?;
-                wtr.write_record(header)?;
-                for row in rows {
-                    wtr.serialize(row)?;
+    if args.json {
+        if let Some(output_path) = args.output {
+            let output = output_path.with_extension("json");
+            // Create a new JSON file for output, erroring if the file already exists.
+            {
+                let f = if args.force {
+                    OpenOptions::new().write(true).open(&output)
+                } else {
+                    File::create_new(&output)
                 }
-                wtr.flush()?;
+                .with_context(|| {
+                    format!("failed to open JSON output file at {}", output.display())
+                })?;
+
+                serde_json::to_writer_pretty(f, &paths)
+                    .context("failed serializing found paths to JSON")?;
             }
-            None => {
-                let mut wtr = WriterBuilder::new()
-                    .has_headers(false)
-                    .from_writer(io::stdout());
-                wtr.write_record(header)?;
-                for row in rows {
-                    wtr.serialize(row)?;
-                }
-                wtr.flush()?;
-            }
+            println!("Explored paths have been written to {}", output.display());
+        } else {
+            println!(
+                "{}",
+                serde_json::to_string_pretty(&paths)
+                    .context("failed serializing found paths to JSON")?
+            );
         }
     } else if let Some(output_path) = args.output {
-        let mut f = File::create(output_path)?;
+        // Create a new output file, erroring if the file already exists.
+        let output = output_path.with_extension("txt");
+        let mut f = if args.force {
+            OpenOptions::new().write(true).open(&output)
+        } else {
+            File::create_new(&output)
+        }
+        .with_context(|| format!("failed to open output file at {}", output.display()))?;
+
         writeln!(f, "Number of Paths: {}", paths.len())?;
         writeln!(f, "Number of Removed Paths: {num_failed_observe_paths}")?;
         writeln!(f, "Number of Samples: {num_samples}")?;
         for (i, path) in paths.iter().enumerate() {
             writeln!(f, "Path {}:\n{}", i + 1, path)?;
         }
-
-        f.flush()?;
+        println!("Explored paths have been written to {}", output.display());
     } else {
         println!("Number of Paths: {}", paths.len());
         println!("Number of Removed Paths: {num_failed_observe_paths}");
