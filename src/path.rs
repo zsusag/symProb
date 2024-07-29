@@ -143,49 +143,6 @@ pub struct Path {
     pub num_normal_samples: u32,
 }
 
-#[derive(Serialize)]
-pub struct Row {
-    path_num: usize,
-    terminated: bool,
-    num_uniform_samples: u32,
-    num_normal_samples: u32,
-    pc: String,
-    po: String,
-    pr_pc: Option<String>,
-    pr_po: Option<String>,
-    sigma: Vec<Option<String>>,
-}
-
-pub fn gen_csv_header<'a, I>(paths: I) -> (Vec<String>, BTreeSet<&'a String>)
-where
-    I: IntoIterator<Item = &'a Path>,
-{
-    let all_var_names: BTreeSet<_> = paths
-        .into_iter()
-        .flat_map(|p| p.sigma.variables())
-        .collect();
-
-    let mut csv_header = vec![
-        "Path".to_string(),
-        "Forced termination".to_string(),
-        "# Uniform Samples".to_string(),
-        "# Normal Samples".to_string(),
-        "PC".to_string(),
-        "PO".to_string(),
-        "Pr(PC)".to_string(),
-        "Pr(PO)".to_string(),
-    ];
-
-    csv_header.extend(
-        all_var_names
-            .clone()
-            .into_iter()
-            .map(|var_name| format!("σ({var_name})")),
-    );
-
-    (csv_header, all_var_names)
-}
-
 impl Path {
     pub fn new() -> Self {
         Path {

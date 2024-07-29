@@ -2,8 +2,9 @@ use anyhow::Result;
 use clap::Parser;
 
 use csv::WriterBuilder;
-use expr::{Expr, PostExpectation};
-use path::gen_csv_header;
+use expr::PostExpectation;
+use path::Path;
+use serde::Serialize;
 use std::{
     fs::File,
     io::{self, Write},
@@ -22,6 +23,50 @@ mod psi_parser;
 mod semantics;
 mod smt;
 mod syntax;
+
+#[derive(Serialize)]
+pub struct CSVRow {
+    path_num: usize,
+    terminated: bool,
+    num_uniform_samples: u32,
+    num_normal_samples: u32,
+    pc: String,
+    po: String,
+    pr_pc: Option<String>,
+    pr_po: Option<String>,
+    sigma: Vec<Option<String>>,
+    preexp: Option<String>,
+}
+
+pub fn gen_csv_header<'a, I>(paths: I) -> (Vec<String>, BTreeSet<&'a String>)
+where
+    I: IntoIterator<Item = &'a Path>,
+{
+    let all_var_names: BTreeSet<_> = paths
+        .into_iter()
+        .flat_map(|p| p.get_sigma().variables())
+        .collect();
+
+    let mut csv_header = vec![
+        "Path".to_string(),
+        "Forced termination".to_string(),
+        "# Uniform Samples".to_string(),
+        "# Normal Samples".to_string(),
+        "PC".to_string(),
+        "PO".to_string(),
+        "Pr(PC)".to_string(),
+        "Pr(PO)".to_string(),
+    ];
+
+    csv_header.extend(
+        all_var_names
+            .clone()
+            .into_iter()
+            .map(|var_name| format!("σ({var_name})")),
+    );
+
+    (csv_header, all_var_names)
+}
 
 #[derive(Parser, Debug)]
 #[clap(author, version, about, long_about = None)]
