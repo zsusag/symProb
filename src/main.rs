@@ -1,14 +1,10 @@
 use anyhow::{Context, Result};
 use clap::Parser;
 
-use csv::WriterBuilder;
 use expr::PostExpectation;
-use path::Path;
-use serde::Serialize;
 use std::{
-    collections::BTreeSet,
     fs::{File, OpenOptions},
-    io::{self, Write},
+    io::Write,
 };
 use syntax::FnMap;
 

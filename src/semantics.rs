@@ -295,3 +295,9 @@ impl<'a> Gamma<'a> {
             .map(|iter| Gamma(HashMap::from_iter(iter)))
     }
 }
+
+impl<'a> Default for Gamma<'a> {
+    fn default() -> Self {
+        Self::new()
+    }
+}

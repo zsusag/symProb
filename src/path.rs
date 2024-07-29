@@ -1,7 +1,4 @@
-use std::{
-    collections::{BTreeSet, HashMap},
-    fmt::Display,
-};
+use std::{collections::HashMap, fmt::Display};
 
 use anyhow::Result;
 use itertools::Itertools;
@@ -105,8 +102,14 @@ impl Sigma {
 
     /// An iterator visiting all substitution pairs in an arbitrary order. The iterator element type
     /// is `(&'a String, &'a Expr)`.
-    pub fn iter<'a>(&'a self) -> impl Iterator<Item = (&'a String, &'a Expr)> {
+    pub fn iter(&self) -> impl Iterator<Item = (&'_ String, &Expr)> {
         self.0.iter()
+    }
+}
+
+impl Default for Sigma {
+    fn default() -> Self {
+        Self::new()
     }
 }
 
@@ -202,6 +205,7 @@ impl Path {
         self.terminated = true;
     }
 
+    #[allow(dead_code)]
     pub fn get_sigma(&self) -> &Sigma {
         &self.sigma
     }
@@ -236,6 +240,7 @@ impl Path {
     /// **Warning**: This method clones the path condition, path observation, and postexpectation
     /// thereby triggering memory allocations. If the path will no longer be needed, consider
     /// using [`Path::into_preexpectation`] instead.
+    #[allow(dead_code)]
     pub fn into_preexpectation(self) -> Option<PreExpectation> {
         let Path {
             conds,

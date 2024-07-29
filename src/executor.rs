@@ -23,8 +23,7 @@ impl Executor {
 
     pub fn run(mut self, prob: bool) -> Result<(Vec<Path>, usize)> {
         let mut num_failed_observe_paths: usize = 0;
-        while !self.stack.is_empty() {
-            let s = self.stack.pop().unwrap();
+        while let Some(s) = self.stack.pop() {
             match s.step(prob)? {
                 Status::Fork(true_state, false_state) => {
                     self.stack.push(false_state);

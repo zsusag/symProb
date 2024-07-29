@@ -94,7 +94,7 @@ impl ExecutorState {
         let (input_names, input_types): (Vec<_>, Vec<_>) = inputs.into_iter().unzip();
         let sym_vars = input_names
             .iter()
-            .zip(input_types.into_iter())
+            .zip(input_types)
             .map(|(x, t)| (x.clone(), SymType::Normal(t)))
             .collect();
 
