@@ -1,5 +1,6 @@
 use anyhow::{bail, ensure, Context, Result};
 use pest::Parser;
+use serde::Serialize;
 use std::{collections::HashMap, fmt::Display};
 use z3::{
     ast::{Ast, Bool, Real},
@@ -13,7 +14,8 @@ use crate::{
     syntax::{ExprKind, Type, Value},
 };
 
-#[derive(Debug, PartialEq, Clone, Eq, Hash)]
+#[derive(Debug, PartialEq, Clone, Eq, Hash, Serialize)]
+#[serde(into = "String")]
 pub struct Expr {
     root: ExprNode,
 }
@@ -1015,6 +1017,12 @@ impl Display for ExprNode {
     }
 }
 
+impl From<Expr> for String {
+    fn from(value: Expr) -> Self {
+        value.to_string()
+    }
+}
+
 #[derive(Debug, Clone)]
 pub struct PostExpectation(Expr);
 
@@ -1088,7 +1096,8 @@ where
     exprs.into_iter().reduce(|e1, e2| e1.mul(e2))
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Serialize)]
+#[serde(transparent)]
 pub struct PreExpectation(Expr);
 
 impl PreExpectation {

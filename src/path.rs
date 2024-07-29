@@ -17,7 +17,8 @@ use crate::{
 ///
 /// \sigma captures the state of a symbolic trace. Each in-scope program variable `x` should map to
 /// a symbolic expression representing `x`'s value at that moment in time.
-#[derive(Debug, PartialEq, Eq, Clone)]
+#[derive(Debug, PartialEq, Eq, Clone, Serialize)]
+#[serde(transparent)]
 pub struct Sigma(HashMap<String, Expr>);
 
 impl Sigma {
@@ -310,6 +311,23 @@ impl Display for Path {
             if self.terminated { "Yes" } else { "No" }
         )
     }
+}
+
+#[derive(Serialize)]
+#[serde(rename = "path")]
+pub struct SerdePath {
+    condition: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    condition_probability: Option<Prob>,
+    observations: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    observations_probability: Option<Prob>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pre_expectation: Option<PreExpectation>,
+    sigma: Sigma,
+    terminated: bool,
+    uniform_samples: u32,
+    normal_samples: u32,
 }
 
 #[cfg(test)]

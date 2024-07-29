@@ -2,13 +2,10 @@ use std::{collections::HashMap, fmt::Display, io::Write, process::Command};
 
 use anyhow::{bail, Context, Result};
 
-
+use serde::Serialize;
 use tempfile::{Builder, NamedTempFile};
 
-use crate::{
-    executor_state::SymType,
-    expr::Expr,
-};
+use crate::{executor_state::SymType, expr::Expr};
 
 struct PsiProg(NamedTempFile);
 
@@ -101,7 +98,8 @@ impl PsiProg {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize)]
+#[serde(transparent)]
 pub struct Prob(String);
 
 impl Prob {
