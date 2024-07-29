@@ -131,7 +131,8 @@ impl Display for Sigma {
     }
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Serialize)]
+#[serde(into = "SerdePath")]
 pub struct Path {
     conds: Vec<Expr>,
     path_prob: Option<Prob>,
@@ -328,6 +329,34 @@ pub struct SerdePath {
     terminated: bool,
     uniform_samples: u32,
     normal_samples: u32,
+}
+
+impl From<Path> for SerdePath {
+    fn from(p: Path) -> Self {
+        let Path {
+            conds,
+            path_prob,
+            observes_prob,
+            terminated,
+            sigma,
+            observations,
+            postexpectation,
+            num_uniform_samples,
+            num_normal_samples,
+        } = p;
+        SerdePath {
+            condition: conds.iter().join(" ∧ "),
+            condition_probability: path_prob,
+            observations: observations.iter().join(" ∧ "),
+            observations_probability: observes_prob,
+            pre_expectation: postexpectation
+                .map(|post| PreExpectation::new(conds, observations, post)),
+            sigma,
+            terminated,
+            uniform_samples: num_uniform_samples,
+            normal_samples: num_normal_samples,
+        }
+    }
 }
 
 #[cfg(test)]
