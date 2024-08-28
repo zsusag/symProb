@@ -5,7 +5,10 @@ use anyhow::{bail, Context, Result};
 use serde::Serialize;
 use tempfile::{Builder, NamedTempFile};
 
-use crate::{executor_state::SymType, expr::Expr};
+use crate::{
+    executor_state::{Dist, SymType},
+    expr::Expr,
+};
 
 struct PsiProg(NamedTempFile);
 
@@ -31,10 +34,10 @@ impl PsiProg {
         // Declare all of the probabilistic symbolic variables as samples from [0,1]
         for (name, name_t) in prob_sym_vars {
             match name_t {
-                SymType::UniformProb => {
+                SymType::Prob(Dist::Uniform) => {
                     writeln!(f, "{name} := uniform(0,1);")?;
                 }
-                SymType::NormalProb => {
+                SymType::Prob(Dist::Normal) => {
                     writeln!(f, "{name} := gauss(0,1);")?;
                 }
                 _ => unreachable!(),

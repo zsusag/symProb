@@ -20,16 +20,23 @@ pub enum Status {
     PrematureTerminate,
 }
 
+#[derive(Debug, Copy, Clone)]
+pub enum Dist {
+    /// Continuous uniform distribution over [0,1].
+    Uniform,
+    /// Standard normal distribution.
+    Normal,
+}
+
 #[derive(Debug, Clone)]
 pub enum SymType {
-    Normal(Type),
-    UniformProb,
-    NormalProb,
+    Universal(Type),
+    Prob(Dist),
 }
 
 impl SymType {
     pub fn is_prob(&self) -> bool {
-        !matches!(self, SymType::Normal(_))
+        !matches!(self, SymType::Universal(_))
     }
 }
 
@@ -95,7 +102,7 @@ impl ExecutorState {
         let sym_vars = input_names
             .iter()
             .zip(input_types)
-            .map(|(x, t)| (x.clone(), SymType::Normal(t)))
+            .map(|(x, t)| (x.clone(), SymType::Universal(t)))
             .collect();
 
         let sigma = input_names
@@ -131,7 +138,7 @@ impl ExecutorState {
 
         // Update the symbolic variable type map
         self.sym_vars
-            .insert(prob_sym_name.clone(), SymType::UniformProb);
+            .insert(prob_sym_name.clone(), SymType::Prob(Dist::Uniform));
 
         // Increment the number of samples
         self.num_uniform_samples += 1;
@@ -144,7 +151,7 @@ impl ExecutorState {
 
         // Update the symbolic variable type map
         self.sym_vars
-            .insert(prob_sym_name.clone(), SymType::NormalProb);
+            .insert(prob_sym_name.clone(), SymType::Prob(Dist::Normal));
 
         // Increment the number of samples
         self.num_normal_samples += 1;

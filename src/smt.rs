@@ -5,13 +5,16 @@ use z3::{
     Config, Context, SatResult, Solver,
 };
 
-use crate::{executor_state::SymType, expr::Expr};
+use crate::{
+    executor_state::{Dist, SymType},
+    expr::Expr,
+};
 
 #[derive(Debug)]
 pub struct SMTManager {
-		#[allow(dead_code)]
+    #[allow(dead_code)]
     cfg: Config,
-		
+
     pub ctx: Context,
 }
 
@@ -73,8 +76,8 @@ impl<'ctx> SMTManager {
         sym_vars
             .iter()
             .filter_map(|(name, st)| match st {
-                SymType::Normal(_) => None,
-                SymType::UniformProb => {
+                SymType::Universal(_) => None,
+                SymType::Prob(Dist::Uniform) => {
                     let var = Real::new_const(&self.ctx, name.as_str());
                     let zero = Real::from_real(&self.ctx, 0, 1);
                     let one = Real::from_real(&self.ctx, 1, 1);
@@ -82,14 +85,14 @@ impl<'ctx> SMTManager {
                     let upper = var.le(&one);
                     Some(Bool::and(&self.ctx, &[&lower, &upper]))
                 }
-                SymType::NormalProb => None, // {
-                                             //     let var = Real::new_const(&self.ctx, name.as_str());
-                                             //     let neg_one = Real::from_real(&self.ctx, -1, 1);
-                                             //     let one = Real::from_real(&self.ctx, 1, 1);
-                                             //     let lower = var.ge(&neg_one);
-                                             //     let upper = var.le(&one);
-                                             //     Some(Bool::and(&self.ctx, &[&lower, &upper]))
-                                             // }
+                SymType::Prob(Dist::Normal) => None, // {
+                                                     //     let var = Real::new_const(&self.ctx, name.as_str());
+                                                     //     let neg_one = Real::from_real(&self.ctx, -1, 1);
+                                                     //     let one = Real::from_real(&self.ctx, 1, 1);
+                                                     //     let lower = var.ge(&neg_one);
+                                                     //     let upper = var.le(&one);
+                                                     //     Some(Bool::and(&self.ctx, &[&lower, &upper]))
+                                                     // }
             })
             .for_each(|bound| s.assert(&bound));
 
