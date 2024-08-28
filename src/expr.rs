@@ -1110,9 +1110,9 @@ where
 
 #[derive(Debug, Clone, Serialize)]
 #[serde(transparent)]
-pub struct PreExpectation(Expr);
+pub struct PreExpectationIntegrand(Expr);
 
-impl PreExpectation {
+impl PreExpectationIntegrand {
     pub fn new<IC, IO>(path_cond: IC, path_obvs: IO, postexp: PostExpectation) -> Self
     where
         IC: IntoIterator<Item = Expr>,
@@ -1124,12 +1124,12 @@ impl PreExpectation {
         let preexp = product(itertools::chain!(path_cond_conj, path_obvs_conj, postexp))
             .expect("product should be non-empty");
 
-        PreExpectation(preexp)
+        PreExpectationIntegrand(preexp)
     }
 }
 
 /// Printing a `PreExpectation` can be done by simply printing the encapsulated expression.
-impl Display for PreExpectation {
+impl Display for PreExpectationIntegrand {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "{}", self.0)
     }

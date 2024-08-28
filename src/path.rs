@@ -6,7 +6,7 @@ use serde::Serialize;
 
 use crate::{
     executor_state::SymType,
-    expr::{Expr, PostExpectation, PreExpectation},
+    expr::{Expr, PostExpectation, PreExpectationIntegrand},
     probability::Prob,
 };
 
@@ -228,10 +228,10 @@ impl Path {
     /// **Warning**: This method clones the path condition, path observation, and postexpectation
     /// thereby triggering memory allocations. If the path will no longer be needed, consider
     /// using [`Path::into_preexpectation`] instead.
-    pub fn preexpectation(&self) -> Option<PreExpectation> {
-        self.postexpectation
-            .clone()
-            .map(|post| PreExpectation::new(self.conds.clone(), self.observations.clone(), post))
+    pub fn preexpectation(&self) -> Option<PreExpectationIntegrand> {
+        self.postexpectation.clone().map(|post| {
+            PreExpectationIntegrand::new(self.conds.clone(), self.observations.clone(), post)
+        })
     }
 
     /// Returns the pre-expectation for the path by consuming the path. If the path does not have a postexpectation (i.e.,
@@ -241,14 +241,14 @@ impl Path {
     /// thereby triggering memory allocations. If the path will no longer be needed, consider
     /// using [`Path::into_preexpectation`] instead.
     #[allow(dead_code)]
-    pub fn into_preexpectation(self) -> Option<PreExpectation> {
+    pub fn into_preexpectation(self) -> Option<PreExpectationIntegrand> {
         let Path {
             conds,
             observations,
             postexpectation,
             ..
         } = self;
-        postexpectation.map(|post| PreExpectation::new(conds, observations, post))
+        postexpectation.map(|post| PreExpectationIntegrand::new(conds, observations, post))
     }
 }
 
@@ -302,7 +302,7 @@ pub struct SerdePath {
     #[serde(skip_serializing_if = "Option::is_none")]
     observations_probability: Option<Prob>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pre_expectation: Option<PreExpectation>,
+    pre_expectation: Option<PreExpectationIntegrand>,
     sigma: Sigma,
     terminated: bool,
     uniform_samples: u32,
@@ -328,7 +328,7 @@ impl From<Path> for SerdePath {
             observations: observations.iter().join(" ∧ "),
             observations_probability: observes_prob,
             pre_expectation: postexpectation
-                .map(|post| PreExpectation::new(conds, observations, post)),
+                .map(|post| PreExpectationIntegrand::new(conds, observations, post)),
             sigma,
             terminated,
             uniform_samples: num_uniform_samples,
