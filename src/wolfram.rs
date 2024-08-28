@@ -17,6 +17,12 @@ impl<'a> WolframExpr<'a> {
 }
 
 impl Display for WolframExpr {
+impl<'a> From<&'a ExprNode> for WolframExpr<'a> {
+    fn from(value: &'a ExprNode) -> Self {
+        Self::new(value)
+    }
+}
+
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self.0.e {
             ExprKind::Constant(val) => match val {
