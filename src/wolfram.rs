@@ -1,8 +1,12 @@
 //! Translation of symbolic expressions into the [Wolfram](https://reference.wolfram.com/language/).
 
+use std::collections::HashMap;
 use std::fmt::Display;
 
-use crate::expr::ExprNode;
+use itertools::Itertools;
+
+use crate::executor_state::Dist;
+use crate::expr::{Expr, ExprNode, PreExpectationIntegrand};
 use crate::syntax::{ExprKind, Value};
 
 /// A newtype wrapper around an [`Expr`] whose `Display` implementation prints the symbolic
@@ -157,4 +161,73 @@ fn gaussian_factor(var: &str) -> Expr {
 
     let root = ExprNode::new(ExprKind::Div, vec![numer, denom]);
     Expr::new(root)
+}
+
+#[derive(Debug)]
+struct IntegralParam<'a> {
+    var: &'a str,
+    lower: i32,
+    upper: i32,
+}
+
+impl<'a> IntegralParam<'a> {
+    pub fn new(var: &'a str, lower: i32, upper: i32) -> Self {
+        Self { var, lower, upper }
+    }
+}
+
+impl<'a> Display for IntegralParam<'a> {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let Self { var, lower, upper } = self;
+        write!(f, "{{{var},{lower},{upper}}}")
+    }
+}
+
+#[derive(Debug)]
+pub struct WolframPreExpectation<'a> {
+    integrand: Expr,
+    params: Vec<IntegralParam<'a>>,
+}
+
+impl<'a> WolframPreExpectation<'a> {
+    pub fn new<I>(pre_exp_int: PreExpectationIntegrand, psvs: I, integral_bounds: i32) -> Self
+    where
+        I: Iterator<Item = (&'a String, &'a Dist)> + Clone,
+    {
+        let gaussian_factors: Vec<Expr> = psvs
+            .clone()
+            .filter_map(|(var, dist)| match dist {
+                Dist::Normal => Some(gaussian_factor(var)),
+                Dist::Uniform => None,
+            })
+            .collect();
+
+        // Product is guaranteed to be non-empty so we can safely `unwrap` here.
+        let integrand =
+            crate::expr::product(std::iter::once(pre_exp_int.0).chain(gaussian_factors)).unwrap();
+
+        let integration_params = psvs
+            .map(|(var, dist)| match dist {
+                Dist::Uniform => IntegralParam::new(var, 0, 1),
+                Dist::Normal => IntegralParam::new(var, -integral_bounds, integral_bounds),
+            })
+            .collect();
+
+        Self {
+            integrand,
+            params: integration_params,
+        }
+    }
+}
+
+impl<'a> Display for WolframPreExpectation<'a> {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let Self { integrand, params } = self;
+        write!(
+            f,
+            "Integrate[{},{}]",
+            WolframExpr::new(&integrand.root),
+            params.iter().join(",")
+        )
+    }
 }

@@ -1108,7 +1108,7 @@ where
 
 /// Returns the product of the set of expressions. If `exprs` is empty, then this function returns
 /// `None`.
-fn product<I>(exprs: I) -> Option<Expr>
+pub(crate) fn product<I>(exprs: I) -> Option<Expr>
 where
     I: IntoIterator<Item = Expr>,
 {
