@@ -621,6 +621,7 @@ impl<'ctx> ExprNode {
                     }
                 }
                 ExprKind::Func(_) => unreachable!(),
+                _ => todo!(),
             };
         }
     }
@@ -752,6 +753,7 @@ impl<'ctx> ExprNode {
                 );
                 Ok(Type::Real)
             }
+            _ => unreachable!(),
         }
     }
 
@@ -969,6 +971,7 @@ impl Display for PsiExpr {
             ),
             ExprKind::Func(_) => todo!(),
             ExprKind::Iverson => write!(f, "[{}]", self.0.children.get(0).unwrap().to_psi_expr()),
+            _ => unreachable!(),
         }
     }
 }
@@ -1025,6 +1028,10 @@ impl Display for ExprNode {
             }
             ExprKind::Func(_) => todo!(),
             ExprKind::Iverson => write!(f, "[{}]", self.children.get(0).unwrap()),
+            ExprKind::Exp => write!(f, "exp({})", self.children.get(0).unwrap()),
+            ExprKind::Negate => write!(f, "-{}", self.children.get(0).unwrap()),
+            ExprKind::Square => write!(f, "{}^2", self.children.get(0).unwrap()),
+            ExprKind::Pi => write!(f, "π"),
         }
     }
 }

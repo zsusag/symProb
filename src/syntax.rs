@@ -64,6 +64,10 @@ pub enum ExprKind {
     Ne,
     Func(String),
     Iverson,
+    Exp,
+    Negate,
+    Square,
+    Pi,
 }
 
 impl<T> From<T> for ExprKind
@@ -95,6 +99,10 @@ impl Display for ExprKind {
             ExprKind::Ne => write!(f, "≠"),
             ExprKind::Func(_) => todo!(),
             ExprKind::Iverson => todo!(),
+            ExprKind::Exp => todo!(),
+            ExprKind::Negate => todo!(),
+            ExprKind::Square => todo!(),
+            ExprKind::Pi => todo!(),
         }
     }
 }

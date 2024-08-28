@@ -124,6 +124,19 @@ impl<'a> Display for WolframExpr<'a> {
                 let c0: WolframExpr = c0.unwrap().into();
                 write!(f, "Boole[{c0}]")
             }
+            ExprKind::Exp => {
+                let c0: WolframExpr = c0.unwrap().into();
+                write!(f, "Exp[{c0}]")
+            }
+            ExprKind::Negate => {
+                let c0: WolframExpr = c0.unwrap().into();
+                write!(f, "-{c0}")
+            }
+            ExprKind::Square => {
+                let c0: WolframExpr = c0.unwrap().into();
+                write!(f, "Power[{c0},2]")
+            }
+            ExprKind::Pi => write!(f, "Pi"),
         }
     }
 }
