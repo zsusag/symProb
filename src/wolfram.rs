@@ -140,3 +140,21 @@ impl<'a> Display for WolframExpr<'a> {
         }
     }
 }
+
+fn gaussian_factor(var: &str) -> Expr {
+    let var_squared = ExprNode::new(
+        ExprKind::Square,
+        vec![ExprNode::new_sample_var(var.to_string())],
+    );
+    let neg_var_squared = ExprNode::new(ExprKind::Negate, vec![var_squared]);
+    let two = ExprNode::new_leaf(ExprKind::Constant(Value::Num(2.into())));
+    let neg_var_squared_div_two = ExprNode::new(ExprKind::Div, vec![neg_var_squared, two.clone()]);
+    let numer = ExprNode::new(ExprKind::Exp, vec![neg_var_squared_div_two]);
+
+    let pi = ExprNode::new_leaf(ExprKind::Pi);
+    let two_pi = ExprNode::new(ExprKind::Mul, vec![two, pi]);
+    let denom = ExprNode::new(ExprKind::Sqrt, vec![two_pi]);
+
+    let root = ExprNode::new(ExprKind::Div, vec![numer, denom]);
+    Expr::new(root)
+}
