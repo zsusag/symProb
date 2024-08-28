@@ -451,6 +451,17 @@ impl ExecutorState {
                 if prob {
                     self.path.calculate_prob(&self.sym_vars)?;
                 }
+                self.path.psvs = self
+                    .sym_vars
+                    .into_iter()
+                    .filter_map(|(var, sym_type)| {
+                        if let SymType::Prob(dist) = sym_type {
+                            Some((var, dist))
+                        } else {
+                            None
+                        }
+                    })
+                    .collect();
                 Ok(Status::Terminate(self.path))
             }
         }

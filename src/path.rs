@@ -5,7 +5,7 @@ use itertools::Itertools;
 use serde::Serialize;
 
 use crate::{
-    executor_state::SymType,
+    executor_state::{Dist, SymType},
     expr::{Expr, PostExpectation, PreExpectationIntegrand},
     probability::Prob,
 };
@@ -144,6 +144,7 @@ pub struct Path {
     sigma: Sigma,
     observations: Vec<Expr>,
     postexpectation: Option<PostExpectation>,
+    pub psvs: HashMap<String, Dist>,
     pub num_uniform_samples: u32,
     pub num_normal_samples: u32,
 }
@@ -158,6 +159,7 @@ impl Path {
             sigma: Sigma::new(),
             observations: Vec::new(),
             postexpectation: None,
+            psvs: HashMap::new(),
             num_uniform_samples: 0,
             num_normal_samples: 0,
         }
@@ -321,6 +323,7 @@ impl From<Path> for SerdePath {
             postexpectation,
             num_uniform_samples,
             num_normal_samples,
+            ..
         } = p;
         SerdePath {
             condition: conds.iter().join(" ∧ "),
