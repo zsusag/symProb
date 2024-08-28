@@ -1110,7 +1110,7 @@ where
 
 #[derive(Debug, Clone, Serialize)]
 #[serde(transparent)]
-pub struct PreExpectationIntegrand(Expr);
+pub struct PreExpectationIntegrand(pub Expr);
 
 impl PreExpectationIntegrand {
     pub fn new<IC, IO>(path_cond: IC, path_obvs: IO, postexp: PostExpectation) -> Self
