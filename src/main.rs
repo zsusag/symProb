@@ -20,6 +20,7 @@ mod psi_parser;
 mod semantics;
 mod smt;
 mod syntax;
+mod wolfram;
 
 #[derive(Parser, Debug)]
 #[clap(author, version, about, long_about = None)]
