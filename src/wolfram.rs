@@ -8,10 +8,10 @@ use crate::syntax::{ExprKind, Value};
 /// A newtype wrapper around an [`Expr`] whose `Display` implementation prints the symbolic
 /// expression in Wolfram language syntax.
 #[derive(Debug)]
-pub struct WolframExpr(ExprNode);
+pub struct WolframExpr<'a>(&'a ExprNode);
 
-impl WolframExpr {
-    pub fn new(e: ExprNode) -> Self {
+impl<'a> WolframExpr<'a> {
+    pub fn new(e: &'a ExprNode) -> Self {
         Self(e)
     }
 }
