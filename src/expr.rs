@@ -112,8 +112,8 @@ where
 
 #[derive(Debug, PartialEq, Clone, Eq, Hash)]
 pub struct ExprNode {
-    e: ExprKind,
-    children: Vec<ExprNode>,
+    pub e: ExprKind,
+    pub children: Vec<ExprNode>,
 }
 
 impl<'ctx> ExprNode {
