@@ -1,8 +1,12 @@
 use anyhow::{Context, Result};
 use clap::Parser;
+use itertools::Itertools;
+use serde::Serialize;
 
 use expr::PostExpectation;
+use path::Path;
 use std::{
+    fmt::Display,
     fs::{File, OpenOptions},
     io::Write,
 };
@@ -62,6 +66,62 @@ struct Args {
     post_expectation_path: Option<std::path::PathBuf>,
 }
 
+/// The set of data to report to the user upon termination.
+#[derive(Serialize)]
+struct Report {
+    /// The number of explored paths.
+    num_paths: usize,
+    /// The number of paths which were pruned.
+    num_removed_paths: usize,
+    /// The total number of unique probabilistic samples encountered.
+    num_samples: u32,
+    /// The set of explored paths.
+    paths: Vec<Path>,
+    /// The computed pre-expectation expressed as a Wolfram symbolic expression.
+    ///
+    /// This field is `Some(_)` iff the user provided both the `--wolfram` and `--post-expectation` flags.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    wolfram_pre_expectation: Option<String>,
+}
+
+impl Report {
+    fn new(paths: Vec<Path>, num_removed_paths: usize, num_samples: u32) -> Self {
+        let num_paths = paths.len();
+
+        let wolfram_pre_expectation = Some(
+            paths
+                .iter()
+                .flat_map(|p| p.wolfram_preexpectation())
+                .join("+"),
+        )
+        .filter(|preexp| !preexp.is_empty());
+
+        Self {
+            num_paths,
+            num_removed_paths,
+            num_samples,
+            paths,
+            wolfram_pre_expectation,
+        }
+    }
+}
+
+impl Display for Report {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        writeln!(f, "Number of Paths: {}", self.num_paths)?;
+        writeln!(f, "Number of Removed Paths: {}", self.num_removed_paths)?;
+        writeln!(f, "Number of Samples: {}", self.num_samples)?;
+        for (i, path) in self.paths.iter().enumerate() {
+            writeln!(f, "Path {}:\n{}", i + 1, path)?;
+        }
+        if let Some(preexp) = &self.wolfram_pre_expectation {
+            writeln!(f, "[Wolfram] Pre-expectation: {preexp}")
+        } else {
+            Ok(())
+        }
+    }
+}
+
 fn main() -> Result<(), anyhow::Error> {
     // Parse the command line arguments.
     let args = Args::parse();
@@ -112,6 +172,9 @@ fn main() -> Result<(), anyhow::Error> {
         .max()
         .unwrap();
 
+    // Construct the report to give to the user.
+    let report = Report::new(paths, num_failed_observe_paths, num_samples);
+
     if args.json {
         if let Some(output_path) = args.output {
             let output = output_path.with_extension("json");
@@ -130,14 +193,14 @@ fn main() -> Result<(), anyhow::Error> {
                     format!("failed to open JSON output file at {}", output.display())
                 })?;
 
-                serde_json::to_writer_pretty(f, &paths)
+                serde_json::to_writer_pretty(f, &report)
                     .context("failed serializing found paths to JSON")?;
             }
             println!("Explored paths have been written to {}", output.display());
         } else {
             println!(
                 "{}",
-                serde_json::to_string_pretty(&paths)
+                serde_json::to_string_pretty(&report)
                     .context("failed serializing found paths to JSON")?
             );
         }
@@ -155,20 +218,10 @@ fn main() -> Result<(), anyhow::Error> {
         }
         .with_context(|| format!("failed to open output file at {}", output.display()))?;
 
-        writeln!(f, "Number of Paths: {}", paths.len())?;
-        writeln!(f, "Number of Removed Paths: {num_failed_observe_paths}")?;
-        writeln!(f, "Number of Samples: {num_samples}")?;
-        for (i, path) in paths.iter().enumerate() {
-            writeln!(f, "Path {}:\n{}", i + 1, path)?;
-        }
+        writeln!(f, "{report}")?;
         println!("Explored paths have been written to {}", output.display());
     } else {
-        println!("Number of Paths: {}", paths.len());
-        println!("Number of Removed Paths: {num_failed_observe_paths}");
-        println!("Number of Samples: {num_samples}");
-        for (i, path) in paths.iter().enumerate() {
-            println!("Path {}:\n{}", i + 1, path);
-        }
+        println!("{report}");
     }
     Ok(())
 }
