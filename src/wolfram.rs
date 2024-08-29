@@ -164,19 +164,19 @@ fn gaussian_factor(var: &str) -> Expr {
 }
 
 #[derive(Debug)]
-struct IntegralParam<'a> {
-    var: &'a str,
+struct IntegralParam {
+    var: String,
     lower: i32,
     upper: i32,
 }
 
-impl<'a> IntegralParam<'a> {
-    pub fn new(var: &'a str, lower: i32, upper: i32) -> Self {
+impl IntegralParam {
+    pub fn new(var: String, lower: i32, upper: i32) -> Self {
         Self { var, lower, upper }
     }
 }
 
-impl<'a> Display for IntegralParam<'a> {
+impl Display for IntegralParam {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         let Self { var, lower, upper } = self;
         write!(f, "{{{var},{lower},{upper}}}")
@@ -184,13 +184,13 @@ impl<'a> Display for IntegralParam<'a> {
 }
 
 #[derive(Debug)]
-pub struct WolframPreExpectation<'a> {
+pub struct WolframPreExpectation {
     integrand: Expr,
-    params: Vec<IntegralParam<'a>>,
+    params: Vec<IntegralParam>,
 }
 
-impl<'a> WolframPreExpectation<'a> {
-    pub fn new<I>(pre_exp_int: PreExpectationIntegrand, psvs: I, integral_bounds: i32) -> Self
+impl WolframPreExpectation {
+    pub fn new<'a, I>(pre_exp_int: PreExpectationIntegrand, psvs: I, integral_bounds: i32) -> Self
     where
         I: Iterator<Item = (&'a String, &'a Dist)> + Clone,
     {
@@ -208,8 +208,10 @@ impl<'a> WolframPreExpectation<'a> {
 
         let integration_params = psvs
             .map(|(var, dist)| match dist {
-                Dist::Uniform => IntegralParam::new(var, 0, 1),
-                Dist::Normal => IntegralParam::new(var, -integral_bounds, integral_bounds),
+                Dist::Uniform => IntegralParam::new(var.to_string(), 0, 1),
+                Dist::Normal => {
+                    IntegralParam::new(var.to_string(), -integral_bounds, integral_bounds)
+                }
             })
             .collect();
 
@@ -220,7 +222,7 @@ impl<'a> WolframPreExpectation<'a> {
     }
 }
 
-impl<'a> Display for WolframPreExpectation<'a> {
+impl Display for WolframPreExpectation {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         let Self { integrand, params } = self;
         write!(
