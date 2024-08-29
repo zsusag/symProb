@@ -61,12 +61,12 @@ impl<'a> Display for WolframExpr<'a> {
             ExprKind::Sub => {
                 let c0: WolframExpr = c0.unwrap().into();
                 let c1: WolframExpr = c1.unwrap().into();
-                write!(f, "{c0}-{c1}")
+                write!(f, "Subtract[{c0},{c1}]")
             }
             ExprKind::Mul => {
                 let c0: WolframExpr = c0.unwrap().into();
                 let c1: WolframExpr = c1.unwrap().into();
-                write!(f, "{c0}*{c1}")
+                write!(f, "Times[{c0},{c1}]")
             }
             ExprKind::Div => {
                 let c0: WolframExpr = c0.unwrap().into();
