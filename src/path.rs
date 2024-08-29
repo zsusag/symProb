@@ -262,8 +262,12 @@ impl Path {
     }
 
     pub fn wolfram_preexpectation(&self) -> Option<WolframPreExpectation> {
-        self.preexpectation()
-            .map(|integrand| WolframPreExpectation::new(integrand, self.psvs.iter(), 20))
+        if self.wolfram {
+            self.preexpectation()
+                .map(|integrand| WolframPreExpectation::new(integrand, self.psvs.iter(), 20))
+        } else {
+            None
+        }
     }
 }
 
@@ -297,12 +301,8 @@ impl Display for Path {
         if let Some(preexp) = self.preexpectation() {
             writeln!(f, "\tPre-expectation Integrand: {preexp}")?;
 
-            if self.wolfram {
-                writeln!(
-                    f,
-                    "\t[Wolfram] Pre-expectation: {}",
-                    self.wolfram_preexpectation().unwrap()
-                )?;
+            if let Some(wolfram_preexp) = self.wolfram_preexpectation() {
+                writeln!(f, "\t[Wolfram] Pre-expectation: {wolfram_preexp}",)?;
             }
         }
 
@@ -337,11 +337,7 @@ pub struct SerdePath {
 impl From<Path> for SerdePath {
     fn from(p: Path) -> Self {
         let pre_expectation_integrand = p.preexpectation();
-        let pre_expectation_wolfram = if p.wolfram {
-            p.wolfram_preexpectation()
-        } else {
-            None
-        };
+        let pre_expectation_wolfram = p.wolfram_preexpectation();
 
         let Path {
             conds,
