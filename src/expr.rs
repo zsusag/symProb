@@ -16,8 +16,10 @@ use crate::{
 
 #[derive(Debug, PartialEq, Clone, Eq, Hash, Serialize)]
 #[serde(into = "String")]
+/// A symbolic expression AST.
 pub struct Expr {
-    root: ExprNode,
+    /// The root node of the AST.
+    pub root: ExprNode,
 }
 
 impl<'ctx> Expr {
@@ -31,9 +33,6 @@ impl<'ctx> Expr {
             .map(|token_pairs| Expr::new(parse_expr(token_pairs)))
     }
 
-    pub fn root(self) -> ExprNode {
-        self.root
-    }
     // Returns the type of the expression
     pub fn typecheck(&self, fn_sigs: &HashMap<&String, Vec<&Type>>, gamma: &Gamma) -> Result<Type> {
         self.root.typecheck(fn_sigs, gamma)
