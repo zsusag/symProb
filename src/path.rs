@@ -8,6 +8,7 @@ use crate::{
     executor_state::{Dist, SymType},
     expr::{Expr, PostExpectation, PreExpectationIntegrand},
     probability::Prob,
+    wolfram::WolframPreExpectation,
 };
 
 /// A substitution \sigma, or a mapping from program variables to symbolic expressions.
@@ -147,6 +148,7 @@ pub struct Path {
     pub psvs: HashMap<String, Dist>,
     pub num_uniform_samples: u32,
     pub num_normal_samples: u32,
+    wolfram: bool,
 }
 
 impl Path {
@@ -162,6 +164,7 @@ impl Path {
             psvs: HashMap::new(),
             num_uniform_samples: 0,
             num_normal_samples: 0,
+            wolfram: false,
         }
     }
 
@@ -252,6 +255,16 @@ impl Path {
         } = self;
         postexpectation.map(|post| PreExpectationIntegrand::new(conds, observations, post))
     }
+
+    /// Turns on Wolfram output for pre-expectations.
+    pub fn set_wolfram_output(&mut self) {
+        self.wolfram = true;
+    }
+
+    pub fn wolfram_preexpectation(&self) -> Option<WolframPreExpectation> {
+        self.preexpectation()
+            .map(|integrand| WolframPreExpectation::new(integrand, self.psvs.iter(), 20))
+    }
 }
 
 /// Paths are displayed in a block indented by a single TAB character (i.e., `'\t'`).
@@ -282,7 +295,15 @@ impl Display for Path {
 
         // Print the pre-expectation for the path if a postcondition has been provided.
         if let Some(preexp) = self.preexpectation() {
-            writeln!(f, "\tPre-expectation: {preexp}")?;
+            writeln!(f, "\tPre-expectation Integrand: {preexp}")?;
+
+            if self.wolfram {
+                writeln!(
+                    f,
+                    "\t[Wolfram] Pre-expectation: {}",
+                    self.wolfram_preexpectation().unwrap()
+                )?;
+            }
         }
 
         // Print whether the path was forced to terminate.
@@ -304,7 +325,9 @@ pub struct SerdePath {
     #[serde(skip_serializing_if = "Option::is_none")]
     observations_probability: Option<Prob>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pre_expectation: Option<PreExpectationIntegrand>,
+    pre_expectation_integrand: Option<PreExpectationIntegrand>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pre_expectation_wolfram: Option<WolframPreExpectation>,
     sigma: Sigma,
     terminated: bool,
     uniform_samples: u32,
@@ -313,6 +336,13 @@ pub struct SerdePath {
 
 impl From<Path> for SerdePath {
     fn from(p: Path) -> Self {
+        let pre_expectation_integrand = p.preexpectation();
+        let pre_expectation_wolfram = if p.wolfram {
+            p.wolfram_preexpectation()
+        } else {
+            None
+        };
+
         let Path {
             conds,
             path_prob,
@@ -320,7 +350,6 @@ impl From<Path> for SerdePath {
             terminated,
             sigma,
             observations,
-            postexpectation,
             num_uniform_samples,
             num_normal_samples,
             ..
@@ -330,8 +359,8 @@ impl From<Path> for SerdePath {
             condition_probability: path_prob,
             observations: observations.iter().join(" ∧ "),
             observations_probability: observes_prob,
-            pre_expectation: postexpectation
-                .map(|post| PreExpectationIntegrand::new(conds, observations, post)),
+            pre_expectation_integrand,
+            pre_expectation_wolfram,
             sigma,
             terminated,
             uniform_samples: num_uniform_samples,

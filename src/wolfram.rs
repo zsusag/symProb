@@ -4,6 +4,7 @@ use std::collections::HashMap;
 use std::fmt::Display;
 
 use itertools::Itertools;
+use serde::Serialize;
 
 use crate::executor_state::Dist;
 use crate::expr::{Expr, ExprNode, PreExpectationIntegrand};
@@ -231,5 +232,15 @@ impl Display for WolframPreExpectation {
             WolframExpr::new(&integrand.root),
             params.iter().join(",")
         )
+    }
+}
+
+/// Use [`WolframPreExpectation`]'s `Display` implementation to serialize [`WolframPreExpectation`].
+impl Serialize for WolframPreExpectation {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        serializer.serialize_str(&self.to_string())
     }
 }

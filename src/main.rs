@@ -52,6 +52,10 @@ struct Args {
     /// A post-expectation expression parameterized by program variables.
     post_expectation: Option<String>,
 
+    #[arg(short, long)]
+    /// print the pre-expectation in the Wolfram language
+    wolfram: bool,
+
     #[arg(long)]
     /// Path to a post-expectation expression parameterized by program variables stored within a
     /// file.
@@ -90,6 +94,14 @@ fn main() -> Result<(), anyhow::Error> {
             .iter_mut()
             .zip(std::iter::repeat(post))
             .try_for_each(|(path, post)| path.add_postexpectation(post))?;
+
+        // Enable the creation of pre-expectation expressions represented as an integral in the
+        // Wolfram language if the user asked for one.
+        if args.wolfram {
+            for p in paths.iter_mut() {
+                p.set_wolfram_output();
+            }
+        }
     }
 
     // Compute the maximum number of random samples across all the paths. That is, find the path
