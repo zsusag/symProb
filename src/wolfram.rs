@@ -1,6 +1,4 @@
 //! Translation of symbolic expressions into the [Wolfram](https://reference.wolfram.com/language/).
-
-use std::collections::HashMap;
 use std::fmt::Display;
 
 use itertools::Itertools;
