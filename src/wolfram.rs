@@ -62,12 +62,33 @@ impl<'a> Display for WolframExpr<'a> {
             ExprKind::Sub => {
                 let c0: WolframExpr = c0.unwrap().into();
                 let c1: WolframExpr = c1.unwrap().into();
-                write!(f, "Subtract[{c0},{c1}]")
+                write!(
+                    f,
+                    "Subtract[{c0},{}]",
+                    if c1.0.needs_parens() {
+                        format!("({})", c1)
+                    } else {
+                        c1.to_string()
+                    }
+                )
             }
             ExprKind::Mul => {
                 let c0: WolframExpr = c0.unwrap().into();
                 let c1: WolframExpr = c1.unwrap().into();
-                write!(f, "Times[{c0},{c1}]")
+                write!(
+                    f,
+                    "{}*{}",
+                    if c0.0.needs_parens() {
+                        format!("({})", c0)
+                    } else {
+                        c0.to_string()
+                    },
+                    if c1.0.needs_parens() {
+                        format!("({})", c1)
+                    } else {
+                        c1.to_string()
+                    }
+                )
             }
             ExprKind::Div => {
                 let c0: WolframExpr = c0.unwrap().into();
@@ -135,13 +156,21 @@ impl<'a> Display for WolframExpr<'a> {
             }
             ExprKind::Negate => {
                 let c0: WolframExpr = c0.unwrap().into();
-                write!(f, "-{c0}")
+                write!(
+                    f,
+                    "-{}",
+                    if c0.0.needs_parens() {
+                        format!("({})", c0)
+                    } else {
+                        c0.to_string()
+                    }
+                )
             }
             ExprKind::Square => {
                 let c0: WolframExpr = c0.unwrap().into();
                 write!(f, "Power[{c0},2]")
             }
-            ExprKind::Pi => write!(f, "Pi"),
+            ExprKind::Pi => write!(f, "π"),
         }
     }
 }
