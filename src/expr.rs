@@ -630,8 +630,8 @@ impl<'ctx> ExprNode {
             ExprKind::Constant(v) => match v {
                 Value::Num(_) => Ok(Type::Real),
                 Value::Boolean(_) => Ok(Type::Bool),
-                Value::Var(x) => match gamma.get(&x) {
-                    Some(t) => Ok(t.clone()),
+                Value::Var(x) => match gamma.get(x) {
+                    Some(t) => Ok(t),
                     None => bail!(SemanticsError::UndefinedVar { var: x.to_owned() }),
                 },
             },
