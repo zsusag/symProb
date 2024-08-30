@@ -6,5 +6,5 @@ fn main() {
 	} else {
     height ~ normal(161,50);
 	}
-	observe(height >= 200);
+	observe(height >= 180);
 }
