@@ -1,7 +1,6 @@
-//! Translation of symbolic expressions into the [Wolfram](https://reference.wolfram.com/language/).
+//! Translation of symbolic expressions into the [Python](https://reference.python.com/language/).
 use std::fmt::Display;
 
-use itertools::Itertools;
 use serde::Serialize;
 
 use crate::executor_state::Dist;
@@ -9,23 +8,23 @@ use crate::expr::{Expr, ExprNode, PreExpectationIntegrand};
 use crate::syntax::{ExprKind, Value};
 
 /// A newtype wrapper around an [`Expr`] whose `Display` implementation prints the symbolic
-/// expression in Wolfram language syntax.
+/// expression in Python language syntax.
 #[derive(Debug)]
-pub struct WolframExpr<'a>(&'a ExprNode);
+pub struct PythonExpr<'a>(&'a ExprNode);
 
-impl<'a> WolframExpr<'a> {
+impl<'a> PythonExpr<'a> {
     pub fn new(e: &'a ExprNode) -> Self {
         Self(e)
     }
 }
 
-impl<'a> From<&'a ExprNode> for WolframExpr<'a> {
+impl<'a> From<&'a ExprNode> for PythonExpr<'a> {
     fn from(value: &'a ExprNode) -> Self {
         Self::new(value)
     }
 }
 
-impl<'a> Display for WolframExpr<'a> {
+impl<'a> Display for PythonExpr<'a> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         // Get references to the two inner children
         let c0 = self.0.children.get(0);
@@ -39,7 +38,7 @@ impl<'a> Display for WolframExpr<'a> {
                         // `Rational32`'s `Display` implementation prints the numerator, a `/`, and
                         // then the denominator. We surround rational numbers with parentheses to
                         // avoid ambiguity. It is also shorter than using the fully qualified
-                        // `Divide[.,.]` operation in Wolfram.
+                        // `Divide[.,.]` operation in Python.
                         write!(f, "({val})")
                     }
                 }
@@ -53,16 +52,16 @@ impl<'a> Display for WolframExpr<'a> {
                 Value::Var(s) => write!(f, "{s}"),
             },
             ExprKind::Add => {
-                let c0: WolframExpr = c0.unwrap().into();
-                let c1: WolframExpr = c1.unwrap().into();
+                let c0: PythonExpr = c0.unwrap().into();
+                let c1: PythonExpr = c1.unwrap().into();
                 write!(f, "{c0}+{c1}")
             }
             ExprKind::Sub => {
-                let c0: WolframExpr = c0.unwrap().into();
-                let c1: WolframExpr = c1.unwrap().into();
+                let c0: PythonExpr = c0.unwrap().into();
+                let c1: PythonExpr = c1.unwrap().into();
                 write!(
                     f,
-                    "Subtract[{c0},{}]",
+                    "{c0}-{}",
                     if c1.0.needs_parens() {
                         format!("({})", c1)
                     } else {
@@ -71,8 +70,8 @@ impl<'a> Display for WolframExpr<'a> {
                 )
             }
             ExprKind::Mul => {
-                let c0: WolframExpr = c0.unwrap().into();
-                let c1: WolframExpr = c1.unwrap().into();
+                let c0: PythonExpr = c0.unwrap().into();
+                let c1: PythonExpr = c1.unwrap().into();
                 write!(
                     f,
                     "{}*{}",
@@ -89,86 +88,86 @@ impl<'a> Display for WolframExpr<'a> {
                 )
             }
             ExprKind::Div => {
-                let c0: WolframExpr = c0.unwrap().into();
-                let c1: WolframExpr = c1.unwrap().into();
-                write!(f, "Divide[{c0},{c1}]")
-            }
-            ExprKind::Sqrt => {
-                let c0: WolframExpr = c0.unwrap().into();
-                write!(f, "Sqrt[{c0}]")
-            }
-            ExprKind::And => {
-                let c0: WolframExpr = c0.unwrap().into();
-                let c1: WolframExpr = c1.unwrap().into();
-                write!(f, "And[{c0},{c1}]")
-            }
-            ExprKind::Or => {
-                let c0: WolframExpr = c0.unwrap().into();
-                let c1: WolframExpr = c1.unwrap().into();
-                write!(f, "Or[{c0},{c1}]")
-            }
-            ExprKind::Not => {
-                let c0: WolframExpr = c0.unwrap().into();
-                write!(f, "Not[{c0}]")
-            }
-            ExprKind::Lt => {
-                let c0: WolframExpr = c0.unwrap().into();
-                let c1: WolframExpr = c1.unwrap().into();
-                write!(f, "{c0}<{c1}")
-            }
-            ExprKind::Le => {
-                let c0: WolframExpr = c0.unwrap().into();
-                let c1: WolframExpr = c1.unwrap().into();
-                write!(f, "{c0}<={c1}")
-            }
-            ExprKind::Gt => {
-                let c0: WolframExpr = c0.unwrap().into();
-                let c1: WolframExpr = c1.unwrap().into();
-                write!(f, "{c0}>{c1}")
-            }
-            ExprKind::Ge => {
-                let c0: WolframExpr = c0.unwrap().into();
-                let c1: WolframExpr = c1.unwrap().into();
-                write!(f, "{c0}>={c1}")
-            }
-            ExprKind::Eq => {
-                let c0: WolframExpr = c0.unwrap().into();
-                let c1: WolframExpr = c1.unwrap().into();
-                write!(f, "{c0}=={c1}")
-            }
-            ExprKind::Ne => {
-                let c0: WolframExpr = c0.unwrap().into();
-                let c1: WolframExpr = c1.unwrap().into();
-                write!(f, "{c0}!={c1}")
-            }
-            ExprKind::Func(_) => {
-                panic!("function calls cannot be currently printed as Wolfram expressions")
-            }
-            ExprKind::Iverson => {
-                let c0: WolframExpr = c0.unwrap().into();
-                write!(f, "Boole[{c0}]")
-            }
-            ExprKind::Exp => {
-                let c0: WolframExpr = c0.unwrap().into();
-                write!(f, "Exp[{c0}]")
-            }
-            ExprKind::Negate => {
-                let c0: WolframExpr = c0.unwrap().into();
-                write!(
-                    f,
-                    "-{}",
+                let c0: PythonExpr = c0.unwrap().into();
+                let c1: PythonExpr = c1.unwrap().into();
+                write!(f,
+                    "{}/{}",
                     if c0.0.needs_parens() {
                         format!("({})", c0)
                     } else {
                         c0.to_string()
-                    }
+                    },
+                    format!("({})", c1)
                 )
             }
-            ExprKind::Square => {
-                let c0: WolframExpr = c0.unwrap().into();
-                write!(f, "Power[{c0},2]")
+            ExprKind::Sqrt => {
+                let c0: PythonExpr = c0.unwrap().into();
+                write!(f, "sqrt({c0})")
             }
-            ExprKind::Pi => write!(f, "π"),
+            ExprKind::And => {
+                let c0: PythonExpr = c0.unwrap().into();
+                let c1: PythonExpr = c1.unwrap().into();
+                write!(f, "{c0} and {c1}")
+            }
+            ExprKind::Or => {
+                let c0: PythonExpr = c0.unwrap().into();
+                let c1: PythonExpr = c1.unwrap().into();
+                write!(f, "{c0} or {c1}")
+            }
+            ExprKind::Not => {
+                let c0: PythonExpr = c0.unwrap().into();
+                write!(f, "not ({c0})")
+            }
+            ExprKind::Lt => {
+                let c0: PythonExpr = c0.unwrap().into();
+                let c1: PythonExpr = c1.unwrap().into();
+                write!(f, "({c0})<({c1})")
+            }
+            ExprKind::Le => {
+                let c0: PythonExpr = c0.unwrap().into();
+                let c1: PythonExpr = c1.unwrap().into();
+                write!(f, "({c0})<=({c1})")
+            }
+            ExprKind::Gt => {
+                let c0: PythonExpr = c0.unwrap().into();
+                let c1: PythonExpr = c1.unwrap().into();
+                write!(f, "({c0})>({c1})")
+            }
+            ExprKind::Ge => {
+                let c0: PythonExpr = c0.unwrap().into();
+                let c1: PythonExpr = c1.unwrap().into();
+                write!(f, "({c0})>=({c1})")
+            }
+            ExprKind::Eq => {
+                let c0: PythonExpr = c0.unwrap().into();
+                let c1: PythonExpr = c1.unwrap().into();
+                write!(f, "({c0})==({c1})")
+            }
+            ExprKind::Ne => {
+                let c0: PythonExpr = c0.unwrap().into();
+                let c1: PythonExpr = c1.unwrap().into();
+                write!(f, "({c0})!=({c1})")
+            }
+            ExprKind::Func(_) => {
+                panic!("function calls cannot be currently printed as Python expressions")
+            }
+            ExprKind::Iverson => {
+                let c0: PythonExpr = c0.unwrap().into();
+                write!(f, "(1 if ({c0}) else 0)")
+            }
+            ExprKind::Exp => {
+                let c0: PythonExpr = c0.unwrap().into();
+                write!(f, "exp({c0})")
+            }
+            ExprKind::Negate => {
+                let c0: PythonExpr = c0.unwrap().into();
+                write!(f,"-({c0})")
+            }
+            ExprKind::Square => {
+                let c0: PythonExpr = c0.unwrap().into();
+                write!(f, "({c0})**2")
+            }
+            ExprKind::Pi => write!(f, "pi"),
         }
     }
 }
@@ -206,18 +205,18 @@ impl IntegralParam {
 
 impl Display for IntegralParam {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let Self { var, lower, upper } = self;
-        write!(f, "{{{var},{lower},{upper}}}")
+        let Self { var, lower:_, upper:_ } = self;
+        write!(f, "{var}")
     }
 }
 
 #[derive(Debug)]
-pub struct WolframPreExpectation {
+pub struct PythonPreExpectation {
     integrand: Expr,
     params: Vec<IntegralParam>,
 }
 
-impl WolframPreExpectation {
+impl PythonPreExpectation {
     pub fn new<'a, I>(pre_exp_int: PreExpectationIntegrand, psvs: I, integral_bounds: i32) -> Self
     where
         I: Iterator<Item = (&'a String, &'a Dist)> + Clone,
@@ -250,20 +249,15 @@ impl WolframPreExpectation {
     }
 }
 
-impl Display for WolframPreExpectation {
+impl Display for PythonPreExpectation {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let Self { integrand, params } = self;
-        write!(
-            f,
-            "Integrate[{},{}]",
-            WolframExpr::new(&integrand.root),
-            params.iter().join(",")
-        )
+        let Self { integrand, params:_ } = self;
+        write!(f,"{}",PythonExpr::new(&integrand.root))
     }
 }
 
-/// Use [`WolframPreExpectation`]'s `Display` implementation to serialize [`WolframPreExpectation`].
-impl Serialize for WolframPreExpectation {
+/// Use [`PythonPreExpectation`]'s `Display` implementation to serialize [`PythonPreExpectation`].
+impl Serialize for PythonPreExpectation {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
     where
         S: serde::Serializer,

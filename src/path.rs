@@ -8,7 +8,7 @@ use crate::{
     executor_state::{Dist, SymType},
     expr::{Expr, PostExpectation, PreExpectationIntegrand},
     probability::Prob,
-    wolfram::WolframPreExpectation,
+    python::PythonPreExpectation,
 };
 
 /// A substitution \sigma, or a mapping from program variables to symbolic expressions.
@@ -148,7 +148,7 @@ pub struct Path {
     pub psvs: HashMap<String, Dist>,
     pub num_uniform_samples: u32,
     pub num_normal_samples: u32,
-    wolfram: bool,
+    python: bool,
 }
 
 impl Path {
@@ -164,7 +164,7 @@ impl Path {
             psvs: HashMap::new(),
             num_uniform_samples: 0,
             num_normal_samples: 0,
-            wolfram: false,
+            python: false,
         }
     }
 
@@ -256,15 +256,15 @@ impl Path {
         postexpectation.map(|post| PreExpectationIntegrand::new(conds, observations, post))
     }
 
-    /// Turns on Wolfram output for pre-expectations.
-    pub fn set_wolfram_output(&mut self) {
-        self.wolfram = true;
+    /// Turns on Python output for pre-expectations.
+    pub fn set_python_output(&mut self) {
+        self.python = true;
     }
 
-    pub fn wolfram_preexpectation(&self) -> Option<WolframPreExpectation> {
-        if self.wolfram {
+    pub fn python_preexpectation(&self) -> Option<PythonPreExpectation> {
+        if self.python {
             self.preexpectation()
-                .map(|integrand| WolframPreExpectation::new(integrand, self.psvs.iter(), 20))
+                .map(|integrand| PythonPreExpectation::new(integrand, self.psvs.iter(), 20))
         } else {
             None
         }
@@ -301,8 +301,8 @@ impl Display for Path {
         if let Some(preexp) = self.preexpectation() {
             writeln!(f, "\tPre-expectation Integrand: {preexp}")?;
 
-            if let Some(wolfram_preexp) = self.wolfram_preexpectation() {
-                writeln!(f, "\t[Wolfram] Pre-expectation: {wolfram_preexp}",)?;
+            if let Some(python_preexp) = self.python_preexpectation() {
+                writeln!(f, "\t[Python] Pre-expectation: {python_preexp}",)?;
             }
         }
 
@@ -327,7 +327,7 @@ pub struct SerdePath {
     #[serde(skip_serializing_if = "Option::is_none")]
     pre_expectation_integrand: Option<PreExpectationIntegrand>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pre_expectation_wolfram: Option<WolframPreExpectation>,
+    pre_expectation_python: Option<PythonPreExpectation>,
     sigma: Sigma,
     terminated: bool,
     uniform_samples: u32,
@@ -337,7 +337,7 @@ pub struct SerdePath {
 impl From<Path> for SerdePath {
     fn from(p: Path) -> Self {
         let pre_expectation_integrand = p.preexpectation();
-        let pre_expectation_wolfram = p.wolfram_preexpectation();
+        let pre_expectation_python = p.python_preexpectation();
 
         let Path {
             conds,
@@ -356,7 +356,7 @@ impl From<Path> for SerdePath {
             observations: observations.iter().join(" ∧ "),
             observations_probability: observes_prob,
             pre_expectation_integrand,
-            pre_expectation_wolfram,
+            pre_expectation_python,
             sigma,
             terminated,
             uniform_samples: num_uniform_samples,
