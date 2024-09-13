@@ -95,11 +95,6 @@ impl Report {
     ) -> Self {
         let num_paths = paths.len();
 
-        let mut foo: Vec<i32> = Vec::new();
-        // you can define range over `i32`
-        for x in 0..10i32 {
-            foo.push(x);
-        }
         let mut sample_variables: Vec<String> = Vec::new();
         let mut int_ranges: Vec<String> = Vec::new();
         for k in 0..num_uniform_samples {
