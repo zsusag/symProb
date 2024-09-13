@@ -21,10 +21,10 @@ mod parser;
 mod path;
 mod probability;
 mod psi_parser;
+mod python;
 mod semantics;
 mod smt;
 mod syntax;
-mod python;
 
 #[derive(Parser, Debug)]
 #[clap(author, version, about, long_about = None)]
@@ -87,22 +87,27 @@ struct Report {
 }
 
 impl Report {
-    fn new(paths: Vec<Path>, num_removed_paths: usize, num_uniform_samples: u32, num_normal_samples: u32) -> Self {
+    fn new(
+        paths: Vec<Path>,
+        num_removed_paths: usize,
+        num_uniform_samples: u32,
+        num_normal_samples: u32,
+    ) -> Self {
         let num_paths = paths.len();
 
         let mut foo: Vec<i32> = Vec::new();
-// you can define range over `i32`
-for x in 0..10i32 {
-    foo.push(x);
-}
+        // you can define range over `i32`
+        for x in 0..10i32 {
+            foo.push(x);
+        }
         let mut sample_variables: Vec<String> = Vec::new();
         let mut int_ranges: Vec<String> = Vec::new();
         for k in 0..num_uniform_samples {
-            sample_variables.push(format!("y_{}",k));
+            sample_variables.push(format!("y_{}", k));
             int_ranges.push("[0,1]".to_string());
         }
         for k in 0..num_normal_samples {
-            sample_variables.push(format!("z_{}",k));
+            sample_variables.push(format!("z_{}", k));
             int_ranges.push("[-20,20]".to_string());
         }
         let vars = sample_variables.iter().join(",");
@@ -189,21 +194,18 @@ fn main() -> Result<(), anyhow::Error> {
     }
 
     // Compute the maximum number of uniform samples across all the paths.
-    let num_uniform_samples = paths
-        .iter()
-        .map(|p| p.num_uniform_samples)
-        .max()
-        .unwrap();
+    let num_uniform_samples = paths.iter().map(|p| p.num_uniform_samples).max().unwrap();
 
     // Compute the maximum number of uniform samples across all the paths.
-    let num_normal_samples = paths
-        .iter()
-        .map(|p| p.num_normal_samples)
-        .max()
-        .unwrap();
+    let num_normal_samples = paths.iter().map(|p| p.num_normal_samples).max().unwrap();
 
     // Construct the report to give to the user.
-    let report = Report::new(paths, num_failed_observe_paths, num_uniform_samples, num_normal_samples);
+    let report = Report::new(
+        paths,
+        num_failed_observe_paths,
+        num_uniform_samples,
+        num_normal_samples,
+    );
 
     if args.json {
         if let Some(output_path) = args.output {

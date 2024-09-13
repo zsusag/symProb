@@ -90,7 +90,8 @@ impl<'a> Display for PythonExpr<'a> {
             ExprKind::Div => {
                 let c0: PythonExpr = c0.unwrap().into();
                 let c1: PythonExpr = c1.unwrap().into();
-                write!(f,
+                write!(
+                    f,
                     "{}/{}",
                     if c0.0.needs_parens() {
                         format!("({})", c0)
@@ -161,7 +162,7 @@ impl<'a> Display for PythonExpr<'a> {
             }
             ExprKind::Negate => {
                 let c0: PythonExpr = c0.unwrap().into();
-                write!(f,"-({c0})")
+                write!(f, "-({c0})")
             }
             ExprKind::Square => {
                 let c0: PythonExpr = c0.unwrap().into();
@@ -205,7 +206,11 @@ impl IntegralParam {
 
 impl Display for IntegralParam {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let Self { var, lower:_, upper:_ } = self;
+        let Self {
+            var,
+            lower: _,
+            upper: _,
+        } = self;
         write!(f, "{var}")
     }
 }
@@ -251,8 +256,11 @@ impl PythonPreExpectation {
 
 impl Display for PythonPreExpectation {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let Self { integrand, params:_ } = self;
-        write!(f,"{}",PythonExpr::new(&integrand.root))
+        let Self {
+            integrand,
+            params: _,
+        } = self;
+        write!(f, "{}", PythonExpr::new(&integrand.root))
     }
 }
 

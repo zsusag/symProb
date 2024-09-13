@@ -1,11 +1,3 @@
-
-
-
-
-
-
-
-
 // #[derive(pest_derive::Parser)]
 // #[grammar = "psi_grammar.pest"]
 // pub struct PsiParser;
