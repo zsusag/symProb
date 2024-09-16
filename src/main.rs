@@ -3,6 +3,9 @@ use clap::Parser;
 use itertools::Itertools;
 use serde::Serialize;
 
+use pyo3::types::{IntoPyDict, PyList};
+use pyo3::{prelude::*, types::PyTuple};
+
 use expr::PostExpectation;
 use path::Path;
 use std::{
@@ -146,7 +149,22 @@ impl Display for Report {
     }
 }
 
+fn python_version() -> PyResult<()> {
+    Python::with_gil(|py| {
+        let sys = py.import_bound("sys")?;
+        let version: String = sys.getattr("version")?.extract()?;
+
+        let locals = [("os", py.import_bound("os")?)].into_py_dict_bound(py);
+        let code = "os.getenv('USER') or os.getenv('USERNAME') or 'Unknown'";
+        let user: String = py.eval_bound(code, None, Some(&locals))?.extract()?;
+
+        println!("Hello {}, I'm Python {}", user, version);
+        Ok(())
+    })
+}
+
 fn main() -> Result<(), anyhow::Error> {
+    python_version()?;
     // Parse the command line arguments.
     let args = Args::parse();
 
