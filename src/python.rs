@@ -1,6 +1,7 @@
 //! Translation of symbolic expressions into the [Python](https://reference.python.com/language/).
 use std::fmt::Display;
 
+use pyo3::prelude::*;
 use serde::Serialize;
 
 use crate::executor_state::Dist;
@@ -108,53 +109,53 @@ impl<'a> Display for PythonExpr<'a> {
             ExprKind::And => {
                 let c0: PythonExpr = c0.unwrap().into();
                 let c1: PythonExpr = c1.unwrap().into();
-                write!(f, "{c0} and {c1}")
+                write!(f, "And({c0}, {c1})")
             }
             ExprKind::Or => {
                 let c0: PythonExpr = c0.unwrap().into();
                 let c1: PythonExpr = c1.unwrap().into();
-                write!(f, "{c0} or {c1}")
+                write!(f, "Or({c0}, {c1})")
             }
             ExprKind::Not => {
                 let c0: PythonExpr = c0.unwrap().into();
-                write!(f, "not ({c0})")
+                write!(f, "Not({c0})")
             }
             ExprKind::Lt => {
                 let c0: PythonExpr = c0.unwrap().into();
                 let c1: PythonExpr = c1.unwrap().into();
-                write!(f, "({c0})<({c1})")
+                write!(f, "Lt({c0},{c1})")
             }
             ExprKind::Le => {
                 let c0: PythonExpr = c0.unwrap().into();
                 let c1: PythonExpr = c1.unwrap().into();
-                write!(f, "({c0})<=({c1})")
+                write!(f, "Le({c0},{c1})")
             }
             ExprKind::Gt => {
                 let c0: PythonExpr = c0.unwrap().into();
                 let c1: PythonExpr = c1.unwrap().into();
-                write!(f, "({c0})>({c1})")
+                write!(f, "Gt({c0},{c1})")
             }
             ExprKind::Ge => {
                 let c0: PythonExpr = c0.unwrap().into();
                 let c1: PythonExpr = c1.unwrap().into();
-                write!(f, "({c0})>=({c1})")
+                write!(f, "Ge({c0},{c1})")
             }
             ExprKind::Eq => {
                 let c0: PythonExpr = c0.unwrap().into();
                 let c1: PythonExpr = c1.unwrap().into();
-                write!(f, "({c0})==({c1})")
+                write!(f, "Eq({c0},{c1})")
             }
             ExprKind::Ne => {
                 let c0: PythonExpr = c0.unwrap().into();
                 let c1: PythonExpr = c1.unwrap().into();
-                write!(f, "({c0})!=({c1})")
+                write!(f, "Ne({c0},{c1})")
             }
             ExprKind::Func(_) => {
                 panic!("function calls cannot be currently printed as Python expressions")
             }
             ExprKind::Iverson => {
                 let c0: PythonExpr = c0.unwrap().into();
-                write!(f, "(1 if ({c0}) else 0)")
+                write!(f, "Piecewise((1,{c0}), (0,True))")
             }
             ExprKind::Exp => {
                 let c0: PythonExpr = c0.unwrap().into();
