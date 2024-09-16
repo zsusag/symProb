@@ -1,6 +1,6 @@
 use anyhow::{Context, Result};
 use clap::Parser;
-use itertools::Itertools;
+use itertools::{chain, Itertools};
 use serde::Serialize;
 
 use pyo3::types::{IntoPyDict, PyList};
@@ -95,41 +95,81 @@ impl Report {
         num_removed_paths: usize,
         num_uniform_samples: u32,
         num_normal_samples: u32,
-    ) -> Self {
+    ) -> PyResult<Self> {
         let num_paths = paths.len();
 
         let mut sample_variables: Vec<String> = Vec::new();
-        let mut int_ranges: Vec<String> = Vec::new();
+        let mut int_ranges = Vec::new();
         for k in 0..num_uniform_samples {
             sample_variables.push(format!("y_{}", k));
-            int_ranges.push("[0,1]".to_string());
+            int_ranges.push(vec![0, 1]);
         }
         for k in 0..num_normal_samples {
             sample_variables.push(format!("z_{}", k));
-            int_ranges.push("[-20,20]".to_string());
+            int_ranges.push(vec![-20, 20]);
         }
         let vars = sample_variables.iter().join(",");
-        let int_range = int_ranges.iter().join(",");
+        // TODO: remove
+        evaluate_preexp(&sample_variables, &int_ranges, &paths)?;
+
         let python_pre_expectation = Some(
             format!("\nfrom scipy import integrate\nfrom math import *\ndef f (*args):\n  {} = args\n  return \\ \n  ",vars).to_owned()+
             &paths
                 .iter()
                 .flat_map(|p| p.python_preexpectation())
                 .join("\\ \n  +")+
-            &format!("\nr,e = integrate.nquad(f,[{}])",int_range)+
+            &format!("\nr,e = integrate.nquad(f,[{:?}])",int_ranges)+
             &format!("\nprint(\"result = \",r)\nprint(\"error  = \",e)"),
         )
         .filter(|preexp| !preexp.is_empty());
 
-        Self {
+        Ok(Self {
             num_paths,
             num_removed_paths,
             num_uniform_samples,
             num_normal_samples,
             paths,
             python_pre_expectation,
-        }
+        })
     }
+}
+
+fn evaluate_preexp(vars: &Vec<String>, ranges: &Vec<Vec<i32>>, paths: &Vec<Path>) -> PyResult<()> {
+    let preexp_integrand = paths
+        .iter()
+        .flat_map(|p| p.python_preexpectation())
+        .join("+");
+
+    let symbols_arg = vars.iter().join(",");
+    let code = include_str!("../integrate.py");
+    Python::with_gil(|py| {
+        let integrate = PyModule::from_code_bound(py, code, "integrate.py", "integrate")?;
+        // let py_ranges = PyList::new_bound(py, ranges);
+        // let (r, e): (f64, f64) = integrate
+        //     .getattr("scipy_int")?
+        //     .call1((&preexp_integrand, &symbols_arg, py_ranges))?
+        //     .extract()?;
+        // println!("result = {r}");
+        // println!("error  = {e}");
+
+        let sympy = PyModule::import_bound(py, "sympy")?;
+        let symvars = sympy.getattr("symbols")?.call1((symbols_arg,))?;
+        let (lowers, uppers): (Vec<_>, Vec<_>) = ranges.iter().map(|arr| (arr[0], arr[1])).unzip();
+        let locals = [
+            ("symvars", symvars),
+            ("lowers", PyList::new_bound(py, lowers).into_any()),
+            ("uppers", PyList::new_bound(py, uppers).into_any()),
+        ]
+        .into_py_dict_bound(py);
+        let symvars = py.eval_bound("zip(symvars, lowers, uppers)", None, Some(&locals))?;
+        let (r, r_eval): (String, f64) = integrate
+            .getattr("sympy_int")?
+            .call1((&preexp_integrand, symvars))?
+            .extract()?;
+        println!("exact result = {r}");
+        println!("approximate result = {r_eval}");
+        Ok(())
+    })
 }
 
 impl Display for Report {
@@ -218,7 +258,7 @@ fn main() -> Result<(), anyhow::Error> {
         num_failed_observe_paths,
         num_uniform_samples,
         num_normal_samples,
-    );
+    )?;
 
     if args.json {
         if let Some(output_path) = args.output {
