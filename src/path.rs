@@ -7,7 +7,7 @@ use serde::Serialize;
 use crate::{
     expr::{Expr, PostExpectation, PreExpectationIntegrand},
     probability::Prob,
-    python::PythonPreExpectation,
+    python::PyPathPreExpectation,
     symbolic::{Dist, SymVarMap},
 };
 
@@ -261,10 +261,10 @@ impl Path {
         self.python = true;
     }
 
-    pub fn python_preexpectation(&self) -> Option<PythonPreExpectation> {
+    pub fn python_preexpectation(&self) -> Option<PyPathPreExpectation> {
         if self.python {
             self.preexpectation()
-                .map(|integrand| PythonPreExpectation::new(integrand, self.psvs.iter(), 20))
+                .map(|integrand| PyPathPreExpectation::new(integrand, self.psvs.iter(), 20))
         } else {
             None
         }
@@ -327,7 +327,7 @@ pub struct SerdePath {
     #[serde(skip_serializing_if = "Option::is_none")]
     pre_expectation_integrand: Option<PreExpectationIntegrand>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pre_expectation_python: Option<PythonPreExpectation>,
+    pre_expectation_python: Option<PyPathPreExpectation>,
     sigma: Sigma,
     terminated: bool,
     uniform_samples: u32,

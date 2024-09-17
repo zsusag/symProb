@@ -217,12 +217,12 @@ impl Display for IntegralParam {
 }
 
 #[derive(Debug)]
-pub struct PythonPreExpectation {
+pub struct PyPathPreExpectation {
     integrand: Expr,
     params: Vec<IntegralParam>,
 }
 
-impl PythonPreExpectation {
+impl PyPathPreExpectation {
     pub fn new<'a, I>(pre_exp_int: PreExpectationIntegrand, psvs: I, integral_bounds: i32) -> Self
     where
         I: Iterator<Item = (&'a String, &'a Dist)> + Clone,
@@ -255,7 +255,7 @@ impl PythonPreExpectation {
     }
 }
 
-impl Display for PythonPreExpectation {
+impl Display for PyPathPreExpectation {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         let Self {
             integrand,
@@ -266,7 +266,7 @@ impl Display for PythonPreExpectation {
 }
 
 /// Use [`PythonPreExpectation`]'s `Display` implementation to serialize [`PythonPreExpectation`].
-impl Serialize for PythonPreExpectation {
+impl Serialize for PyPathPreExpectation {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
     where
         S: serde::Serializer,
