@@ -95,7 +95,7 @@ impl Report {
         num_removed_paths: usize,
         num_uniform_samples: u32,
         num_normal_samples: u32,
-    ) -> PyResult<Self> {
+    ) -> Result<Self> {
         let num_paths = paths.len();
 
         let mut sample_variables: Vec<String> = Vec::new();
@@ -134,38 +134,44 @@ impl Report {
     }
 }
 
-fn evaluate_preexp(vars: &Vec<String>, ranges: &Vec<Vec<i32>>, paths: &Vec<Path>) -> PyResult<()> {
+fn evaluate_preexp(vars: &Vec<String>, ranges: &Vec<Vec<i32>>, paths: &Vec<Path>) -> Result<()> {
     let preexp_integrand = paths
         .iter()
         .flat_map(|p| p.python_preexpectation())
         .join("+");
 
     let symbols_arg = vars.iter().join(",");
-    let code = include_str!("../integrate.py");
+
+    let sympy_integrate_limits = vars
+        .iter()
+        .zip(ranges.iter())
+        .map(|(var, limits)| format!("({var},{},{})", limits[0], limits[1]))
+        .join(", ");
+    let code = include_str!("../integrate.py")
+        .replace("{LIMITS}", &sympy_integrate_limits)
+        .replace("{SYMVARS}", &symbols_arg);
     Python::with_gil(|py| {
-        let integrate = PyModule::from_code_bound(py, code, "integrate.py", "integrate")?;
-        // let py_ranges = PyList::new_bound(py, ranges);
-        // let (r, e): (f64, f64) = integrate
-        //     .getattr("scipy_int")?
-        //     .call1((&preexp_integrand, &symbols_arg, py_ranges))?
-        //     .extract()?;
-        // println!("result = {r}");
-        // println!("error  = {e}");
+        let integrate = PyModule::from_code_bound(py, &code, "integrate.py", "integrate")?;
+        let py_ranges = PyList::new_bound(py, ranges);
+        let (r, e): (f64, f64) = integrate
+            .getattr("scipy_int")?
+            .call1((&preexp_integrand, &symbols_arg, py_ranges))?
+            .extract()?;
+        println!("scipy results");
+        println!("result = {r}");
+        println!("error  = {e}");
+
+        println!("--------------------------------------------------");
 
         let sympy = PyModule::import_bound(py, "sympy")?;
-        let symvars = sympy.getattr("symbols")?.call1((symbols_arg,))?;
-        let (lowers, uppers): (Vec<_>, Vec<_>) = ranges.iter().map(|arr| (arr[0], arr[1])).unzip();
-        let locals = [
-            ("symvars", symvars),
-            ("lowers", PyList::new_bound(py, lowers).into_any()),
-            ("uppers", PyList::new_bound(py, uppers).into_any()),
-        ]
-        .into_py_dict_bound(py);
-        let symvars = py.eval_bound("zip(symvars, lowers, uppers)", None, Some(&locals))?;
         let (r, r_eval): (String, f64) = integrate
-            .getattr("sympy_int")?
-            .call1((&preexp_integrand, symvars))?
-            .extract()?;
+            .getattr("sympy_int")
+            .context("getattr")?
+            .call1((&preexp_integrand,))
+            .context("call1")?
+            .extract()
+            .context("extract")?;
+        println!("sympy_results");
         println!("exact result = {r}");
         println!("approximate result = {r_eval}");
         Ok(())
