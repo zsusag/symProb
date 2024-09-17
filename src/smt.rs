@@ -6,8 +6,8 @@ use z3::{
 };
 
 use crate::{
-    executor_state::{Dist, SymType},
     expr::Expr,
+    symbolic::{Dist, SymType, SymVarMap},
 };
 
 #[derive(Debug)]
@@ -46,7 +46,7 @@ impl<'ctx> SMTManager {
         &'ctx self,
         cur_path: &[Expr],
         guard: &Expr,
-        sym_vars: &HashMap<String, SymType>,
+        sym_vars: &SymVarMap,
     ) -> (bool, bool) {
         let s = self.init(cur_path, sym_vars);
 
@@ -59,12 +59,12 @@ impl<'ctx> SMTManager {
         (sat_to_bool(&true_res), sat_to_bool(&false_res))
     }
 
-    pub fn is_sat(&'ctx self, formula: &[Expr], sym_vars: &HashMap<String, SymType>) -> bool {
+    pub fn is_sat(&'ctx self, formula: &[Expr], sym_vars: &SymVarMap) -> bool {
         let s = self.init(formula, sym_vars);
         sat_to_bool(&s.check())
     }
 
-    fn init(&'ctx self, formula: &[Expr], sym_vars: &HashMap<String, SymType>) -> Solver {
+    fn init(&'ctx self, formula: &[Expr], sym_vars: &SymVarMap) -> Solver {
         // Make new solver
         let s = Solver::new(&self.ctx);
 

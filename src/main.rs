@@ -27,6 +27,7 @@ mod psi_parser;
 mod python;
 mod semantics;
 mod smt;
+mod symbolic;
 mod syntax;
 
 #[derive(Parser, Debug)]

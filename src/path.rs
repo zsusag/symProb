@@ -5,10 +5,10 @@ use itertools::Itertools;
 use serde::Serialize;
 
 use crate::{
-    executor_state::{Dist, SymType},
     expr::{Expr, PostExpectation, PreExpectationIntegrand},
     probability::Prob,
     python::PythonPreExpectation,
+    symbolic::{Dist, SymVarMap},
 };
 
 /// A substitution \sigma, or a mapping from program variables to symbolic expressions.
@@ -200,7 +200,7 @@ impl Path {
         &self.conds
     }
 
-    pub fn calculate_prob(&mut self, sym_vars: &HashMap<String, SymType>) -> Result<()> {
+    pub fn calculate_prob(&mut self, sym_vars: &SymVarMap) -> Result<()> {
         self.path_prob = Some(Prob::new(&self.conds, sym_vars)?);
         self.observes_prob = Some(Prob::new(&self.observations, sym_vars)?);
         Ok(())

@@ -6,14 +6,14 @@ use serde::Serialize;
 use tempfile::{Builder, NamedTempFile};
 
 use crate::{
-    executor_state::{Dist, SymType},
     expr::Expr,
+    symbolic::{Dist, SymType, SymVarMap},
 };
 
 struct PsiProg(NamedTempFile);
 
 impl PsiProg {
-    fn new(sym_vars: &HashMap<String, SymType>) -> Result<Self> {
+    fn new(sym_vars: &SymVarMap) -> Result<Self> {
         // Make new tempfile to store intermediary PSI program in
         let mut f = Builder::new().suffix(".psi").rand_bytes(5).tempfile()?;
 
@@ -106,7 +106,7 @@ impl PsiProg {
 pub struct Prob(String);
 
 impl Prob {
-    pub fn new(to_calculate: &Vec<Expr>, sym_vars: &HashMap<String, SymType>) -> Result<Self> {
+    pub fn new(to_calculate: &Vec<Expr>, sym_vars: &SymVarMap) -> Result<Self> {
         // Make a new Psi program
         let mut pp = PsiProg::new(sym_vars)?;
 
@@ -120,7 +120,7 @@ impl Prob {
     // pub fn is_almost_surely_terminating(
     //     old_path: &Path,
     //     new_path: &Path,
-    //     sym_vars: &HashMap<String, SymType>,
+    //     sym_vars: &SymVarMap,
     // ) -> Result<bool> {
     //     // Make a new Psi program
     //     let mut pp = PsiProg::new(sym_vars)?;

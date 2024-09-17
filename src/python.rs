@@ -4,8 +4,8 @@ use std::fmt::Display;
 use pyo3::prelude::*;
 use serde::Serialize;
 
-use crate::executor_state::Dist;
 use crate::expr::{Expr, ExprNode, PreExpectationIntegrand};
+use crate::symbolic::Dist;
 use crate::syntax::{ExprKind, Value};
 
 /// A newtype wrapper around an [`Expr`] whose `Display` implementation prints the symbolic

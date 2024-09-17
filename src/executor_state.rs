@@ -7,7 +7,8 @@ use crate::{
     expr::{Expr, ExprNode},
     path::{Path, Sigma},
     smt::SMTManager,
-    syntax::{ExprKind, Func, Statement, StatementKind, Type, Value},
+    symbolic::{Dist, SymType, SymVarMap},
+    syntax::{ExprKind, Func, Statement, StatementKind, Value},
 };
 
 // Add bernoulli sampling. normal, etc.
@@ -18,26 +19,6 @@ pub enum Status {
     Terminate(Path),
     FailedObserve,
     PrematureTerminate,
-}
-
-#[derive(Debug, Copy, Clone)]
-pub enum Dist {
-    /// Continuous uniform distribution over [0,1].
-    Uniform,
-    /// Standard normal distribution.
-    Normal,
-}
-
-#[derive(Debug, Clone)]
-pub enum SymType {
-    Universal(Type),
-    Prob(Dist),
-}
-
-impl SymType {
-    pub fn is_prob(&self) -> bool {
-        !matches!(self, SymType::Universal(_))
-    }
 }
 
 #[derive(Debug, Clone)]
@@ -72,7 +53,7 @@ pub struct ExecutorState {
     path: Path,
 
     // Mapping of symbolic variables
-    sym_vars: HashMap<String, SymType>,
+    sym_vars: SymVarMap,
 
     // Counter for number of uniform probabilistic samples
     num_uniform_samples: u32,
