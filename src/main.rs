@@ -232,7 +232,11 @@ fn main() -> Result<(), anyhow::Error> {
 
     // Find all the paths (within a finite number of iterations) and optionally compute their
     // probabilities.
-    let (mut paths, num_failed_observe_paths) = executor.run(args.prob)?;
+    let ExecutorReport {
+        mut paths,
+        sym_vars,
+        num_failed_observe_paths,
+    } = executor.run(args.prob)?;
 
     // If a postcondition was provided, add it to all the paths.
     //

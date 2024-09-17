@@ -3,12 +3,19 @@ use anyhow::Result;
 use crate::{
     executor_state::{ExecutorState, Status},
     path::Path,
+    symbolic::SymVarMap,
     syntax::FnMap,
 };
 
 pub struct Executor {
     stack: Vec<ExecutorState>,
     paths: Vec<Path>,
+}
+
+pub struct ExecutorReport {
+    pub paths: Vec<Path>,
+    pub sym_vars: SymVarMap,
+    pub num_failed_observe_paths: usize,
 }
 
 impl Executor {
@@ -21,8 +28,9 @@ impl Executor {
         }
     }
 
-    pub fn run(mut self, prob: bool) -> Result<(Vec<Path>, usize)> {
+    pub fn run(mut self, prob: bool) -> Result<ExecutorReport> {
         let mut num_failed_observe_paths: usize = 0;
+        let mut sym_vars: SymVarMap = SymVarMap::default();
         while let Some(s) = self.stack.pop() {
             match s.step(prob)? {
                 Status::Fork(true_state, false_state) => {
@@ -30,8 +38,9 @@ impl Executor {
                     self.stack.push(true_state);
                 }
                 Status::Continue(s) => self.stack.push(s),
-                Status::Terminate(path) => {
+                Status::Terminate(path, path_sym_vars) => {
                     self.paths.push(path);
+                    sym_vars.extend(path_sym_vars);
                 }
                 Status::PrematureTerminate => panic!(),
                 Status::FailedObserve => {
@@ -39,6 +48,12 @@ impl Executor {
                 }
             }
         }
-        Ok((self.paths, num_failed_observe_paths))
+        let num_paths = self.paths.len();
+        Ok(ExecutorReport {
+            paths: self.paths,
+            sym_vars,
+
+            num_failed_observe_paths,
+        })
     }
 }

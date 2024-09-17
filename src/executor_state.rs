@@ -16,7 +16,7 @@ use crate::{
 pub enum Status {
     Fork(ExecutorState, ExecutorState),
     Continue(ExecutorState),
-    Terminate(Path),
+    Terminate(Path, SymVarMap),
     FailedObserve,
     PrematureTerminate,
 }
@@ -434,6 +434,7 @@ impl ExecutorState {
                 }
                 self.path.psvs = self
                     .sym_vars
+                    .clone()
                     .into_iter()
                     .filter_map(|(var, sym_type)| {
                         if let SymType::Prob(dist) = sym_type {
@@ -443,7 +444,7 @@ impl ExecutorState {
                         }
                     })
                     .collect();
-                Ok(Status::Terminate(self.path))
+                Ok(Status::Terminate(self.path, self.sym_vars))
             }
         }
     }
