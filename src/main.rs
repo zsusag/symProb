@@ -1,6 +1,8 @@
 use anyhow::{Context, Result};
 use clap::Parser;
+use executor::ExecutorReport;
 use itertools::{chain, Itertools};
+use python::PyPathPreExpectation;
 use serde::Serialize;
 
 use pyo3::types::{IntoPyDict, PyList};
@@ -13,6 +15,7 @@ use std::{
     fs::{File, OpenOptions},
     io::Write,
 };
+use symbolic::{SymType, SymVarMap};
 use syntax::FnMap;
 
 use crate::{executor::Executor, parser::parse_file, semantics::check_valid_program};
@@ -83,46 +86,47 @@ struct Report {
     num_normal_samples: u32,
     /// The set of explored paths.
     paths: Vec<Path>,
-    /// The computed pre-expectation expressed as a Python symbolic expression.
+    /// The (exact) pre-expectation expressed as a [SymPy](https://docs.sympy.org) symbolic expression.
     ///
-    /// This field is `Some(_)` iff the user provided both the `--python` and `--post-expectation` flags.
+    /// This field is `Some(_)` if the user provided both the `--python` and `--post-expectation` flags.
     #[serde(skip_serializing_if = "Option::is_none")]
-    python_pre_expectation: Option<String>,
+    pre_expectation_exact: Option<String>,
+    /// The (approximate) pre-expectation expressed as a [SymPy](https://docs.sympy.org) symbolic expression.
+    ///
+    /// This field is `Some(_)` if the user provided both the `--python` and `--post-expectation` flags.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pre_expectation_approx: Option<f64>,
 }
 
 impl Report {
-    fn new(
-        paths: Vec<Path>,
-        num_removed_paths: usize,
-        num_uniform_samples: u32,
-        num_normal_samples: u32,
-    ) -> Result<Self> {
+    fn new(paths: Vec<Path>, num_removed_paths: usize, sym_vars: SymVarMap) -> Result<Self> {
         let num_paths = paths.len();
+        let dists = sym_vars.values().filter_map(|st| {
+            if let SymType::Prob(dist) = st {
+                Some(dist)
+            } else {
+                None
+            }
+        });
+        let num_uniform_samples: u32 = dists
+            .clone()
+            .filter(|d| d.is_uniform())
+            .count()
+            .try_into()?;
+        let num_normal_samples: u32 = dists.filter(|d| d.is_normal()).count().try_into()?;
 
-        let mut sample_variables: Vec<String> = Vec::new();
-        let mut int_ranges = Vec::new();
-        for k in 0..num_uniform_samples {
-            sample_variables.push(format!("y_{}", k));
-            int_ranges.push(vec![0, 1]);
-        }
-        for k in 0..num_normal_samples {
-            sample_variables.push(format!("z_{}", k));
-            int_ranges.push(vec![-20, 20]);
-        }
-        let vars = sample_variables.iter().join(",");
-        // TODO: remove
-        evaluate_preexp(&sample_variables, &int_ranges, &paths)?;
+        let pre_expectation = paths
+            .iter()
+            .map(|p| p.python_preexpectation())
+            .collect::<Option<Vec<_>>>()
+            .map(|path_preexps| evaluate_preexp(path_preexps, &sym_vars))
+            .transpose()
+            .context("Python could not compute the pre-expectation")?;
 
-        let python_pre_expectation = Some(
-            format!("\nfrom scipy import integrate\nfrom math import *\ndef f (*args):\n  {} = args\n  return \\ \n  ",vars).to_owned()+
-            &paths
-                .iter()
-                .flat_map(|p| p.python_preexpectation())
-                .join("\\ \n  +")+
-            &format!("\nr,e = integrate.nquad(f,[{:?}])",int_ranges)+
-            &format!("\nprint(\"result = \",r)\nprint(\"error  = \",e)"),
-        )
-        .filter(|preexp| !preexp.is_empty());
+        let (pre_expectation_exact, pre_expectation_approx) = match pre_expectation {
+            Some((exact, approx)) => (Some(exact), Some(approx)),
+            None => (None, None),
+        };
 
         Ok(Self {
             num_paths,
@@ -130,52 +134,58 @@ impl Report {
             num_uniform_samples,
             num_normal_samples,
             paths,
-            python_pre_expectation,
+            pre_expectation_exact,
+            pre_expectation_approx,
         })
     }
 }
 
-fn evaluate_preexp(vars: &Vec<String>, ranges: &Vec<Vec<i32>>, paths: &Vec<Path>) -> Result<()> {
-    let preexp_integrand = paths
-        .iter()
-        .flat_map(|p| p.python_preexpectation())
-        .join("+");
+fn evaluate_preexp<I>(path_preexps: I, sym_vars: &SymVarMap) -> Result<(String, f64)>
+where
+    I: IntoIterator<Item = PyPathPreExpectation>,
+{
+    let preexp_integrand = path_preexps.into_iter().join("+");
 
-    let symbols_arg = vars.iter().join(",");
+    let symbols_arg = sym_vars.keys().join(",");
 
-    let sympy_integrate_limits = vars
-        .iter()
-        .zip(ranges.iter())
-        .map(|(var, limits)| format!("({var},{},{})", limits[0], limits[1]))
+    let sympy_integrate_limits = sym_vars
+        .keys()
+        .zip(sym_vars.values().filter_map(|st| {
+            if let SymType::Prob(dist) = st {
+                Some(dist.range())
+            } else {
+                None
+            }
+        }))
+        .map(|(var, limits)| format!("({var},{},{})", limits.start(), limits.end()))
         .join(", ");
-    let code = include_str!("../integrate.py")
-        .replace("{LIMITS}", &sympy_integrate_limits)
-        .replace("{SYMVARS}", &symbols_arg);
+
+    let sympy_integrate = format!(
+        r#"
+import sympy as sp
+from sympy.parsing.sympy_parser import parse_expr
+
+def integrate(preexp):
+    expr = parse_expr(str(preexp))
+    {SYMVARS} = sp.symbols("{SYMVARS}")
+    r = sp.integrate(expr, {LIMITS})
+    r_eval = r.evalf()
+    return (str(r), r_eval)
+"#,
+        LIMITS = &sympy_integrate_limits,
+        SYMVARS = &symbols_arg
+    );
     Python::with_gil(|py| {
-        let integrate = PyModule::from_code_bound(py, &code, "integrate.py", "integrate")?;
-        let py_ranges = PyList::new_bound(py, ranges);
-        let (r, e): (f64, f64) = integrate
-            .getattr("scipy_int")?
-            .call1((&preexp_integrand, &symbols_arg, py_ranges))?
-            .extract()?;
-        println!("scipy results");
-        println!("result = {r}");
-        println!("error  = {e}");
-
-        println!("--------------------------------------------------");
-
-        let sympy = PyModule::import_bound(py, "sympy")?;
+        let integrate =
+            PyModule::from_code_bound(py, &sympy_integrate, "integrate.py", "integrate")?;
         let (r, r_eval): (String, f64) = integrate
-            .getattr("sympy_int")
+            .getattr("integrate")
             .context("getattr")?
             .call1((&preexp_integrand,))
             .context("call1")?
             .extract()
             .context("extract")?;
-        println!("sympy_results");
-        println!("exact result = {r}");
-        println!("approximate result = {r_eval}");
-        Ok(())
+        Ok((r, r_eval))
     })
 }
 
@@ -188,30 +198,19 @@ impl Display for Report {
         for (i, path) in self.paths.iter().enumerate() {
             writeln!(f, "Path {}:\n{}", i + 1, path)?;
         }
-        if let Some(preexp) = &self.python_pre_expectation {
-            writeln!(f, "[Python] Pre-expectation: {preexp}")
-        } else {
-            Ok(())
+        if let Some(pe) = &self.pre_expectation_exact {
+            writeln!(f, "Pre-expectation = {pe}")?;
+            writeln!(
+                f,
+                "Pre-expectation ≈ {}",
+                self.pre_expectation_approx.unwrap()
+            )?;
         }
+        Ok(())
     }
 }
 
-fn python_version() -> PyResult<()> {
-    Python::with_gil(|py| {
-        let sys = py.import_bound("sys")?;
-        let version: String = sys.getattr("version")?.extract()?;
-
-        let locals = [("os", py.import_bound("os")?)].into_py_dict_bound(py);
-        let code = "os.getenv('USER') or os.getenv('USERNAME') or 'Unknown'";
-        let user: String = py.eval_bound(code, None, Some(&locals))?.extract()?;
-
-        println!("Hello {}, I'm Python {}", user, version);
-        Ok(())
-    })
-}
-
 fn main() -> Result<(), anyhow::Error> {
-    python_version()?;
     // Parse the command line arguments.
     let args = Args::parse();
 
@@ -257,19 +256,8 @@ fn main() -> Result<(), anyhow::Error> {
         }
     }
 
-    // Compute the maximum number of uniform samples across all the paths.
-    let num_uniform_samples = paths.iter().map(|p| p.num_uniform_samples).max().unwrap();
-
-    // Compute the maximum number of uniform samples across all the paths.
-    let num_normal_samples = paths.iter().map(|p| p.num_normal_samples).max().unwrap();
-
     // Construct the report to give to the user.
-    let report = Report::new(
-        paths,
-        num_failed_observe_paths,
-        num_uniform_samples,
-        num_normal_samples,
-    )?;
+    let report = Report::new(paths, num_failed_observe_paths, sym_vars)?;
 
     if args.json {
         if let Some(output_path) = args.output {
