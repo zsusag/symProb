@@ -1,6 +1,6 @@
 use std::{
     collections::BTreeMap,
-    ops::{Deref, DerefMut},
+    ops::{Deref, DerefMut, RangeInclusive},
 };
 
 use crate::syntax::Type;
@@ -13,7 +13,24 @@ pub enum Dist {
     Normal,
 }
 
-#[derive(Debug, Clone)]
+impl Dist {
+    pub fn range(&self) -> RangeInclusive<i32> {
+        match self {
+            Dist::Uniform => 0..=1,
+            Dist::Normal => -20..=20,
+        }
+    }
+
+    pub fn is_uniform(&self) -> bool {
+        matches!(self, Dist::Uniform)
+    }
+
+    pub fn is_normal(&self) -> bool {
+        matches!(self, Dist::Normal)
+    }
+}
+
+#[derive(Debug, Copy, Clone)]
 pub enum SymType {
     Universal(Type),
     Prob(Dist),
@@ -26,7 +43,7 @@ impl SymType {
 }
 
 type SymVarMapT = BTreeMap<String, SymType>;
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Default)]
 pub struct SymVarMap(SymVarMapT);
 
 impl Deref for SymVarMap {
