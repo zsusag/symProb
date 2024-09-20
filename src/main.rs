@@ -1,12 +1,12 @@
 use anyhow::{Context, Result};
 use clap::Parser;
 use executor::ExecutorReport;
-use itertools::{chain, Itertools};
+use itertools::Itertools;
 use python::PyPathPreExpectation;
 use serde::Serialize;
 
-use pyo3::types::{IntoPyDict, PyList};
-use pyo3::{prelude::*, types::PyTuple};
+use pyo3::prelude::*;
+use pyo3::types::IntoPyDict;
 
 use expr::PostExpectation;
 use path::Path;

@@ -1,5 +1,3 @@
-use std::collections::HashMap;
-
 use z3::{
     ast::{Bool, Real},
     Config, Context, SatResult, Solver,

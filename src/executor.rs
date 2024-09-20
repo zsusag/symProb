@@ -53,7 +53,6 @@ impl Executor {
                 }
             }
         }
-        let num_paths = self.paths.len();
         Ok(ExecutorReport {
             paths: self.paths,
             sym_vars,

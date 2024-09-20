@@ -1,4 +1,4 @@
-use std::{collections::HashMap, fmt::Display, io::Write, process::Command};
+use std::{fmt::Display, io::Write, process::Command};
 
 use anyhow::{bail, Context, Result};
 

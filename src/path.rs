@@ -2,7 +2,7 @@ use std::{collections::HashMap, fmt::Display};
 
 use anyhow::Result;
 use itertools::Itertools;
-use num::{traits::ConstOne, Rational32};
+use num::Rational32;
 use serde::Serialize;
 
 use crate::{
@@ -283,7 +283,7 @@ impl Path {
     pub fn python_preexpectation(&self) -> Option<PyPathPreExpectation> {
         if self.python {
             self.preexpectation()
-                .map(|integrand| PyPathPreExpectation::new(integrand, self.psvs.iter(), 20))
+                .map(|integrand| PyPathPreExpectation::new(integrand, self.psvs.iter()))
         } else {
             None
         }
@@ -292,7 +292,7 @@ impl Path {
     pub fn python_preexp_normal_const(&self) -> Option<PyPathPreExpectation> {
         if self.python {
             self.preexp_normal_const()
-                .map(|integrand| PyPathPreExpectation::new(integrand, self.psvs.iter(), 20))
+                .map(|integrand| PyPathPreExpectation::new(integrand, self.psvs.iter()))
         } else {
             None
         }

@@ -1,7 +1,6 @@
 //! Translation of symbolic expressions into the [Python](https://reference.python.com/language/).
 use std::fmt::Display;
 
-use pyo3::prelude::*;
 use serde::Serialize;
 
 use crate::expr::{Expr, ExprNode, PreExpectationIntegrand};
@@ -91,16 +90,12 @@ impl<'a> Display for PythonExpr<'a> {
             ExprKind::Div => {
                 let c0: PythonExpr = c0.unwrap().into();
                 let c1: PythonExpr = c1.unwrap().into();
-                write!(
-                    f,
-                    "{}/{}",
-                    if c0.0.needs_parens() {
-                        format!("({})", c0)
-                    } else {
-                        c0.to_string()
-                    },
-                    format!("({})", c1)
-                )
+                if c0.0.needs_parens() {
+                    write!(f, "({})", c0)?;
+                } else {
+                    write!(f, "{}", c0)?;
+                }
+                write!(f, "/({})", c1)
             }
             ExprKind::Sqrt => {
                 let c0: PythonExpr = c0.unwrap().into();
@@ -193,37 +188,12 @@ fn gaussian_factor(var: &str) -> Expr {
 }
 
 #[derive(Debug)]
-struct IntegralParam {
-    var: String,
-    lower: i32,
-    upper: i32,
-}
-
-impl IntegralParam {
-    pub fn new(var: String, lower: i32, upper: i32) -> Self {
-        Self { var, lower, upper }
-    }
-}
-
-impl Display for IntegralParam {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let Self {
-            var,
-            lower: _,
-            upper: _,
-        } = self;
-        write!(f, "{var}")
-    }
-}
-
-#[derive(Debug)]
 pub struct PyPathPreExpectation {
     integrand: Expr,
-    params: Vec<IntegralParam>,
 }
 
 impl PyPathPreExpectation {
-    pub fn new<'a, I>(pre_exp_int: PreExpectationIntegrand, psvs: I, integral_bounds: i32) -> Self
+    pub fn new<'a, I>(pre_exp_int: PreExpectationIntegrand, psvs: I) -> Self
     where
         I: Iterator<Item = (&'a String, &'a Dist)> + Clone,
     {
@@ -239,28 +209,13 @@ impl PyPathPreExpectation {
         let integrand =
             crate::expr::product(std::iter::once(pre_exp_int.0).chain(gaussian_factors)).unwrap();
 
-        let integration_params = psvs
-            .map(|(var, dist)| match dist {
-                Dist::Uniform => IntegralParam::new(var.to_string(), 0, 1),
-                Dist::Normal => {
-                    IntegralParam::new(var.to_string(), -integral_bounds, integral_bounds)
-                }
-            })
-            .collect();
-
-        Self {
-            integrand,
-            params: integration_params,
-        }
+        Self { integrand }
     }
 }
 
 impl Display for PyPathPreExpectation {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let Self {
-            integrand,
-            params: _,
-        } = self;
+        let Self { integrand } = self;
         write!(f, "{}", PythonExpr::new(&integrand.root))
     }
 }
