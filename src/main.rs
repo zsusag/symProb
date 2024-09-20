@@ -86,8 +86,11 @@ struct Report {
     num_normal_samples: u32,
     /// The set of explored paths.
     paths: Vec<Path>,
+    /// Whether the pre-expectation is an underapproximation (i.e., some paths were forcibly
+    /// terminated)
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pre_expectation_underapproximation: Option<bool>,
     /// The (exact) pre-expectation expressed as a [SymPy](https://docs.sympy.org) symbolic expression.
-    ///
     /// This field is `Some(_)` if the user provided both the `--python` and `--post-expectation` flags.
     #[serde(skip_serializing_if = "Option::is_none")]
     pre_expectation_exact: Option<String>,
@@ -117,11 +120,25 @@ impl Report {
 
         let pre_expectation = paths
             .iter()
+            .filter(|p| !p.forcibly_terminated())
             .map(|p| p.python_preexpectation())
+            .inspect(|p| println!("{p:?}"))
             .collect::<Option<Vec<_>>>()
-            .map(|path_preexps| evaluate_preexp(path_preexps, &sym_vars))
+            .and_then(|path_preexps| {
+                if !path_preexps.is_empty() {
+                    Some(evaluate_preexp(path_preexps, &sym_vars))
+                } else {
+                    None
+                }
+            })
             .transpose()
             .context("Python could not compute the pre-expectation")?;
+
+        let pre_expectation_underapproximation = if pre_expectation.is_some() {
+            Some(paths.iter().any(|p| p.forcibly_terminated()))
+        } else {
+            None
+        };
 
         let (pre_expectation_exact, pre_expectation_approx) = match pre_expectation {
             Some((exact, approx)) => (Some(exact), Some(approx)),
@@ -134,6 +151,7 @@ impl Report {
             num_uniform_samples,
             num_normal_samples,
             paths,
+            pre_expectation_underapproximation,
             pre_expectation_exact,
             pre_expectation_approx,
         })
@@ -197,6 +215,14 @@ impl Display for Report {
         writeln!(f, "Number of normal samples: {}", self.num_normal_samples)?;
         for (i, path) in self.paths.iter().enumerate() {
             writeln!(f, "Path {}:\n{}", i + 1, path)?;
+        }
+        if let Some(underapprox) = self.pre_expectation_underapproximation {
+            if underapprox {
+                writeln!(
+                    f,
+                    "WARNING: The below pre-expectations are an underapproximation as not all paths could be explored."
+                )?;
+            }
         }
         if let Some(pe) = &self.pre_expectation_exact {
             writeln!(f, "Pre-expectation = {pe}")?;
