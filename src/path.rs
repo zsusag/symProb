@@ -141,7 +141,7 @@ pub struct Path {
     conds: Vec<Expr>,
     path_prob: Option<Prob>,
     observes_prob: Option<Prob>,
-    terminated: bool,
+    forcibly_terminated: bool,
     sigma: Sigma,
     observations: Vec<Expr>,
     postexpectation: Option<PostExpectation>,
@@ -157,7 +157,7 @@ impl Path {
             conds: Vec::new(),
             path_prob: None,
             observes_prob: None,
-            terminated: false,
+            forcibly_terminated: false,
             sigma: Sigma::new(),
             observations: Vec::new(),
             postexpectation: None,
@@ -206,8 +206,8 @@ impl Path {
         Ok(())
     }
 
-    pub fn mark_terminated(&mut self) {
-        self.terminated = true;
+    pub fn mark_forcibly_terminated(&mut self) {
+        self.forcibly_terminated = true;
     }
 
     #[allow(dead_code)]
@@ -301,7 +301,11 @@ impl Display for Path {
         writeln!(
             f,
             "\tForcibly terminated: {}",
-            if self.terminated { "Yes" } else { "No" }
+            if self.forcibly_terminated {
+                "Yes"
+            } else {
+                "No"
+            }
         )
     }
 }
@@ -316,7 +320,7 @@ pub struct SerdePath {
     #[serde(skip_serializing_if = "Option::is_none")]
     observations_probability: Option<Prob>,
     sigma: Sigma,
-    terminated: bool,
+    forcibly_terminated: bool,
     uniform_samples: u32,
     normal_samples: u32,
 }
@@ -327,7 +331,7 @@ impl From<Path> for SerdePath {
             conds,
             path_prob,
             observes_prob,
-            terminated,
+            forcibly_terminated,
             sigma,
             observations,
             num_uniform_samples,
@@ -340,7 +344,7 @@ impl From<Path> for SerdePath {
             observations: observations.iter().join(" ∧ "),
             observations_probability: observes_prob,
             sigma,
-            terminated,
+            forcibly_terminated,
             uniform_samples: num_uniform_samples,
             normal_samples: num_normal_samples,
         }
