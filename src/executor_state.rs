@@ -19,6 +19,7 @@ pub enum Status {
     Terminate(Path, SymVarMap),
     FailedObserve,
     PrematureTerminate,
+    MaxIterationsReached(Path, SymVarMap, ExecutorState),
 }
 
 #[derive(Debug, Clone)]
@@ -175,6 +176,33 @@ impl ExecutorState {
             self.stack.push(s);
         }
         self
+    }
+
+    pub fn terminate(&mut self, prob: bool, forcibly: bool) -> Result<()> {
+        if forcibly {
+            self.path.mark_forcibly_terminated();
+        }
+
+        self.path.update_sigma(&self.sigma);
+        self.path.simplify_sigma();
+        self.path
+            .set_num_samples(self.num_uniform_samples, self.num_normal_samples);
+        if prob {
+            self.path.calculate_prob(&self.sym_vars)?;
+        }
+        self.path.psvs = self
+            .sym_vars
+            .clone()
+            .into_iter()
+            .filter_map(|(var, sym_type)| {
+                if let SymType::Prob(dist) = sym_type {
+                    Some((var, dist))
+                } else {
+                    None
+                }
+            })
+            .collect();
+        Ok(())
     }
 
     // Going to ignore function/macro calls for now.
@@ -337,43 +365,38 @@ impl ExecutorState {
                         let iters_so_far = self.iter_map.get_mut(&s_id);
 
                         if true_sat {
+                            // First check to see if we have reached the maximum number of
+                            // iterations.
                             if let Some(max_iters) = self.max_iterations {
                                 if let Some(num_iters_so_far) = &iters_so_far {
                                     if **num_iters_so_far >= max_iters {
-                                        // We have reached the maximum number of iterations allowed
-                                        self.path.mark_terminated();
+                                        // We have reached the maximum number of iterations allowed!
+                                        // We will no longer explore the true branch of the loop.
+
                                         if false_sat {
-                                            return Ok(Status::Continue(
-                                                self.fork(Vec::new(), Some(sub_guard.not())),
+                                            // If both branches of the loop guard are satisfiable,
+                                            // and we have reached the maximum number of iterations,
+                                            // we want to continue to explore in the false branch
+                                            // outside of the loop but no longer explore true branch
+                                            // inside of the loop.
+                                            let fls_branch = self
+                                                .clone()
+                                                .fork(Vec::new(), Some(sub_guard.not()));
+                                            self.terminate(prob, true)?;
+                                            return Ok(Status::MaxIterationsReached(
+                                                self.path,
+                                                self.sym_vars,
+                                                fls_branch,
                                             ));
                                         } else {
-                                            self.path.branch(sub_guard.not(), &self.sigma);
-                                            return Ok(Status::Continue(self));
+                                            // Otherwise, if this path could have only entered the
+                                            // loop, we terminate exploration of this path.
+                                            self.terminate(prob, true)?;
+                                            return Ok(Status::Terminate(self.path, self.sym_vars));
                                         }
                                     }
                                 }
                             }
-
-                            // if let Some(prev_iter_path) = self.prev_iter_map.get(&s_id) {
-                            //     // Visited this loop before; check for almost-surely-terminating loop...
-                            //     if Prob::is_almost_surely_terminating(
-                            //         prev_iter_path,
-                            //         &self.path,
-                            //         &self.sym_vars,
-                            //     )? {
-                            //         // Don't enter the loop!
-                            //         self.path.mark_terminated();
-                            //         if false_sat {
-                            //             return Ok(Status::Continue(
-                            //                 self.fork(Vec::new(), Some(guard.not())),
-                            //             ));
-                            //         } else {
-                            //             return Ok(Status::Continue(self));
-                            //         }
-                            //     }
-                            // }
-                            // Insert the while loop into the prev iteration, unless it is almost-surely-terminating.
-                            //                            self.prev_iter_map.insert(s_id, self.path.clone());
 
                             // Increment the number of iterations
                             match iters_so_far {
@@ -385,7 +408,7 @@ impl ExecutorState {
 
                             if false_sat {
                                 let mut into_loop_state = self.clone();
-                                // Push copy of while loop onto stack before forking
+                                // Push copy of the while loop onto the stack before forking
                                 into_loop_state.stack.push(Statement::clone_while(
                                     guard,
                                     body.clone(),
@@ -425,25 +448,7 @@ impl ExecutorState {
                 }
             }
             None => {
-                self.path.update_sigma(&self.sigma);
-                self.path.simplify_sigma();
-                self.path
-                    .set_num_samples(self.num_uniform_samples, self.num_normal_samples);
-                if prob {
-                    self.path.calculate_prob(&self.sym_vars)?;
-                }
-                self.path.psvs = self
-                    .sym_vars
-                    .clone()
-                    .into_iter()
-                    .filter_map(|(var, sym_type)| {
-                        if let SymType::Prob(dist) = sym_type {
-                            Some((var, dist))
-                        } else {
-                            None
-                        }
-                    })
-                    .collect();
+                self.terminate(prob, false)?;
                 Ok(Status::Terminate(self.path, self.sym_vars))
             }
         }

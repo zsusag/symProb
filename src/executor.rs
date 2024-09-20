@@ -46,13 +46,17 @@ impl Executor {
                 Status::FailedObserve => {
                     num_failed_observe_paths += 1;
                 }
+                Status::MaxIterationsReached(term_path, term_symvars, false_state) => {
+                    self.paths.push(term_path);
+                    sym_vars.extend(term_symvars);
+                    self.stack.push(false_state);
+                }
             }
         }
         let num_paths = self.paths.len();
         Ok(ExecutorReport {
             paths: self.paths,
             sym_vars,
-
             num_failed_observe_paths,
         })
     }

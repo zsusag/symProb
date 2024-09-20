@@ -206,6 +206,10 @@ impl Path {
         Ok(())
     }
 
+    pub fn forcibly_terminated(&self) -> bool {
+        self.forcibly_terminated
+    }
+
     pub fn mark_forcibly_terminated(&mut self) {
         self.forcibly_terminated = true;
     }
