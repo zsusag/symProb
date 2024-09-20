@@ -1083,6 +1083,12 @@ impl From<PostExpectation> for Expr {
     }
 }
 
+impl From<Expr> for PostExpectation {
+    fn from(value: Expr) -> Self {
+        Self(value)
+    }
+}
+
 impl IntoIterator for PostExpectation {
     type Item = Expr;
 
