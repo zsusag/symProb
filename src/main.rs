@@ -93,16 +93,21 @@ struct Report {
     /// The (exact) pre-expectation expressed as a [SymPy](https://docs.sympy.org) symbolic expression.
     /// This field is `Some(_)` if the user provided both the `--python` and `--post-expectation` flags.
     #[serde(skip_serializing_if = "Option::is_none")]
-    pre_expectation_exact: Option<String>,
+    unnormalized_pre_expectation_exact: Option<String>,
     /// The (approximate) pre-expectation expressed as a [SymPy](https://docs.sympy.org) symbolic expression.
     ///
     /// This field is `Some(_)` if the user provided both the `--python` and `--post-expectation` flags.
     #[serde(skip_serializing_if = "Option::is_none")]
-    pre_expectation_approx: Option<f64>,
+    unnormalized_pre_expectation_approx: Option<f64>,
 }
 
 impl Report {
-    fn new(paths: Vec<Path>, num_removed_paths: usize, sym_vars: SymVarMap) -> Result<Self> {
+    fn new(
+        paths: Vec<Path>,
+        num_removed_paths: usize,
+        sym_vars: SymVarMap,
+        normalize: bool,
+    ) -> Result<Self> {
         let num_paths = paths.len();
         let dists = sym_vars.values().filter_map(|st| {
             if let SymType::Prob(dist) = st {
@@ -140,10 +145,11 @@ impl Report {
             None
         };
 
-        let (pre_expectation_exact, pre_expectation_approx) = match pre_expectation {
-            Some((exact, approx)) => (Some(exact), Some(approx)),
-            None => (None, None),
-        };
+        let (unnormalized_pre_expectation_exact, unnormalized_pre_expectation_approx) =
+            match pre_expectation {
+                Some((exact, approx)) => (Some(exact), Some(approx)),
+                None => (None, None),
+            };
 
         Ok(Self {
             num_paths,
@@ -152,8 +158,8 @@ impl Report {
             num_normal_samples,
             paths,
             pre_expectation_underapproximation,
-            pre_expectation_exact,
-            pre_expectation_approx,
+            unnormalized_pre_expectation_exact,
+            unnormalized_pre_expectation_approx,
         })
     }
 }
@@ -224,12 +230,12 @@ impl Display for Report {
                 )?;
             }
         }
-        if let Some(pe) = &self.pre_expectation_exact {
+        if let Some(pe) = &self.unnormalized_pre_expectation_exact {
             writeln!(f, "Pre-expectation = {pe}")?;
             writeln!(
                 f,
                 "Pre-expectation ≈ {}",
-                self.pre_expectation_approx.unwrap()
+                self.unnormalized_pre_expectation_approx.unwrap()
             )?;
         }
         Ok(())
