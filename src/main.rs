@@ -68,6 +68,10 @@ struct Args {
     python: bool,
 
     #[arg(long)]
+    /// compute the normalized pre-expectation
+    normalize: bool,
+
+    #[arg(long)]
     /// Path to a post-expectation expression parameterized by program variables stored within a
     /// file.
     post_expectation_path: Option<std::path::PathBuf>,
@@ -90,15 +94,35 @@ struct Report {
     /// terminated)
     #[serde(skip_serializing_if = "Option::is_none")]
     pre_expectation_underapproximation: Option<bool>,
-    /// The (exact) pre-expectation expressed as a [SymPy](https://docs.sympy.org) symbolic expression.
+    /// The exact, unnormalized pre-expectation expressed as a [SymPy](https://docs.sympy.org) symbolic expression.
     /// This field is `Some(_)` if the user provided both the `--python` and `--post-expectation` flags.
     #[serde(skip_serializing_if = "Option::is_none")]
     unnormalized_pre_expectation_exact: Option<String>,
-    /// The (approximate) pre-expectation expressed as a [SymPy](https://docs.sympy.org) symbolic expression.
+    /// The approximate, unnormalized pre-expectation expressed as a [SymPy](https://docs.sympy.org) symbolic expression.
     ///
     /// This field is `Some(_)` if the user provided both the `--python` and `--post-expectation` flags.
     #[serde(skip_serializing_if = "Option::is_none")]
     unnormalized_pre_expectation_approx: Option<f64>,
+
+    /// The exact normalization constant expressed as a [SymPy](https://docs.sympy.org) symbolic expression.
+    /// This field is `Some(_)` if the user provided both the `--python` and `--post-expectation` flags.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    normalization_constant_exact: Option<String>,
+    /// The approximate normalization constant expressed as a [SymPy](https://docs.sympy.org) symbolic expression.
+    ///
+    /// This field is `Some(_)` if the user provided both the `--python` and `--post-expectation` flags.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    normalization_constant_approx: Option<f64>,
+
+    /// The exact, normalized pre-expectation expressed as a [SymPy](https://docs.sympy.org) symbolic expression.
+    /// This field is `Some(_)` if the user provided both the `--python` and `--post-expectation` flags.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pre_expectation_exact: Option<String>,
+    /// The approximate, normalized pre-expectation expressed as a [SymPy](https://docs.sympy.org) symbolic expression.
+    ///
+    /// This field is `Some(_)` if the user provided both the `--python` and `--post-expectation` flags.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pre_expectation_approx: Option<f64>,
 }
 
 impl Report {
@@ -127,7 +151,6 @@ impl Report {
             .iter()
             .filter(|p| !p.forcibly_terminated())
             .map(|p| p.python_preexpectation())
-            .inspect(|p| println!("{p:?}"))
             .collect::<Option<Vec<_>>>()
             .and_then(|path_preexps| {
                 if !path_preexps.is_empty() {
@@ -137,7 +160,7 @@ impl Report {
                 }
             })
             .transpose()
-            .context("Python could not compute the pre-expectation")?;
+            .context("SymPy could not compute the pre-expectation")?;
 
         let pre_expectation_underapproximation = if pre_expectation.is_some() {
             Some(paths.iter().any(|p| p.forcibly_terminated()))
@@ -151,16 +174,68 @@ impl Report {
                 None => (None, None),
             };
 
-        Ok(Self {
-            num_paths,
-            num_removed_paths,
-            num_uniform_samples,
-            num_normal_samples,
-            paths,
-            pre_expectation_underapproximation,
-            unnormalized_pre_expectation_exact,
-            unnormalized_pre_expectation_approx,
-        })
+        if normalize {
+            let constant = paths
+                .iter()
+                .filter(|p| !p.forcibly_terminated())
+                .map(|p| p.python_preexp_normal_const())
+                .collect::<Option<Vec<_>>>()
+                .and_then(|cnsts| {
+                    if !cnsts.is_empty() {
+                        Some(evaluate_preexp(cnsts, &sym_vars))
+                    } else {
+                        None
+                    }
+                })
+                .transpose()
+                .context("Python could not compute the pre-expectation")?;
+
+            let (normalization_constant_exact, normalization_constant_approx) = match constant {
+                Some((exact, approx)) => (Some(exact), Some(approx)),
+                None => (None, None),
+            };
+
+            let pre_expectation_exact = unnormalized_pre_expectation_exact
+                .as_ref()
+                .zip(normalization_constant_exact.as_ref())
+                .map(|(preexp, cnst)| divide_exact(preexp, cnst))
+                .transpose()
+                .context("SymPy could not compute the normalized pre-expectation")?;
+
+            let pre_expectation_approx = unnormalized_pre_expectation_approx
+                .zip(normalization_constant_approx)
+                .map(|(preexp, cnst)| preexp / cnst);
+
+            Ok(Self {
+                num_paths,
+                num_removed_paths,
+                num_uniform_samples,
+                num_normal_samples,
+                paths,
+                pre_expectation_underapproximation,
+                unnormalized_pre_expectation_exact,
+                unnormalized_pre_expectation_approx,
+                normalization_constant_exact,
+                normalization_constant_approx,
+                pre_expectation_exact,
+                pre_expectation_approx,
+            })
+        } else {
+            Ok(Self {
+                num_paths,
+                num_removed_paths,
+                num_uniform_samples,
+                num_normal_samples,
+                paths,
+                pre_expectation_underapproximation,
+                unnormalized_pre_expectation_exact,
+                unnormalized_pre_expectation_approx,
+                normalization_constant_exact: None,
+                normalization_constant_approx: None,
+                pre_expectation_exact: None,
+                pre_expectation_approx: None,
+            })
+        }
     }
 }
 
@@ -213,6 +288,26 @@ def integrate(preexp):
     })
 }
 
+fn divide_exact(numer: &str, denom: &str) -> Result<String> {
+    Python::with_gil(|py| {
+        let sympy_parser = PyModule::import_bound(py, "sympy.parsing.sympy_parser")?;
+        let p = sympy_parser
+            .getattr("parse_expr")?
+            .call1((numer,))
+            .context("error converting expression into a SymPy expression")?;
+        let q = sympy_parser
+            .getattr("parse_expr")?
+            .call1((denom,))
+            .context("error converting expression into a SymPy expression")?;
+        let args = [("p", p), ("q", q)].into_py_dict_bound(py);
+        let res: String = py
+            .eval_bound("str(p/q)", None, Some(&args))
+            .context("error dividing")?
+            .extract()?;
+        Ok(res)
+    })
+}
+
 impl Display for Report {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         writeln!(f, "Number of paths: {}", self.num_paths)?;
@@ -231,11 +326,27 @@ impl Display for Report {
             }
         }
         if let Some(pe) = &self.unnormalized_pre_expectation_exact {
+            writeln!(f, "Unnormalized Pre-expectation = {pe}")?;
+            writeln!(
+                f,
+                "Unnormalized Pre-expectation ≈ {}",
+                self.unnormalized_pre_expectation_approx.unwrap()
+            )?;
+        }
+        if let Some(cnst) = &self.normalization_constant_exact {
+            writeln!(f, "Normalization Constant = {cnst}")?;
+            writeln!(
+                f,
+                "Normalization Constant ≈ {}",
+                self.normalization_constant_approx.unwrap()
+            )?;
+        }
+        if let Some(pe) = &self.pre_expectation_exact {
             writeln!(f, "Pre-expectation = {pe}")?;
             writeln!(
                 f,
                 "Pre-expectation ≈ {}",
-                self.unnormalized_pre_expectation_approx.unwrap()
+                self.pre_expectation_approx.unwrap()
             )?;
         }
         Ok(())
@@ -289,7 +400,7 @@ fn main() -> Result<(), anyhow::Error> {
     }
 
     // Construct the report to give to the user.
-    let report = Report::new(paths, num_failed_observe_paths, sym_vars)?;
+    let report = Report::new(paths, num_failed_observe_paths, sym_vars, args.normalize)?;
 
     if args.json {
         if let Some(output_path) = args.output {

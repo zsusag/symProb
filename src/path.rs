@@ -2,6 +2,7 @@ use std::{collections::HashMap, fmt::Display};
 
 use anyhow::Result;
 use itertools::Itertools;
+use num::{traits::ConstOne, Rational32};
 use serde::Serialize;
 
 use crate::{
@@ -243,6 +244,20 @@ impl Path {
         })
     }
 
+    /// Returns the integrand for the normalization constant of the pre-expectation for the path.
+    pub fn preexp_normal_const(&self) -> Option<PreExpectationIntegrand> {
+        let one: Expr = Rational32::ONE.into();
+        if self.postexpectation.is_some() {
+            Some(PreExpectationIntegrand::new(
+                self.conds.clone(),
+                self.observations.clone(),
+                one.into(),
+            ))
+        } else {
+            None
+        }
+    }
+
     /// Returns the pre-expectation for the path by consuming the path. If the path does not have a postexpectation (i.e.,
     /// `self.postexpectation` is `None`), this method returns `None`.
     ///
@@ -268,6 +283,15 @@ impl Path {
     pub fn python_preexpectation(&self) -> Option<PyPathPreExpectation> {
         if self.python {
             self.preexpectation()
+                .map(|integrand| PyPathPreExpectation::new(integrand, self.psvs.iter(), 20))
+        } else {
+            None
+        }
+    }
+
+    pub fn python_preexp_normal_const(&self) -> Option<PyPathPreExpectation> {
+        if self.python {
+            self.preexp_normal_const()
                 .map(|integrand| PyPathPreExpectation::new(integrand, self.psvs.iter(), 20))
         } else {
             None
