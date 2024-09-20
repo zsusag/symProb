@@ -297,15 +297,6 @@ impl Display for Path {
         // Print the substitution map [`Sigma`].
         writeln!(f, "\tSubstitution (σ): {}", self.sigma)?;
 
-        // Print the pre-expectation for the path if a postcondition has been provided.
-        if let Some(preexp) = self.preexpectation() {
-            writeln!(f, "\tPre-expectation Integrand: {preexp}")?;
-
-            if let Some(python_preexp) = self.python_preexpectation() {
-                writeln!(f, "\t[Python] Pre-expectation: {python_preexp}",)?;
-            }
-        }
-
         // Print whether the path was forced to terminate.
         writeln!(
             f,
@@ -324,10 +315,6 @@ pub struct SerdePath {
     observations: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     observations_probability: Option<Prob>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pre_expectation_integrand: Option<PreExpectationIntegrand>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pre_expectation_python: Option<PyPathPreExpectation>,
     sigma: Sigma,
     terminated: bool,
     uniform_samples: u32,
@@ -336,9 +323,6 @@ pub struct SerdePath {
 
 impl From<Path> for SerdePath {
     fn from(p: Path) -> Self {
-        let pre_expectation_integrand = p.preexpectation();
-        let pre_expectation_python = p.python_preexpectation();
-
         let Path {
             conds,
             path_prob,
@@ -355,8 +339,6 @@ impl From<Path> for SerdePath {
             condition_probability: path_prob,
             observations: observations.iter().join(" ∧ "),
             observations_probability: observes_prob,
-            pre_expectation_integrand,
-            pre_expectation_python,
             sigma,
             terminated,
             uniform_samples: num_uniform_samples,
