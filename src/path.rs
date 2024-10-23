@@ -149,7 +149,6 @@ pub struct Path {
     pub psvs: HashMap<String, Dist>,
     pub num_uniform_samples: u32,
     pub num_normal_samples: u32,
-    python: bool,
 }
 
 impl Path {
@@ -165,7 +164,6 @@ impl Path {
             psvs: HashMap::new(),
             num_uniform_samples: 0,
             num_normal_samples: 0,
-            python: false,
         }
     }
 
@@ -275,27 +273,14 @@ impl Path {
         postexpectation.map(|post| PreExpectationIntegrand::new(conds, observations, post))
     }
 
-    /// Turns on Python output for pre-expectations.
-    pub fn set_python_output(&mut self) {
-        self.python = true;
+    pub fn integrable_preexpectation(&self) -> Option<PyPathPreExpectation> {
+        self.preexpectation()
+            .map(|integrand| PyPathPreExpectation::new(integrand, self.psvs.iter()))
     }
 
-    pub fn python_preexpectation(&self) -> Option<PyPathPreExpectation> {
-        if self.python {
-            self.preexpectation()
-                .map(|integrand| PyPathPreExpectation::new(integrand, self.psvs.iter()))
-        } else {
-            None
-        }
-    }
-
-    pub fn python_preexp_normal_const(&self) -> Option<PyPathPreExpectation> {
-        if self.python {
-            self.preexp_normal_const()
-                .map(|integrand| PyPathPreExpectation::new(integrand, self.psvs.iter()))
-        } else {
-            None
-        }
+    pub fn integrable_preexp_normal_const(&self) -> Option<PyPathPreExpectation> {
+        self.preexp_normal_const()
+            .map(|integrand| PyPathPreExpectation::new(integrand, self.psvs.iter()))
     }
 }
 

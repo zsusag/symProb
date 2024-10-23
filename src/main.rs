@@ -64,8 +64,8 @@ struct Args {
     post_expectation: Option<String>,
 
     #[arg(long)]
-    /// print the pre-expectation in the Python language
-    python: bool,
+    /// integrate the pre-expectation expression using SymPy
+    integrate: bool,
 
     #[arg(long)]
     /// compute the normalized pre-expectation
@@ -95,32 +95,32 @@ struct Report {
     #[serde(skip_serializing_if = "Option::is_none")]
     pre_expectation_underapproximation: Option<bool>,
     /// The exact, unnormalized pre-expectation expressed as a [SymPy](https://docs.sympy.org) symbolic expression.
-    /// This field is `Some(_)` if the user provided both the `--python` and `--post-expectation` flags.
+    /// This field is `Some(_)` if the user provided both the `--integrate` and `--post-expectation` flags.
     #[serde(skip_serializing_if = "Option::is_none")]
     unnormalized_pre_expectation_exact: Option<String>,
     /// The approximate, unnormalized pre-expectation expressed as a [SymPy](https://docs.sympy.org) symbolic expression.
     ///
-    /// This field is `Some(_)` if the user provided both the `--python` and `--post-expectation` flags.
+    /// This field is `Some(_)` if the user provided both the `--integrate` and `--post-expectation` flags.
     #[serde(skip_serializing_if = "Option::is_none")]
     unnormalized_pre_expectation_approx: Option<f64>,
 
     /// The exact normalization constant expressed as a [SymPy](https://docs.sympy.org) symbolic expression.
-    /// This field is `Some(_)` if the user provided both the `--python` and `--post-expectation` flags.
+    /// This field is `Some(_)` if the user provided both the `--integrate` and `--post-expectation` flags.
     #[serde(skip_serializing_if = "Option::is_none")]
     normalization_constant_exact: Option<String>,
     /// The approximate normalization constant expressed as a [SymPy](https://docs.sympy.org) symbolic expression.
     ///
-    /// This field is `Some(_)` if the user provided both the `--python` and `--post-expectation` flags.
+    /// This field is `Some(_)` if the user provided both the `--integrate` and `--post-expectation` flags.
     #[serde(skip_serializing_if = "Option::is_none")]
     normalization_constant_approx: Option<f64>,
 
     /// The exact, normalized pre-expectation expressed as a [SymPy](https://docs.sympy.org) symbolic expression.
-    /// This field is `Some(_)` if the user provided both the `--python` and `--post-expectation` flags.
+    /// This field is `Some(_)` if the user provided both the `--integrate` and `--post-expectation` flags.
     #[serde(skip_serializing_if = "Option::is_none")]
     pre_expectation_exact: Option<String>,
     /// The approximate, normalized pre-expectation expressed as a [SymPy](https://docs.sympy.org) symbolic expression.
     ///
-    /// This field is `Some(_)` if the user provided both the `--python` and `--post-expectation` flags.
+    /// This field is `Some(_)` if the user provided both the `--integrate` and `--post-expectation` flags.
     #[serde(skip_serializing_if = "Option::is_none")]
     pre_expectation_approx: Option<f64>,
 }
@@ -130,6 +130,7 @@ impl Report {
         paths: Vec<Path>,
         num_removed_paths: usize,
         sym_vars: SymVarMap,
+        integrate: bool,
         normalize: bool,
     ) -> Result<Self> {
         let num_paths = paths.len();
@@ -147,20 +148,26 @@ impl Report {
             .try_into()?;
         let num_normal_samples: u32 = dists.filter(|d| d.is_normal()).count().try_into()?;
 
-        let pre_expectation = paths
-            .iter()
-            .filter(|p| !p.forcibly_terminated())
-            .map(|p| p.python_preexpectation())
-            .collect::<Option<Vec<_>>>()
-            .and_then(|path_preexps| {
-                if !path_preexps.is_empty() {
-                    Some(evaluate_preexp(path_preexps, &sym_vars))
-                } else {
-                    None
-                }
-            })
-            .transpose()
-            .context("SymPy could not compute the pre-expectation")?;
+        let pre_expectation = if integrate {
+            paths
+                .iter()
+                .filter(|p| !p.forcibly_terminated())
+                .map(|p| p.integrable_preexpectation())
+                .collect::<Option<Vec<_>>>()
+                .and_then(|path_preexps| {
+                    if !path_preexps.is_empty() {
+                        Some(
+                            integrate_preexp(path_preexps, &sym_vars)
+                                .context("SymPy could not compute the pre-expectation"),
+                        )
+                    } else {
+                        None
+                    }
+                })
+                .transpose()?
+        } else {
+            None
+        };
 
         let pre_expectation_underapproximation = if pre_expectation.is_some() {
             Some(paths.iter().any(|p| p.forcibly_terminated()))
@@ -175,20 +182,26 @@ impl Report {
             };
 
         if normalize {
-            let constant = paths
-                .iter()
-                .filter(|p| !p.forcibly_terminated())
-                .map(|p| p.python_preexp_normal_const())
-                .collect::<Option<Vec<_>>>()
-                .and_then(|cnsts| {
-                    if !cnsts.is_empty() {
-                        Some(evaluate_preexp(cnsts, &sym_vars))
-                    } else {
-                        None
-                    }
-                })
-                .transpose()
-                .context("Python could not compute the pre-expectation")?;
+            let constant = if integrate {
+                paths
+                    .iter()
+                    .filter(|p| !p.forcibly_terminated())
+                    .map(|p| p.integrable_preexp_normal_const())
+                    .collect::<Option<Vec<_>>>()
+                    .and_then(|cnsts| {
+                        if !cnsts.is_empty() {
+                            Some(
+                                integrate_preexp(cnsts, &sym_vars)
+                                    .context("Python could not compute the pre-expectation"),
+                            )
+                        } else {
+                            None
+                        }
+                    })
+                    .transpose()?
+            } else {
+                None
+            };
 
             let (normalization_constant_exact, normalization_constant_approx) = match constant {
                 Some((exact, approx)) => (Some(exact), Some(approx)),
@@ -239,7 +252,7 @@ impl Report {
     }
 }
 
-fn evaluate_preexp<I>(path_preexps: I, sym_vars: &SymVarMap) -> Result<(String, f64)>
+fn integrate_preexp<I>(path_preexps: I, sym_vars: &SymVarMap) -> Result<(String, f64)>
 where
     I: IntoIterator<Item = PyPathPreExpectation>,
 {
@@ -389,18 +402,16 @@ fn main() -> Result<(), anyhow::Error> {
             .iter_mut()
             .zip(std::iter::repeat(post))
             .try_for_each(|(path, post)| path.add_postexpectation(post))?;
-
-        // Enable the creation of pre-expectation expressions represented as an integral in the
-        // Python language if the user asked for one.
-        if args.python {
-            for p in paths.iter_mut() {
-                p.set_python_output();
-            }
-        }
     }
 
     // Construct the report to give to the user.
-    let report = Report::new(paths, num_failed_observe_paths, sym_vars, args.normalize)?;
+    let report = Report::new(
+        paths,
+        num_failed_observe_paths,
+        sym_vars,
+        args.integrate,
+        args.normalize,
+    )?;
 
     if args.json {
         if let Some(output_path) = args.output {
