@@ -187,7 +187,7 @@ fn gaussian_factor(var: &str) -> Expr {
     Expr::new(root)
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct PyPathPreExpectation {
     integrand: Expr,
 }

@@ -91,9 +91,14 @@ struct Report {
     /// The set of explored paths.
     paths: Vec<Path>,
     /// Whether the pre-expectation is an underapproximation (i.e., some paths were forcibly
-    /// terminated)
+    /// terminated). This field is `None` if the user did not provide the `--post-expectation` option.
     #[serde(skip_serializing_if = "Option::is_none")]
     pre_expectation_underapproximation: Option<bool>,
+
+    /// The unnormalized integrand of the pre-expectation. This field is `None` if the user did not
+    /// provide the `--post-expectation` option.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    unnormalized_pre_expectation_integrand: Option<String>,
     /// The exact, unnormalized pre-expectation expressed as a [SymPy](https://docs.sympy.org) symbolic expression.
     /// This field is `Some(_)` if the user provided both the `--integrate` and `--post-expectation` flags.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -104,25 +109,35 @@ struct Report {
     #[serde(skip_serializing_if = "Option::is_none")]
     unnormalized_pre_expectation_approx: Option<f64>,
 
+    /// The normalization constant expressed as a [SymPy](https://docs.sympy.org) symbolic expression.
+    /// This field is `Some(_)` only if the user provided the `--post-expectation` option and the
+    /// `--normalize` flag.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    normalization_constant: Option<String>,
     /// The exact normalization constant expressed as a [SymPy](https://docs.sympy.org) symbolic expression.
-    /// This field is `Some(_)` if the user provided both the `--integrate` and `--post-expectation` flags.
+    /// This field is `Some(_)` if the user provided the `--integrate`, `--post-expectation`, and
+    /// `--normalize` flags.
     #[serde(skip_serializing_if = "Option::is_none")]
     normalization_constant_exact: Option<String>,
     /// The approximate normalization constant expressed as a [SymPy](https://docs.sympy.org) symbolic expression.
-    ///
-    /// This field is `Some(_)` if the user provided both the `--integrate` and `--post-expectation` flags.
+    /// This field is `Some(_)` if the user provided the `--integrate`, `--post-expectation`, and
+    /// `--normalize` flags.
     #[serde(skip_serializing_if = "Option::is_none")]
     normalization_constant_approx: Option<f64>,
 
+    /// The normalized integrand of the pre-expectation. This field is `None` if the user did not
+    /// provide the `--post-expectation` option **and** the `--normalize` flag.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    normalized_pre_expectation_integrand: Option<String>,
     /// The exact, normalized pre-expectation expressed as a [SymPy](https://docs.sympy.org) symbolic expression.
     /// This field is `Some(_)` if the user provided both the `--integrate` and `--post-expectation` flags.
     #[serde(skip_serializing_if = "Option::is_none")]
-    pre_expectation_exact: Option<String>,
+    normalized_pre_expectation_exact: Option<String>,
     /// The approximate, normalized pre-expectation expressed as a [SymPy](https://docs.sympy.org) symbolic expression.
     ///
     /// This field is `Some(_)` if the user provided both the `--integrate` and `--post-expectation` flags.
     #[serde(skip_serializing_if = "Option::is_none")]
-    pre_expectation_approx: Option<f64>,
+    normalized_pre_expectation_approx: Option<f64>,
 }
 
 impl Report {
@@ -148,12 +163,18 @@ impl Report {
             .try_into()?;
         let num_normal_samples: u32 = dists.filter(|d| d.is_normal()).count().try_into()?;
 
-        let pre_expectation = if integrate {
-            paths
-                .iter()
-                .filter(|p| !p.forcibly_terminated())
-                .map(|p| p.integrable_preexpectation())
-                .collect::<Option<Vec<_>>>()
+        let pre_expectation_integrand = paths
+            .iter()
+            .filter(|p| !p.forcibly_terminated())
+            .map(|p| p.integrable_preexpectation())
+            .collect::<Option<Vec<_>>>();
+
+        let unnormalized_pre_expectation_integrand = pre_expectation_integrand
+            .clone()
+            .map(|preexp| preexp.into_iter().join("+"));
+
+        let unnormalized_pre_expectation = if integrate {
+            pre_expectation_integrand
                 .and_then(|path_preexps| {
                     if !path_preexps.is_empty() {
                         Some(
@@ -169,25 +190,39 @@ impl Report {
             None
         };
 
-        let pre_expectation_underapproximation = if pre_expectation.is_some() {
+        let pre_expectation_underapproximation = if unnormalized_pre_expectation.is_some() {
             Some(paths.iter().any(|p| p.forcibly_terminated()))
         } else {
             None
         };
 
         let (unnormalized_pre_expectation_exact, unnormalized_pre_expectation_approx) =
-            match pre_expectation {
+            match unnormalized_pre_expectation {
                 Some((exact, approx)) => (Some(exact), Some(approx)),
                 None => (None, None),
             };
 
         if normalize {
+            let normalization_constant_integrand = paths
+                .iter()
+                .filter(|p| !p.forcibly_terminated())
+                .map(|p| p.integrable_preexp_normal_const())
+                .collect::<Option<Vec<_>>>();
+
+            let normalization_constant = normalization_constant_integrand
+                .clone()
+                .map(|cnsts| cnsts.into_iter().join("+"));
+
+            let normalized_pre_expectation_integrand = match (
+                &unnormalized_pre_expectation_integrand,
+                &normalization_constant,
+            ) {
+                (Some(preexp), Some(c)) => Some(preexp.clone() + "+" + c),
+                _ => None,
+            };
+
             let constant = if integrate {
-                paths
-                    .iter()
-                    .filter(|p| !p.forcibly_terminated())
-                    .map(|p| p.integrable_preexp_normal_const())
-                    .collect::<Option<Vec<_>>>()
+                normalization_constant_integrand
                     .and_then(|cnsts| {
                         if !cnsts.is_empty() {
                             Some(
@@ -208,14 +243,14 @@ impl Report {
                 None => (None, None),
             };
 
-            let pre_expectation_exact = unnormalized_pre_expectation_exact
+            let normalized_pre_expectation_exact = unnormalized_pre_expectation_exact
                 .as_ref()
                 .zip(normalization_constant_exact.as_ref())
                 .map(|(preexp, cnst)| divide_exact(preexp, cnst))
                 .transpose()
                 .context("SymPy could not compute the normalized pre-expectation")?;
 
-            let pre_expectation_approx = unnormalized_pre_expectation_approx
+            let normalized_pre_expectation_approx = unnormalized_pre_expectation_approx
                 .zip(normalization_constant_approx)
                 .map(|(preexp, cnst)| preexp / cnst);
 
@@ -226,12 +261,15 @@ impl Report {
                 num_normal_samples,
                 paths,
                 pre_expectation_underapproximation,
+                unnormalized_pre_expectation_integrand,
                 unnormalized_pre_expectation_exact,
                 unnormalized_pre_expectation_approx,
+                normalization_constant,
                 normalization_constant_exact,
                 normalization_constant_approx,
-                pre_expectation_exact,
-                pre_expectation_approx,
+                normalized_pre_expectation_integrand,
+                normalized_pre_expectation_exact,
+                normalized_pre_expectation_approx,
             })
         } else {
             Ok(Self {
@@ -241,12 +279,15 @@ impl Report {
                 num_normal_samples,
                 paths,
                 pre_expectation_underapproximation,
+                unnormalized_pre_expectation_integrand,
                 unnormalized_pre_expectation_exact,
                 unnormalized_pre_expectation_approx,
+                normalization_constant: None,
                 normalization_constant_exact: None,
                 normalization_constant_approx: None,
-                pre_expectation_exact: None,
-                pre_expectation_approx: None,
+                normalized_pre_expectation_integrand: None,
+                normalized_pre_expectation_exact: None,
+                normalized_pre_expectation_approx: None,
             })
         }
     }
@@ -338,6 +379,9 @@ impl Display for Report {
                 )?;
             }
         }
+        if let Some(pe) = &self.unnormalized_pre_expectation_integrand {
+            writeln!(f, "Unnormalized Pre-Expectation Integrand = {pe}")?;
+        }
         if let Some(pe) = &self.unnormalized_pre_expectation_exact {
             writeln!(f, "Unnormalized Pre-expectation = {pe}")?;
             writeln!(
@@ -345,6 +389,9 @@ impl Display for Report {
                 "Unnormalized Pre-expectation ≈ {}",
                 self.unnormalized_pre_expectation_approx.unwrap()
             )?;
+        }
+        if let Some(cnst_int) = &self.normalization_constant {
+            writeln!(f, "Normalization Constant Integrand = {cnst_int}")?;
         }
         if let Some(cnst) = &self.normalization_constant_exact {
             writeln!(f, "Normalization Constant = {cnst}")?;
@@ -354,12 +401,15 @@ impl Display for Report {
                 self.normalization_constant_approx.unwrap()
             )?;
         }
-        if let Some(pe) = &self.pre_expectation_exact {
-            writeln!(f, "Pre-expectation = {pe}")?;
+        if let Some(pe) = &self.normalized_pre_expectation_integrand {
+            writeln!(f, "Normalized Pre-expectation Integrand = {pe}")?;
+        }
+        if let Some(pe) = &self.normalized_pre_expectation_exact {
+            writeln!(f, "Normalized Pre-expectation = {pe}")?;
             writeln!(
                 f,
-                "Pre-expectation ≈ {}",
-                self.pre_expectation_approx.unwrap()
+                "Normalized Pre-expectation ≈ {}",
+                self.normalized_pre_expectation_approx.unwrap()
             )?;
         }
         Ok(())
